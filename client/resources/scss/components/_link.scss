@@ -1,0 +1,11 @@
+.link {
+    text-decoration: none;
+}
+
+.grad-text {
+    background: linear-gradient(130deg, $main-color, $orange-color);
+    -webkit-background-clip: text;
+    /* Dùng gradient cho văn bản */
+    -webkit-text-fill-color: transparent;
+    /* Xóa màu nền gốc của văn bản */
+}

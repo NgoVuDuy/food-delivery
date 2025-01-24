@@ -1,0 +1,18 @@
+.nav-child {
+
+    a {
+        color: black;
+        text: {
+            decoration: none;
+        }
+        font: {
+            weight: bold;
+        }
+    }
+
+    .active {
+        color: $main-color;
+    }
+
+
+}

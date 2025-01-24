@@ -1,0 +1,60 @@
+footer {
+    font-family: Hanken Grotesk !important;
+  
+    .footer-row {
+      gap: 40px;
+      justify-content: space-around;
+    }
+  
+    .footer-logo {
+      margin-right: 20px;
+      width: 70px;
+      height: 70px;
+    }
+  
+    .footer-logo-name {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  
+    .footer-cover {
+      padding: 40px;
+      border-top: 1px solid rgb(199, 199, 199);
+    }
+  
+    .footer-col {
+      // background-color: #fbeaeb;
+      background-color: white;
+      border-radius: 4px;
+      // padding: 20px;
+  
+      i {
+        margin-right: 12px;
+      }
+  
+      p {
+        margin-bottom: 6px;
+  
+        a {
+          text-decoration: none;
+          color: black;
+          font-size: 14px;
+  
+          &:hover {
+            color: $main-color;
+          }
+        }
+      }
+  
+      h6 {
+        color: $main-color;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+    }
+  
+    .footer-logo-cover {
+      // height: 14%;
+    }
+  }
+  

@@ -1,0 +1,106 @@
+.dish-img-wrap {
+    border-radius: 12px;
+
+    img {
+        border-radius: 12px;
+
+    }
+}
+
+.dish-option-wrap {
+
+    padding: 12px;
+    border-radius: 12px;
+
+    .dish-option-name {
+
+        font: {
+            size: 24px;
+            weight: bold;
+        }
+
+        margin-bottom: 12px;
+    }
+
+    .dish-option-price {
+
+        color: $main-color;
+
+        font: {
+            size: 20px;
+            weight: bold;
+        }
+
+        margin-bottom: 12px;
+    }
+
+    .dish-option-cover {
+
+        .dish-option-title {
+
+            font: {
+                weight: bold;
+            }
+
+            margin: 16px 0px 8px 0px;
+        }
+
+        button {
+            color: black;
+        }
+
+
+        button:focus {
+
+            border: 2px $main-color solid;
+            background-color: $button-outline-hover-color;
+        }
+    }
+}
+
+.dish-btn-cover {
+
+    .dish-btn-quantity {
+
+        label {
+            margin-right: 12px;
+        }
+
+        input {
+            border: 1px $border-color solid;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 0px 16px;
+        }
+
+    }
+
+    .add-cart-btn {
+        width: 60%;
+
+    }
+}
+
+.dish-description-wrap {
+    .dish-description-title {
+
+        font: {
+            weight: bold;
+        }
+    }
+}
+
+.dish-product-suggest-title {
+    font: {
+        weight: bold;
+    }
+
+}
+
+.dish-product-suggest {
+    background: pink;
+    width: 100%;
+    height: 80px;
+}

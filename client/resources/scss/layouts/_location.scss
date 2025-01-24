@@ -1,0 +1,33 @@
+#map {
+    height: 100%;
+    border-radius: 8px;
+    height: 500px;
+}
+
+.place-wrap {
+
+    overflow-y: scroll;
+    height: 500px;
+
+    .place-title {
+
+        font: {
+            size: 22px;
+            weight: bold;
+        }
+    }
+
+    .place-item {
+
+        .place-name {
+
+            font: {
+                weight: bold;
+            }
+        }
+
+        padding: 12px;
+        border-radius: 4px;
+        border: 1px $border-color solid;
+    }
+}

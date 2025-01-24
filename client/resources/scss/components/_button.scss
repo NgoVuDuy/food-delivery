@@ -1,0 +1,29 @@
+.main-button {
+    background-color: $button-color;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+
+    font: {
+        size: 14px;
+    }
+
+    &:hover {
+        background-color: $button-hover-color;
+    }
+}
+
+.outline-button {
+    border: 1px $border-color solid;
+    border-radius: 4px;
+    background-color: white;
+    color: $main-color;
+    padding: 8px;
+
+    &:hover {
+
+        background-color: $button-outline-hover-color;
+    }
+}
