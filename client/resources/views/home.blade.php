@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="bg-more-btn">
-                    <button>
+                    <button class="cold-button">
                         <span>Menu</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             width="16" height="16" stroke="currentColor" class="size-6">
@@ -41,7 +41,7 @@
 
             <div class="col-12 mb-5">
                 <div class="home-product-title">
-                    <p class="grad-text">Thực đơn tiêu biểu</p>
+                    <p class="grad-text title-text">Thực đơn tiêu biểu</p>
                 </div>
             </div>
 
@@ -49,8 +49,11 @@
                 <div class="home-otd-product-wrap">
                     <img src="{{ asset('Products/pizza-home-1.png') }}" alt="">
 
-                    <div class="product-content d-flex justify-content-center align-items-center">
-                        {{-- <p>Pizza Phô Mai Ý</p> --}}
+                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
+
+                        <p>PIZZA PHÔ MAI</p>
+                        <button class="cold-button">Xem thêm</button>
+
                     </div>
                 </div>
             </div>
@@ -59,8 +62,10 @@
                 <div class="home-otd-product-wrap">
                     <img src="{{ asset('Products/pizza-home-2.png') }}" alt="">
 
-                    <div class="product-content">
+                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
+                        <p>PIZZA HẢI SẢN</p>
+                        <button class="cold-button">Xem thêm</button>
                     </div>
                 </div>
 
@@ -70,7 +75,10 @@
                 <div class="home-otd-product-wrap">
                     <img src="{{ asset('Products/pizza-home-3.png') }}" alt="">
 
-                    <div class="product-content">
+                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
+
+                        <p>PIZZA XÚC XÍCH</p>
+                        <button class="cold-button">Xem thêm</button>
 
                     </div>
                 </div>
@@ -78,22 +86,22 @@
             </div>
         </div>
 
-        
-        
+
+
     </div>
-    
+
     <div class="container-fluid home-product-infor-wrap">
-        
+
         {{-- Information --}}
         <div class="row justify-content-center">
             <div class="col-8">
-    
+
                 <div class="home-product-infor">
                     <img src="{{ asset('Products/pizza-mix.webp') }}" alt="">
                 </div>
-    
+
             </div>
-    
+
             <div class="col-12">
                 <div class="home-product-infor-content">
 
@@ -101,45 +109,157 @@
             </div>
         </div>
     </div>
-    
+
+    {{-- Menu noi bat --}}
     <div class="container">
-        
-        {{-- News --}}
-    
         <div class="row">
-    
-            <div class="col-12 mb-5">
-                <div class="home-product-title">
-                    <p>Tin tức</p>
-                </div>
+            <div class="col-12">
+                <p class="grad-text title-text">Menu nổi bật</p>
+
             </div>
-    
-            <div class="col-3">
-                <div class="home-news-wrap">
-    
+            <div class="col-6">
+                <div class="row">
+                    @for ($i = 1; $i <= 4; $i++)
+                        <div class="col-12">
+                            <div class="home-menu-item d-flex align-items-center mt-4">
+                                <div class="home-menu-img">
+                                    <img src="{{ asset('Products/10099238.jpg') }}" alt="">
+                                </div>
+
+                                <div class="home-menu-content">
+                                    <div class="d-flex justify-content-between">
+
+                                        <div class="home-menu-name">Pizza phô mai ý</div>
+                                        <div class="home-menu-price grad-text">125.000đ</div>
+                                    </div>
+
+                                    <div class="separation"></div>
+
+                                    <div class="home-menu-desc">Phô mai được nhập khẩu trực tiếp từ Ý</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+
+
                 </div>
+
             </div>
-            <div class="col-3">
-                <div class="home-news-wrap">
-    
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="home-news-wrap">
-    
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="home-news-wrap">
-                    
+            <div class="col-6">
+                <div class="row">
+                    @for ($i = 1; $i <= 4; $i++)
+                        <div class="col-12">
+                            <div class="home-menu-item d-flex align-items-center mt-4">
+                                <div class="home-menu-img">
+                                    <img src="{{ asset('Products/10099238.jpg') }}" alt="">
+                                </div>
+
+                                <div class="home-menu-content">
+                                    <div class="d-flex justify-content-between">
+
+                                        <div class="home-menu-name">Pizza phô mai ý</div>
+                                        <div class="home-menu-price grad-text">125.000đ</div>
+                                    </div>
+
+                                    <div class="separation"></div>
+
+                                    <div class="home-menu-desc">Phô mai được nhập khẩu trực tiếp từ Ý</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+
+
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    @endsection
-    
-    @section('js')
-    
-    @endsection
+
+    <div class="container-fluid mt-5 home-news-wrap">
+
+        {{-- News --}}
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-12 mb-3">
+                    <div class="home-product-title">
+                        <p class="home-news-title">Tin tức</p>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_1.webp') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_2.webp') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_3.jpg') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_4.jpg') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+@endsection
+
+@section('js')
+
+@endsection

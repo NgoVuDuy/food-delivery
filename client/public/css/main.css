@@ -49,6 +49,10 @@ a {
 .navbar .nav-item:hover .nav-link {
   color: #ff2b85;
 }
+.navbar .nav-item .nav-link {
+  color: black;
+}
+
 .header-form-search {
   margin-right: 16px;
 }
@@ -119,6 +123,9 @@ footer .footer-col h6 {
 }
 .menu-filter-wrap .menu-filter-title p:last-child {
   color: #ff2b85;
+}
+.menu-filter-wrap .menu-filter-item ul {
+  list-style-type: none;
 }
 .menu-filter-wrap .menu-filter-item p {
   padding: 0px 4px;
@@ -246,47 +253,31 @@ footer .footer-col h6 {
   text-transform: uppercase;
   color: white;
 }
-.bg-header-wrap .bg-header .bg-content .bg-more-btn button {
-  padding: 10px 18px;
-  background: #ff2b85;
-  color: white;
-  border: none;
-  border-radius: 2px;
-  transition: background 0.5s ease, color 0.5s ease;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-}
-.bg-header-wrap .bg-header .bg-content .bg-more-btn button svg {
-  margin-left: 6px;
-}
-.bg-header-wrap .bg-header .bg-content .bg-more-btn button:hover {
-  background: white;
-  color: #ff2b85;
-}
-
-.home-product-title p {
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 .home-otd-product-wrap img {
   width: 100%;
   position: relative;
-  z-index: 10;
   animation: spin-img 18s linear infinite;
 }
 .home-otd-product-wrap .product-content {
-  transform: translateY(-50px);
-  background: pink;
-  height: 300px;
+  border-radius: 8px;
+}
+.home-otd-product-wrap .product-content p {
+  text-align: justify;
+  padding: 0px 20px;
+  font-size: 28px;
+  color: #ff2b85;
+}
+.home-otd-product-wrap .product-content button {
+  z-index: 2;
+  border: 1px #ff2b85 solid;
 }
 
 .home-product-infor-wrap {
   padding: 0px;
-  margin-top: 60px;
+  margin-top: 100px;
+}
+.home-product-infor-wrap .row {
+  height: 950px;
 }
 .home-product-infor-wrap .home-product-infor img {
   width: 100%;
@@ -299,10 +290,57 @@ footer .footer-col h6 {
   transform: translateY(-200px);
 }
 
+.home-menu-item .home-menu-img img {
+  width: 150px;
+}
+.home-menu-item .home-menu-content {
+  width: 100%;
+}
+.home-menu-item .home-menu-content .home-menu-price {
+  font-weight: bold;
+  font-size: 18px;
+}
+.home-menu-item .home-menu-content .home-menu-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff2b85;
+}
+.home-menu-item .home-menu-content .home-menu-desc {
+  font-size: 15px;
+  color: #797979;
+}
+
+.separation {
+  border: 1px #e3e3e3 solid;
+  margin: 6px 0px;
+}
+
 .home-news-wrap {
   background: pink;
+  padding-top: 28px;
+  padding-bottom: 56px;
+}
+.home-news-wrap .home-news-title {
+  font-size: 30px;
+}
+.home-news-wrap .home-news-item img {
   width: 100%;
-  height: 200px;
+  height: 180px;
+  border-radius: 18px;
+}
+.home-news-wrap .home-news-item .news-time {
+  font-size: 14px;
+  color: #797979;
+  margin-top: 8px;
+}
+.home-news-wrap .home-news-item .news-title {
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-top: 8px;
+}
+.home-news-wrap .home-news-item .news-content {
+  text-align: justify;
+  margin-top: 8px;
 }
 
 #map {
@@ -350,6 +388,25 @@ footer .footer-col h6 {
 }
 .outline-button:hover {
   background-color: #ffecf4;
+}
+
+.cold-button {
+  padding: 10px 18px;
+  background: #ff2b85;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  transition: background 0.5s ease, color 0.5s ease;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+}
+.cold-button svg {
+  margin-left: 6px;
+}
+.cold-button:hover {
+  background: white;
+  color: #ff2b85;
 }
 
 .dish-item {
@@ -434,6 +491,13 @@ footer .footer-col h6 {
   /* Dùng gradient cho văn bản */
   -webkit-text-fill-color: transparent;
   /* Xóa màu nền gốc của văn bản */
+}
+
+.title-text {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .nav-child a {

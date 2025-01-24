@@ -23,6 +23,10 @@
 
     .menu-filter-item {
 
+        ul {
+            list-style-type: none;
+        }
+
         p {
             padding: 0px 4px;
             border-radius: 4px;

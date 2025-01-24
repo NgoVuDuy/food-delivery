@@ -9,3 +9,16 @@
     -webkit-text-fill-color: transparent;
     /* Xóa màu nền gốc của văn bản */
 }
+
+.title-text {
+    text-align: center;
+
+    font: {
+        size: 40px;
+        weight: bold;
+    }
+
+    text: {
+        transform: uppercase;
+    }
+}
