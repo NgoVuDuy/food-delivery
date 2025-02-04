@@ -10,13 +10,43 @@
 
     <div class="container-fluid bg-header-wrap">
         <div class="bg-header">
-            <img src="{{ asset('bg_2.webp') }}" alt="" width="100%" height="100%">
+
+            <div class="slide-btn d-flex">
+
+                <div class="prev">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-left">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </div>
+
+                <div class="next">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </div>
+
+
+
+
+            </div>
+
+            <img src="{{ asset('Products/44.jpg') }}" alt="">
 
             <div class="bg-content">
                 <div class="bg-text">
 
-                    <p>Chào mừng bạn đến với Food delivery</p>
-                    <p>Hãy thưởng thức món ngon<br>cùng gia đình</p>
+                    <p>Nguyên liệu tươi mới</p>
+                    <p>Hương vị thơm ngon</p>
+
+                    <div>Chào mừng bạn đến với chuỗi nhà hàng NVD. <br> Hãy cùng nhau thưởng thức những món ăn ngon và mới
+                        lạ.</div>
+
                 </div>
 
                 <div class="bg-more-btn">
@@ -33,6 +63,93 @@
         </div>
     </div>
 
+    <div class="container">
+
+        <div class="row">
+            <div class="col-3">
+                <div class="home-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-smile">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        <line x1="9" x2="9.01" y1="9" y2="9" />
+                        <line x1="15" x2="15.01" y1="9" y2="9" />
+                    </svg>
+
+                    <div class="box-title">
+                        <p>Phục vụ tận tình</p>
+                    </div>
+
+                    <div class="box-content">
+                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác đến
+                        quán.
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="home-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-thumbs-up">
+                        <path d="M7 10v12" />
+                        <path
+                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" />
+                    </svg>
+
+                    <div class="box-title">
+                        <p>Phục vụ tận tình</p>
+                    </div>
+
+                    <div class="box-content">
+                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác đến
+                        quán.
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="home-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-clock-8">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 8 14" />
+                    </svg>
+
+                    <div class="box-title">
+                        <p>Phục vụ tận tình</p>
+                    </div>
+
+                    <div class="box-content">
+                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác đến
+                        quán.
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="home-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-utensils">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                        <path d="M7 2v20" />
+                        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+                    </svg>
+
+                    <div class="box-title">
+                        <p>Phục vụ tận tình</p>
+                    </div>
+
+                    <div class="box-content">
+                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác đến
+                        quán.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <div class="container mt-5">
 
         {{-- Outstanding --}}
@@ -41,7 +158,9 @@
 
             <div class="col-12 mb-5">
                 <div class="home-product-title">
-                    <p class="grad-text title-text">Thực đơn tiêu biểu</p>
+                    <p class="title-text">Món tiêu biểu</p>
+                    <div class="hight-light"></div>
+
                 </div>
             </div>
 
@@ -51,7 +170,7 @@
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p>PIZZA PHÔ MAI</p>
+                        <p class="grad-text">PIZZA PHÔ MAI</p>
                         <button class="cold-button">Xem thêm</button>
 
                     </div>
@@ -64,7 +183,7 @@
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p>PIZZA HẢI SẢN</p>
+                        <p class="grad-text">PIZZA HẢI SẢN</p>
                         <button class="cold-button">Xem thêm</button>
                     </div>
                 </div>
@@ -77,7 +196,7 @@
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p>PIZZA XÚC XÍCH</p>
+                        <p class="grad-text">PIZZA XÚC XÍCH</p>
                         <button class="cold-button">Xem thêm</button>
 
                     </div>
@@ -103,8 +222,11 @@
             </div>
 
             <div class="col-12">
-                <div class="home-product-infor-content">
-
+                <div class="home-product-infor-content d-flex justify-content-center align-items-center">
+                    <p>Hãy đến với chúng tôi và tận hưởng những món ăn tươi ngon được chế biến <br> từ những nguyên liệu
+                        chất lượng,
+                        tươi mới, mang đến cho bạn <br> một hương vị không thể nào quên.
+                    </p>
                 </div>
             </div>
         </div>
@@ -114,7 +236,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="grad-text title-text">Menu nổi bật</p>
+                <p class="title-text">Menu nổi bật</p>
+
+                <div class="hight-light"></div>
 
             </div>
             <div class="col-6">
@@ -130,7 +254,7 @@
                                     <div class="d-flex justify-content-between">
 
                                         <div class="home-menu-name">Pizza phô mai ý</div>
-                                        <div class="home-menu-price grad-text">125.000đ</div>
+                                        <div class="home-menu-price">125.000đ</div>
                                     </div>
 
                                     <div class="separation"></div>
@@ -158,7 +282,7 @@
                                     <div class="d-flex justify-content-between">
 
                                         <div class="home-menu-name">Pizza phô mai ý</div>
-                                        <div class="home-menu-price grad-text">125.000đ</div>
+                                        <div class="home-menu-price">125.000đ</div>
                                     </div>
 
                                     <div class="separation"></div>
@@ -237,6 +361,39 @@
                     </div>
                 </div>
                 <div class="col-3">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_4.jpg') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3 mt-5">
+                    <div class="home-news-item">
+                        <img src="{{ asset('news_3.jpg') }}" alt="">
+
+                        <div class="news-time">
+                            1/1/1919
+                        </div>
+                        <div class="news-title">
+                            Pizza ngon nhất thế giới
+                        </div>
+
+                        <div class="news-content">
+                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mt-5">
                     <div class="home-news-item">
                         <img src="{{ asset('news_4.jpg') }}" alt="">
 

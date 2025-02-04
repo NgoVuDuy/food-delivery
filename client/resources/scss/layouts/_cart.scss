@@ -4,6 +4,10 @@
         font: {
             weight: bold;
         }
+
+        span {
+            font-size: 16px;
+        }
     }
 }
 
@@ -40,6 +44,18 @@
     }
 
     .cart-item-right {
+
+        .dish-btn-quantity {
+
+            display: flex;
+
+            input {
+                border: 1px #e3e3e3 solid;
+                border-radius: 4px;
+                height: 40px;
+                margin: 0px 8px;
+            }
+        }
 
         .cart-item-delete {
 

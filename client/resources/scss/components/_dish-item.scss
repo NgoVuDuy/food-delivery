@@ -3,19 +3,45 @@
     border: 1px $border-color solid;
     border-radius: 12px;
     position: relative;
+    overflow: hidden;
 
     &:hover {
+
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        border: 1px $light-purple solid;
+
 
         .menu-item-img {
 
             img {
-                transform: translateY(-185px);
+                transform: translateY(-110px);
             }
 
-            .menu-item-desc {
-                transform: translateY(-130px);
+
+        }
+
+        .menu-item-content {
+            .menu-name {
+                transform: translate(-64px, -120px);
+                font-size: 20px;
             }
+
+            .menu-price {
+                transform: translate(-94px, -120px);
+
+            }
+        }
+
+        .menu-item-desc {
+
+            transform: translate(0px, -126px);
+            opacity: 1;
+
+        }
+
+        .more-btn {
+            transform: translate(0px, -56px);
+            opacity: 1;
         }
 
     }
@@ -27,15 +53,9 @@
         img {
             border-radius: 12px;
             transition: transform .4s ease;
-        }
+            width: 60%;
+            margin: 12px;
 
-        .menu-item-desc {
-            color: $main-color;
-            position: absolute;
-            transition: transform .4s ease;
-            text-align: justify;
-            padding: 0px 18px;
-            font-size: 17px;
         }
 
     }
@@ -46,11 +66,15 @@
         border-bottom-left-radius: 12px;
         position: relative;
 
-        background: linear-gradient(0deg, #ffe6f1, #fff, #fff, #fff);
+        // background: linear-gradient(0deg, #ffe6f1, #fff, #fff, #fff);
 
 
         .menu-name {
             text-align: center;
+            transition: transform 0.4s ease, font-size 0.4s ease;
+
+
+
 
             font: {
                 size: 18px;
@@ -59,6 +83,7 @@
 
             p {
                 margin-bottom: 4px;
+                color: $main-color ;
             }
         }
 
@@ -103,17 +128,22 @@
 
         .menu-price {
 
-            position: absolute;
+            // position: absolute;
 
-            right: 6%;
-            bottom: 18%;
+            // right: 6%;
+            // bottom: 18%;
+            text-align: center;
+            margin-top: 12px;
+
+            transition: transform 0.4s ease;
+
 
             font: {
                 size: 20px;
                 weight: bold;
             }
 
-            color: $main-color;
+            color: $dark-pink;
         }
 
     }
@@ -126,8 +156,7 @@
         border-radius: 20px;
         border: 1px $border-color solid;
 
-        // background-color: $button-color;
-        background: linear-gradient(130deg, $main-color, $orange-color);
+        background-color: $dark-pink;
         color: white;
 
         font: {
@@ -135,5 +164,21 @@
         }
 
         z-index: 10;
+    }
+
+    .menu-item-desc {
+        color: $main-color;
+        position: absolute;
+        transition: transform .4s ease, opacity .4s ease;
+        text-align: justify;
+        padding: 0px 18px;
+        font-size: 16px;
+    }
+
+    .more-btn {
+        position: absolute;
+        transition: transform .4s ease, opacity .5s ease, background .5s ease, color .5s ease;
+        margin: 0px 18px;
+
     }
 }

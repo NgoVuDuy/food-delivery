@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-8 rounded shadow p-3">
-                <div class="cart-title"><h5>Giỏ hàng (3 sản phẩm)</h5></div>
+                <div class="cart-title"><h5>Giỏ Hàng <span>( 3 sản phẩm )</span></h5></div>
 
                 <div class="row">
                     @for ($i = 1; $i <= 5; $i++)

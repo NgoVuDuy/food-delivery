@@ -4,6 +4,32 @@
 
     .bg-header {
         position: relative;
+        display: flex;
+        justify-content: right;
+        align-items: flex-end;
+        margin-bottom: 64px;
+
+        .slide-btn {
+
+            .next, .prev {
+
+                margin: 0px 16px;
+                border: 2px $gray-color solid;
+                border-radius: 12px;
+
+            }
+
+            svg {
+
+                color: black;
+            }
+        }
+
+        img {
+
+            width: 500px;
+            margin: 20px 20px 0px 20px;
+        }
 
         .bg-content {
             position: absolute;
@@ -17,32 +43,61 @@
             .bg-text {
 
                 p {
+                    margin: 0px;
+                    color: $main-color;
 
                     font: {
-                        size: 32px;
+                        size: 52px;
                     }
 
                     text: {
                         transform: uppercase;
                     }
 
-                    color: white;
+                }
+                div {
+
+                    color: $dark-pink;
+                    padding-top: 40px;
                 }
 
             }
 
             .bg-more-btn {
-
+                margin-top: 20px;
             }
 
         }
     }
 }
 
-.home-product-title {
-    p {
+.home-box {
+    border: 1px $light-purple solid;
+    border-radius: 12px;
+    padding: 12px;
 
+    svg {
+        color: $main-color;
     }
+
+    .box-title {
+        p {
+
+            margin: 14px 0px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+
+    .box-content {
+        p {
+            text-align: justify;
+        }
+    }
+}
+
+.home-product-title {
+
 }
 
 .home-otd-product-wrap {
@@ -74,7 +129,6 @@
         button {
 
             z-index: 2;
-            border: 1px $main-color solid;
         }
 
     }
@@ -104,15 +158,21 @@
     .home-product-infor-content {
     
         height: 350px;
-        background: pink;
+        background: $light-blue;
         transform: translateY(-200px);
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 100px;
+        }
     }
 }
 
 .home-menu-item {
     .home-menu-img {
         img {
-            width: 150px;
+            width: 160px;
         }
     }
 
@@ -120,6 +180,8 @@
         width: 100%;
 
         .home-menu-price {
+
+            color: $dark-pink;
 
             font: {
                 weight: bold;
@@ -151,14 +213,16 @@
 
 .home-news-wrap {
 
-    background: pink;
+    background: $light-pink;
     padding-top: 28px;
     padding-bottom: 56px;
     
     .home-news-title {
         font: {
+            
             size: 30px;
         }
+        text-transform: uppercase;
     }
 
     .home-news-item {
@@ -171,7 +235,7 @@
 
         .news-time {
             font-size: 14px;
-            color: $gray-color;
+            color: black;
             margin-top: 8px;
         }
         .news-title {
@@ -186,4 +250,12 @@
 
         }
     }
+}
+
+.hight-light {
+    width: 100px;
+    height: 5px;
+    background-color: $light-blue;
+    border-radius: 20px;
+    margin: 4px 0px;
 }

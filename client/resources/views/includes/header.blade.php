@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Food delivery</a>
+        <a class="navbar-brand" href="/"><img src="{{ asset('logo/logo.png') }}" alt="" width="80px"></a>
 
         <div class="order-lg-2">
 

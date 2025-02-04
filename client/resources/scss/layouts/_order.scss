@@ -1,0 +1,162 @@
+.order-wrap {
+
+    .order-title {
+        font: {
+            size: 22px;
+            weight: bold;
+        }
+    }
+
+    .order-status-box-wrap {
+
+        position: absolute;
+        left: -182%;
+
+        width: 122px;
+
+        .arrow {
+            border: 10px solid transparent;
+            border-bottom-color: $main-color;
+            width: 20px;
+            height: 20px;
+        }
+
+        .order-status-box {
+
+            height: 42px;
+            width: 100%;
+            background-color: $main-color;
+            border-radius: 4px;
+
+            span {
+                color: white;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .order-status {
+
+        .status-icon {
+            position: relative;
+        }
+
+        .approval-icon-wrap {
+
+            .approval-icon {
+                color: $main-color;
+            }
+
+        }
+
+        .checked-icon-wrap {
+
+            .checked-icon {
+
+                color: $main-color;
+            }
+        }
+
+        .process-bar {
+
+            width: 140px;
+            height: 5px;
+            border-radius: 20px;
+            margin: 0px 6px;
+            background-color: $gray-color;
+        }
+
+        .bar-1 {
+            background-color: $main-color;
+
+        }
+    }
+
+}
+
+.delivery-man-contact {
+    .chat-box {
+
+        border-radius: 8px;
+
+        .delivery-man-info {
+
+            padding: 8px;
+            background-color: $main-color;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+
+            .delivery-man-name {
+                color: white;
+            }
+
+
+            img {
+
+                width: 40px;
+                height: 40px;
+                background-color: white;
+                margin-right: 14px;
+            }
+        }
+
+        .message-container {
+            width: 100%;
+            height: 300px;
+            padding: 0px 12px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .message-item {
+                display: inline;
+                padding: 6px 10px;
+                border: 1px $border-color solid;
+                background-color: white;
+            }
+
+            .message-customer {
+                .message-item {
+                    border-top-left-radius: 18px;
+                    border-top-right-radius: 18px;
+                    border-bottom-left-radius: 18px;
+
+
+                }
+            }
+
+            .message-delivery-mand {
+                .message-item {
+
+                    border-top-left-radius: 18px;
+                    border-top-right-radius: 18px;
+                    border-bottom-right-radius: 18px;
+
+                }
+            }
+        }
+
+        .message-input {
+
+            padding: 8px;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+
+            input {
+
+                border-radius: 20px;
+                border: 2px $gray-color solid;
+                padding: 4px 8px;
+                width: 100%;
+
+                &:focus {
+                    border: 2px $main-color solid;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}

@@ -28,6 +28,11 @@ Route::get('/cart', function() {
     return view('cart');
 });
 
+Route::get('/order', function() {
+
+    return view('order');
+});
+
 Route::get('location', function() {
     return view('location');
 });

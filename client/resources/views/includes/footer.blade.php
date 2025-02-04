@@ -6,13 +6,15 @@
                 <div class="col-lg-4 col-12 footer-col">
                     <div class="footer-logo-cover mb-4">
 
-                        {{-- <img class="footer-logo" src="{{ asset('images/logo/logo-infiverse.png') }}" alt=""> --}}
+                        <img class="footer-logo" src="{{ asset('logo/3.png') }}" alt="">
                         
-                        <span class="footer-logo-name">Food delivery</span>
+                        {{-- <span class="footer-logo-name">NVD</span> --}}
 
                     </div>
-                    <p>
-                        ........<br>
+                    <p class="mb-5">
+                        CSKH: +84 949229535<br>
+                        Email: ngovuduypc@gmail.com<br>
+
                     </p>
 
                     <i class="icon-footer fa fa-facebook-official" style="font-size:32px;color:#1775f0"></i>

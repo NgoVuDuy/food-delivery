@@ -29,5 +29,11 @@
         padding: 12px;
         border-radius: 4px;
         border: 1px $border-color solid;
+
+        .place-distance {
+
+            font-size: 14px;
+            color: $gray-color;
+        }
     }
 }

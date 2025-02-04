@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="{{ asset('images/logo/logo-infiverse.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('logo/3.png') }}" type="image/png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

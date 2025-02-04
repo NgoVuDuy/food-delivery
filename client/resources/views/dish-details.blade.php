@@ -31,7 +31,7 @@
             <div class="col-5">
 
                 <div class="dish-img-wrap shadow">
-                    <img src="{{ asset('Products/10099238.jpg') }}" alt="" width="100%">
+                    <img src="{{ asset('Products/10099238.jpg') }}" alt="">
 
                 </div>
 
@@ -40,46 +40,46 @@
 
                 <div class="dish-option-wrap bg-light">
 
-                    <div class="dish-option-name">
+                    <div class="dish-option-name grad-text">
                         Pizza phô mai Ý
                     </div>
 
-                    <div class="dish-option-price">
-                        59.000 VND
+                    <div class="dish-option-price grad-text">
+                        59.000đ
                     </div>
 
                     <div class="dish-option-cover">
                         <div class="dish-option-title">
-                            Chọn size
+                            Chọn Size
                         </div>
 
-                        <button class="outline-button">Nhỏ (12cm) + 0 VND</button>
-                        <button class="outline-button">Vừa (14cm) + 6.000 VND</button>
-                        <button class="outline-button">Lớn (16cm) + 8.000 VND</button>
-
-
-                    </div>
-
-                    <div class="dish-option-cover">
-
-                        <div class="dish-option-title">
-                            Đồ dùng kèm
-                        </div>
-
-                        <button class="outline-button">Coca + 0 VND</button>
-                        <button class="outline-button">Khoai tây chiên + 6000 VND</button>
-                        <button class="outline-button">Salad + 8.000 VND</button>
+                        <button class="">Nhỏ (12cm) + 0 VND</button>
+                        <button class="">Vừa (14cm) + 6.000 VND</button>
+                        <button class="">Lớn (16cm) + 8.000 VND</button>
 
 
                     </div>
 
                     <div class="dish-option-cover">
+
                         <div class="dish-option-title">
-                            Hình thức
+                            Đế Bánh
                         </div>
 
-                        <button class="outline-button">Cắt sẵn</button>
-                        <button class="outline-button">Không cắt</button>
+                        <button class="">Mỏng</button>
+                        <button class="">Vừa</button>
+                        <button class="">Dày</button>
+
+
+                    </div>
+
+                    <div class="dish-option-cover">
+                        <div class="dish-option-title">
+                            Hình Thức
+                        </div>
+
+                        <button class="">Cắt sẵn</button>
+                        <button class="">Không cắt</button>
 
                     </div>
 
@@ -106,7 +106,7 @@
                         </button>
                     </div>
 
-                    <button class="add-cart-btn main-button">Thêm vào giỏ hàng</button>
+                    <button class="add-cart-btn main-button">Thêm Vào Giỏ Hàng</button>
                 </div>
 
 

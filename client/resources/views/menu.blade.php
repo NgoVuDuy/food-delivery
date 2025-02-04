@@ -102,31 +102,31 @@
                 <div class="row">
 
                     @for ($i = 1; $i <= 10; $i++)
-                        <div class="col-3 mb-4">
+                        <div class="col-3 mb-5">
 
                             <a href="menu/1" class="link">
 
                                 <div class="menu-item-wrap dish-item">
 
-                                    <div class="menu-item-message">
+                                    {{-- <div class="menu-item-message">
                                         Khuyến mãi
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="menu-item-img">
+                                    <div class="menu-item-img d-flex justify-content-center align-items-center">
 
-                                        <img src="{{ asset('Products/10099238.jpg') }}" alt="" width="100%">
+                                        <img src="{{ asset('Products/pizza-home-4.png') }}" alt="">
 
-                                        <div class="menu-item-desc grad-text">Pizza với phô mai tươi được nhập khẩu trực
-                                            tiếp từ Ý. Mang đến một hương vị đặc trưng mà mới mẻ.</div>
+                                        {{-- <div class="menu-item-desc grad-text">Pizza với phô mai tươi được nhập khẩu trực
+                                            tiếp từ Ý. Mang đến một hương vị đặc trưng mà mới mẻ.</div> --}}
 
                                     </div>
 
                                     <div class="menu-item-content p-3">
                                         <div class="menu-name">
-                                            <p class="grad-text">PIZZA PHÔ MAI Ý</p>
+                                            <p class="">Pizza Phô Mai Ý</p>
                                         </div>
 
-                                        <div class="menu-time">
+                                        {{-- <div class="menu-time">
                                             <svg aria-hidden="true" focusable="false" class="fl-neutral-secondary"
                                                 width="16" height="16" viewBox="0 0 16 16"
                                                 xmlns="http://www.w3.org/2000/svg" data-testid="CLOCK">
@@ -152,12 +152,19 @@
                                             <div class="menu-transport-text">
                                                 Free
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="menu-price grad-text">
+                                        <div class="menu-price">
                                             157.000đ
                                         </div>
                                     </div>
+
+
+                                    <div class="menu-item-desc">Pizza với phô mai
+                                        tươi được nhập khẩu trực tiếp từ Ý
+                                    </div>
+
+                                    <div class="nice-button more-btn">Xem thêm</div>
                                 </div>
                             </a>
 
@@ -175,6 +182,6 @@
 
 @section('js')
 
-<script src="{{ asset('js/menu.js') }}"></script>
+    <script src="{{ asset('js/menu.js') }}"></script>
 
 @endsection

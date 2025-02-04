@@ -3,7 +3,7 @@
 }
 
 .grad-text {
-    background: linear-gradient(130deg, $main-color, $orange-color);
+    background: linear-gradient(130deg, $dark-blue, $dark-pink);
     -webkit-background-clip: text;
     /* Dùng gradient cho văn bản */
     -webkit-text-fill-color: transparent;
@@ -11,10 +11,12 @@
 }
 
 .title-text {
-    text-align: center;
+    // text-align: center;
+    color: $dark-blue;
+    margin: 0px;
 
     font: {
-        size: 40px;
+        size: 26px;
         weight: bold;
     }
 

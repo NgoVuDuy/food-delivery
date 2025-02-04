@@ -18,7 +18,7 @@ footer {
     }
   
     .footer-cover {
-      padding: 40px;
+      padding: 40px 40px 20px 40px;
       border-top: 1px solid rgb(199, 199, 199);
     }
   
@@ -38,7 +38,7 @@ footer {
         a {
           text-decoration: none;
           color: black;
-          font-size: 14px;
+          font-size: 16px;
   
           &:hover {
             color: $main-color;
@@ -48,7 +48,7 @@ footer {
   
       h6 {
         color: $main-color;
-        font-size: 18px;
+        font-size: 22px;
         margin-bottom: 10px;
       }
     }
