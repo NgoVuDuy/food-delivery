@@ -106,7 +106,7 @@
 
                             <a href="menu/1" class="link">
 
-                                <div class="menu-item-wrap dish-item">
+                                <div class="menu-item-wrap dish-item shadow">
 
                                     {{-- <div class="menu-item-message">
                                         Khuyến mãi

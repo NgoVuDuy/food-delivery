@@ -82,7 +82,9 @@ footer .footer-logo {
   height: 70px;
 }
 footer .footer-logo-name {
-  font-size: 16px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #33539e;
   text-transform: uppercase;
 }
 footer .footer-cover {
@@ -92,6 +94,13 @@ footer .footer-cover {
 footer .footer-col {
   background-color: white;
   border-radius: 4px;
+}
+footer .footer-col .contact span {
+  font-weight: bold;
+  margin-right: 12px;
+}
+footer .footer-col .contact span svg {
+  margin-right: 4px;
 }
 footer .footer-col i {
   margin-right: 12px;
@@ -136,10 +145,13 @@ footer .footer-col h6 {
 
 .dish-img-wrap {
   border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .dish-img-wrap img {
   border-radius: 12px;
-  width: 100%;
+  width: 80%;
 }
 
 .dish-option-wrap {
@@ -147,12 +159,14 @@ footer .footer-col h6 {
   border-radius: 12px;
 }
 .dish-option-wrap .dish-option-name {
+  color: #33539e;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 12px;
   text-transform: uppercase;
 }
 .dish-option-wrap .dish-option-price {
+  color: #a5678e;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 12px;
@@ -265,13 +279,18 @@ footer .footer-col h6 {
   position: relative;
   display: flex;
   justify-content: right;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 64px;
 }
 .bg-header-wrap .bg-header .slide-btn .next, .bg-header-wrap .bg-header .slide-btn .prev {
   margin: 0px 16px;
   border: 2px #797979 solid;
   border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.bg-header-wrap .bg-header .slide-btn .next:hover, .bg-header-wrap .bg-header .slide-btn .prev:hover {
+  transform: scale(1.1);
 }
 .bg-header-wrap .bg-header .slide-btn svg {
   color: black;
@@ -279,6 +298,7 @@ footer .footer-col h6 {
 .bg-header-wrap .bg-header img {
   width: 500px;
   margin: 20px 20px 0px 20px;
+  animation: zome-in 1.2s ease-in-out;
 }
 .bg-header-wrap .bg-header .bg-content {
   position: absolute;
@@ -317,10 +337,19 @@ footer .footer-col h6 {
   text-align: justify;
 }
 
+.home-otd-product-wrap {
+  border: 2px #e3e3e3 solid;
+  border-radius: 8px;
+  margin: 40px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .home-otd-product-wrap img {
-  width: 100%;
+  width: 80%;
   position: relative;
-  animation: spin-img 18s linear infinite;
 }
 .home-otd-product-wrap .product-content {
   border-radius: 8px;
@@ -348,14 +377,33 @@ footer .footer-col h6 {
   z-index: 10;
 }
 .home-product-infor-wrap .home-product-infor-content {
-  height: 350px;
+  height: 400px;
   background: #7aa5d2;
   transform: translateY(-200px);
 }
-.home-product-infor-wrap .home-product-infor-content p {
-  text-align: center;
-  font-size: 18px;
-  margin-top: 100px;
+.home-product-infor-wrap .home-product-infor-content .content-wrap {
+  padding: 16px;
+  width: 300px;
+  height: 220px;
+  margin: 0px 60px;
+  color: white;
+  background: #33539e;
+  transform: translateY(50px);
+}
+.home-product-infor-wrap .home-product-infor-content .content-wrap > div {
+  margin: 12px 0px;
+}
+.home-product-infor-wrap .home-product-infor-content .content-wrap .total {
+  font-size: 40px;
+}
+.home-product-infor-wrap .home-product-infor-content .content-wrap .title {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.home-menu {
+  margin-top: 120px;
 }
 
 .home-menu-item .home-menu-img img {
@@ -385,13 +433,13 @@ footer .footer-col h6 {
 }
 
 .home-news-wrap {
-  background: #e8b7d4;
   padding-top: 28px;
   padding-bottom: 56px;
 }
 .home-news-wrap .home-news-title {
   font-size: 30px;
   text-transform: uppercase;
+  color: #33539e;
 }
 .home-news-wrap .home-news-item img {
   width: 100%;
@@ -413,8 +461,8 @@ footer .footer-col h6 {
   margin-top: 8px;
 }
 
-.hight-light {
-  width: 100px;
+.high-light {
+  width: 80px;
   height: 5px;
   background-color: #7aa5d2;
   border-radius: 20px;
@@ -562,10 +610,6 @@ footer .footer-col h6 {
   text-align: center;
   font-size: 16px;
 }
-.main-button:hover {
-  background-color: #e21b70;
-}
-
 .outline-button {
   border: 1px #e3e3e3 solid;
   border-radius: 4px;
@@ -666,8 +710,8 @@ footer .footer-col h6 {
 .dish-item .menu-item-content .menu-name {
   text-align: center;
   transition: transform 0.4s ease, font-size 0.4s ease;
-  font-size: 18px;
-  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 22px;
 }
 .dish-item .menu-item-content .menu-name p {
   margin-bottom: 4px;
@@ -734,6 +778,11 @@ footer .footer-col h6 {
   text-transform: uppercase;
 }
 
+.pupup {
+  color: #33539e;
+  font-weight: bold;
+}
+
 .nav-child a {
   color: black;
   text-decoration: none;
@@ -755,10 +804,18 @@ footer .footer-col h6 {
 }
 @keyframes spin-img {
   from {
-    transform: rotate(0deg) scale(1.5);
+    transform: rotate(0deg) scale(1.2);
   }
   to {
-    transform: rotate(360deg) scale(1.5);
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+@keyframes zome-in {
+  from {
+    transform: scale(0.6);
+  }
+  to {
+    transform: scale(1);
   }
 }
 

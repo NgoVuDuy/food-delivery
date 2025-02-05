@@ -6,7 +6,7 @@
         position: relative;
         display: flex;
         justify-content: right;
-        align-items: flex-end;
+        align-items: center;
         margin-bottom: 64px;
 
         .slide-btn {
@@ -16,6 +16,13 @@
                 margin: 0px 16px;
                 border: 2px $gray-color solid;
                 border-radius: 12px;
+                cursor: pointer;
+
+                transition: transform .4s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
 
             }
 
@@ -29,6 +36,8 @@
 
             width: 500px;
             margin: 20px 20px 0px 20px;
+
+            animation: zome-in 1.2s ease-in-out;
         }
 
         .bg-content {
@@ -38,7 +47,6 @@
             left: 4%;
 
             animation: move-bg-content 1.2s ease-in-out;
-
 
             .bg-text {
 
@@ -102,14 +110,22 @@
 
 .home-otd-product-wrap {
 
+    border: 2px $border-color solid;
+    border-radius: 8px;
+    margin: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
 
     img {
-        width: 100%;
+        width: 80%;
         position: relative;
         // z-index: 10;
 
-        animation: spin-img 18s linear infinite;
+        // animation: spin-img 18s linear infinite;
     }
 
     .product-content {
@@ -157,16 +173,45 @@
     
     .home-product-infor-content {
     
-        height: 350px;
+        height: 400px;
         background: $light-blue;
         transform: translateY(-200px);
 
-        p {
-            text-align: center;
-            font-size: 18px;
-            margin-top: 100px;
+        .content-wrap {
+
+            padding: 16px;
+            width: 300px;
+            height: 220px;
+
+            margin: 0px 60px;
+            color: white;
+            background: $main-color;
+            transform: translateY(50px);
+
+            & > div {
+                margin: 12px 0px;
+            }
+
+            .total {
+
+                font: {
+                    size: 40px;
+                }
+            }
+            .title {
+
+                font: {
+                    size: 20px;
+                    weight:bold;
+                }
+                text-transform: uppercase;
+            }
         }
     }
+}
+
+.home-menu {
+    margin-top: 120px;
 }
 
 .home-menu-item {
@@ -213,7 +258,7 @@
 
 .home-news-wrap {
 
-    background: $light-pink;
+    // background: $light-pink;
     padding-top: 28px;
     padding-bottom: 56px;
     
@@ -223,6 +268,7 @@
             size: 30px;
         }
         text-transform: uppercase;
+        color: $main-color;
     }
 
     .home-news-item {
@@ -252,8 +298,8 @@
     }
 }
 
-.hight-light {
-    width: 100px;
+.high-light {
+    width: 80px;
     height: 5px;
     background-color: $light-blue;
     border-radius: 20px;

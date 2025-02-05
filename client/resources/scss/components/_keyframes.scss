@@ -15,12 +15,22 @@
 
     from {
 
-        transform: rotate(0deg) scale(1.5);
+        transform: rotate(0deg) scale(1.2);
     }
 
     to {
 
-        transform: rotate(360deg) scale(1.5);
+        transform: rotate(360deg) scale(1.2);
     }
     
+}
+
+@keyframes zome-in {
+    from {
+        transform: scale(.6);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

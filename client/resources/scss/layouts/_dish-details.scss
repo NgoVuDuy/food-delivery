@@ -1,9 +1,12 @@
 .dish-img-wrap {
     border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
         border-radius: 12px;
-        width: 100%;
+        width: 80%;
 
     }
 }
@@ -15,6 +18,8 @@
 
     .dish-option-name {
 
+        color: $main-color;
+
         font: {
             size: 24px;
             weight: bold;
@@ -25,6 +30,8 @@
     }
 
     .dish-option-price {
+
+        color: $dark-pink;
 
         font: {
             size: 22px;

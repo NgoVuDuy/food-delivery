@@ -13,7 +13,9 @@ footer {
     }
   
     .footer-logo-name {
-      font-size: 16px;
+      font-size: 30px;
+      font-weight: bold;
+      color: $main-color;
       text-transform: uppercase;
     }
   
@@ -23,10 +25,21 @@ footer {
     }
   
     .footer-col {
-      // background-color: #fbeaeb;
       background-color: white;
       border-radius: 4px;
-      // padding: 20px;
+      
+      .contact {
+
+
+        span {
+          font-weight: bold;
+          margin-right: 12px;
+
+          svg {
+            margin-right: 4px;
+          }
+        }
+      }
   
       i {
         margin-right: 12px;

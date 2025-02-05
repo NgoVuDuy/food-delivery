@@ -9,32 +9,29 @@ var map = new goongjs.Map({
 });
 
 //create markers
-var _nguyenvanlinh_marker = new goongjs.Marker(
+var _nguyenvanlinh_marker = new goongjs.Marker({
+        color: "#33539e",
 
-    {
-        color: "#ff2b85",
-
-    }
-)
+})
     .setLngLat([105.75005, 10.03202])
     .addTo(map);
 
 var _nguyenvancu_marker = new goongjs.Marker({
-    color: "#ff2b85",
+    color: "#33539e",
 
 })
     .setLngLat([105.76169, 10.03979])
     .addTo(map);
 
 var _tranhoangna_marker = new goongjs.Marker({
-    color: "#ff2b85",
+    color: "#33539e",
 
 })
     .setLngLat([105.74947, 10.02501])
     .addTo(map);
 
 var _3thang2_marker = new goongjs.Marker({
-    color: "#ff2b85",
+    color: "#33539e",
 
 })
     .setLngLat([105.77019, 10.02732])
@@ -58,24 +55,24 @@ var popupOffsets = {
 };
 var popup = new goongjs.Popup({
     offset: popupOffsets,
-    className: 'my-class',
+    className: 'pupup',
     closeButton: false,
     closeOnClick: false
 })
     .setLngLat([105.75005, 10.03202])
-    .setHTML("Duy's Store")
+    .setHTML("<span>NVD's Pizzeria</span>")
     .setMaxWidth("300px")
     .addTo(map);
 
 // get my location
-navigator.geolocation.getCurrentPosition(
-    (position) => {
-        console.log('Vị trí của bạn:', position.coords.latitude, position.coords.longitude);
-    },
-    (error) => {
-        console.error('Không thể lấy vị trí:', error);
-    }
-);
+// navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//         console.log('Vị trí của bạn:', position.coords.latitude, position.coords.longitude);
+//     },
+//     (error) => {
+//         console.error('Không thể lấy vị trí:', error);
+//     }
+// );
 
 const coordinates = [
     {
@@ -265,33 +262,33 @@ const coordinates = [
 ]
 
 // Chuyển đổi dữ liệu sang đúng định dạng GeoJSON
-const geoJSONCoordinates = coordinates.map(coord => [coord.lng, coord.lat]);
+// const geoJSONCoordinates = coordinates.map(coord => [coord.lng, coord.lat]);
 
-console.log(geoJSONCoordinates)
+// console.log(geoJSONCoordinates)
 
-map.on('load', function () {
-    map.addSource('route', {
-        'type': 'geojson',
-        'data': {
-            'type': 'Feature',
-            'properties': {},
-            'geometry': {
-                'type': 'LineString',
-                'coordinates': geoJSONCoordinates
-            }
-        }
-    });
-    map.addLayer({
-        'id': 'route',
-        'type': 'line',
-        'source': 'route',
-        'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#ff5e00',
-            'line-width': 8
-        }
-    });
-});
+// map.on('load', function () {
+//     map.addSource('route', {
+//         'type': 'geojson',
+//         'data': {
+//             'type': 'Feature',
+//             'properties': {},
+//             'geometry': {
+//                 'type': 'LineString',
+//                 'coordinates': geoJSONCoordinates
+//             }
+//         }
+//     });
+//     map.addLayer({
+//         'id': 'route',
+//         'type': 'line',
+//         'source': 'route',
+//         'layout': {
+//             'line-join': 'round',
+//             'line-cap': 'round'
+//         },
+//         'paint': {
+//             'line-color': '#33539e',
+//             'line-width': 8
+//         }
+//     });
+// });

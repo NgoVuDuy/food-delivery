@@ -22,8 +22,14 @@
                     </svg>
                 </div>
 
+            </div>
+
+            <img src="{{ asset('Products/44.jpg') }}" alt="">
+
+            <div class="slide-btn d-flex">
+
                 <div class="next">
-                    
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevron-right">
@@ -31,12 +37,7 @@
                     </svg>
                 </div>
 
-
-
-
             </div>
-
-            <img src="{{ asset('Products/44.jpg') }}" alt="">
 
             <div class="bg-content">
                 <div class="bg-text">
@@ -44,8 +45,10 @@
                     <p>Nguyên liệu tươi mới</p>
                     <p>Hương vị thơm ngon</p>
 
-                    <div>Chào mừng bạn đến với chuỗi nhà hàng NVD. <br> Hãy cùng nhau thưởng thức những món ăn ngon và mới
-                        lạ.</div>
+                    <div>Chào mừng bạn đến với NVD's Pizzeria. <br>
+                        Một trong những chuỗi nhà hàng về thức ăn nhanh lớn số 1 Việt Nam. <br>
+                        Hãy cùng nhau thưởng thức những món ăn ngon và mới lạ.
+                    </div>
 
                 </div>
 
@@ -165,12 +168,12 @@
             </div>
 
             <div class="col-4">
-                <div class="home-otd-product-wrap">
-                    <img src="{{ asset('Products/pizza-home-1.png') }}" alt="">
+                <div class="home-otd-product-wrap shadow">
+                    <img src="{{ asset('Products/44.jpg') }}" alt="">
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p class="grad-text">PIZZA PHÔ MAI</p>
+                        <p class="">PIZZA PHÔ MAI</p>
                         <button class="cold-button">Xem thêm</button>
 
                     </div>
@@ -178,12 +181,12 @@
             </div>
             <div class="col-4">
 
-                <div class="home-otd-product-wrap">
-                    <img src="{{ asset('Products/pizza-home-2.png') }}" alt="">
+                <div class="home-otd-product-wrap shadow">
+                    <img src="{{ asset('Products/44.jpg') }}" alt="">
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p class="grad-text">PIZZA HẢI SẢN</p>
+                        <p class="">PIZZA HẢI SẢN</p>
                         <button class="cold-button">Xem thêm</button>
                     </div>
                 </div>
@@ -191,12 +194,13 @@
             </div>
             <div class="col-4">
 
-                <div class="home-otd-product-wrap">
-                    <img src="{{ asset('Products/pizza-home-3.png') }}" alt="">
+                <div class="home-otd-product-wrap shadow">
+
+                    <img src="{{ asset('Products/44.jpg') }}" alt="">
 
                     <div class="product-content d-flex flex-column justify-content-center align-items-center mt-5">
 
-                        <p class="grad-text">PIZZA XÚC XÍCH</p>
+                        <p class="">PIZZA XÚC XÍCH</p>
                         <button class="cold-button">Xem thêm</button>
 
                     </div>
@@ -222,23 +226,61 @@
             </div>
 
             <div class="col-12">
-                <div class="home-product-infor-content d-flex justify-content-center align-items-center">
-                    <p>Hãy đến với chúng tôi và tận hưởng những món ăn tươi ngon được chế biến <br> từ những nguyên liệu
-                        chất lượng,
-                        tươi mới, mang đến cho bạn <br> một hương vị không thể nào quên.
-                    </p>
+                <div class="home-product-infor-content d-flex justify-content-center align-items-end">
+                    <div class="content-wrap shadow">
+                        <div class="total d-flex align-items-center">
+                            <span>120</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                        <div class="title"><span>Đơn hàng</span></div>
+                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                    </div>
+
+                    <div class="content-wrap shadow">
+                        <div class="total d-flex align-items-center">
+                            <span>120</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                        <div class="title"><span>Đơn hàng</span></div>
+                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                    </div>
+
+                    <div class="content-wrap shadow">
+                        <div class="total d-flex align-items-center">
+                            <span>120</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                        <div class="title"><span>Đơn hàng</span></div>
+                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Menu noi bat --}}
-    <div class="container">
+    <div class="container home-menu">
         <div class="row">
             <div class="col-12">
                 <p class="title-text">Menu nổi bật</p>
 
-                <div class="hight-light"></div>
+                <div class="high-light"></div>
 
             </div>
             <div class="col-6">

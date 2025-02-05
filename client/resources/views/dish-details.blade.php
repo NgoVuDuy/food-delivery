@@ -30,8 +30,8 @@
         <div class="row">
             <div class="col-5">
 
-                <div class="dish-img-wrap shadow">
-                    <img src="{{ asset('Products/10099238.jpg') }}" alt="">
+                <div class="dish-img-wrap">
+                    <img src="{{ asset('Products/44.jpg') }}" alt="">
 
                 </div>
 
@@ -40,11 +40,11 @@
 
                 <div class="dish-option-wrap bg-light">
 
-                    <div class="dish-option-name grad-text">
+                    <div class="dish-option-name">
                         Pizza phô mai Ý
                     </div>
 
-                    <div class="dish-option-price grad-text">
+                    <div class="dish-option-price">
                         59.000đ
                     </div>
 
