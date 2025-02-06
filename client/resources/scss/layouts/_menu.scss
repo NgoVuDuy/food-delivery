@@ -1,4 +1,27 @@
 // filter
+.sort-by-wrap {
+    margin: 0px 20px;
+    margin-bottom: 30px;
+
+    .filter-status-text {
+        font-size: 28px;
+        color: $main-color;
+        font-weight: bold;
+    }
+
+    .sort-by {
+        
+        button {
+            border-radius: 4px;
+            padding: 4px 12px;
+            background: white;
+            border: 1px $border-color solid;
+            margin-left: 16px;
+        }
+    }
+}
+
+
 .menu-filter-wrap {
 
     padding: 14px 10px 10px 10px;
@@ -11,7 +34,7 @@
     .menu-filter-title {
 
         p:first-child {
-            font-weight: bold;
+            color: $main-color;
             font-size: 20px;
         }
 
@@ -23,17 +46,40 @@
 
     .menu-filter-item {
 
-        ul {
-            list-style-type: none;
+        .caterory-name {
+            margin-bottom: 28px;
+
+            svg {
+                color: $main-color;
+            }
+
+        }
+
+        .wrap {
+
+        }
+
+        .active {
+            background: $light-blue !important;
+            color: white;
+
+
+        }
+
+        .item {
+            padding: 12px 8px;
+            border-radius: 12px;
+            margin: 0px 18px 12px 18px;
+            background: $light-gray;
         }
 
         p {
-            padding: 0px 4px;
+            text-transform: uppercase;
+            padding: 2px 4px;
             border-radius: 4px;
-            font: {
-                weight: bold;
-            }
             color: $main-color;
+            font-weight: bold;
+            margin: 0px;
         }
 
     }

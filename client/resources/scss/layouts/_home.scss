@@ -9,29 +9,6 @@
         align-items: center;
         margin-bottom: 64px;
 
-        .slide-btn {
-
-            .next, .prev {
-
-                margin: 0px 16px;
-                border: 2px $gray-color solid;
-                border-radius: 12px;
-                cursor: pointer;
-
-                transition: transform .4s ease;
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-
-            }
-
-            svg {
-
-                color: black;
-            }
-        }
-
         img {
 
             width: 500px;
@@ -63,6 +40,7 @@
                     }
 
                 }
+
                 div {
 
                     color: $dark-pink;
@@ -76,6 +54,62 @@
             }
 
         }
+    }
+}
+
+.indicators {
+
+    & > div:first-child {
+        border: 2px $dark-blue solid;
+        background-color: $dark-blue;
+    }
+
+    & > div {
+
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px $gray-color solid;
+        margin: 0px 12px;
+    }
+}
+
+.slide-btn {
+
+    .next,
+    .prev {
+
+        margin: 0px 16px;
+        border: 2px $gray-color solid;
+        border-radius: 12px;
+        cursor: pointer;
+
+        transition: transform .4s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+    }
+
+    svg {
+
+        color: black;
+    }
+}
+
+.more-text {
+
+    font-weight: bold;
+    color: $main-color;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: end;
+
+    span:first-child {
+        border-bottom: 3px $light-blue solid;
+        padding: 2px 2px;
+
     }
 }
 
@@ -104,15 +138,13 @@
     }
 }
 
-.home-product-title {
-
-}
+.home-product-title {}
 
 .home-otd-product-wrap {
 
     border: 2px $border-color solid;
     border-radius: 8px;
-    margin: 40px;
+    margin: 16px;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -131,11 +163,11 @@
     .product-content {
 
         border-radius: 8px;
-        
+
         p {
             text-align: justify;
             padding: 0px 20px;
-            font-size: 28px;
+            font-size: 20px;
             color: $main-color;
             // font-weight: bold;
 
@@ -160,19 +192,19 @@
     }
 
     .home-product-infor {
-    
+
         img {
             width: 100%;
 
             position: relative;
             z-index: 10;
-    
+
         }
-    
+
     }
-    
+
     .home-product-infor-content {
-    
+
         height: 400px;
         background: $light-blue;
         transform: translateY(-200px);
@@ -188,7 +220,7 @@
             background: $main-color;
             transform: translateY(50px);
 
-            & > div {
+            &>div {
                 margin: 12px 0px;
             }
 
@@ -198,12 +230,14 @@
                     size: 40px;
                 }
             }
+
             .title {
 
                 font: {
                     size: 20px;
-                    weight:bold;
+                    weight: bold;
                 }
+
                 text-transform: uppercase;
             }
         }
@@ -233,11 +267,13 @@
                 size: 18px;
             }
         }
+
         .home-menu-name {
             font: {
                 size: 18px;
                 weight: bold
             }
+
             color: $main-color;
         }
 
@@ -245,6 +281,7 @@
             font: {
                 size: 15px;
             }
+
             color: $gray-color;
         }
     }
@@ -261,18 +298,19 @@
     // background: $light-pink;
     padding-top: 28px;
     padding-bottom: 56px;
-    
+
     .home-news-title {
         font: {
-            
+
             size: 30px;
         }
+
         text-transform: uppercase;
         color: $main-color;
     }
 
     .home-news-item {
-    
+
         img {
             width: 100%;
             height: 180px;
@@ -284,12 +322,14 @@
             color: black;
             margin-top: 8px;
         }
+
         .news-title {
             text-transform: uppercase;
             font-size: 18px;
             margin-top: 8px;
 
         }
+
         .news-content {
             text-align: justify;
             margin-top: 8px;

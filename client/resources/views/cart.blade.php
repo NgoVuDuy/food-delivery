@@ -10,19 +10,20 @@
 
     <div class="container">
         <div class="row mt-5">
-            <div class="col-8 rounded shadow p-3">
+            <div class="cart-wrap col-8 rounded shadow p-3">
+
                 <div class="cart-title"><h5>Giỏ Hàng <span>( 3 sản phẩm )</span></h5></div>
 
                 <div class="row">
-                    @for ($i = 1; $i <= 5; $i++)
+                    @for ($i = 1; $i <= 3; $i++)
 
-                        <div class="col-12">
+                        <div class="col-12 mb-4">
 
-                            <div class="cart-item-wrap d-flex justify-content-between">
+                            <div class="cart-item-wrap d-flex justify-content-between align-items-center">
                                 <div class="cart-item-left d-flex align-items-center">
 
                                     <div class="cart-item-img">
-                                        <img src="{{ asset('Products/10099238.jpg') }}" alt="">
+                                        <img src="{{ asset('Products/44.jpg') }}" alt="">
                                     </div>
 
                                     <div class="cart-item-info d-flex flex-column">
@@ -30,6 +31,14 @@
                                         <div class="cart-item-name">Pizza phô mai Ý</div>
 
                                         <div class="cart-item-price">69.000 VND</div>
+                                    </div>
+
+                                    <div class="options">
+                                        <ul>
+                                            <li>- Đế mỏng</li>
+                                            <li>- Thêm phô mai</li>
+                                            <li>- Cắt sẵn</li>
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -83,7 +92,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-wrap">
-                            <div class="card-item-1 rounded shadow p-2">
+                            <div class="card-item-1 rounded shadow p-3">
 
                                 <div class="card-delivery-title">
                                     <h6>Giao hàng đến</h6>
@@ -93,7 +102,7 @@
                                     <span>290 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</span>
 
                                     <div class="card-delivery-address-edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="30" height="30"
                                             stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
@@ -104,7 +113,7 @@
 
                             </div>
 
-                            <div class="card-item-2 rounded shadow p-2 mt-5">
+                            <div class="card-item-2 rounded shadow p-3 mt-5">
 
                                 <div class="card-item-title">
                                     <h6>Tùy chọn</h6>
@@ -156,7 +165,7 @@
 
                             </div>
 
-                            <div class="card-item-note rounded shadow p-2 mt-5">
+                            <div class="card-item-note rounded shadow p-3 mt-5">
 
                                 <div class="card-item-note-title">
                                     <h6>Ghi chú cho đơn hàng</h6>

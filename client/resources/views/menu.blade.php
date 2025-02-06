@@ -11,98 +11,114 @@
     <div class="container mt-5">
 
         <div class="row">
-            {{-- <div class="col-3">
+            <div class="col-3">
 
                 <div class="menu-filter-wrap">
 
                     <div class="menu-filter-title d-flex justify-content-between">
 
-                        <p class="mb-3 grad-text">Bộ lọc</p>
+                        <p class="mb-3"></p>
                         <p>Tất cả</p>
                     </div>
 
                     <div class="menu-filter-item mb-3">
 
-                        <p class="bg-light">Pizza</p>
+                        <div class="caterory-name d-flex align-items-center">
 
-                        <ul>
-                            <li>
-                                Phô mai
-                            </li>
-                            <li>
-                                Gà
-                            </li>
-                            <li>
-                                Hải sản
-                            </li>
-                        </ul>
+                            <p class="">Nguyên liệu</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </div>
 
 
-                    </div>
+                        <div class="wrap">
 
-                    <div class="menu-filter-item mb-3">
+                            <div class="item">
+                                <span>Meat Lover's Pizza</span>
+                            </div>
 
-                        <p class="bg-light">Hamburger</p>
+                            <div class="item"><span>Vegetarian Pizza</span></div>
+                            <div class="item"><span>Seafood Pizza</span></div>
+                            <div class="item active"><span>Cheese Pizza</span></div>
+                            <div class="item"><span>Spicy Pizza</span></div>
+                        </div>
 
-                        <ul>
-                            <li>
-                                Bò
-                            </li>
-                            <li>
-                                Gà
-                            </li>
-                        </ul>
 
 
                     </div>
 
                     <div class="menu-filter-item mb-3">
 
-                        <p class="bg-light">Mỳ ý</p>
+                        <div class="caterory-name d-flex align-items-center">
 
-                        <ul>
-                            <li>
-                                Truyền thống
-                            </li>
-                            <li>
-                                Cà chua
-                            </li>
-                            <li>
-                                Phô mai
-                            </li>
-                        </ul>
+                            <p class="">Vùng miền</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </div>
+
+                        <div class="item">
+                            <span>Italian Pizza</span>
+                        </div>
+
+                        <div class="item"><span>American Pizza</span></div>
+                        <div class="item"><span>Chicago Deep Dish</span></div>
+                        <div class="item"><span>Japanese Pizza</span></div>
 
 
                     </div>
 
                     <div class="menu-filter-item mb-3">
 
-                        <p class="bg-light">Bánh ngọt</p>
+                        <div class="caterory-name d-flex align-items-center">
 
-                        <ul>
-                            <li>
-                                Su kem
-                            </li>
-                            <li>
-                                Donut
-                            </li>
-                        </ul>
+                            <p class="">Khác</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-chevron-down">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </div>
+
+                        <div class="item"><span>Mỳ ý</span></div>
+                        <div class="item"><span>Hamburger</span></div>
+                        <div class="item"><span>Bánh ngọt</span></div>
+                        <div class="item"><span>Nước uống</span></div>
 
 
                     </div>
-
-
 
                 </div>
 
-            </div> --}}
+            </div>
 
-            <div class="col-12">
+            <div class="col-9">
+
+                <div class="sort-by-wrap d-flex align-items-center justify-content-between">
+
+                    <div>
+                        <div class="filter-status-text">Cheese Pizza</div>
+
+                    </div>
+
+
+                    <div class="sort-by">
+                        <button>Giá</button>
+                        <button>Đế bánh</button>
+                        <button>Kích thước</button>
+                        <button>Loại</button>
+                    </div>
+                </div>
 
                 <div class="row">
 
                     @for ($i = 1; $i <= 10; $i++)
-                        <div class="col-3 mb-5">
+                        <div class="col-4 mb-5">
 
                             <a href="menu/1" class="link">
 
@@ -115,9 +131,6 @@
                                     <div class="menu-item-img d-flex justify-content-center align-items-center">
 
                                         <img src="{{ asset('Products/pizza-home-4.png') }}" alt="">
-
-                                        {{-- <div class="menu-item-desc grad-text">Pizza với phô mai tươi được nhập khẩu trực
-                                            tiếp từ Ý. Mang đến một hương vị đặc trưng mà mới mẻ.</div> --}}
 
                                     </div>
 

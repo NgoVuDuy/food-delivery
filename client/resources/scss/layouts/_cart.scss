@@ -1,6 +1,8 @@
 .cart-title {
     h5 {
 
+        margin-bottom: 30px;
+
         font: {
             weight: bold;
         }
@@ -11,6 +13,11 @@
     }
 }
 
+.cart-wrap {
+
+    height: max-content;
+}
+
 .cart-item-wrap {
 
     .cart-item-left {
@@ -18,7 +25,8 @@
         .cart-item-img {
 
             img {
-                width: 160px;
+                width: 80px;
+                margin-right: 20px;
             }
         }
 
@@ -26,18 +34,29 @@
 
             .cart-item-name {
 
-                font: {
-                    weight: bold;
-                }
+                color: $main-color;
+                text-transform: uppercase;
+                font-size: 20px;
 
             }
 
             .cart-item-price {
 
-                color: $main-color;
+                color: $dark-pink;
 
                 font: {
                     weight: bold;
+                }
+            }
+        }
+
+        .options {
+            ul {
+                list-style-type: none;
+                margin-bottom: 0px;
+                margin-left: 28px;
+                li {
+                    color: $gray-color;
                 }
             }
         }
@@ -52,7 +71,7 @@
             input {
                 border: 1px #e3e3e3 solid;
                 border-radius: 4px;
-                height: 40px;
+                height: 30px;
                 margin: 0px 8px;
             }
         }
@@ -85,6 +104,10 @@
 
         .card-delivery-address {
 
+            span {
+                width: 80%;
+            }
+
             .card-delivery-address-edit {
 
                 color: $main-color;
@@ -112,7 +135,16 @@
         .card-item-note-input {
 
             textarea {
+
                 width: 100%;
+                border: 1px $border-color solid;
+                border-radius: 20px;
+                height: 100px;
+                padding: 12px;
+
+                &:focus-visible {
+                    outline: $main-color auto 1px;
+                }
             }
         }
     }
