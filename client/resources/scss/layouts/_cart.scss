@@ -36,7 +36,7 @@
 
                 color: $main-color;
                 text-transform: uppercase;
-                font-size: 20px;
+                font-size: 16px;
 
             }
 
@@ -55,6 +55,7 @@
                 list-style-type: none;
                 margin-bottom: 0px;
                 margin-left: 28px;
+
                 li {
                     color: $gray-color;
                 }
@@ -147,6 +148,46 @@
                 }
             }
         }
+    }
+
+    .card-item-delivery-man {
+        .delivery-man-info {
+            img {
+                width: 46px;
+                height: 46px;
+                background: $light-blue;
+                border-radius: 50%;
+            }
+
+            .delivery-man-name {
+                font: {
+                    weight: bold;
+                }
+            }
+
+            .delivery-man-chat {
+                border: 1px $border-color solid;
+                // border-radius: 8px;
+                // padding: 6px;
+
+                .icon {
+                    padding: 6px;
+                    border-right: 1px $border-color solid;
+
+                }
+
+                .text {
+                    padding: 6px;
+                    width: 100%;
+                }
+            }
+
+        }
+
+        // .form-control:focus {
+        //     border: 2px $main-color solid;
+        //     box-shadow: none;
+        // }
     }
 }
 

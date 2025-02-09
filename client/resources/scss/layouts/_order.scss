@@ -74,6 +74,127 @@
 
 }
 
+.tag-wrap {
+
+    margin-top: 100px;
+
+    .order-status-text {
+    
+        gap: 12px;
+        svg {
+            // color: $dark-pink;
+            color: red;
+        }
+    
+    
+        p {
+            font: {
+                size: 18px;
+                weight: bold;
+            }
+    
+            color: $dark-blue;
+            margin-bottom: 0px;
+    
+    
+        }
+    }
+}
+
+
+.order-details-wrap {
+    .order-details-title {
+
+        p {
+            font: {
+                size: 18px;
+                weight: bold;
+            }
+        }
+    }
+
+    .order-details {
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin: 0px 18px;
+
+        .details-item {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+
+            .left {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+
+                .quantity, .name {
+                    font: {
+                        size: 18px;
+                        weight: bold;
+                    }
+                }
+
+                .name {
+                    color: $dark-blue;
+                }
+
+                .options {
+                    ul {
+                        list-style-type: none;
+                        margin-bottom: 0px;
+                        color: $gray-color;
+                    }
+                }
+            }
+
+            .right {
+                .price {
+
+                    margin-bottom: 0px;
+                    color: $dark-pink;
+                    font: {
+                        size: 18px;
+                        weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .total {
+
+        text-align: right;
+        margin: 30px 18px 0px 18px;
+
+        p {
+
+            font: {
+                size: 18px;
+                weight: bold;
+            }
+            color: $dark-pink;
+
+            span {
+
+
+                font: {
+                    size: 16px;
+                    weight: bold;
+                }
+                color: black;
+                margin-right: 12px;
+            }
+        }
+    }
+}
+
 .delivery-man-contact {
     .chat-box {
 

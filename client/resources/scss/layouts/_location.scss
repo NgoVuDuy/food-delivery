@@ -21,8 +21,37 @@
 
         .place-name {
 
+            color: $dark-blue;
+
             font: {
                 weight: bold;
+            }
+        }
+
+        .place-time {
+            span:first-child {
+
+                display: inline-block;
+                font-weight: bold;
+                width: 50px;
+
+            }
+
+            span:last-child {
+            }
+
+        }
+
+        .place-address {
+            span:first-child {
+
+                display: inline-block;
+                font-weight: bold;
+                width: 50px;
+
+            }
+
+            span:last-child {
             }
         }
 
@@ -34,6 +63,10 @@
 
             font-size: 14px;
             color: $gray-color;
+        }
+
+        .drt-btn {
+            padding: 6px;
         }
     }
 }

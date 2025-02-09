@@ -24,29 +24,33 @@
                     <div class="place-item">
                         <div class="place-name">Chi nhánh Nguyễn Văn Linh</div>
                         <div class="place-distance">( 35km - 12 phút )</div>
-                        <div class="place-time">Open: 9 am - 11 pm</div>
-                        <div class="place-address">333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</div>
+                        <div class="place-time"><span>Open</span><span>: 9AM - 11PM</span></div>
+                        <div class="place-address"><span>Đc</span><span>: 333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</span></div>
+                        <button class="nice-button mt-3 drt-btn">Xem đường đi</button>
                     </div>
                     <div class="place-item mt-4">
                         <div class="place-name">Chi nhánh Nguyễn Văn Linh</div>
                         <div class="place-distance">( 35km - 12 phút )</div>
-                        <div class="place-time">Open: 9 am - 11 pm</div>
-                        <p>333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</p>
+                        <div class="place-time"><span>Open</span><span>: 9AM - 11PM</span></div>
+                        <div class="place-address"><span>Đc</span><span>: 333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</span></div>
+                        <button class="nice-button mt-3 drt-btn">Xem đường đi</button>
 
                     </div>
                     <div class="place-item mt-4">
                         <div class="place-name">Chi nhánh Nguyễn Văn Linh</div>
                         <div class="place-distance">( 35km - 12 phút )</div>
-                        <div class="place-time">Open: 9 am - 11 pm</div>
-                        <p>333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</p>
+                        <div class="place-time"><span>Open</span><span>: 9AM - 11PM</span></div>
+                        <div class="place-address"><span>Đc</span><span>: 333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</span></div>
+                        <button class="nice-button mt-3 drt-btn">Xem đường đi</button>
 
                     </div>
 
                     <div class="place-item mt-4">
                         <div class="place-name">Chi nhánh Nguyễn Văn Linh</div>
                         <div class="place-distance">( 35km - 12 phút )</div>
-                        <div class="place-time">Open: 9 am - 11 pm</div>
-                        <p>333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</p>
+                        <div class="place-time"><span>Open</span><span>: 9AM - 11PM</span></div>
+                        <div class="place-address"><span>Đc</span><span>: 333 Đ. Nguyễn Văn Linh, An Khách, Ninh Kiều, Cần Thơ</span></div>
+                        <button class="nice-button mt-3 drt-btn">Xem đường đi</button>
 
                     </div>
                 </div>

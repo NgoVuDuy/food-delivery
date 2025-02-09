@@ -56,8 +56,8 @@
                     <a class="nav-link" href="/menu">MENU</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/promotion">KHUYẾN MÃI</a>
+                <li class="nav-item" >
+                    <a class="nav-link disabled" href="/promotion">KHUYẾN MÃI</a>
                 </li>
 
                 <li class="nav-item">
@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/news">TIN TỨC</a>
+                    <a class="nav-link disabled" href="/news">TIN TỨC</a>
                 </li>
 
             </ul>
