@@ -100,20 +100,41 @@
         margin-bottom: 18px;
     }
 
-    .card-item-1 {
+    .card-item-information {
 
+        .wrap {
 
-        .card-delivery-address {
-
-            span {
-                width: 80%;
+            .card-delivery-address {
+    
+                .address {
+                    width: 80%;
+                }
+    
+                .card-delivery-address-edit {
+    
+                    color: $dark-pink;
+                }
             }
 
-            .card-delivery-address-edit {
+            .title {
+                display: inline-block;
+                width: 130px;
+                font-weight: bold;
+                color: $dark-blue;
+            }
 
-                color: $main-color;
+            .note-text {
+
+                width: 60%;
+            }
+
+            .edit-text {
+                color: $dark-pink;
+                text-decoration: underline;
             }
         }
+
+
     }
 
     .card-item-2 {
@@ -167,8 +188,7 @@
 
             .delivery-man-chat {
                 border: 1px $border-color solid;
-                // border-radius: 8px;
-                // padding: 6px;
+                cursor: pointer;
 
                 .icon {
                     padding: 6px;

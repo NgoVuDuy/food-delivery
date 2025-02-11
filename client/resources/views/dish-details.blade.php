@@ -53,9 +53,9 @@
                             Chọn Size
                         </div>
 
-                        <button class="">Nhỏ (12cm) + 0 VND</button>
-                        <button class="">Vừa (14cm) + 6.000 VND</button>
-                        <button class="">Lớn (16cm) + 8.000 VND</button>
+                        <button class="">Nhỏ (12cm) + 0đ</button>
+                        <button class="">Vừa (14cm) + 6.000đ</button>
+                        <button class="">Lớn (16cm) + 8.000đ</button>
 
 
                     </div>
@@ -63,7 +63,7 @@
                     <div class="dish-option-cover">
 
                         <div class="dish-option-title">
-                            Đế Bánh
+                            Chọn đế
                         </div>
 
                         <button class="">Mỏng</button>
@@ -75,11 +75,22 @@
 
                     <div class="dish-option-cover">
                         <div class="dish-option-title">
-                            Hình Thức
+                            Chọn Viền
                         </div>
 
-                        <button class="">Cắt sẵn</button>
-                        <button class="">Không cắt</button>
+                        <button class="">Viền Không Nhân</button>
+                        <button class="">Viền phô mai + 6.000đ</button>
+                        <button class="">Viền Xúc xích + 8.000đ</button>
+
+                    </div>
+
+                    <div class="dish-option-cover">
+                        <div class="dish-option-title">
+                            Tùy chọn thêm
+                        </div>
+
+                        <button class="">Thêm phô mai + 6.000đ</button>
+                        <button class="">Thêm xúc xích + 8.000đ</button>
 
                     </div>
 

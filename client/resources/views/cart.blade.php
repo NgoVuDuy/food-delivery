@@ -10,13 +10,16 @@
 
     <div class="container">
         <div class="row mt-5">
-            <div class="cart-wrap col-8 rounded shadow p-3">
 
-                <div class="cart-title"><h5>Giỏ Hàng <span>( 3 sản phẩm )</span></h5></div>
+            <div class="cart-wrap col-8 rounded p-3">
 
-                <div class="row">
+                <div class="cart-title">
+                    <h5>Giỏ Hàng <span>( 3 sản phẩm )</span></h5>
+                </div>
+
+
+                <div class="row bg-light">
                     @for ($i = 1; $i <= 3; $i++)
-
                         <div class="col-12 mb-4">
 
                             <div class="cart-item-wrap d-flex justify-content-between align-items-center">
@@ -35,9 +38,11 @@
 
                                     <div class="options">
                                         <ul>
+                                            <li>- Size 12 CM</li>
                                             <li>- Đế mỏng</li>
+                                            <li>- Viền phô mai</li>
                                             <li>- Thêm phô mai</li>
-                                            <li>- Cắt sẵn</li>
+
                                         </ul>
                                     </div>
 
@@ -82,7 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
                     @endfor
                 </div>
 
@@ -92,25 +96,70 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-wrap">
-                            <div class="card-item-1 rounded shadow p-3">
+
+                            <div class="card-item-information rounded shadow p-3">
 
                                 <div class="card-delivery-title">
-                                    <h6>Giao hàng đến</h6>
+                                    <h6>Thông tin người nhận</h6>
                                 </div>
 
-                                <div class="card-delivery-address d-flex justify-content-between align-items-center">
-                                    <span>290 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</span>
+                                <div class="d-flex flex-column row-gap-3 wrap">
 
-                                    <div class="card-delivery-address-edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="28" height="28"
-                                            stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                        </svg>
+                                    <div class="card-delivery-address">
+                                        <span class="title">Giao đến: </span> <br>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <span class="address">Vui lòng thêm địa chỉ giao hàng</span>
+
+                                            <div class="card-delivery-address-edit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-map-pinned">
+                                                    <path
+                                                        d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0" />
+                                                    <circle cx="12" cy="8" r="2" />
+                                                    <path
+                                                        d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712" />
+                                                </svg>
+
+                                            </div>
+                                        </div>
 
                                     </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="title">Tên người nhận: </span>
+                                            <span>Ngô Vũ Duy</span>
+                                        </div>
+                                        <span class="edit-text">Sửa</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="title">Số điện thoại: </span>
+                                            <span>0949229535</span>
+                                        </div>
+                                        <span class="edit-text">Sửa</span>
+                                    </div>
+
+
                                 </div>
 
+
+
+                            </div>
+
+                            <div class="card-item-note rounded shadow p-3 mt-5">
+
+                                <div class="card-item-note-title">
+                                    <h6>Ghi chú cho đơn hàng</h6>
+                                </div>
+
+                                <div class="card-item-note-input">
+                                    <textarea type="text"></textarea>
+                                </div>
                             </div>
 
                             <div class="card-item-2 rounded shadow p-3 mt-5">
@@ -135,7 +184,7 @@
 
                                 <div class="card-item-option d-flex justify-content-between align-items-center">
                                     <div class="card-item-option-name">
-                                        <p>Lấy dụng cụ ăn uống</p>
+                                        <p>Cắt sẵn</p>
                                     </div>
 
                                     <div class="card-item-option-switch">
@@ -149,7 +198,7 @@
 
                                 <div class="card-item-option d-flex justify-content-between align-items-center">
                                     <div class="card-item-option-name">
-                                        <p>Lấy dụng cụ ăn uống</p>
+                                        <p>Không lấy tương cà</p>
                                     </div>
 
                                     <div class="card-item-option-switch">
@@ -161,20 +210,23 @@
                                     </div>
                                 </div>
 
+                                <div class="card-item-option d-flex justify-content-between align-items-center">
+                                    <div class="card-item-option-name">
+                                        <p>Không lấy tương ớt</p>
+                                    </div>
 
+                                    <div class="card-item-option-switch">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="flexSwitchCheckDefault">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
 
-                            <div class="card-item-note rounded shadow p-3 mt-5">
 
-                                <div class="card-item-note-title">
-                                    <h6>Ghi chú cho đơn hàng</h6>
-                                </div>
-
-                                <div class="card-item-note-input">
-                                    <textarea type="text"></textarea>
-                                </div>
-                            </div>
 
                             <div class="card-item-3 rounded shadow p-2 mt-5">
 
@@ -202,7 +254,7 @@
                             </div>
                         </div>
 
-                        <button class="order-btn main-button mt-2">Đặt hàng</button>
+                        <button class="order-btn main-button mt-3">Đặt hàng</button>
                     </div>
                 </div>
 

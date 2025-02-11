@@ -132,7 +132,7 @@
                 <div class="tag-wrap">
 
                     <div class="order-status-text">
-                        <p>Chúng tôi đã tiếp nhận đơn hàng của bạn.</p>
+                        <p class="">Chúng tôi đã tiếp nhận đơn hàng của bạn.</p>
                     </div>
 
                 </div>
@@ -141,11 +141,11 @@
 
                 <div class="order-details-wrap mt-5">
                     <div class="order-details-title">
-                        <p>Chi tiết đơn hàng</p>
+                        {{-- <p>Chi tiết đơn hàng</p> --}}
 
                     </div>
-                    <div class="order-details">
-                        @for ($i = 1; $i <= 5; $i++)
+                    <div class="order-details bg-light">
+                        @for ($i = 1; $i <= 3; $i++)
                             <div class="details-item">
 
                                 <div class="left">
@@ -156,9 +156,10 @@
 
                                     <div class="options">
                                         <ul>
+                                            <li>- Size 12 CM</li>
                                             <li>- Đế mỏng</li>
+                                            <li>- Viền phô mai</li>
                                             <li>- Thêm phô mai</li>
-                                            <li>- Cắt sẵn</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -184,36 +185,64 @@
 
                 <div class="card-wrap">
 
-                    <div class="card-item-1 rounded shadow p-3">
+                    <div class="card-item-information rounded shadow p-3">
 
                         <div class="card-delivery-title">
-                            <h6>Địa chỉ giao hàng</h6>
+                            <h6>Thông tin người nhận</h6>
                         </div>
 
-                        <div class="card-delivery-address d-flex justify-content-between align-items-center">
-                            <span>290 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</span>
+                        <div class="d-flex flex-column row-gap-3 wrap">
 
-                            <div class="card-delivery-address-edit">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="28"
-                                    height="28" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                </svg>
+                            <div class="card-delivery-address">
+                                <span class="title">Giao đến: </span> <br>
 
+                                <div class="d-flex justify-content-between align-items-center">
+
+                                    <span class="address">290 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</span>
+
+                                    <div class="card-delivery-address-edit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pinned">
+                                            <path
+                                                d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0" />
+                                            <circle cx="12" cy="8" r="2" />
+                                            <path
+                                                d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712" />
+                                        </svg>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <span class="title">Tên người nhận: </span>
+                                    <span>Ngô Vũ Duy</span>
+                                </div>
+                                <span class="edit-text">Sửa</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <span class="title">Số điện thoại: </span>
+                                    <span>0949229535</span>
+                                </div>
+                                <span class="edit-text">Sửa</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between ">
+                                <div class="d-flex">
+                                    <span class="title">Ghi chú: </span>
+                                    <span class="note-text">Không dùng tương cà, tương đen, xá xíu, bánh mì</span>
+                                </div>
+                                <span class="edit-text">Sửa</span>
                             </div>
                         </div>
 
 
-                    </div>
-                    <div class="card-item-note rounded shadow p-3 mt-5">
 
-                        <div class="card-item-note-title">
-                            <h6>Ghi chú cho đơn hàng</h6>
-                        </div>
-
-                        <div class="card-item-note-input">
-                            <textarea type="text"></textarea>
-                        </div>
                     </div>
 
                     <div class="card-item-delivery-man rounded shadow p-3 mt-5">
@@ -226,20 +255,7 @@
                                     <span class="delivery-man-name">Nguyễn Minh Nhựt</span>
                                 </div>
 
-                                {{-- <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-message-circle">
-                                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-                                        </svg>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Chat với nhân viên giao hàng"
-                                        aria-label="Username" aria-describedby="basic-addon1">
-                                </div> --}}
-
-                                <div class="delivery-man-chat d-flex align-items-center rounded-2">
+                                <div id="chat-box-btn" class="delivery-man-chat d-flex align-items-center rounded-2">
                                     <div class="icon rounded-start-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -259,45 +275,78 @@
 
                     </div>
                 </div>
-                {{-- <div class="delivery-man-contact">
-                    <div class="chat-box bg-light shadow">
-                        <div class="delivery-man-info d-flex align-items-center">
-                            <img src="" alt="" class="rounded-circle">
 
-                            <div class="delivery-man-name">NGÔ VŨ DUY</div>
-                        </div>
-
-                        <div class="message-container mb-4">
-
-                            @for ($i = 1; $i <= 5; $i++)
-                                <div class="row justify-content-start">
-                                    <div class="col-10 message-delivery-mand d-flex justify-content-start mt-4">
-                                        <div class="message-item">Đơn hàng của bạn đang được giao. Vui lòng kiểm tra tin
-                                            nhắn</div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-end mt-4">
-                                    <div class="col-10 message-customer d-flex justify-content-end">
-                                        <div class="message-item">Cảm ơn bạn</div>
-                                    </div>
-                                </div>
-                            @endfor
-
-
-                        </div>
-
-                        <div class="message-input">
-                            <input class="form-control" type="text" placeholder="Soạn tin nhắn">
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
 
+        <div id="chat-box" class="delivery-man-contact d-none">
+            <div class="chat-box bg-light shadow">
+                <div class="delivery-man-info d-flex align-items-center justify-content-between">
+
+                    <div class="d-flex align-items-center">
+
+                        <img src="" alt="" class="rounded-circle">
+
+                        <div class="delivery-man-name">NGÔ VŨ DUY</div>
+
+                    </div>
+
+                    <div id="close-chat-box-btn" class="x-btn">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-x">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
+
+                    </div>
+                </div>
+
+                <div class="message-container mb-4">
+
+                    @for ($i = 1; $i <= 5; $i++)
+                        <div class="row justify-content-start">
+                            <div class="col-10 message-delivery-mand d-flex justify-content-start mt-4">
+                                <div class="message-item">Đơn hàng của bạn đang được giao. Vui lòng kiểm tra tin
+                                    nhắn</div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end mt-4">
+                            <div class="col-10 message-customer d-flex justify-content-end">
+                                <div class="message-item">Cảm ơn bạn</div>
+                            </div>
+                        </div>
+                    @endfor
+
+
+                </div>
+
+                <div class="message-input">
+                    <input class="form-control" type="text" placeholder="Soạn tin nhắn">
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
 
 @section('js')
     {{-- <script src="{{ asset('js/location.js') }}"></script> --}}
+
+    <script>
+        $(document).ready(function() {
+
+            $('#chat-box-btn').click(function() {
+
+                $('#chat-box').removeClass('d-none')
+            })
+
+            $('#close-chat-box-btn').click(function() {
+
+                $('#chat-box').addClass('d-none')
+            })
+
+        })
+    </script>
 @endsection

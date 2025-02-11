@@ -34,3 +34,13 @@
         transform: scale(1);
     }
 }
+
+@keyframes scale-box {
+    
+    from {
+        transform: scale(0);
+    }
+     to {
+        transform: scale(1);
+     }
+}

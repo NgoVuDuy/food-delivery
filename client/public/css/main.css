@@ -304,11 +304,24 @@ footer .footer-col h6 {
   font-weight: bold;
   margin-bottom: 18px;
 }
-.card-wrap .card-item-1 .card-delivery-address span {
+.card-wrap .card-item-information .wrap .card-delivery-address .address {
   width: 80%;
 }
-.card-wrap .card-item-1 .card-delivery-address .card-delivery-address-edit {
+.card-wrap .card-item-information .wrap .card-delivery-address .card-delivery-address-edit {
+  color: #a5678e;
+}
+.card-wrap .card-item-information .wrap .title {
+  display: inline-block;
+  width: 130px;
+  font-weight: bold;
   color: #33539e;
+}
+.card-wrap .card-item-information .wrap .note-text {
+  width: 60%;
+}
+.card-wrap .card-item-information .wrap .edit-text {
+  color: #a5678e;
+  text-decoration: underline;
 }
 .card-wrap .card-item-2 .card-item-option .card-item-option-switch .form-check-input:checked {
   background-color: #33539e;
@@ -335,6 +348,7 @@ footer .footer-col h6 {
 }
 .card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat {
   border: 1px #e3e3e3 solid;
+  cursor: pointer;
 }
 .card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .icon {
   padding: 6px;
@@ -669,7 +683,7 @@ footer .footer-col h6 {
   color: red;
 }
 .tag-wrap .order-status-text p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #33539e;
   margin-bottom: 0px;
@@ -683,7 +697,9 @@ footer .footer-col h6 {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin: 0px 18px;
+  padding: 8px 32px;
+  margin: 0px 32px;
+  border-radius: 12px;
 }
 .order-details-wrap .order-details .details-item {
   display: flex;
@@ -698,11 +714,11 @@ footer .footer-col h6 {
   gap: 18px;
 }
 .order-details-wrap .order-details .details-item .left .quantity, .order-details-wrap .order-details .details-item .left .name {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
 }
 .order-details-wrap .order-details .details-item .left .name {
   color: #33539e;
+  text-transform: uppercase;
 }
 .order-details-wrap .order-details .details-item .left .options ul {
   list-style-type: none;
@@ -725,18 +741,25 @@ footer .footer-col h6 {
   color: #a5678e;
 }
 .order-details-wrap .total p span {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: black;
   margin-right: 12px;
 }
 
+.delivery-man-contact {
+  position: fixed;
+  right: 2%;
+  bottom: 4%;
+  animation: scale-box 0.3s ease-in-out;
+  transform-origin: bottom right;
+}
 .delivery-man-contact .chat-box {
   border-radius: 8px;
 }
 .delivery-man-contact .chat-box .delivery-man-info {
   padding: 8px;
-  background-color: #33539e;
+  background-color: #a5678e;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -749,8 +772,14 @@ footer .footer-col h6 {
   background-color: white;
   margin-right: 14px;
 }
+.delivery-man-contact .chat-box .delivery-man-info .x-btn {
+  cursor: pointer;
+}
+.delivery-man-contact .chat-box .delivery-man-info .x-btn svg {
+  color: white;
+}
 .delivery-man-contact .chat-box .message-container {
-  width: 100%;
+  width: 400px;
   height: 300px;
   padding: 0px 12px;
   overflow-y: scroll;
@@ -973,6 +1002,7 @@ footer .footer-col h6 {
 .pupup {
   color: #33539e;
   font-weight: bold;
+  padding: 0px;
 }
 
 .nav-child a {
@@ -1005,6 +1035,14 @@ footer .footer-col h6 {
 @keyframes zome-in {
   from {
     transform: scale(0.6);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes scale-box {
+  from {
+    transform: scale(0);
   }
   to {
     transform: scale(1);
