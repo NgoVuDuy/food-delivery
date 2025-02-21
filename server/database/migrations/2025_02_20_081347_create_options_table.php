@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone');
-            $table->string('password');
-            $table->timestamps();
-        });
+            $table->string('price_modifier');
 
+            $table->unsignedBigInteger('option_categories_id');
+            $table->timestamps();
+
+            $table->foreign('option_categories_id')->references('id')->on('option_categories')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('options');
     }
 };
