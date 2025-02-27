@@ -1,10 +1,11 @@
 .cart-title {
-    h5 {
+    p {
 
         margin-bottom: 30px;
 
         font: {
             weight: bold;
+            size: 22px
         }
 
         span {
@@ -16,6 +17,7 @@
 .cart-wrap {
 
     height: max-content;
+
 }
 
 .cart-item-wrap {
@@ -25,7 +27,7 @@
         .cart-item-img {
 
             img {
-                width: 80px;
+                width: 100px;
                 margin-right: 20px;
             }
         }
@@ -191,8 +193,28 @@
                 cursor: pointer;
 
                 .icon {
+                    position: relative;
                     padding: 6px;
                     border-right: 1px $border-color solid;
+
+                    .chat-box-number {
+
+                        position: absolute;
+                
+                        top: 0;
+                        right: 0;
+                        background-color: red;
+                        color: white;
+                        text-align: center;
+                        width: 18px;
+                        height: 18px;
+                
+                        span {
+                            font: {
+                                size: 13px
+                            }
+                        }
+                    }
 
                 }
 

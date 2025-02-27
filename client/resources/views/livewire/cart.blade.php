@@ -1,26 +1,17 @@
-@extends('layouts.main')
-
-@section('title', 'Giỏ hàng')
-
-@section('css')
-
-@endsection
-
-@section('content')
-
+<div>
     <div class="container">
         <div class="row mt-5">
 
             <div class="cart-wrap col-8 rounded p-3">
 
                 <div class="cart-title">
-                    <h5>Giỏ Hàng <span>( 3 sản phẩm )</span></h5>
+                    <p>Giỏ hàng của bạn<span></span></p>
                 </div>
 
 
-                <div class="row bg-light">
+                <div class="row row-gap-3">
                     @for ($i = 1; $i <= 3; $i++)
-                        <div class="col-12 mb-4">
+                        <div class="col-12">
 
                             <div class="cart-item-wrap d-flex justify-content-between align-items-center">
                                 <div class="cart-item-left d-flex align-items-center">
@@ -59,8 +50,8 @@
                                             </svg>
 
                                         </button>
-                                        <input type="number" name="quantity" id="quantity" min="1" max="10"
-                                            value="1">
+                                        <input type="number" name="quantity" id="quantity" min="1"
+                                            max="10" value="1">
                                         <button class="outline-button">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" width="16px" height="16px" stroke="currentColor"
@@ -87,6 +78,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="item-separation"></div>
                     @endfor
                 </div>
 
@@ -255,15 +248,20 @@
                         </div>
 
                         <button class="order-btn main-button mt-3">Đặt hàng</button>
+
+                        <form action="/payment" method="post">
+                            @csrf
+
+                            <button name="redirect" type="submit" class="order-btn main-button mt-3">Thanh toán VNPAY</button>
+                        </form>
+
+
+
+
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-
-@endsection
-
-@section('js')
-
-@endsection
+</div>

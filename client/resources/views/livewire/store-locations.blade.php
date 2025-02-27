@@ -1,13 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Khu vực')
-
-@section('css')
-
-@endsection
-
-@section('content')
-
+<div>
     <div class="container">
 
         <div class="row mt-5">
@@ -56,12 +47,8 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
-@endsection
+</div>
 
 @section('js')
     <script src="{{ asset('js/location.js') }}"></script>

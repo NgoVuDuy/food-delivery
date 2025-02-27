@@ -15,7 +15,7 @@ class ProductCategoryController extends Controller
         //
         $productCategory = ProductCategory::all();
 
-        return response()->json($productCategory);
+        return response()->json($productCategory, 200);
     }
 
     /**
@@ -27,37 +27,58 @@ class ProductCategoryController extends Controller
         $productCategory = $request->all();
 
         ProductCategory::create($productCategory);
+
+        return response()->json($productCategory, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ProductCategory $productCategory)
+    public function show(string $id)
     {
         //
-    }
+        $productCategory = ProductCategory::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductCategory $productCategory)
-    {
-        //
+        if(!$productCategory) {
+            return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
+        }
+
+        return response()->json($productCategory, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, string $id)
     {
         //
+
+        $productCategory = ProductCategory::find($id);
+
+        if(!$productCategory) {
+            return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
+        }
+
+        $data = $request->all();
+        $productCategory -> update($data);
+
+        return response()->json($productCategory, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy(string $id)
     {
         //
+        $productCategory = ProductCategory::find($id);
+
+        if(!$productCategory) {
+            return response()->json(['message' => 'Không tìm thấy danh mục'], 404);
+        }
+
+        $productCategory -> delete();
+
+        return response()->json(null, 204);
     }
 }

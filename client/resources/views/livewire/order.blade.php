@@ -1,13 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Đơn hàng')
-
-@section('css')
-
-@endsection
-
-@section('content')
-
+<div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-8">
@@ -170,15 +161,16 @@
                                 </div>
 
                             </div>
+
+                            <div class="item-separation"></div>
                         @endfor
+
+                        <div class="total">
+                            <p><span>Phí vận chuyển: </span>12.000đ</p>
+                            <p><span>Tổng cộng: </span>129.000đ</p>
+                        </div>
                     </div>
 
-                    <hr>
-
-                    <div class="total">
-                        <p><span>Phí vận chuyển: </span>12.000đ</p>
-                        <p><span>Tổng cộng: </span>129.000đ</p>
-                    </div>
                 </div>
             </div>
             <div class="col-4">
@@ -235,12 +227,20 @@
                             <div class="d-flex justify-content-between ">
                                 <div class="d-flex">
                                     <span class="title">Ghi chú: </span>
-                                    <span class="note-text">Không dùng tương cà, tương đen, xá xíu, bánh mì</span>
+                                    <span class="note-text">Không dùng tương cà, tương đen</span>
                                 </div>
                                 <span class="edit-text">Sửa</span>
                             </div>
-                        </div>
 
+
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <span class="title">Thanh toán: </span>
+                                    <span>Tài khoản ngân hàng</span>
+                                </div>
+                                {{-- <span class="edit-text">Sửa</span> --}}
+                            </div>
+                        </div>
 
 
                     </div>
@@ -263,6 +263,10 @@
                                             class="lucide lucide-message-circle">
                                             <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
                                         </svg>
+
+                                        <div class="chat-box-number rounded-circle d-flex justify-content-center align-items-center">
+                                            <span>3</span>
+                                        </div>
                                     </div>
 
                                     <div class="text rounded-end-2">
@@ -328,8 +332,7 @@
             </div>
         </div>
     </div>
-
-@endsection
+</div>
 
 @section('js')
     {{-- <script src="{{ asset('js/location.js') }}"></script> --}}
@@ -350,3 +353,5 @@
         })
     </script>
 @endsection
+
+

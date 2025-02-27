@@ -25,6 +25,10 @@
     }
 }
 
+.item-separation {
+    border: 1px $border-color solid;
+}
+
 .pupup {
     color: $main-color;
     font-weight: bold;

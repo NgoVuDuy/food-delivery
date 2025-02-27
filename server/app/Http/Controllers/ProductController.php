@@ -19,7 +19,7 @@ class ProductController extends Controller
         // $user = Product::paginate(5);
         $user = Product::all();
         
-        return response()->json($user) ;
+        return response()->json($user, 200) ;
 
     }
     /**
@@ -31,7 +31,7 @@ class ProductController extends Controller
 
         Product::create($product);
 
-        return response()->json($product);
+        return response()->json($product, 201);
     }
 
     /**
@@ -42,7 +42,11 @@ class ProductController extends Controller
         //
         $product = Product::find($id);
 
-        return response()->json($product);
+        if(!$product) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
+        }
+
+        return response()->json($product, 200);
 
     }
 
@@ -52,13 +56,17 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $data = $request->all();
 
         $product = Product::find($id);
 
+        if(!$product) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
+        }
+
+        $data = $request->all();
         $product -> update($data);
 
-        return response()->json($product);
+        return response()->json($product, 200);
 
     }
 
@@ -70,9 +78,13 @@ class ProductController extends Controller
         //
         $product = Product::find($id);
 
+        if(!$product) {
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
+        }
+
         $product->delete();
 
-        return response()->json(null);
+        return response()->json(null, 204);
 
     }
 }

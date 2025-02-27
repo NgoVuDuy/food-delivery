@@ -13,53 +13,72 @@ class CartController extends Controller
     public function index()
     {
         //
-    }
+        $carts = Cart::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json($carts, 200);
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         //
+        $cart = $request->all();
+
+        Cart::create($cart);
+
+        return response()->json($cart, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cart $cart)
+    public function show(string $id)
     {
         //
+        $cart = Cart::find($id);
+
+        if (!$cart) {
+            return response()->json(['message' => 'Không tìm thấy giỏ hàng'], 404);
+        }
+
+        return response()->json($cart, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, string $id)
     {
         //
+        $cart = Cart::find($id);
+
+        if (!$cart) {
+            return response()->json(['message' => 'Không tìm thấy giỏ hàng'], 404);
+        }
+
+        $data = $request->all();
+
+        $cart->update($data);
+
+        return response()->json($cart, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $cart)
+    public function destroy(string $id)
     {
         //
+        $cart = Cart::find($id);
+
+        if (!$cart) {
+            return response()->json(['message' => 'Không tìm thấy tùy chọn'], 404);
+        }
+
+        $cart->delete();
+
+        return response()->json(null, 204);
     }
 }

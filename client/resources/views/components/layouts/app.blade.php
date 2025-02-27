@@ -7,24 +7,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@yield('title')</title>
+    <title>{{ $title ?? 'Page Title' }}</title>
 
     @include('includes.libraries')
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
+
     @yield('css')
+    @livewireStyles
 </head>
 
 <body>
 
-    @include('includes.header')
+    @livewire('header')
 
-    @yield('content')
+    {{ $slot }}
 
-    @include('includes.footer')
+    @livewire('footer')
 
     @yield('js')
 
+    @livewireScripts
 </body>
 
 </html>

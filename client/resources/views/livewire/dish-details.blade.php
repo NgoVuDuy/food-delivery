@@ -1,13 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Chi tiết món ăn')
-
-@section('css')
-
-@endsection
-
-@section('content')
-
+<div>
     <div class="container mt-5">
 
 
@@ -161,10 +152,4 @@
 
         </div>
     </div>
-
-
-@endsection
-
-@section('js')
-
-@endsection
+</div>

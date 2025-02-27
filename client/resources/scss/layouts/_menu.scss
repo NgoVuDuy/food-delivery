@@ -57,6 +57,8 @@
 
         .wrap {
 
+            text-align: center;
+
         }
 
         .active {
@@ -67,9 +69,13 @@
         }
 
         .item {
+
+            border: none;
+            width: 80%;
+            text-align: left;
             padding: 12px 8px;
             border-radius: 12px;
-            margin: 0px 18px 12px 18px;
+            margin: 0px 0px 12px 0px;
             background: $light-gray;
         }
 

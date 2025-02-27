@@ -33,6 +33,11 @@ a {
   display: inline-flex;
 }
 
+.active-nav {
+  box-shadow: inset 0 -2px 0 #33539e;
+  color: #33539e !important;
+}
+
 .navbar {
   padding: 0px;
 }
@@ -155,14 +160,20 @@ footer .footer-col h6 {
 .menu-filter-wrap .menu-filter-item .caterory-name svg {
   color: #33539e;
 }
+.menu-filter-wrap .menu-filter-item .wrap {
+  text-align: center;
+}
 .menu-filter-wrap .menu-filter-item .active {
   background: #7aa5d2 !important;
   color: white;
 }
 .menu-filter-wrap .menu-filter-item .item {
+  border: none;
+  width: 80%;
+  text-align: left;
   padding: 12px 8px;
   border-radius: 12px;
-  margin: 0px 18px 12px 18px;
+  margin: 0px 0px 12px 0px;
   background: rgb(240, 240, 240);
 }
 .menu-filter-wrap .menu-filter-item p {
@@ -251,11 +262,12 @@ footer .footer-col h6 {
   height: 80px;
 }
 
-.cart-title h5 {
+.cart-title p {
   margin-bottom: 30px;
   font-weight: bold;
+  font-size: 22px;
 }
-.cart-title h5 span {
+.cart-title p span {
   font-size: 16px;
 }
 
@@ -264,7 +276,7 @@ footer .footer-col h6 {
 }
 
 .cart-item-wrap .cart-item-left .cart-item-img img {
-  width: 80px;
+  width: 100px;
   margin-right: 20px;
 }
 .cart-item-wrap .cart-item-left .cart-item-info .cart-item-name {
@@ -351,8 +363,22 @@ footer .footer-col h6 {
   cursor: pointer;
 }
 .card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .icon {
+  position: relative;
   padding: 6px;
   border-right: 1px #e3e3e3 solid;
+}
+.card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .icon .chat-box-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  text-align: center;
+  width: 18px;
+  height: 18px;
+}
+.card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .icon .chat-box-number span {
+  font-size: 13px;
 }
 .card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .text {
   padding: 6px;
@@ -376,13 +402,13 @@ footer .footer-col h6 {
 .bg-header-wrap .bg-header img {
   width: 500px;
   margin: 20px 20px 0px 20px;
-  animation: zome-in 1.2s ease-in-out;
+  animation: zome-in 1s ease-in-out;
 }
 .bg-header-wrap .bg-header .bg-content {
   position: absolute;
   top: 10%;
   left: 4%;
-  animation: move-bg-content 1.2s ease-in-out;
+  animation: move-bg-content 1s ease-in-out;
 }
 .bg-header-wrap .bg-header .bg-content .bg-text p {
   margin: 0px;
@@ -428,10 +454,13 @@ footer .footer-col h6 {
 
 .more-text {
   font-weight: bold;
-  color: #33539e;
   text-transform: uppercase;
   font-size: 16px;
   text-align: end;
+}
+.more-text a {
+  text-decoration: none;
+  color: #33539e;
 }
 .more-text span:first-child {
   border-bottom: 3px #7aa5d2 solid;
@@ -537,7 +566,6 @@ footer .footer-col h6 {
 }
 .home-menu-item .home-menu-content .home-menu-name {
   font-size: 18px;
-  font-weight: bold;
   color: #33539e;
 }
 .home-menu-item .home-menu-content .home-menu-desc {
@@ -667,7 +695,7 @@ footer .footer-col h6 {
   height: 5px;
   border-radius: 20px;
   margin: 0px 6px;
-  background-color: #797979;
+  background-color: #e3e3e3;
 }
 .order-wrap .order-status .bar-1 {
   background-color: #33539e;
@@ -696,10 +724,9 @@ footer .footer-col h6 {
 .order-details-wrap .order-details {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
   padding: 8px 32px;
-  margin: 0px 32px;
-  border-radius: 12px;
+  border-radius: 4px;
 }
 .order-details-wrap .order-details .details-item {
   display: flex;
@@ -999,6 +1026,10 @@ footer .footer-col h6 {
   text-transform: uppercase;
 }
 
+.item-separation {
+  border: 1px #e3e3e3 solid;
+}
+
 .pupup {
   color: #33539e;
   font-weight: bold;
@@ -1047,6 +1078,37 @@ footer .footer-col h6 {
   to {
     transform: scale(1);
   }
+}
+.login-form-wrap {
+  border-radius: 12px;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+.login-form-wrap .left {
+  width: 50%;
+  background: #33539e;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.login-form-wrap .left img {
+  width: 60%;
+}
+.login-form-wrap .right {
+  width: 50%;
+  padding: 20px;
+}
+.login-form-wrap .right .title {
+  font-size: 50px;
+  text-align: center;
+}
+.login-form-wrap .right form .form-wrap input {
+  border-radius: 12px;
+  border: 1px #e3e3e3 solid;
+  padding: 6px;
 }
 
 /*# sourceMappingURL=main.css.map */
