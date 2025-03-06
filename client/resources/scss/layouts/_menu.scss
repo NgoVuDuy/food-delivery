@@ -46,19 +46,22 @@
 
     .menu-filter-item {
 
-        .caterory-name {
+        .category-name {
             margin-bottom: 28px;
+            width: max-content;
 
             svg {
                 color: $main-color;
             }
+
+            cursor: pointer;
 
         }
 
         .wrap {
 
             text-align: center;
-
+            // display: none;
         }
 
         .active {

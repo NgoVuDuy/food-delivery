@@ -13,10 +13,13 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('products', ProductController::class);
-Route::apiResource('product_categories', ProductCategoryController::class);
+Route::apiResource('product-categories', ProductCategoryController::class);
 Route::apiResource('options', OrderController::class);
-Route::apiResource('option_categories', OrderController::class);
-Route::apiResource('product_option', ProductOptionController::class);
+Route::apiResource('option-categories', OrderController::class);
+Route::apiResource('product-option', ProductOptionController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('carts', OrderController::class);
 
+//
+Route::get('/homepage-images', [ProductController::class, 'getHomepageImages']);
+Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);

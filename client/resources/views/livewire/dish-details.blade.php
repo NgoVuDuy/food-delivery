@@ -5,15 +5,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="nav-child mb-4">
-                    <a href="">Menu</a>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="16px"
-                        height="16px" stroke="currentColor" class="size-6">
+                    <a href="/menu" wire:navigate>Menu</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        width="16px" height="16px" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
 
-
-                    <a href="" class="active">Pizza phô mai Ý</a>
+                    <a href="{{ route('dish-details', $product['id']) }}" class="active"
+                        wire:navigate>{{ $product['name'] }}</a>
                 </div>
             </div>
         </div>
@@ -22,7 +23,7 @@
             <div class="col-5">
 
                 <div class="dish-img-wrap">
-                    <img src="{{ asset('Products/44.jpg') }}" alt="">
+                    <img src="{{ asset($product['image']) }}" alt="">
 
                 </div>
 
@@ -32,35 +33,37 @@
                 <div class="dish-option-wrap bg-light">
 
                     <div class="dish-option-name">
-                        Pizza phô mai Ý
+                        {{ $product['name'] }}
                     </div>
 
                     <div class="dish-option-price">
-                        59.000đ
+                        {{ $product['price'] }}đ
                     </div>
 
                     <div class="dish-option-cover">
+
                         <div class="dish-option-title">
                             Chọn Size
                         </div>
 
-                        <button class="">Nhỏ (12cm) + 0đ</button>
-                        <button class="">Vừa (14cm) + 6.000đ</button>
-                        <button class="">Lớn (16cm) + 8.000đ</button>
-
+                        @foreach ($options['size'] as $size)
+                            <button class="size-btn"
+                                wire:click="size('{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
+                                wire:ignore>{{ $size['name'] }} + {{ $size['price_modifier'] }}đ</button>
+                        @endforeach
 
                     </div>
 
                     <div class="dish-option-cover">
 
                         <div class="dish-option-title">
-                            Chọn đế
+                            Chọn Đế
                         </div>
 
-                        <button class="">Mỏng</button>
-                        <button class="">Vừa</button>
-                        <button class="">Dày</button>
-
+                        @foreach ($options['base'] as $base)
+                            <button class="base-btn" wire:click="base('{{ $base['name'] }}')"
+                                wire:ignore>{{ $base['name'] }}</button>
+                        @endforeach
 
                     </div>
 
@@ -69,19 +72,10 @@
                             Chọn Viền
                         </div>
 
-                        <button class="">Viền Không Nhân</button>
-                        <button class="">Viền phô mai + 6.000đ</button>
-                        <button class="">Viền Xúc xích + 8.000đ</button>
-
-                    </div>
-
-                    <div class="dish-option-cover">
-                        <div class="dish-option-title">
-                            Tùy chọn thêm
-                        </div>
-
-                        <button class="">Thêm phô mai + 6.000đ</button>
-                        <button class="">Thêm xúc xích + 8.000đ</button>
+                        @foreach ($options['border'] as $border)
+                            <button class="border-btn" wire:click="border('{{ $border['name'] }}', {{ $border['name'] }})">{{ $border['name'] }} +
+                                {{ $border['price_modifier'] }}đ</button>
+                        @endforeach
 
                     </div>
 
@@ -90,18 +84,23 @@
                 <div class="dish-btn-cover d-flex align-items-center justify-content-between mt-4">
 
                     <div class="dish-btn-quantity">
+
+
                         <label for="quantity">Số lượng</label>
-                        <button class="outline-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                width="16px" height="16px" stroke="currentColor" class="size-6">
+
+                        <button class="outline-button" wire:click="decrease">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" width="16px" height="16px" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
                             </svg>
 
                         </button>
-                        <input type="number" name="quantity" id="quantity" min="1" max="10" value="1">
-                        <button class="outline-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                width="16px" height="16px" stroke="currentColor" class="size-6">
+
+                        <input type="number" id="quantity" min="1" max="10" value="{{ $quantity }}"
+                            wire:model="quantity">
+                        <button class="outline-button" wire:click="increase">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" width="16px" height="16px" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
 
@@ -119,14 +118,12 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="dish-description-wrap">
-                    <div class="dish-description-title">
+                    <div class="dish-description-title mb-3">
                         Mô tả sản phẩm
                     </div>
 
                     <div class="dish-description-content">
-                        Cho ngày thêm tươi, tỉnh, êm, mượt với Trà Xanh Espresso Marble. Đây là sự mai mối bất ngờ giữa trà
-                        xanh Tây Bắc vị mộc và cà phê Arabica Đà Lạt. Muốn ngày thêm chút highlight, nhớ tìm đến sự bất ngờ
-                        này bạn nhé!
+                        {{ $product['description'] }}
                     </div>
                 </div>
             </div>
@@ -134,22 +131,45 @@
 
         <div class="row mt-5">
 
-            <div class="dish-product-suggest-title">
+            <div class="dish-product-suggest-title mb-3">
                 Có thể bạn sẽ thích
             </div>
 
-            @for($i=1;$i<=8;$i++)
+            @for ($i = 1; $i <= 8; $i++)
+                <div class="col-3">
 
-            <div class="col-3">
+                    <div class="dish-product-suggest">
 
-                <div class="dish-product-suggest">
-
-
+                    </div>
                 </div>
-            </div>
             @endfor
 
 
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+
+            $('.size-btn').click(function() {
+
+                $('.size-btn').removeClass('active  ')
+                $(this).addClass('active')
+            })
+
+            $('.base-btn').click(function() {
+
+                $('.base-btn').removeClass('active  ')
+                $(this).addClass('active')
+            })
+
+            $('.border-btn').click(function() {
+
+                $('.border-btn').removeClass('active  ')
+                $(this).addClass('active')
+            })
+        })
+    </script>
+@endsection

@@ -20,18 +20,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
 
-        ProductCategory::factory(10)->create();
-        Product::factory(10)->create();
+        // ProductCategory::factory(10)->create();
+        // Product::factory(10)->create();
+        $this->call([
 
-        OptionCategory::factory(10)->create();
-        Option::factory(10)->create();
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
+            OptionCategorySeeder::class,
+            OptionSeeder::class,
+            ProductOptionSeeder::class
+        ]);
 
-        ProductOption::factory(10)->create();
-        Cart::factory(10)->create();
+        // OptionCategory::factory(10)->create();
+        // Option::factory(10)->create();
+
+        // ProductOption::factory(10)->create();
+        // Cart::factory(10)->create();
         
-        Order::factory(10)->create();
+        // Order::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

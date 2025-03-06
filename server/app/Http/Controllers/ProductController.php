@@ -11,16 +11,24 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function getHomepageImages() {
+        
+        $images = Product::orderBy('created_at', 'desc')
+        ->paginate(1, ['image']);
+
+        return response()->json($images, 200);
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $user = Product::paginate(5);
-        $user = Product::all();
-        
-        return response()->json($user, 200) ;
+        $per_page = $request->query('per_page');
 
+        $products = Product::paginate($per_page);
+        
+        return response()->json($products, 200);
     }
     /**
      * Store a newly created resource in storage.

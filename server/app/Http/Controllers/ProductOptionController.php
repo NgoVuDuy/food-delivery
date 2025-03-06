@@ -2,11 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OptionCategory;
 use App\Models\ProductOption;
+use App\Models\Product;
+
 use Illuminate\Http\Request;
 
 class ProductOptionController extends Controller
 {
+
+    // Trả về các lựa chọn cho 1 sản phẩm
+    public function options_of_product(Request $request) {
+
+        $product_id = $request->query('product_id');
+        $option_category_name = $request->query('option_category_name');
+
+        $product = Product::find($product_id);
+
+        $option_category = OptionCategory::where('name', $option_category_name)->first();
+
+        $options = $product->options;
+
+        $results = $options->where('option_categories_id', $option_category->id)->values();
+
+        return response()->json($results);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -17,8 +37,6 @@ class ProductOptionController extends Controller
 
         return response()->json($productOption, 200);
     }
-
-
     /**
      * Store a newly created resource in storage.
      */
@@ -83,4 +101,6 @@ class ProductOptionController extends Controller
 
         return response() -> json(null, 204);
     }
+
+
 }

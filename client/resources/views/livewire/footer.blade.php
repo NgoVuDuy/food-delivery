@@ -42,18 +42,20 @@
                     <div class="col-lg-3 col-5 footer-col">
 
                         <h6>Tính năng</h6>
-
                         <p>
-                            <a href="/">Menu</a>
+                            <a href="/home" wire:navigate>Trang chủ</a>
                         </p>
                         <p>
-                            <a href="/courses">Khuyến mãi</a>
+                            <a href="/menu" wire:navigate>Menu</a>
                         </p>
                         <p>
-                            <a href="/load-courses">Cửa hàng</a>
+                            <a href="#" wire:navigate>Khuyến mãi</a>
                         </p>
                         <p>
-                            <a href="/logout-show">Tin tức</a>
+                            <a href="/store-location" wire:navigate>Cửa hàng</a>
+                        </p>
+                        <p>
+                            <a href="#" wire:navigate>Tin tức</a>
                         </p>
 
 

@@ -10,100 +10,39 @@ use Livewire\Attributes\Title;
 class Menu extends Component
 {
 
-    public $products = [];
-
-    public $category_text = "";
+    public $products;
+    public $category;
 
     public function mount() {
 
-        // $this->products = Http::get('http://localhost:8001/api/products')->json();
+        $this->products = Http::get(Component::$url . 'products',
+        [
+            'per_page' => 9,
+            'page' => 1
+        ])->json();
 
-        $this->category_text = "Tất cả";
-
-        $this->products = [
-            [
-                'name' => 'Pizza Thịt heo',
-                'price' => 127000,
-                'image' => "Products/pizza-home-1.png"
-            ],
-            [
-                'name' => 'Pizza Rau Củ',
-                'price' => 187000,
-                'image' => "Products/pizza-home-2.png"
-    
-            ],
-            [
-                'name' => 'Pizza Pizza Hải Sản',
-                'price' => 142000,
-                'image' => "Products/pizza-home-3.png"
-    
-            ],
-            [
-                'name' => 'Pizza Phô Mai',
-                'price' => 222000,
-                'image' => "Products/pizza-home-4.png"
-    
-            ],
-            [
-                'name' => 'Pizza Cay',
-                'price' => 123000,
-                'image' => "Products/pizza-home-2.png"
-    
-            ]
-    
-        ];
+        $this->category = "Tất cả";
     }
 
-    public function category(string $category_text) {
-        
-        $this->category_text = $category_text;
+    public function menu_pagination(string $page) {
 
-        if($category_text == "Meat Lover's Pizza") {
+        $this->products = Http::get(Component::$url . 'products',
+        [
+            'per_page' => 9,
+            'page' => $page
+        ])->json();
+    }
+
+    public function category(string $category) {
+        
+        $this->category = $category;
+
+        if($category == "Meat Lover's Pizza") {
             $this->products = [
                 [
                     'name' => 'Pizza Thịt heo',
                     'price' => 127000,
                     'image' => "Products/pizza-home-1.png"
-                ]
-                ];
-        }
-        if($category_text == "Vegetarian Pizza") {
-            $this->products = [
-                [
-                    'name' => 'Pizza Rau Củ',
-                    'price' => 187000,
-                    'image' => "Products/pizza-home-2.png"
-        
-                ],
-                ];
-        }
-        if($category_text == "Seafood Pizza") {
-            $this->products = [
-                [
-                    'name' => 'Pizza Pizza Hải Sản',
-                    'price' => 142000,
-                    'image' => "Products/pizza-home-3.png"
-        
-                ],
-                ];
-        }
-        if($category_text == "Cheese Pizza") {
-            $this->products = [
-                [
-                    'name' => 'Pizza Phô Mai',
-                    'price' => 222000,
-                    'image' => "Products/pizza-home-4.png"
-        
-                ],
-                ];
-        }
-        if($category_text == "Spicy Pizza") {
-            $this->products = [
-                [
-                    'name' => 'Pizza Cay',
-                    'price' => 123000,
-                    'image' => "Products/pizza-home-2.png"
-        
                 ]
                 ];
         }

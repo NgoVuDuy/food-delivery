@@ -23,15 +23,9 @@
         }
 
         .menu-item-content {
-            .menu-name {
-                transform: translate(-16%, -426%);
-                font-size: 20px;
-            }
 
-            .menu-price {
-                transform: translate(-32%, -440%);
+            transform: translateY(-130%);
 
-            }
         }
 
         .menu-item-desc {
@@ -55,7 +49,8 @@
         img {
             border-radius: 12px;
             transition: transform .4s ease;
-            width: 70%;
+            width: 185px;
+            height: 185px;
             margin: 12px;
 
         }
@@ -65,17 +60,15 @@
     .menu-item-content {
 
         margin-top: 20px;
-
         border-bottom-right-radius: 12px;
         border-bottom-left-radius: 12px;
         position: relative;
 
-        // background: linear-gradient(0deg, #ffe6f1, #fff, #fff, #fff);
+        transition: transform 0.4s ease;
 
 
         .menu-name {
             text-align: center;
-            transition: transform 0.4s ease, font-size 0.4s ease;
             text-transform: uppercase;
             font: {
                 size: 20px;
@@ -99,44 +92,10 @@
             color: $main-color;
         }
 
-        // .menu-star-rating {
-
-        //     font: {
-        //         size: 14px;
-        //     }
-
-        //     color: black;
-
-        //     .menu-star-rating-sum {
-
-        //         display: inline;
-        //         color: $gray-color;
-
-        //         font: {
-        //             size: 12px
-        //         }
-        //     }
-
-        //     svg {
-        //         color: $star-color;
-        //     }
-
-        //     text: {
-        //         align: right;
-        //     }
-        // }
-
         .menu-price {
 
-            // position: absolute;
-
-            // right: 6%;
-            // bottom: 18%;
             text-align: center;
             margin-top: 12px;
-
-            transition: transform 0.4s ease;
-
 
             font: {
                 size: 20px;

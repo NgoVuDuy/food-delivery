@@ -6,29 +6,41 @@
 
             <div class="slide-btn d-flex">
 
-                <div class="prev">
+                <button class="prev" wire:click="prev">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevron-left">
                         <path d="m15 18-6-6 6-6" />
                     </svg>
-                </div>
+                </button>
 
             </div>
 
-            <img src="{{ asset('Products/44.jpg') }}" alt="">
+            <div>
+
+                <img src="{{ asset($current_image['data'][0]['image']) }}" alt="">
+
+                <div class="indicators d-flex justify-content-center mt-3">
+
+                    @foreach (array_slice($current_image['links'], 1, $page_total) as $link)
+                        <button wire:click="paginate_img({{ $link['label'] }})" class="{{ $link['active'] ? 'active' : '' }}"></button>
+                    @endforeach
+
+                </div>
+            </div>
+
 
             <div class="slide-btn d-flex">
 
-                <div class="next">
+                <button class="next" wire:click="next">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="lucide lucide-chevron-right">
                         <path d="m9 18 6-6-6-6" />
                     </svg>
-                </div>
+                </button>
 
             </div>
 
@@ -58,34 +70,15 @@
                     </a>
                 </div>
             </div>
+
+
         </div>
     </div>
 
     <div class="container">
 
         <div class="row">
-            <div class="col-3">
-                <div class="home-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-smile">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                        <line x1="9" x2="9.01" y1="9" y2="9" />
-                        <line x1="15" x2="15.01" y1="9" y2="9" />
-                    </svg>
 
-                    <div class="box-title">
-                        <p>Phục vụ tận tình</p>
-                    </div>
-
-                    <div class="box-content">
-                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác
-                        đến
-                        quán.
-                    </div>
-                </div>
-            </div>
             <div class="col-3">
                 <div class="home-box">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -97,7 +90,7 @@
                     </svg>
 
                     <div class="box-title">
-                        <p>Phục vụ tận tình</p>
+                        <p>Chất lượng phục vụ</p>
                     </div>
 
                     <div class="box-content">
@@ -117,13 +110,12 @@
                     </svg>
 
                     <div class="box-title">
-                        <p>Phục vụ tận tình</p>
+                        <p>Giao hàng tận nơi</p>
                     </div>
 
                     <div class="box-content">
-                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác
-                        đến
-                        quán.
+                        Hỗ trợ khách hàng đặt đồ ăn giao tận nơi, nhanh chóng và đơn giản thông qua hệ thống của chúng
+                        tôi.
                     </div>
                 </div>
             </div>
@@ -138,13 +130,34 @@
                     </svg>
 
                     <div class="box-title">
-                        <p>Phục vụ tận tình</p>
+                        <p>Món ngon mỗi ngày</p>
                     </div>
 
                     <div class="box-content">
-                        Chúng tôi luôn hỗ trợ khách hành tận tình. Mang đến một trải nghiệm tuyệt vời cho từng thực khác
-                        đến
-                        quán.
+                        Nhà hàng chúng tôi với đa dạng món ăn. Sử dụng nguyên liệu nhập khẩu, mang đến một hương vị khó
+                        quên.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="home-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-smile">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        <line x1="9" x2="9.01" y1="9" y2="9" />
+                        <line x1="15" x2="15.01" y1="9" y2="9" />
+                    </svg>
+
+                    <div class="box-title">
+                        <p>Lắng nghe góp ý</p>
+                    </div>
+
+                    <div class="box-content">
+                        Chúng tôi luôn ghi nhận những góp ý của khách hàng để ngày càng hoàn thiện hơn chất lượng cho
+                        nhà hàng.
                     </div>
                 </div>
             </div>
@@ -181,105 +194,45 @@
                 </a>
             </div>
 
-            <div class="col-3">
-                <div class="home-otd-product-wrap shadow">
-                    <img src="{{ asset('Products/pizza-home-4.png') }}" alt="">
+            @foreach ($current_products['data'] as $product)
+                <div class="col-3">
+                    <div class="home-otd-product-wrap shadow">
+                        <img src="{{ asset($product['image']) }}" alt="">
 
-                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
+                        <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
 
-                        <p class="">PIZZA PHÔ MAI</p>
-                        <button class="cold-button">Xem thêm</button>
+                            <p class="">{{ Str::limit($product['name'], 16, '...') }}</p>
 
+                            <a href="{{ route('dish-details', $product['id']) }}" wire:navigate><button
+                                    class="cold-button">Xem thêm</button></a>
+
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
-
-                <div class="home-otd-product-wrap shadow">
-                    <img src="{{ asset('Products/44.jpg') }}" alt="">
-
-                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
-
-                        <p class="">PIZZA HẢI SẢN</p>
-                        <button class="cold-button">Xem thêm</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-3">
-
-                <div class="home-otd-product-wrap shadow">
-
-                    <img src="{{ asset('Products/44.jpg') }}" alt="">
-
-                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
-
-                        <p class="">PIZZA XÚC XÍCH</p>
-                        <button class="cold-button">Xem thêm</button>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-3">
-
-                <div class="home-otd-product-wrap shadow">
-
-                    <img src="{{ asset('Products/44.jpg') }}" alt="">
-
-                    <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
-
-                        <p class="">PIZZA XÚC XÍCH</p>
-                        <button class="cold-button">Xem thêm</button>
-
-                    </div>
-                </div>
-
-            </div>
+            @endforeach
 
             <div class="indicators d-flex justify-content-center mt-3">
 
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                @foreach (array_slice($current_products['links'], 1, 3) as $link)
+
+                    <button wire:click="typical_dish_pagination({{ $link['label'] }})" class="{{ $link['active'] ? 'active' : '' }}"></button>
+
+                @endforeach
 
             </div>
 
-
-
-            {{-- <div class="slide-btn d-flex justify-content-center">
-
-                <div class="prev">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-chevron-left">
-                        <path d="m15 18-6-6 6-6" />
-                    </svg>
-                </div>
-
-                <div class="next">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-chevron-right">
-                        <path d="m9 18 6-6-6-6" />
-                    </svg>
-                </div>
-
-            </div> --}}
         </div>
 
 
 
     </div>
 
-    <div class="container-fluid home-product-infor-wrap">
+    <div class="container home-product-infor-wrap">
 
         {{-- Information --}}
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-8 top-box">
 
                 <div class="home-product-infor">
                     <img src="{{ asset('Products/pizza-mix.webp') }}" alt="">
@@ -287,11 +240,11 @@
 
             </div>
 
-            <div class="col-12">
+            <div class="col-12 bottom-box">
                 <div class="home-product-infor-content d-flex justify-content-center align-items-end">
                     <div class="content-wrap shadow">
                         <div class="total d-flex align-items-center">
-                            <span>120</span>
+                            <span>200</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
@@ -300,12 +253,12 @@
                             </svg>
                         </div>
                         <div class="title"><span>Đơn hàng</span></div>
-                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                        <div class="content"><span>Hơn 200 đơn hàng được đặt mỗi ngày.</span></div>
                     </div>
 
                     <div class="content-wrap shadow">
                         <div class="total d-flex align-items-center">
-                            <span>120</span>
+                            <span>50</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
@@ -313,13 +266,13 @@
                                 <path d="M12 5v14" />
                             </svg>
                         </div>
-                        <div class="title"><span>Đơn hàng</span></div>
-                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                        <div class="title"><span>Món ăn</span></div>
+                        <div class="content"><span>Thực đơn đa dạng với hơn 50 món.</span></div>
                     </div>
 
                     <div class="content-wrap shadow">
                         <div class="total d-flex align-items-center">
-                            <span>120</span>
+                            <span>10</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
@@ -327,8 +280,8 @@
                                 <path d="M12 5v14" />
                             </svg>
                         </div>
-                        <div class="title"><span>Đơn hàng</span></div>
-                        <div class="content"><span>Hơn 120 đơn hàng được đặt mỗi ngày.</span></div>
+                        <div class="title"><span>Chi Nhánh</span></div>
+                        <div class="content"><span>Hơn 10 chi nhánh khắp cả nước.</span></div>
                     </div>
 
                 </div>

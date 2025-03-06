@@ -14,7 +14,7 @@
 .dish-option-wrap {
 
     padding: 12px;
-    border-radius: 12px;
+    border-radius: 4px;
 
     .dish-option-name {
 
@@ -58,15 +58,16 @@
             border-radius: 4px;
             padding: 6px 8px;
             background-color: white;
-            border: 2px $border-color solid;
+            border: 2px $light-gray solid;
         }
 
 
-        button:focus {
+        .active {
 
             border: 2px $main-color solid;
             background-color: $button-outline-hover-color;
         }
+
     }
 }
 
@@ -75,16 +76,16 @@
     .dish-btn-quantity {
 
         display: flex;
-        align-items: center;
 
         label {
             margin-right: 12px;
+            display: flex;
+            align-items: center;
         }
 
         input {
             border: 1px $border-color solid;
             border-radius: 4px;
-            height: 40px;
             margin: 0px 8px;
         }
 
