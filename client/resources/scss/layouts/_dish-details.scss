@@ -13,7 +13,7 @@
 
 .dish-option-wrap {
 
-    padding: 12px;
+    padding: 12px 18px;
     border-radius: 4px;
 
     .dish-option-name {
@@ -43,6 +43,14 @@
 
     .dish-option-cover {
 
+        .size-btn,.base-btn,.border-btn {
+
+            span {
+                color: $dark-pink;
+                font-weight: bold;
+            }
+        }
+
         .dish-option-title {
 
             font: {
@@ -54,7 +62,7 @@
         }
 
         button {
-            color: black;
+            // color: black;
             border-radius: 4px;
             padding: 6px 8px;
             background-color: white;

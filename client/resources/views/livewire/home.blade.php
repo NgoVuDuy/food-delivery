@@ -214,7 +214,7 @@
 
             <div class="indicators d-flex justify-content-center mt-3">
 
-                @foreach (array_slice($current_products['links'], 1, 3) as $link)
+                @foreach (array_slice($current_products['meta']['links'], 1, 3) as $link)
 
                     <button wire:click="typical_dish_pagination({{ $link['label'] }})" class="{{ $link['active'] ? 'active' : '' }}"></button>
 

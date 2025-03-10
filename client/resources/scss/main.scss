@@ -9,12 +9,16 @@
 @import 'layouts/home';
 @import 'layouts/location';
 @import 'layouts/order';
+@import 'layouts/search';
+
 
 
 @import 'components/button';
 @import 'components/dish-item';
 @import 'components/object';
 @import 'components/nav-child';
+@import 'components/alert';
+@import 'components/modal';
 @import 'components/keyframes.scss';
 
 @import 'livewire/login-form.scss';

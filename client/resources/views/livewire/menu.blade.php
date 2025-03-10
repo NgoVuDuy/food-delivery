@@ -157,7 +157,7 @@
 
                     <div class="indicators d-flex justify-content-center mt-3">
 
-                        @foreach (array_slice($products['links'], 1, count($products['links']) - 2) as $link)
+                        @foreach (array_slice($products['meta']['links'], 1, count($products['links']) - 2) as $link)
 
                             <button wire:click="menu_pagination({{ $link['label'] }})"
 

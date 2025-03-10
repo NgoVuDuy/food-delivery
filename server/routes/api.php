@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\FunctionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
@@ -18,8 +20,11 @@ Route::apiResource('options', OrderController::class);
 Route::apiResource('option-categories', OrderController::class);
 Route::apiResource('product-option', ProductOptionController::class);
 Route::apiResource('orders', OrderController::class);
-Route::apiResource('carts', OrderController::class);
+Route::apiResource('carts', CartController::class);
 
 //
 Route::get('/homepage-images', [ProductController::class, 'getHomepageImages']);
 Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);
+Route::get('/search', [FunctionController::class, 'product_search']);
+Route::get('/count-cart', [FunctionController::class, 'count_cart']);
+

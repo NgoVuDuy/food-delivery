@@ -1,0 +1,33 @@
+.modal-delivery-address {
+    .modal-dialog {
+        max-width: 800px;
+        .modal-content {
+
+            .modal-header {
+                h1 {
+                    color: $main-color;
+                }
+            }
+
+            .modal-body {
+                display: flex;
+            }
+        }
+    }
+    input {
+        width: 100%;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 2px $border-color solid;
+
+        &:focus {
+            border: 2px $main-color solid;
+            box-shadow: none;
+        }
+    }
+    .current-location-btn {
+        background: white;
+        color: #33539e;
+        border: none;
+    }
+}

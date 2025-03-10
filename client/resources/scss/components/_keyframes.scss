@@ -11,20 +11,6 @@
     }
 }
 
-@keyframes spin-img {
-
-    from {
-
-        transform: rotate(0deg) scale(1.2);
-    }
-
-    to {
-
-        transform: rotate(360deg) scale(1.2);
-    }
-    
-}
-
 @keyframes zome-in {
     from {
         transform: scale(.6);

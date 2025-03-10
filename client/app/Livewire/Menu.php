@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 
+
 #[Title('Menu')]
 class Menu extends Component
 {

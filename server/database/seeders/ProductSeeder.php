@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         Product::insert([
             [
                 'name' => 'Pizza Thịt Heo Xông Khói',
-                'price' => 129.000,
+                'price' => 129000,
                 'description' => 'Thịt heo xông khói nhập khẩu mang hương vị tuyệt vời',
                 'image' => 'images/products/pizzas/pizza-thit-xong-khoi.jpg',
                 'product_categories_id' => 1,
@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Pizza Rau Củ',
-                'price' => 89.123,
+                'price' => 89123,
                 'description' => 'Pizza rau củ tươi mới, có thể dùng chay',
                 'image' => 'images/products/pizzas/pizza-rau-cu.jpg',
                 'product_categories_id' => 1,

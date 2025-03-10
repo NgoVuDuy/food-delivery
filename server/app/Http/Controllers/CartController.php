@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CartResource;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class CartController extends Controller
     public function index()
     {
         //
-        $carts = Cart::all();
+        $carts = Cart::with('product')->get();
 
-        return response()->json($carts, 200);
+        return response()->json(CartResource::collection($carts));
     }
     /**
      * Store a newly created resource in storage.

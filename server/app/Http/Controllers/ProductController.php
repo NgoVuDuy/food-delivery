@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class ProductController extends Controller
 
         $products = Product::paginate($per_page);
         
-        return response()->json($products, 200);
+        return ProductResource::collection($products);
     }
     /**
      * Store a newly created resource in storage.
@@ -54,8 +55,7 @@ class ProductController extends Controller
             return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
         }
 
-        return response()->json($product, 200);
-
+        return response()->json(new ProductResource($product)) ;
     }
 
     /**

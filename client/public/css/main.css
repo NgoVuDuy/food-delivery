@@ -61,6 +61,11 @@ a {
 .header-form-search {
   margin-right: 16px;
 }
+.header-form-search .search-submit-btn {
+  padding: 0px;
+  border-radius: 50%;
+  border: none;
+}
 .header-form-search input {
   width: 400px;
   padding: 8px 12px;
@@ -199,7 +204,7 @@ footer .footer-col h6 {
 }
 
 .dish-option-wrap {
-  padding: 12px;
+  padding: 12px 18px;
   border-radius: 4px;
 }
 .dish-option-wrap .dish-option-name {
@@ -215,13 +220,16 @@ footer .footer-col h6 {
   font-weight: bold;
   margin-bottom: 12px;
 }
+.dish-option-wrap .dish-option-cover .size-btn span, .dish-option-wrap .dish-option-cover .base-btn span, .dish-option-wrap .dish-option-cover .border-btn span {
+  color: #a5678e;
+  font-weight: bold;
+}
 .dish-option-wrap .dish-option-cover .dish-option-title {
   font-weight: bold;
   margin: 16px 0px 8px 0px;
   color: #33539e;
 }
 .dish-option-wrap .dish-option-cover button {
-  color: black;
   border-radius: 4px;
   padding: 6px 8px;
   background-color: white;
@@ -262,6 +270,23 @@ footer .footer-col h6 {
   background: pink;
   width: 100%;
   height: 80px;
+}
+
+.empty-cart-wrap .empty-cart-img {
+  width: 100%;
+}
+.empty-cart-wrap .right {
+  margin-left: 12px;
+}
+.empty-cart-wrap .right .empty-cart-title {
+  text-transform: uppercase;
+  color: #33539e;
+  font-size: 20px;
+  font-weight: bold;
+}
+.empty-cart-wrap .right .empty-cart-desc span {
+  color: #33539e;
+  font-weight: bold;
 }
 
 .cart-title p {
@@ -309,6 +334,9 @@ footer .footer-col h6 {
 }
 .cart-item-wrap .cart-item-right .cart-item-delete {
   margin-left: 18px;
+  padding: 0px;
+  border: none;
+  background: none;
 }
 .cart-item-wrap .cart-item-right .cart-item-delete:hover {
   color: #33539e;
@@ -323,6 +351,7 @@ footer .footer-col h6 {
 }
 .card-wrap .card-item-information .wrap .card-delivery-address .card-delivery-address-edit {
   color: #a5678e;
+  cursor: pointer;
 }
 .card-wrap .card-item-information .wrap .title {
   display: inline-block;
@@ -385,6 +414,22 @@ footer .footer-col h6 {
 .card-wrap .card-item-delivery-man .delivery-man-info .delivery-man-chat .text {
   padding: 6px;
   width: 100%;
+}
+.card-wrap .card-item-3 .card-template-title {
+  font-weight: bold;
+}
+.card-wrap .card-item-3 .card-template-monney p {
+  font-size: 17px;
+  color: #a5678e;
+  font-weight: bold;
+}
+.card-wrap .card-item-3 .card-sum-title {
+  font-weight: bold;
+}
+.card-wrap .card-item-3 .card-sum-monney p {
+  font-size: 17px;
+  color: #a5678e;
+  font-weight: bold;
 }
 
 .order-btn {
@@ -851,6 +896,15 @@ footer .footer-col h6 {
   box-shadow: none;
 }
 
+.search-text-wrap {
+  text-align: center;
+  font-size: 20px;
+}
+.search-text-wrap span {
+  color: #33539e;
+  margin-left: 8px;
+}
+
 .main-button {
   background-color: #33539e;
   color: white;
@@ -860,6 +914,10 @@ footer .footer-col h6 {
   text-align: center;
   font-size: 16px;
 }
+.main-button:hover {
+  opacity: 0.9;
+}
+
 .outline-button {
   border: 1px #e3e3e3 solid;
   border-radius: 4px;
@@ -893,6 +951,21 @@ footer .footer-col h6 {
 .cold-button:hover {
   background: white;
   color: #33539e;
+}
+
+.aws-button {
+  padding: 10px 18px;
+  background: white;
+  color: #33539e;
+  border-radius: 2px;
+  border: 1px #33539e solid;
+  transition: background 0.5s ease, color 0.5s ease;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+}
+.aws-button svg {
+  margin-left: 6px;
 }
 
 .nice-button {
@@ -1045,6 +1118,38 @@ footer .footer-col h6 {
   color: #33539e;
 }
 
+.alert-success {
+  width: max-content;
+  position: fixed;
+  right: 2%;
+  top: 12%;
+}
+
+.modal-delivery-address .modal-dialog {
+  max-width: 800px;
+}
+.modal-delivery-address .modal-dialog .modal-content .modal-header h1 {
+  color: #33539e;
+}
+.modal-delivery-address .modal-dialog .modal-content .modal-body {
+  display: flex;
+}
+.modal-delivery-address input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 2px #e3e3e3 solid;
+}
+.modal-delivery-address input:focus {
+  border: 2px #33539e solid;
+  box-shadow: none;
+}
+.modal-delivery-address .current-location-btn {
+  background: white;
+  color: #33539e;
+  border: none;
+}
+
 @keyframes move-bg-content {
   from {
     transform: translateX(-110%);
@@ -1053,14 +1158,6 @@ footer .footer-col h6 {
   to {
     transform: translateX(0%);
     opacity: 1;
-  }
-}
-@keyframes spin-img {
-  from {
-    transform: rotate(0deg) scale(1.2);
-  }
-  to {
-    transform: rotate(360deg) scale(1.2);
   }
 }
 @keyframes zome-in {

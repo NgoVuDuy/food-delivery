@@ -1,3 +1,29 @@
+.empty-cart-wrap {
+    .empty-cart-img {
+        width: 100%;
+    }
+
+    .right {
+        margin-left: 12px;
+
+        .empty-cart-title {
+            text-transform: uppercase;
+            color: $main-color;
+            font: {
+                size: 20px;
+                weight: bold;
+            }
+        }
+        .empty-cart-desc {
+            span {
+                color: $main-color;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
 .cart-title {
     p {
 
@@ -82,6 +108,9 @@
         .cart-item-delete {
 
             margin-left: 18px;
+            padding: 0px;
+            border: none;
+            background: none;
 
             &:hover {
 
@@ -107,14 +136,15 @@
         .wrap {
 
             .card-delivery-address {
-    
+
                 .address {
                     width: 80%;
                 }
-    
+
                 .card-delivery-address-edit {
-    
+
                     color: $dark-pink;
+                    cursor: pointer;
                 }
             }
 
@@ -200,7 +230,7 @@
                     .chat-box-number {
 
                         position: absolute;
-                
+
                         top: 0;
                         right: 0;
                         background-color: red;
@@ -208,7 +238,7 @@
                         text-align: center;
                         width: 18px;
                         height: 18px;
-                
+
                         span {
                             font: {
                                 size: 13px
@@ -230,6 +260,34 @@
         //     border: 2px $main-color solid;
         //     box-shadow: none;
         // }
+    }
+
+    .card-item-3 {
+
+
+        .card-template-title {
+            font-weight: bold;
+        }
+
+        .card-template-monney {
+            p {
+                font-size: 17px;
+                color: $dark-pink;
+                font-weight: bold;
+            }
+        }
+
+        .card-sum-title {
+            font-weight: bold;
+        }
+
+        .card-sum-monney {
+            p {
+                font-size: 17px;
+                color: $dark-pink;
+                font-weight: bold;
+            }
+        }
     }
 }
 

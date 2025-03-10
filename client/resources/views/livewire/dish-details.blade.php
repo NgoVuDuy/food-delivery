@@ -1,7 +1,6 @@
 <div>
     <div class="container mt-5">
 
-
         <div class="row">
             <div class="col-12">
                 <div class="nav-child mb-4">
@@ -49,7 +48,7 @@
                         @foreach ($options['size'] as $size)
                             <button class="size-btn"
                                 wire:click="size('{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
-                                wire:ignore>{{ $size['name'] }} + {{ $size['price_modifier'] }}đ</button>
+                                wire:ignore>{{ $size['name'] }} <span> + {{ $size['price_modifier'] }}đ</span></button>
                         @endforeach
 
                     </div>
@@ -73,12 +72,13 @@
                         </div>
 
                         @foreach ($options['border'] as $border)
-                            <button class="border-btn" wire:click="border('{{ $border['name'] }}', {{ $border['name'] }})">{{ $border['name'] }} +
-                                {{ $border['price_modifier'] }}đ</button>
+                            <button class="border-btn"
+                                wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})" wire:ignore>
+                                {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span> 
+                            </button>
                         @endforeach
 
                     </div>
-
                 </div>
 
                 <div class="dish-btn-cover d-flex align-items-center justify-content-between mt-4">
@@ -97,7 +97,8 @@
                         </button>
 
                         <input type="number" id="quantity" min="1" max="10" value="{{ $quantity }}"
-                            wire:model="quantity">
+                            wire:model.live="quantity">
+                            
                         <button class="outline-button" wire:click="increase">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" width="16px" height="16px" stroke="currentColor" class="size-6">
@@ -105,13 +106,11 @@
                             </svg>
 
                         </button>
+
                     </div>
 
-                    <button class="add-cart-btn main-button">Thêm Vào Giỏ Hàng</button>
+                    <button class="add-cart-btn main-button" wire:click="addToCart()">Thêm Vào Giỏ Hàng</button>
                 </div>
-
-
-
             </div>
         </div>
 
@@ -153,21 +152,24 @@
     <script>
         $(document).ready(function() {
 
+            $('.size-btn').first().addClass('active')
             $('.size-btn').click(function() {
 
-                $('.size-btn').removeClass('active  ')
+                $('.size-btn').removeClass('active')
                 $(this).addClass('active')
             })
 
+            $('.base-btn').first().addClass('active')
             $('.base-btn').click(function() {
 
                 $('.base-btn').removeClass('active  ')
                 $(this).addClass('active')
             })
 
+            $('.border-btn').first().addClass('active')
             $('.border-btn').click(function() {
 
-                $('.border-btn').removeClass('active  ')
+                $('.border-btn').removeClass('active')
                 $(this).addClass('active')
             })
         })
