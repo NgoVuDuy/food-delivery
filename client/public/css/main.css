@@ -364,7 +364,7 @@ footer .footer-col h6 {
 }
 .card-wrap .card-item-information .wrap .edit-text {
   color: #a5678e;
-  text-decoration: underline;
+  cursor: pointer;
 }
 .card-wrap .card-item-2 .card-item-option .card-item-option-switch .form-check-input:checked {
   background-color: #33539e;
@@ -1131,8 +1131,24 @@ footer .footer-col h6 {
 .modal-delivery-address .modal-dialog .modal-content .modal-header h1 {
   color: #33539e;
 }
-.modal-delivery-address .modal-dialog .modal-content .modal-body {
+.modal-delivery-address .modal-dialog .modal-content .modal-body .input-wrap {
   display: flex;
+}
+.modal-delivery-address .modal-dialog .modal-content .modal-body .search-result-wrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-top: 12px;
+}
+.modal-delivery-address .modal-dialog .modal-content .modal-body .search-result-wrap .search-result-btn {
+  border-radius: 8px;
+  padding: 8px;
+  background: white;
+  text-align: left;
+  border: 1px #e3e3e3 solid;
+}
+.modal-delivery-address .modal-dialog .modal-content .modal-body .search-result-wrap .search-result-btn:hover {
+  background: #ecfaff;
 }
 .modal-delivery-address input {
   width: 100%;
@@ -1148,6 +1164,10 @@ footer .footer-col h6 {
   background: white;
   color: #33539e;
   border: none;
+}
+
+.modal-name .modal-content .modal-header h1, .modal-phone .modal-content .modal-header h1 {
+  color: #33539e;
 }
 
 @keyframes move-bg-content {

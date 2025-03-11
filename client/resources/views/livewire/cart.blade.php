@@ -127,9 +127,14 @@
                                     <div class="card-delivery-address">
                                         <span class="title">Giao đến: </span> <br>
 
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                            <span class="address">Vui lòng thêm địa chỉ giao hàng</span>
+                                            @if (empty($delivery_location))
+                                                <span class="address">Vui lòng thêm địa chỉ giao hàng</span>
+                                            @else
+                                                <span>{{ $delivery_location }}</span>
+                                            @endif
+
 
                                             <div class="card-delivery-address-edit" data-bs-toggle="modal"
                                                 data-bs-target="#addressEditModal">
@@ -154,16 +159,29 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex">
                                             <span class="title">Tên người nhận: </span>
-                                            <span>Ngô Vũ Duy</span>
+
+                                            @if (empty($customer_name))
+                                                <span>Vui lòng nhập họ tên</span>
+                                            @else
+                                                <span>{{ $customer_name }}</span>
+                                            @endif
+
                                         </div>
-                                        <span class="edit-text">Sửa</span>
+                                        <span class="edit-text" data-bs-toggle="modal"
+                                            data-bs-target="#nameEditModal">Sửa</span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex">
                                             <span class="title">Số điện thoại: </span>
-                                            <span>0949229535</span>
+
+                                            @if (empty($customer_phone))
+                                                <span>Vui lòng nhập số điện thoại</span>
+                                            @else
+                                                <span>{{ $customer_phone }}</span>
+                                            @endif
                                         </div>
-                                        <span class="edit-text">Sửa</span>
+                                        <span class="edit-text" data-bs-toggle="modal"
+                                            data-bs-target="#phoneEditModal">Sửa</span>
                                     </div>
 
 
@@ -277,9 +295,9 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade modal-delivery-address" id="addressEditModal" tabindex="-1" aria-labelledby="addressEditModal"
-            aria-hidden="true">
+        <!-- Modal sua dia chi giao hang -->
+        <div class="modal fade modal-delivery-address" id="addressEditModal" tabindex="-1"
+            aria-labelledby="addressEditModal" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -289,23 +307,92 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control" type="text" placeholder="Vui lòng nhập địa chỉ giao hàng">
-                        <button class="current-location-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-locate-fixed">
-                                <line x1="2" x2="5" y1="12" y2="12" />
-                                <line x1="19" x2="22" y1="12" y2="12" />
-                                <line x1="12" x2="12" y1="2" y2="5" />
-                                <line x1="12" x2="12" y1="19" y2="22" />
-                                <circle cx="12" cy="12" r="7" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
-                        </button>
+
+                        <div class="input-wrap">
+
+                            <input class="form-control" type="search" placeholder="Vui lòng nhập địa chỉ giao hàng"
+                                wire:model.live="location_search">
+
+                            <button class="current-location-btn" id="current-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-locate-fixed">
+                                    <line x1="2" x2="5" y1="12" y2="12" />
+                                    <line x1="19" x2="22" y1="12" y2="12" />
+                                    <line x1="12" x2="12" y1="2" y2="5" />
+                                    <line x1="12" x2="12" y1="19" y2="22" />
+                                    <circle cx="12" cy="12" r="7" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="search-result-wrap">
+
+                            @if (!empty($predictions))
+
+                                @foreach ($predictions['predictions'] as $prediction)
+                                    <button class="search-result-btn"
+                                        wire:click="setLocation('{{ $prediction['description'] }}')">{{ $prediction['description'] }}</button>
+                                @endforeach
+                            @endif
+                        </div>
+
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="aws-button"  data-bs-dismiss="modal">Hủy Bỏ</button>
-                        <button type="button" class="cold-button">Cập Nhật</button>
+                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="cold-button" wire:click="update_location()"
+                            data-bs-dismiss="modal">Cập Nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal sua ten khach hang-->
+        <div class="modal fade modal-name" id="nameEditModal" tabindex="-1" aria-labelledby="nameEditModal"
+            aria-hidden="true" wire:ignore.self>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tên người nhận</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input class="form-control" type="search" placeholder="Vui lòng nhập tên người dùng"
+                            wire:model.live="customer_name_input">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="cold-button" wire:click="update_customer_name()"
+                            data-bs-dismiss="modal">Cập Nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal sua so dien thoai khach hang-->
+        <div class="modal fade modal-phone" id="phoneEditModal" tabindex="-1" aria-labelledby="phoneEditModal"
+            aria-hidden="true" wire:ignore.self>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Số điện thoại</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control" type="search" placeholder="Vui lòng nhập số điện thoại"
+                            wire:model.live="customer_phone_input">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="cold-button" wire:click="update_customer_phone()"
+                            data-bs-dismiss="modal">Cập Nhật</button>
+
                     </div>
                 </div>
             </div>
@@ -313,4 +400,34 @@
 
     </div>
 
+
 </div>
+
+@script
+    <script>
+        $(document).ready(function() {
+
+            $('#current-location').click(function() {
+
+                navigator.geolocation.getCurrentPosition(
+
+                    (position) => {
+                        console.log('Vị trí của bạn:', position.coords.latitude, position.coords
+                            .longitude);
+
+                        let latitude = position.coords.latitude
+                        let longitude = position.coords.longitude
+
+                        $wire.$set('latitude', latitude)
+                        $wire.$set('longitude', longitude)
+
+                        $wire.dispatch('current_location')
+                    },
+                    (error) => {
+                        console.error('Không thể lấy vị trí:', error);
+                    }
+                );
+            })
+        })
+    </script>
+@endscript

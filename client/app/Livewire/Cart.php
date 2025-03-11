@@ -5,24 +5,40 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\On;
+
 
 #[Title('Giỏ hàng')]
 class Cart extends Component
 {
-    public $carts;
-    public $default_price = [];
-    public $default_quantity = [];
-    public $total_item = [];
-    public $total;
-    public $isEmptyCart = false;
+    public $carts; // Các sản phẩm trong giỏ hàng
+    public $default_price = []; // Giá gốc của từng sản phẩm (SL = 1)
+    public $default_quantity = []; // Số lượng ban đầu của từng sản phẩm
+    public $total_item = []; // Tổng tiền của từng sản phẩm
+    public $total; // Tổng tiền của tất cả sản phẩm
+    public $isEmptyCart = false; // Kiểm tra giỏ hàng rỗng
+    public $location_search = ''; // Trường input chứa từ khóa tìm kiếm
+    public $predictions = []; // Chứa các kết quả tìm kiếm
+    public $delivery_location = ''; // Địa điểm giao hàng được chọn
+    public $latitude = 0; // Lưu vĩ độ hiện tại của khách hàng
+    public $longitude = 0; // Lưu kinh độ hiện tại của khách hàng
+    public $customer_name = ''; // Tên khách hàng
+    public $customer_phone = ''; // Số điện thoại khách hàng
 
+    public $customer_name_input = '';
+    public $customer_phone_input = '';
+
+    // Phương thức xây dựng
     public function mount()
     {
 
+        // Lấy các sản phẩm trong giỏ hàng
         $this->carts = Http::get(Component::$url . 'carts')->json();
 
+        // Nếu có sản phẩm
         if (!empty($this->carts)) {
 
+            // Set giá trị mặc định
             foreach ($this->carts as $index => $cart) {
 
                 $this->default_price[$index] = $cart["total"] / $cart["quantity"];
@@ -30,13 +46,16 @@ class Cart extends Component
                 $this->total_item[$index] = $cart["total"];
             }
 
+            // Tính tổng tiền cần thanh toán
             $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
         } else {
 
+            // Giỏ hàng rỗng
             $this->isEmptyCart = true;
         }
     }
 
+    // Phương thức giảm số lượng sản phẩm
     public function decrease(string $index)
     {
 
@@ -50,6 +69,7 @@ class Cart extends Component
         $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
     }
 
+    // Phương thức tăng số lượng sản phẩm
     public function increase(string $index)
     {
         if ($this->default_quantity[$index] < 100) {
@@ -64,6 +84,7 @@ class Cart extends Component
         }, $this->total_item)), 0, '.', '.');
     }
 
+    // hàm cập nhật lại số lượng khi có sự thay đổi trên trường input số lượng - người dùng tự nhập số lượng
     public function updatedDefaultQuantity($value, $index)
     {
 
@@ -79,6 +100,7 @@ class Cart extends Component
         $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
     }
 
+    // Xóa một sản phẩm
     public function delete_cart_item(string $cart_item_id)
     {
 
@@ -119,6 +141,47 @@ class Cart extends Component
         }
     }
 
+    // Phương thức tìm kiếm địa điểm
+    public function updatedLocationSearch(string $value) {
+
+        $this->predictions = Http::get(Component::$url . 'location-search', [
+            'input' => $this->location_search,
+
+        ])->json();
+    }
+
+    // Cập nhật địa điểm lên trường input
+    public function setLocation(string $location) {
+        $this->location_search = $location;
+    }
+
+    // Cập nhật địa điểm giao hàng
+    public function update_location() {
+        $this->delivery_location = $this->location_search;
+    }
+
+    // Lấy địa điểm hiện tại
+    #[On('current_location')]
+    public function current_location() {
+
+        $results = Http::get(Component::$url . 'reverse-geocode', [
+            'latlng' => $this->latitude . ',' . $this->longitude
+        ])->json();
+
+        // dd($results);
+
+        $this->location_search = $results["results"][0]["formatted_address"];
+    }
+
+    public function update_customer_name() {
+
+        $this->customer_name = $this->customer_name_input;
+    }
+
+    public function update_customer_phone() {
+        
+        $this->customer_phone = $this->customer_phone_input;
+    }
     public function render()
     {
         return view('livewire.cart');

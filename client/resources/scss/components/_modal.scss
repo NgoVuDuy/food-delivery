@@ -1,6 +1,7 @@
 .modal-delivery-address {
     .modal-dialog {
         max-width: 800px;
+
         .modal-content {
 
             .modal-header {
@@ -10,10 +11,39 @@
             }
 
             .modal-body {
-                display: flex;
+
+                // display: flex;
+                .input-wrap {
+                    display: flex;
+                }
+
+                .search-result-wrap {
+
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 8px;
+
+                    margin-top: 12px;
+
+                    .search-result-btn {
+    
+                        border-radius: 8px;
+                        padding: 8px;
+                        background: white;
+
+                        text-align: left;
+                        border: 1px $border-color solid;
+
+                        &:hover {
+                            background: $button-outline-hover-color;
+                        }
+                    }
+                }
+
             }
         }
     }
+
     input {
         width: 100%;
         padding: 6px 8px;
@@ -25,9 +55,23 @@
             box-shadow: none;
         }
     }
+
     .current-location-btn {
         background: white;
         color: #33539e;
         border: none;
     }
+}
+
+.modal-name, .modal-phone {
+
+    .modal-content {
+
+        .modal-header {
+            h1 {
+                color: $main-color;
+            }
+        }
+    }
+
 }

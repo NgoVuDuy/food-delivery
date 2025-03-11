@@ -27,4 +27,8 @@ Route::get('/homepage-images', [ProductController::class, 'getHomepageImages']);
 Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);
 Route::get('/search', [FunctionController::class, 'product_search']);
 Route::get('/count-cart', [FunctionController::class, 'count_cart']);
+Route::get('/location-search', [FunctionController::class, 'location_search']);
+Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
+
+
 

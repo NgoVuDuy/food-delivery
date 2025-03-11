@@ -162,7 +162,8 @@
 
             .edit-text {
                 color: $dark-pink;
-                text-decoration: underline;
+                // text-decoration: underline;
+                cursor: pointer;
             }
         }
 
