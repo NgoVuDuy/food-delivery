@@ -418,18 +418,26 @@ footer .footer-col h6 {
 .card-wrap .card-item-3 .card-template-title {
   font-weight: bold;
 }
+.card-wrap .card-item-3 .card-template-title p {
+  margin: 0px;
+}
 .card-wrap .card-item-3 .card-template-monney p {
   font-size: 17px;
   color: #a5678e;
   font-weight: bold;
+  margin: 0px;
 }
 .card-wrap .card-item-3 .card-sum-title {
   font-weight: bold;
+}
+.card-wrap .card-item-3 .card-sum-title p {
+  margin: 0px;
 }
 .card-wrap .card-item-3 .card-sum-monney p {
   font-size: 17px;
   color: #a5678e;
   font-weight: bold;
+  margin: 0px;
 }
 
 .order-btn {
@@ -903,6 +911,42 @@ footer .footer-col h6 {
 .search-text-wrap span {
   color: #33539e;
   margin-left: 8px;
+}
+
+.checkout-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.checkout-left {
+  display: flex;
+  column-gap: 36px;
+}
+.checkout-left .cod {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 2px #e3e3e3 solid;
+  border-radius: 8px;
+}
+.checkout-left .cod span {
+  text-align: center;
+}
+.checkout-left .vn-pay {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 2px #e3e3e3 solid;
+  border-radius: 8px;
+}
+.checkout-left .vn-pay span {
+  text-align: center;
+}
+.checkout-left .vn-pay img {
+  width: 100px;
+  height: 100px;
 }
 
 .main-button {

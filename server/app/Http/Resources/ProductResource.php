@@ -22,6 +22,7 @@ class ProductResource extends JsonResource
             'image' =>$this->image,
             'description' =>$this->description,
             'product_categories_id' => $this->product_categories_id,
+            'categories' => $this->categories -> only(['name'])
         ];
     }
 }

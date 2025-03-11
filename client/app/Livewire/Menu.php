@@ -12,17 +12,21 @@ class Menu extends Component
 {
 
     public $products;
-    public $category;
+    public $categories;
+
+    public $category_name;
 
     public function mount() {
 
+        $this->category_name = "Tất cả";
         $this->products = Http::get(Component::$url . 'products',
         [
             'per_page' => 9,
             'page' => 1
         ])->json();
 
-        $this->category = "Tất cả";
+        $this->categories = Http::get(Component::$url . 'product-categories')->json();
+
     }
 
     public function menu_pagination(string $page) {
@@ -34,19 +38,16 @@ class Menu extends Component
         ])->json();
     }
 
-    public function category(string $category) {
+    // Phương thức phân loại sản phẩm theo danh mục
+    public function category(string $category_id, string $category_name) {
         
-        $this->category = $category;
+        $this->category_name = $category_name;
 
-        if($category == "Meat Lover's Pizza") {
-            $this->products = [
-                [
-                    'name' => 'Pizza Thịt heo',
-                    'price' => 127000,
-                    'image' => "Products/pizza-home-1.png"
-                ]
-                ];
-        }
+        $this->products = Http::get(Component::$url . 'category',[
+            'category_id' => $category_id,
+            'per_page' => 9
+        ])->json();
+
     }
 
     public function render()

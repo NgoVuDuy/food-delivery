@@ -25,8 +25,8 @@ class Cart extends Component
     public $customer_name = ''; // Tên khách hàng
     public $customer_phone = ''; // Số điện thoại khách hàng
 
-    public $customer_name_input = '';
-    public $customer_phone_input = '';
+    public $customer_name_input = ''; // Dữ liệu tên nhập vào trường input
+    public $customer_phone_input = ''; // Dữ liệu số điện thoại nhập vào trường input
 
     // Phương thức xây dựng
     public function mount()
@@ -66,7 +66,10 @@ class Cart extends Component
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
 
         $this->total_item[$index] = $this->carts[$index]["total"];
-        $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+
+        $this->total = number_format(array_sum(array_map(function ($item) {
+            return str_replace('.', '', $item);
+        }, $this->total_item)), 0, '.', '.');
     }
 
     // Phương thức tăng số lượng sản phẩm
@@ -79,6 +82,7 @@ class Cart extends Component
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
 
         $this->total_item[$index] = $this->carts[$index]["total"];
+
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
         }, $this->total_item)), 0, '.', '.');
@@ -97,7 +101,10 @@ class Cart extends Component
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
 
         $this->total_item[$index] = $this->carts[$index]["total"];
-        $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+
+        $this->total = number_format(array_sum(array_map(function ($item) {
+            return str_replace('.', '', $item);
+        }, $this->total_item)), 0, '.', '.');
     }
 
     // Xóa một sản phẩm
@@ -142,7 +149,8 @@ class Cart extends Component
     }
 
     // Phương thức tìm kiếm địa điểm
-    public function updatedLocationSearch(string $value) {
+    public function updatedLocationSearch(string $value)
+    {
 
         $this->predictions = Http::get(Component::$url . 'location-search', [
             'input' => $this->location_search,
@@ -151,18 +159,21 @@ class Cart extends Component
     }
 
     // Cập nhật địa điểm lên trường input
-    public function setLocation(string $location) {
+    public function setLocation(string $location)
+    {
         $this->location_search = $location;
     }
 
     // Cập nhật địa điểm giao hàng
-    public function update_location() {
+    public function update_location()
+    {
         $this->delivery_location = $this->location_search;
     }
 
     // Lấy địa điểm hiện tại
     #[On('current_location')]
-    public function current_location() {
+    public function current_location()
+    {
 
         $results = Http::get(Component::$url . 'reverse-geocode', [
             'latlng' => $this->latitude . ',' . $this->longitude
@@ -173,14 +184,21 @@ class Cart extends Component
         $this->location_search = $results["results"][0]["formatted_address"];
     }
 
-    public function update_customer_name() {
+    public function update_customer_name()
+    {
 
         $this->customer_name = $this->customer_name_input;
     }
 
-    public function update_customer_phone() {
-        
+    public function update_customer_phone()
+    {
+
         $this->customer_phone = $this->customer_phone_input;
+    }
+    // nút thanh toán
+    public function payment() {
+
+        return $this->redirect('/checkout', navigate:true);
     }
     public function render()
     {

@@ -252,7 +252,7 @@
                             <div class="d-flex flex-column row-gap-3">
                                 <div class="d-flex align-items-center column-gap-3">
                                     <img class="" src="" alt="">
-                                    <span class="delivery-man-name">Nguyễn Minh Nhựt</span>
+                                    <span class="delivery-man-name">Null</span>
                                 </div>
 
                                 <div id="chat-box-btn" class="delivery-man-chat d-flex align-items-center rounded-2">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
@@ -11,8 +12,10 @@ class FunctionController extends Controller
 {
     //
     public $api_key = 'wwcDQvb8Ay0aSWt3iiy45D5YHcqjtSzFZgtmQHY5';
-         
-    public function product_search(Request $request) {
+
+    // Tìm kiếm sản phẩm
+    public function product_search(Request $request)
+    {
 
         $product_name = $request->query('product_name');
 
@@ -21,17 +24,20 @@ class FunctionController extends Controller
         return response()->json($products);
     }
 
-    public function count_cart() {
+    // Đếm số sản phẩm có trong giỏ hàng
+    public function count_cart()
+    {
 
         $carts = Cart::with('product')->get();
 
         $count_cart = count($carts);
 
         return response()->json($count_cart);
-
     }
 
-    public function location_search(Request $request) {
+    // Tìm kiếm địa chỉ giao hàng
+    public function location_search(Request $request)
+    {
 
         $input = $request->query('input');
         $location = '10.02119,105.76484';
@@ -46,7 +52,10 @@ class FunctionController extends Controller
         return response()->json($predictions, 200);
     }
 
-    public function reverse_geocode(Request $request) {
+
+    // Đổi tọa độ thành địa điểm
+    public function reverse_geocode(Request $request)
+    {
 
         $latlng = $request->query('latlng');
 
@@ -57,5 +66,15 @@ class FunctionController extends Controller
         ])->json();
 
         return response()->json($results);
+    }
+    // Lấy sản phẩm dựa trên danh mục
+    public function category(Request $request)
+    {
+        $per_page = $request->query('per_page');
+        $category_id = $request->query('category_id');
+
+        $products = Product::where('product_categories_id', $category_id)->paginate($per_page);
+
+        return ProductResource::collection($products);
     }
 }

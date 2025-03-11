@@ -26,8 +26,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $per_page = $request->query('per_page');
-
-        $products = Product::paginate($per_page);
+        
+        $products = Product::with('categories')->paginate($per_page);
         
         return ProductResource::collection($products);
     }

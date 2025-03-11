@@ -29,6 +29,8 @@ Route::get('/search', [FunctionController::class, 'product_search']);
 Route::get('/count-cart', [FunctionController::class, 'count_cart']);
 Route::get('/location-search', [FunctionController::class, 'location_search']);
 Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
+Route::get('/category', [FunctionController::class, 'category']);
+
 
 
 

@@ -256,7 +256,7 @@
 
                             <div class="card-item-3 rounded shadow p-2 mt-5">
 
-                                <div class="card-template d-flex justify-content-between align-items-center">
+                                <div class="mb-3 card-template d-flex justify-content-between align-items-center">
                                     <div class="card-template-title">
                                         <p>Tạm tính</p>
                                     </div>
@@ -280,14 +280,7 @@
                             </div>
                         </div>
 
-                        <button class="order-btn main-button mt-3">Thanh Toán</button>
-
-                        <form action="/payment" method="post">
-                            @csrf
-
-                            <button name="redirect" type="submit" class="order-btn main-button mt-3 d-none">Thanh
-                                toán VNPAY</button>
-                        </form>
+                        <button class="order-btn main-button mt-3" wire:click="payment">Thanh Toán</button>
 
                     </div>
                 </div>

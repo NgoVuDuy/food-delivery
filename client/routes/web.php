@@ -4,6 +4,7 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Cart;
+use App\Livewire\Checkout;
 use App\Livewire\DishDetail;
 use App\Livewire\Home;
 use App\Livewire\Menu;
@@ -23,6 +24,7 @@ Route::get('/store-location', StoreLocation::class);
 Route::get('/dish-details/{id}', DishDetail::class)->name('dish-details');
 Route::get('/order', Order::class);
 Route::get('/search', Search::class);
+Route::get('/checkout', Checkout::class);
 
 
 Route::controller(PaymentController::class)->group(function() {

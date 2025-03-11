@@ -13,7 +13,7 @@
                         <p>Tất cả</p>
                     </div>
 
-                    <div class="menu-filter-item mb-3">
+                    <div class="menu-filter-item mb-3 d-none">
 
                         <div class="category-name d-flex align-items-center">
 
@@ -42,7 +42,7 @@
 
                     </div>
 
-                    {{-- <div class="menu-filter-item mb-3">
+                    <div class="menu-filter-item mb-3 d-none">
 
                         <div class="category-name d-flex align-items-center">
 
@@ -54,25 +54,28 @@
                             </svg>
                         </div>
 
-                        
+
                         <div class="wrap">
-                            
+
                             <button class="item" wire:click="category('Italian Pizza')">
                                 <span>Pizza Ý</span>
                             </button>
-                            <button class="item" wire:click="category('American Pizza')"><span>Pizza Mỹ</span></button>
-                            <button class="item" wire:click="category(' cago Deep Dish')"><span>Pizza Việt Nam</span></button>
-                            <button class="item" wire:click="category('Japanese Pizza')"><span>Pizza Nhật Bản</span></button>
+                            <button class="item" wire:click="category('American Pizza')"><span>Pizza
+                                    Mỹ</span></button>
+                            <button class="item" wire:click="category(' cago Deep Dish')"><span>Pizza Việt
+                                    Nam</span></button>
+                            <button class="item" wire:click="category('Japanese Pizza')"><span>Pizza Nhật
+                                    Bản</span></button>
                         </div>
 
 
-                    </div> --}}
+                    </div>
 
                     <div class="menu-filter-item mb-3">
 
                         <div class="category-name d-flex align-items-center">
 
-                            <p class="">Khác</p>
+                            <p class="">Phân Loại</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-chevron-down">
@@ -82,13 +85,10 @@
 
                         <div class="wrap">
 
-                            <button class="item" wire:click="category('Mỳ ý')"><span>Gà Rán</span></button>
-                            <button class="item" wire:click="category('Hamburger')"><span>Hamburger</span></button>
-                            <button class="item" wire:click="category('Bánh ngọt')"><span>Khoai Tây
-                                    Chiên</span></button>
-                            <button class="item" wire:click="category('Bánh ngọt')"><span>Hot dog</span></button>
-                            <button class="item" wire:click="category('Bánh ngọt')"><span>Salad</span></button>
-                            <button class="item" wire:click="category('Nước uống')"><span>Nước Uống</span></button>
+                            @foreach ($categories as $category)
+                                <button class="item" wire:click="category({{ $category["id"] }}, '{{ $category["name"] }}')"><span>{{ $category["name"] }}</span></button>
+                            @endforeach
+
                         </div>
                     </div>
 
@@ -101,15 +101,13 @@
                 <div class="sort-by-wrap d-flex align-items-center justify-content-between">
 
                     <div>
-                        <div class="filter-status-text">{{ $category }}</div>
+                        <div class="filter-status-text">{{ $category_name }}</div>
 
                     </div>
 
-                    <div class="sort-by">
+                    <div class="sort-by d-none">
                         <button>Giá</button>
-                        {{-- <button>Đế bánh</button> --}}
                         <button>Kích thước</button>
-                        {{-- <button>Loại</button> --}}
                     </div>
                 </div>
 
@@ -158,11 +156,8 @@
                     <div class="indicators d-flex justify-content-center mt-3">
 
                         @foreach (array_slice($products['meta']['links'], 1, count($products['links']) - 2) as $link)
-
                             <button wire:click="menu_pagination({{ $link['label'] }})"
-
                                 class="{{ $link['active'] ? 'active' : '' }}"></button>
-
                         @endforeach
 
                     </div>
