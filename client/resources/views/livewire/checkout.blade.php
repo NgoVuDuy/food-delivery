@@ -8,7 +8,7 @@
             <div class="col-6">
                 <div class="checkout-left">
 
-                    <div class="cod shadow">
+                    <div class="cod shadow payment-method">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-banknote">
@@ -20,7 +20,7 @@
 
                     </div>
 
-                    <div class="vn-pay shadow">
+                    <div class="vn-pay shadow payment-method">
                         <img src="{{ asset('images/vnpay-logo.jpg') }}" alt="">
                         <span>VNPAY</span>
                     </div>
@@ -95,44 +95,51 @@
                     <div class="rounded shadow p-3 mt-5">
 
                         <h6>Thông tin đơn hàng</h6>
-                        @for ($i = 1; $i < 5; $i++)
-                            <div class="cart-item-wrap d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex row-gap-2 flex-column">
 
-                                <div class="cart-item-left d-flex align-items-center">
-
-                                    <div class="cart-item-img">
-                                        <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
-                                            alt="">
+                            @for ($i = 1; $i < 5; $i++)
+                                <div class="cart-item-wrap d-flex justify-content-between align-items-center">
+    
+                                    <div class="cart-item-left d-flex align-items-center">
+    
+                                        <div class="checkout-cart-item-img">
+                                            <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
+                                                alt="" width="60px">
+                                        </div>
+    
+                                        <div class="cart-item-info d-flex flex-column">
+    
+                                            <div class="cart-item-name">Pizza pho mai Ys</div>
+    
+                                            <div class="cart-item-price">129000đ</div>
+                                        </div>
+    
+                                        <div class="options">
+                                            <ul>
+                                                <li>- Nhỏ (20 CM)</li>
+                                                <li>- Mỏng</li>
+                                                <li>- Viền Không Nhân</li>
+    
+                                            </ul>
+                                        </div>
+    
                                     </div>
-
-                                    <div class="cart-item-info d-flex flex-column">
-
-                                        <div class="cart-item-name">Pizza pho mai Ys</div>
-
-                                        <div class="cart-item-price">129000đ</div>
+    
+                                    <div class="cart-item-right d-flex align-items-center">
+                                        <span>x2</span>
                                     </div>
-
-                                    <div class="options">
-                                        <ul>
-                                            <li>- Nhỏ (20 CM)</li>
-                                            <li>- Mỏng</li>
-                                            <li>- Viền Không Nhân</li>
-
-                                        </ul>
-                                    </div>
-
+    
                                 </div>
+    
+                                <div class="item-separation"></div>
+                            @endfor
 
-                                <div class="cart-item-right d-flex align-items-center">
-                                    <span>x2</span>
-                                </div>
-
-                            </div>
-                        @endfor
+                            
+                        </div>
 
                     </div>
 
-                    <div class="card-item-3 rounded shadow p-2 mt-5">
+                    <div class="card-item-3 rounded shadow p-3 mt-5">
 
                         <div class="mb-3 card-template d-flex justify-content-between align-items-center">
                             <div class="card-template-title">
@@ -162,3 +169,15 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+
+            $('.payment-method').click(function() {
+                $('.payment-method').removeClass('active')
+                $(this).addClass('active')
+            })
+        })
+    </script>
+@endsection

@@ -135,13 +135,18 @@
                         {{-- <p>Chi tiết đơn hàng</p> --}}
 
                     </div>
-                    <div class="order-details bg-light">
+                    <div class="order-details">
                         @for ($i = 1; $i <= 3; $i++)
                             <div class="details-item">
 
                                 <div class="left">
 
                                     <div class="quantity">x2</div>
+
+                                    <div class="img">
+
+                                        <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}" alt="" width="80px">
+                                    </div>
 
                                     <div class="name">Pizza phô mai ý</div>
 
@@ -150,7 +155,6 @@
                                             <li>- Size 12 CM</li>
                                             <li>- Đế mỏng</li>
                                             <li>- Viền phô mai</li>
-                                            <li>- Thêm phô mai</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -185,26 +189,23 @@
 
                         <div class="d-flex flex-column row-gap-3 wrap">
 
-                            <div class="card-delivery-address">
-                                <span class="title">Giao đến: </span> <br>
+                            <div class="card-delivery-address d-flex">
+                                <span class="title">Giao đến: </span>
 
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                    <span class="address">290 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ</span>
+                                    <span>Cần Thơ</span>
 
-                                    <div class="card-delivery-address-edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-map-pinned">
-                                            <path
-                                                d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0" />
-                                            <circle cx="12" cy="8" r="2" />
-                                            <path
-                                                d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712" />
-                                        </svg>
+                                </div>
 
-                                    </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <span class="title">Từ: </span>
+
+                                    <span>Chi nhánh Nguyễn Văn Linh</span>
+
                                 </div>
 
                             </div>
@@ -212,36 +213,23 @@
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
                                     <span class="title">Tên người nhận: </span>
-                                    <span>Ngô Vũ Duy</span>
+
+                                    <span>Ngo vu duy</span>
+
                                 </div>
-                                <span class="edit-text">Sửa</span>
+
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex">
                                     <span class="title">Số điện thoại: </span>
-                                    <span>0949229535</span>
-                                </div>
-                                <span class="edit-text">Sửa</span>
-                            </div>
 
-                            <div class="d-flex justify-content-between ">
-                                <div class="d-flex">
-                                    <span class="title">Ghi chú: </span>
-                                    <span class="note-text">Không dùng tương cà, tương đen</span>
+                                    <span>Ngo vu duy </span>
                                 </div>
-                                <span class="edit-text">Sửa</span>
+
                             </div>
 
 
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <span class="title">Thanh toán: </span>
-                                    <span>Tài khoản ngân hàng</span>
-                                </div>
-                                {{-- <span class="edit-text">Sửa</span> --}}
-                            </div>
                         </div>
-
 
                     </div>
 

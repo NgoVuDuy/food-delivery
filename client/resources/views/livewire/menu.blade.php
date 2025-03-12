@@ -10,7 +10,7 @@
                     <div class="menu-filter-title d-flex justify-content-between">
 
                         <p class="mb-3"></p>
-                        <p>Tất cả</p>
+                        <button wire:click="show_all_products_btn">Tất cả</button>
                     </div>
 
                     <div class="menu-filter-item mb-3 d-none">

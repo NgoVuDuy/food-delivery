@@ -30,6 +30,10 @@ Route::get('/count-cart', [FunctionController::class, 'count_cart']);
 Route::get('/location-search', [FunctionController::class, 'location_search']);
 Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
 Route::get('/category', [FunctionController::class, 'category']);
+Route::get('/store-locations', [FunctionController::class, 'store_location']);
+Route::get('/directions', [FunctionController::class, 'directions']);
+
+
 
 
 

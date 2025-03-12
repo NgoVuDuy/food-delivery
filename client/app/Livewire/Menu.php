@@ -11,19 +11,21 @@ use Livewire\Attributes\Title;
 class Menu extends Component
 {
 
-    public $products;
-    public $categories;
+    public $products; // Các sản phẩm hiển thị
+    public $default_products;
 
-    public $category_name;
+    public $categories; // Lưu các danh mục sản phẩm
+    public $category_name = "Tất cả"; // Tên các danh mục
 
     public function mount() {
 
-        $this->category_name = "Tất cả";
         $this->products = Http::get(Component::$url . 'products',
         [
             'per_page' => 9,
             'page' => 1
         ])->json();
+
+        $this->default_products = $this->products;
 
         $this->categories = Http::get(Component::$url . 'product-categories')->json();
 
@@ -48,6 +50,12 @@ class Menu extends Component
             'per_page' => 9
         ])->json();
 
+    }
+
+    public function show_all_products_btn() {
+
+        $this->reset('category_name');
+        $this->products = $this->default_products;
     }
 
     public function render()

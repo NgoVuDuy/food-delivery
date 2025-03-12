@@ -50,6 +50,14 @@
 
     .cart-item-left {
 
+        .checkout-cart-item-img {
+            img {
+                width: 80px;
+                margin-right: 20px;
+
+            }
+        }
+
         .cart-item-img {
 
             img {
@@ -92,6 +100,12 @@
     }
 
     .cart-item-right {
+
+        span {
+            font: {
+                size: 18px;
+            }
+        }
 
         .dish-btn-quantity {
 

@@ -6,6 +6,9 @@
 .checkout-left {
     display: flex;
     column-gap: 36px;
+    .active {
+        border: 2px $main-color solid !important;
+    }
     .cod {
         cursor: pointer;
         display: flex;
