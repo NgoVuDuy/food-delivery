@@ -1159,8 +1159,14 @@ footer .footer-col h6 {
   border: 1px #e3e3e3 solid;
 }
 
-.pupup {
+.store-location {
   color: #33539e;
+  font-weight: bold;
+  padding: 0px;
+}
+
+.my-location {
+  color: red;
   font-weight: bold;
   padding: 0px;
 }
@@ -1224,6 +1230,27 @@ footer .footer-col h6 {
 
 .modal-name .modal-content .modal-header h1, .modal-phone .modal-content .modal-header h1 {
   color: #33539e;
+}
+
+.modal-form .modal-dialog {
+  max-width: 800px;
+}
+.modal-form .modal-content .modal-header h1 {
+  color: #33539e;
+}
+.modal-form .modal-content .modal-body .logo img {
+  width: 40%;
+}
+.modal-form .modal-content .modal-body .logo span {
+  font-size: 28px;
+  color: #33539e;
+  text-transform: uppercase;
+}
+.modal-form .modal-content .modal-body .form-wrap label {
+  color: #33539e;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 @keyframes move-bg-content {

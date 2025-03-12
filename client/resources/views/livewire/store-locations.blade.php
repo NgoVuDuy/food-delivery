@@ -13,7 +13,7 @@
 
                     <p class="place-title">Danh sách cửa hàng</p>
 
-                    <div class="">
+                    <div class="d-flex flex-column row-gap-3" wire:ignore>
 
                         @foreach ($store_locations as $store_location)
                             <div class="place-item">
@@ -38,35 +38,79 @@
 @script
     <script>
         let points = []
+        let current_lat = null
+        let current_lng = null
+
+        let des_lat = null
+        let des_lng = null
 
         $(document).ready(function() {
 
+            navigator.geolocation.getCurrentPosition(
+
+                (position) => {
+
+                    console.log('Vị trí của bạn:', position.coords.latitude, position.coords
+                        .longitude);
+
+                    current_lat = position.coords.latitude
+                    current_lng = position.coords.longitude
+
+                    $wire.$set('current_lat', current_lat)
+                    $wire.$set('current_lng', current_lng)
+
+                    $wire.$set('des_lat', des_lat)
+                    $wire.$set('des_lng', des_lng)
+
+                    $wire.dispatch('show_direction')
+                },
+                (error) => {
+                    console.error('Không thể lấy vị trí:', error);
+                }
+            );
+
             $('.drt-btn').click(function() {
 
-                let des_lat = $(this).data("lat")
-                let des_lng = $(this).data("lng")
+                $('.place-item').css('border', '1px #e3e3e3 solid')
+                $(this).closest('.place-item').css('border', '1px #a5678e solid')
 
-                navigator.geolocation.getCurrentPosition(
+                des_lat = $(this).data("lat")
+                des_lng = $(this).data("lng")
 
-                    (position) => {
-                        console.log('Vị trí của bạn:', position.coords.latitude, position.coords
-                            .longitude);
+                if (current_lat == null && current_lng == null) {
 
-                        let current_lat = position.coords.latitude
-                        let current_lng = position.coords.longitude
+                    navigator.geolocation.getCurrentPosition(
 
-                        $wire.$set('current_lat', current_lat)
-                        $wire.$set('current_lng', current_lng)
+                        (position) => {
 
-                        $wire.$set('des_lat', des_lat)
-                        $wire.$set('des_lng', des_lng)
+                            console.log('Vị trí của bạn:', position.coords.latitude, position.coords
+                                .longitude);
 
-                        $wire.dispatch('show_direction')
-                    },
-                    (error) => {
-                        console.error('Không thể lấy vị trí:', error);
-                    }
-                );
+                            current_lat = position.coords.latitude
+                            current_lng = position.coords.longitude
+
+                            $wire.$set('current_lat', current_lat)
+                            $wire.$set('current_lng', current_lng)
+
+                            $wire.$set('des_lat', des_lat)
+                            $wire.$set('des_lng', des_lng)
+
+                            $wire.dispatch('show_direction')
+                        },
+                        (error) => {
+                            console.error('Không thể lấy vị trí:', error);
+                        }
+                    );
+
+                } else {
+
+                    $wire.$set('des_lat', des_lat)
+                    $wire.$set('des_lng', des_lng)
+
+                    $wire.dispatch('show_direction')
+                }
+
+
             })
         })
 
@@ -96,15 +140,16 @@
         };
 
         $store_locations.forEach(store_location => {
+
             new goongjs.Marker({
-                    color: "#33539e"
+                    color: "#00abed"
                 })
                 .setLngLat([store_location.longitude, store_location.latitude])
                 .addTo(map);
 
             new goongjs.Popup({
                     offset: popupOffsets,
-                    className: 'pupup',
+                    className: 'store-location',
                     closeButton: false,
                     closeOnClick: false
                 })
@@ -116,7 +161,6 @@
         $wire.on('updated-points', () => {
 
             points = $wire.$get('points')
-
             let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
 
             if (map.getSource('route')) {
@@ -131,6 +175,22 @@
                     }
                 });
             } else {
+
+                new goongjs.Marker({
+                        color: "red"
+                    })
+                    .setLngLat([current_lng, current_lat])
+                    .addTo(map);
+
+                new goongjs.Popup({
+                        offset: popupOffsets,
+                        className: 'my-location',
+                        closeButton: false,
+                        closeOnClick: false
+                    })
+                    .setLngLat([current_lng, current_lat])
+                    .setHTML("<span>Bạn ở đây</span>")
+                    .addTo(map);
 
                 map.addSource('route', {
                     'type': 'geojson',
@@ -152,11 +212,18 @@
                         'line-cap': 'round'
                     },
                     'paint': {
-                        'line-color': '#33539e',
+                        'line-color': '#00abed',
                         'line-width': 8
                     }
                 });
+
+
             }
+            map.flyTo({
+                center: [des_lng, des_lat],
+                zoom: 15,
+
+            });
 
 
         })

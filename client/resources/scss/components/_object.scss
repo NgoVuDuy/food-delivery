@@ -29,8 +29,15 @@
     border: 1px $border-color solid;
 }
 
-.pupup {
+.store-location {
     color: $main-color;
+    font-weight: bold;
+    padding: 0px;
+
+}
+
+.my-location {
+    color: red;
     font-weight: bold;
     padding: 0px;
 }

@@ -75,3 +75,43 @@
     }
 
 }
+
+.modal-form {
+    .modal-dialog {
+        max-width: 800px;
+    }
+
+    .modal-content {
+
+        .modal-header {
+            h1 {
+                color: $main-color;
+            }
+        }
+        .modal-body {
+            .logo {
+                img {
+
+                    width: 40%;
+                }
+                span {
+                    font: {
+                        size: 28px;
+                    }
+                    color: $main-color;
+                    text-transform: uppercase;
+                }
+            }
+            .form-wrap {
+                label {
+                    color: $main-color;
+                    margin-bottom: 6px;
+                    font: {
+                        size: 14px;
+                        weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
