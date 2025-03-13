@@ -21,6 +21,9 @@
 
     @livewire('header')
 
+    @livewire('sign-in')
+    @livewire('sign-up')
+
     {{ $slot }}
 
     @livewire('footer')

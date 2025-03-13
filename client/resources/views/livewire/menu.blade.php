@@ -86,7 +86,8 @@
                         <div class="wrap">
 
                             @foreach ($categories as $category)
-                                <button class="item" wire:click="category({{ $category["id"] }}, '{{ $category["name"] }}')"><span>{{ $category["name"] }}</span></button>
+                                <button class="item"
+                                    wire:click="category({{ $category['id'] }}, '{{ $category['name'] }}')"><span>{{ $category['name'] }}</span></button>
                             @endforeach
 
                         </div>
@@ -111,18 +112,13 @@
                     </div>
                 </div>
 
-                <div class="row">
-
+                <div class="row products-wrap  {{ count($products['data']) > 9 ? 'products-scroll' : '' }}">
                     @foreach ($products['data'] as $product)
                         <div class="col-4 mb-5">
 
                             <a href="{{ route('dish-details', $product['id']) }}" class="link" wire:navigate>
 
                                 <div class="menu-item-wrap dish-item shadow">
-
-                                    {{-- <div class="menu-item-message">
-                                    Khuyến mãi
-                                </div> --}}
 
                                     <div class="menu-item-img d-flex justify-content-center align-items-center">
 
@@ -153,14 +149,14 @@
                         </div>
                     @endforeach
 
-                    <div class="indicators d-flex justify-content-center mt-3">
+                    {{-- <div class="indicators d-flex justify-content-center mt-3">
 
                         @foreach (array_slice($products['meta']['links'], 1, count($products['links']) - 2) as $link)
                             <button wire:click="menu_pagination({{ $link['label'] }})"
                                 class="{{ $link['active'] ? 'active' : '' }}"></button>
                         @endforeach
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

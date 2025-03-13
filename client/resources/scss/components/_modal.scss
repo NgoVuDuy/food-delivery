@@ -26,7 +26,7 @@
                     margin-top: 12px;
 
                     .search-result-btn {
-    
+
                         border-radius: 8px;
                         padding: 8px;
                         background: white;
@@ -63,7 +63,8 @@
     }
 }
 
-.modal-name, .modal-phone {
+.modal-name,
+.modal-phone {
 
     .modal-content {
 
@@ -78,40 +79,104 @@
 
 .modal-form {
     .modal-dialog {
-        max-width: 800px;
+        max-width: 600px;
     }
 
     .modal-content {
 
         .modal-header {
-            h1 {
-                color: $main-color;
+            .title-wrap {
+
+                width: 100%;
+            }
+
+            .btn-close {
+                position: absolute;
+                right: 14px;
             }
         }
+
         .modal-body {
             .logo {
                 img {
 
-                    width: 40%;
+                    width: 50%;
+                    border-radius: 8px;
                 }
+
                 span {
                     font: {
-                        size: 28px;
+                        size: 22px;
                     }
+
                     color: $main-color;
                     text-transform: uppercase;
                 }
             }
+
             .form-wrap {
                 label {
                     color: $main-color;
                     margin-bottom: 6px;
+
                     font: {
-                        size: 14px;
+                        size: 16px;
                         weight: bold;
                     }
                 }
             }
+
+            .forgot-pwd {
+                display: block;
+                font-size: 14px;
+                margin-top: 14px;
+                color: $main-color;
+                text-align: right;
+            }
         }
+    }
+}
+
+.modal-signin {
+    .modal-header {
+        .title-wrap {
+
+            .sign-in-title {
+                color: $main-color;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .sign-up-title {
+                color: $gray-color;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+    }
+}
+
+.modal-signup {
+    .modal-header {
+        .title-wrap {
+
+            .sign-in-title {
+                color: $gray-color;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .sign-up-title {
+                color: $main-color;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
     }
 }

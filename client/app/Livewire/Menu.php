@@ -21,8 +21,8 @@ class Menu extends Component
 
         $this->products = Http::get(Component::$url . 'products',
         [
-            'per_page' => 9,
-            'page' => 1
+            // 'per_page' => 9,
+            // 'page' => 1
         ])->json();
 
         $this->default_products = $this->products;
@@ -33,11 +33,11 @@ class Menu extends Component
 
     public function menu_pagination(string $page) {
 
-        $this->products = Http::get(Component::$url . 'products',
-        [
-            'per_page' => 9,
-            'page' => $page
-        ])->json();
+        // $this->products = Http::get(Component::$url . 'products',
+        // [
+        //     'per_page' => 9,
+        //     'page' => $page
+        // ])->json();
     }
 
     // Phương thức phân loại sản phẩm theo danh mục
@@ -47,9 +47,8 @@ class Menu extends Component
 
         $this->products = Http::get(Component::$url . 'category',[
             'category_id' => $category_id,
-            'per_page' => 9
+            // 'per_page' => 9
         ])->json();
-
     }
 
     public function show_all_products_btn() {

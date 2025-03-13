@@ -23,7 +23,7 @@ Route::apiResource('orders', OrderController::class);
 Route::apiResource('carts', CartController::class);
 
 //
-Route::get('/homepage-images', [ProductController::class, 'getHomepageImages']);
+Route::get('/homepage-images', [FunctionController::class, 'getHomepageImages']);
 Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);
 Route::get('/search', [FunctionController::class, 'product_search']);
 Route::get('/count-cart', [FunctionController::class, 'count_cart']);
@@ -32,6 +32,8 @@ Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
 Route::get('/category', [FunctionController::class, 'category']);
 Route::get('/store-locations', [FunctionController::class, 'store_location']);
 Route::get('/directions', [FunctionController::class, 'directions']);
+Route::get('/typical-products', [FunctionController::class, 'typical_products']);
+
 
 
 

@@ -73,8 +73,9 @@
 
                         @foreach ($options['border'] as $border)
                             <button class="border-btn"
-                                wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})" wire:ignore>
-                                {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span> 
+                                wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})"
+                                wire:ignore>
+                                {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span>
                             </button>
                         @endforeach
 
@@ -98,7 +99,7 @@
 
                         <input type="number" id="quantity" min="1" max="10" value="{{ $quantity }}"
                             wire:model.live="quantity">
-                            
+
                         <button class="outline-button" wire:click="increase">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" width="16px" height="16px" stroke="currentColor" class="size-6">
@@ -148,7 +149,7 @@
     </div>
 </div>
 
-@section('js')
+@script
     <script>
         $(document).ready(function() {
 
@@ -172,6 +173,21 @@
                 $('.border-btn').removeClass('active')
                 $(this).addClass('active')
             })
+
+        })
+        // Bắt sự kiện sau khi thêm vào giỏ hàng thành công
+        $wire.on('updatedCart', () => {
+            Toastify({
+                text: "Thêm vào giỏ hàng thành công",
+                offset: {
+                    x: 14,
+                    y: 80
+                },
+                style: {
+                    background: "#7aa5d2",
+                    color: "white"
+                }
+            }).showToast();
         })
     </script>
-@endsection
+@endscript

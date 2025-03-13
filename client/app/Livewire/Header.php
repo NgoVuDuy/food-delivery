@@ -24,7 +24,7 @@ class Header extends Component
         return $this->redirect('/search?text=' . $this->search_text, navigate: true);
     }
 
-    #[On('updateCountCart')]
+    #[On('updatedCart')]
     public function update_count_cart() {
         $this->count = Http::get(Component::$url . 'count-cart')->json();
 

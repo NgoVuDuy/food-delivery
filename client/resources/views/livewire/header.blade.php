@@ -1,6 +1,6 @@
-<div>
+<div class="sticky-top">
 
-    <div class="sticky-top">
+    <div>
         <nav class="navbar  navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/" wire:navigate><img src="{{ asset('logo/logo.png') }}" alt=""
@@ -10,7 +10,7 @@
 
                     <div class="header-icon-wrap">
 
-                        <div class="header-user-icon" data-bs-toggle="modal" data-bs-target="#formModal">
+                        <div class="header-user-icon" data-bs-toggle="modal" data-bs-target="#signinModal">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
@@ -62,7 +62,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="/promotion" wire:navigate
+                            <a class="nav-link" href="/promotion" wire:navigate
                                 wire:current="active-nav">KHUYẾN
                                 MÃI</a>
                         </li>
@@ -105,57 +105,8 @@
 
     </div>
 
-    <!-- Modal đăng nhập đăng ký -->
-    <div class="modal fade modal-form" id="formModal" tabindex="-1" aria-labelledby="formModal"
-        aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng Nhập</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6">
-
-                                <div class="logo d-flex flex-column row-gap-4 align-items-center">
-                                    <img class="footer-logo" src="{{ asset('logo/3.png') }}" alt="">
-
-                                    <span class="footer-logo-name">NVD's Pizzeria</span>
-                                </div>
-
-                            </div>
-                            <div class="col-6">
-
-                                <div class="form-wrap d-flex flex-column row-gap-4">
-                                    <div class="">
-
-                                        <label for="phone-number">Số Điện Thoại</label>
-                                        <input id="phone-number" class="form-control" type="search" placeholder="Nhập Số Điện Thoại">
-                                    </div>
-                                    <div class="">
-                                        
-                                        <label for="phone-number">Mật Khẩu</label>
-                                        <input class="form-control" type="search" placeholder="Nhập Mật Khẩu">
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
-
-                    <button type="button" class="cold-button" wire:click="update_customer_name()"
-                        data-bs-dismiss="modal">Đăng Nhập</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
+@script
+
+@endscript

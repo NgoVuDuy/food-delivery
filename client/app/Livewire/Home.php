@@ -22,7 +22,7 @@ class Home extends Component
     public function mount() {
 
 
-        $this->current_products = Http::get(Component::$url . 'products',
+        $this->current_products = Http::get(Component::$url . 'typical-products',
         [
             'per_page' => 4,
             'page' => 1
@@ -80,7 +80,7 @@ class Home extends Component
 
     public function typical_dish_pagination(string $page) {
 
-        $this->current_products = Http::get(Component::$url . 'products',
+        $this->current_products = Http::get(Component::$url . 'typical-products',
         [
             'per_page' => 4,
             'page' => $page

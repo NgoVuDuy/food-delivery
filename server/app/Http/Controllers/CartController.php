@@ -26,7 +26,23 @@ class CartController extends Controller
         //
         $cart = $request->all();
 
-        Cart::create($cart);
+        $exists = Cart::where('product_id', $cart["product_id"])
+            ->where('size', $cart["size"])
+            ->where('base', $cart["base"])
+            ->where('border', $cart["border"])
+            ->first();
+
+        if($exists) {
+
+            $exists->quantity += $cart["quantity"];
+            $exists->total += $cart["total"];
+            $exists->save();
+
+        } else {
+
+            Cart::create($cart);
+        }
+
 
         return response()->json($cart, 201);
     }

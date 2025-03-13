@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Cart;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\Title;
@@ -79,7 +80,6 @@ class DishDetail extends Component
         }
         // Cập nhật lại giá sản phẩm ứng với số lượng hiện tại
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
-
     }
 
     // Hàm tăng số lượng sản phẩm
@@ -93,7 +93,6 @@ class DishDetail extends Component
 
         // Cập nhật lại giá sản phẩm ứng với số lượng
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
-
     }
 
     // Phương thức tự động cập nhật số lượng khi có sự thay đổi trên trường input số lượng (trường hợp người dùng tự nhập số lượng)
@@ -102,13 +101,12 @@ class DishDetail extends Component
         $this->quantity = $value ?: 1; // Gán số lượng bằng 1 nếu trường input trống
 
         // Giới hạn số lượng sản phẩm <= 100
-        if($value > 100) {
+        if ($value > 100) {
             $this->quantity = 100;
         }
 
         // cập nhật lại giá
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
-
     }
 
     // Phương thức khi người dùng chọn kích thức sản phẩm
@@ -121,7 +119,6 @@ class DishDetail extends Component
 
         // Cập nhật lại giá
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
-
     }
 
     // Phương thức khi người dùng chọn đế bánh 
@@ -144,29 +141,31 @@ class DishDetail extends Component
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
     // Phương thức thêm vào giỏ hàng
-    public function addToCart() {
+    public function addToCart()
+    {
 
-        $response = Http::post(Component::$url . 'carts',
-        [
-            'product_id' => $this->product["id"],
-            'user_id' => 1,
-            'quantity' => $this->quantity,
-            'size' => $this->current_options["size"],
-            'base' => $this->current_options["base"],
-            'border' => $this->current_options["border"],
-            'total' => str_replace('.', '', $this->product["price"]) ,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $response = Http::post(
+
+            Component::$url . 'carts',
+            [
+                'product_id' => $this->product["id"],
+                'user_id' => 1,
+                'quantity' => $this->quantity,
+                'size' => $this->current_options["size"],
+                'base' => $this->current_options["base"],
+                'border' => $this->current_options["border"],
+                'total' => str_replace('.', '', $this->product["price"]),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        );
 
         // Nếu thêm vào giỏ hàng thành công
-        if($response->successful()) {
+        if ($response->successful()) {
 
             $this->isAddToCart = true;
-            $this->dispatch('updateCountCart');
+            $this->dispatch('updatedCart');
         }
-
-
     }
 
     // Hàm render ra view

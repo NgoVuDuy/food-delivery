@@ -13,21 +13,15 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function getHomepageImages() {
-        
-        $images = Product::orderBy('created_at', 'desc')
-        ->paginate(1, ['image']);
 
-        return response()->json($images, 200);
-    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $per_page = $request->query('per_page');
+        // $per_page = $request->query('per_page');
         
-        $products = Product::with('categories')->paginate($per_page);
+        $products = Product::all();
         
         return ProductResource::collection($products);
     }

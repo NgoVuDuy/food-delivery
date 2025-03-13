@@ -9,6 +9,7 @@ use App\Livewire\DishDetail;
 use App\Livewire\Home;
 use App\Livewire\Menu;
 use App\Livewire\Order;
+use App\Livewire\Promotion;
 use App\Livewire\Search;
 use App\Livewire\StoreLocation;
 
@@ -25,6 +26,7 @@ Route::get('/dish-details/{id}', DishDetail::class)->name('dish-details');
 Route::get('/order', Order::class);
 Route::get('/search', Search::class);
 Route::get('/checkout', Checkout::class);
+Route::get('promotion', Promotion::class);
 
 
 Route::controller(PaymentController::class)->group(function() {
