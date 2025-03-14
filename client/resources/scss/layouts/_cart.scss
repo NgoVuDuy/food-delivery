@@ -50,6 +50,9 @@
 
     .cart-item-left {
 
+        width: 100%;
+        
+
         .checkout-cart-item-img {
             img {
                 width: 80px;
@@ -96,8 +99,10 @@
                     color: $gray-color;
                 }
             }
+            margin-right: 40px;
         }
     }
+
 
     .cart-item-right {
 

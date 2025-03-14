@@ -19,7 +19,7 @@
         </div>
 
         <div class="row">
-            <div class="col-5">
+            <div class="col-5 d-flex">
 
                 <div class="dish-img-wrap">
                     <img src="{{ asset($product['image']) }}" alt="">

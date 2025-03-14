@@ -36,17 +36,20 @@
                         <div class="col-12">
 
                             <div class="cart-item-wrap d-flex justify-content-between align-items-center">
-                                <div class="cart-item-left d-flex align-items-center">
+                                <div class="cart-item-left d-flex align-items-center justify-content-between">
 
-                                    <div class="cart-item-img">
-                                        <img src="{{ asset($cart['product']['image']) }}" alt="">
-                                    </div>
+                                    <div class="d-flex align-items-center">
 
-                                    <div class="cart-item-info d-flex flex-column">
-
-                                        <div class="cart-item-name">{{ $cart['product']['name'] }}</div>
-
-                                        <div class="cart-item-price">{{ $cart['total'] }}đ</div>
+                                        <div class="cart-item-img">
+                                            <img src="{{ asset($cart['product']['image']) }}" alt="">
+                                        </div>
+    
+                                        <div class="cart-item-info d-flex flex-column">
+    
+                                            <div class="cart-item-name">{{ $cart['product']['name'] }}</div>
+    
+                                            <div class="cart-item-price">{{ $cart['total'] }}đ</div>
+                                        </div>
                                     </div>
 
                                     <div class="options">
@@ -59,6 +62,7 @@
                                     </div>
 
                                 </div>
+
 
                                 <div class="cart-item-right d-flex align-items-center">
 
@@ -385,7 +389,6 @@
                         <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
                         <button type="button" class="cold-button" wire:click="update_customer_phone()"
                             data-bs-dismiss="modal">Cập Nhật</button>
-
                     </div>
                 </div>
             </div>

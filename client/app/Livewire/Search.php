@@ -4,8 +4,9 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
-
+#[Title('Tìm Kiếm')]
 class Search extends Component
 {
     public $search_text;

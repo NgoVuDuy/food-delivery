@@ -6,6 +6,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOptionController;
+use App\Http\Controllers\UserController;
+
 use App\Models\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,8 @@ Route::apiResource('option-categories', OrderController::class);
 Route::apiResource('product-option', ProductOptionController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('carts', CartController::class);
+Route::apiResource('users', UserController::class);
+
 
 //
 Route::get('/homepage-images', [FunctionController::class, 'getHomepageImages']);
@@ -33,7 +37,7 @@ Route::get('/category', [FunctionController::class, 'category']);
 Route::get('/store-locations', [FunctionController::class, 'store_location']);
 Route::get('/directions', [FunctionController::class, 'directions']);
 Route::get('/typical-products', [FunctionController::class, 'typical_products']);
-
+Route::post('/login', [FunctionController::class, 'login']);
 
 
 

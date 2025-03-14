@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use EndlessMiles\Polyline\Polyline;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class FunctionController extends Controller
@@ -15,10 +16,11 @@ class FunctionController extends Controller
     public $api_key = 'wwcDQvb8Ay0aSWt3iiy45D5YHcqjtSzFZgtmQHY5';
 
 
-    public function getHomepageImages() {
-        
+    public function getHomepageImages()
+    {
+
         $images = Product::orderBy('created_at', 'desc')
-        ->paginate(1, ['image']);
+            ->paginate(1, ['image']);
 
         return response()->json($images, 200);
     }
@@ -26,9 +28,9 @@ class FunctionController extends Controller
     public function typical_products(Request $request)
     {
         $per_page = $request->query('per_page');
-        
+
         $products = Product::paginate($per_page);
-        
+
         return ProductResource::collection($products);
     }
 
@@ -97,7 +99,8 @@ class FunctionController extends Controller
         return ProductResource::collection($products);
     }
     // Trả về thông tin cách chi nhánh cửa hàng
-    public function store_location() {
+    public function store_location()
+    {
 
         $store_locations = [
             [
@@ -106,7 +109,7 @@ class FunctionController extends Controller
                 'address' => '334 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ',
                 'latitude' => 10.03202,
                 'longitude' => 105.75005,
-                
+
             ],
             [
                 'name' => 'Chi nhánh Nguyễn Văn Cừ',
@@ -114,7 +117,7 @@ class FunctionController extends Controller
                 'address' => '132 Đường Nguyễn Văn Cừ, Ninh Kiều, Cần Thơ',
                 'latitude' => 10.03979,
                 'longitude' => 105.76169,
-                
+
             ],
             [
                 'name' => 'Chi nhánh Trần Hoàng Na',
@@ -122,7 +125,7 @@ class FunctionController extends Controller
                 'address' => '34 Trần Hoàng Na, Phường An Khánh, Ninh Kiều, Cần Thơ',
                 'latitude' => 10.02501,
                 'longitude' => 105.74947,
-                
+
             ],
             [
                 'name' => 'Chi nhánh 3 tháng 2',
@@ -130,14 +133,15 @@ class FunctionController extends Controller
                 'address' => '146A 3 Tháng 2, Xuân Khánh, Ninh Kiều, Cần Thơ',
                 'latitude' => 10.02732,
                 'longitude' => 105.77019,
-                
+
             ],
         ];
 
         return response()->json($store_locations, 201);
     }
     // Trả về đường đi từ một điểm đến  một hay nhiều điểm
-    public function directions(Request $request) {
+    public function directions(Request $request)
+    {
 
         $origin = $request->query('origin');
         $destination = $request->query('destination');
@@ -152,10 +156,31 @@ class FunctionController extends Controller
         ])->json();
 
         $polyline = new Polyline();
-        
+
         $coordinates = $polyline->decode($directions["routes"][0]["overview_polyline"]["points"]);
-        
+
 
         return response()->json(["points" => $coordinates]);
+    }
+    // Chức năng đăng nhập
+    public function login(Request $request)
+    {
+
+        $user = $request->all();
+
+        $credentials = [
+            'phone' => $user["phone"],
+            'password' => $user["password"]
+        ];
+
+        if (Auth::attempt($credentials)) {
+
+            return response()->json(["user" => Auth::user(), "message" => "Success"], 200);
+
+        } else {
+
+            return response()->json(["message" => "Error"]);
+
+        }
     }
 }

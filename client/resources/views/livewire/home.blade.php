@@ -2,6 +2,7 @@
     <div class="container-fluid bg-header-wrap">
 
 
+
         <div class="bg-header">
 
             <div class="slide-btn d-flex">
@@ -24,7 +25,8 @@
                 <div class="indicators d-flex justify-content-center mt-3">
 
                     @foreach (array_slice($current_image['links'], 1, $page_total) as $link)
-                        <button wire:click="paginate_img({{ $link['label'] }})" class="{{ $link['active'] ? 'active' : '' }}"></button>
+                        <button wire:click="paginate_img({{ $link['label'] }})"
+                            class="{{ $link['active'] ? 'active' : '' }}"></button>
                     @endforeach
 
                 </div>
@@ -215,9 +217,8 @@
             <div class="indicators d-flex justify-content-center mt-3">
 
                 @foreach (array_slice($current_products['meta']['links'], 1, 3) as $link)
-
-                    <button wire:click="typical_dish_pagination({{ $link['label'] }})" class="{{ $link['active'] ? 'active' : '' }}"></button>
-
+                    <button wire:click="typical_dish_pagination({{ $link['label'] }})"
+                        class="{{ $link['active'] ? 'active' : '' }}"></button>
                 @endforeach
 
             </div>

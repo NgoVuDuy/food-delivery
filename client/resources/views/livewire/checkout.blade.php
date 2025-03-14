@@ -8,7 +8,7 @@
             <div class="col-6">
                 <div class="checkout-left">
 
-                    <div class="cod shadow payment-method">
+                    <button class="cod shadow payment-method" wire:click="payment('cod')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-banknote">
@@ -18,12 +18,12 @@
                         </svg>
                         <span>Tiền Mặt</span>
 
-                    </div>
+                    </button>
 
-                    <div class="vn-pay shadow payment-method">
+                    <button class="vn-pay shadow payment-method" wire:click="payment('vnpay')">
                         <img src="{{ asset('images/vnpay-logo.jpg') }}" alt="">
                         <span>VNPAY</span>
-                    </div>
+                    </button>
 
                     <form action="/payment" method="post" class="">
                         @csrf

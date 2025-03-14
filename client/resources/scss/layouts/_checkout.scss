@@ -6,6 +6,9 @@
 .checkout-left {
     display: flex;
     column-gap: 36px;
+    .payment-method {
+        background: none;
+    }
     .active {
         border: 2px $main-color solid !important;
     }

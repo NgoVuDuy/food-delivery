@@ -79,7 +79,7 @@
 
 .modal-form {
     .modal-dialog {
-        max-width: 600px;
+        max-width: 460px;
     }
 
     .modal-content {
@@ -101,7 +101,7 @@
                 img {
 
                     width: 50%;
-                    border-radius: 8px;
+                    border-radius: 4px;
                 }
 
                 span {
@@ -133,11 +133,18 @@
                 color: $main-color;
                 text-align: right;
             }
+            .error {
+                display: block;
+                color: red;
+                margin-top: 6px;
+                font-size: 15px;
+            }
         }
     }
 }
 
 .modal-signin {
+
     .modal-header {
         .title-wrap {
 
@@ -179,4 +186,5 @@
         }
 
     }
+
 }
