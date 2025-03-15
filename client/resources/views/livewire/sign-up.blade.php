@@ -9,9 +9,9 @@
 
                     <div class="d-flex column-gap-4 justify-content-center title-wrap">
 
-                        <h2 class="modal-title fs-5 sign-in-title" data-bs-toggle="modal" data-bs-target="#signinModal">
+                        <h2 class="modal-title fs-6 sign-in-title" data-bs-toggle="modal" data-bs-target="#signinModal">
                             Đăng Nhập</h2>
-                        <h2 class="modal-title fs-5 sign-up-title">Đăng Ký</h2>
+                        <h2 class="modal-title fs-6 sign-up-title">Đăng Ký</h2>
                     </div>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

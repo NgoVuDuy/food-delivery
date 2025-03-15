@@ -345,6 +345,10 @@ footer .footer-col h6 {
 .cart-item-wrap .cart-item-right span {
   font-size: 18px;
 }
+.cart-item-wrap .cart-item-right .quantity span {
+  font-size: 18px;
+  padding: 12px;
+}
 .cart-item-wrap .cart-item-right .dish-btn-quantity {
   display: flex;
 }
@@ -1276,12 +1280,12 @@ footer .footer-col h6 {
 .modal-form .modal-content .modal-body .form-wrap label {
   color: #33539e;
   margin-bottom: 6px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
 }
 .modal-form .modal-content .modal-body .forgot-pwd {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 14px;
   color: #33539e;
   text-align: right;
@@ -1291,6 +1295,9 @@ footer .footer-col h6 {
   color: red;
   margin-top: 6px;
   font-size: 15px;
+}
+.modal-form .modal-content .modal-footer {
+  justify-content: center;
 }
 
 .modal-signin .modal-header .title-wrap .sign-in-title {

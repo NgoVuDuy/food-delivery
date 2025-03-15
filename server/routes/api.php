@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FunctionController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOptionController;
@@ -24,6 +25,7 @@ Route::apiResource('product-option', ProductOptionController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('carts', CartController::class);
 Route::apiResource('users', UserController::class);
+Route::apiResource('payments', PaymentController::class);
 
 
 //
@@ -38,6 +40,9 @@ Route::get('/store-locations', [FunctionController::class, 'store_location']);
 Route::get('/directions', [FunctionController::class, 'directions']);
 Route::get('/typical-products', [FunctionController::class, 'typical_products']);
 Route::post('/login', [FunctionController::class, 'login']);
+Route::get('/payment/callback', [FunctionController::class, 'vnpayCallBack'])->name('vnpay.callback');
+
+
 
 
 

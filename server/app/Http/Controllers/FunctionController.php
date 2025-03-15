@@ -6,6 +6,7 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ProductCategory;
 use EndlessMiles\Polyline\Polyline;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -182,5 +183,23 @@ class FunctionController extends Controller
             return response()->json(["message" => "Error"]);
 
         }
+    }
+    //
+    public function vnpayCallBack(Request $request) {
+
+        $data = $request->all();
+
+        // ProductCategory::insert([
+
+        //     [
+        //         'name' => $portClient,
+        //         'created_at' => now(),
+        //         'updated_at' => now()
+        //     ],
+
+        // ]);
+
+        return redirect("http://localhost:8000/order");
+
     }
 }

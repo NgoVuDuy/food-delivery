@@ -6,9 +6,10 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <div class="checkout-left">
+                <div class="checkout-left" wire:ignore>
 
-                    <button class="cod shadow payment-method" wire:click="payment('cod')">
+
+                    <button class="cod shadow payment-method" wire:click="payment_method('cod')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-banknote">
@@ -20,17 +21,11 @@
 
                     </button>
 
-                    <button class="vn-pay shadow payment-method" wire:click="payment('vnpay')">
+                    <button class="vn-pay shadow payment-method" wire:click="payment_method('vnpay')">
                         <img src="{{ asset('images/vnpay-logo.jpg') }}" alt="">
                         <span>VNPAY</span>
                     </button>
 
-                    <form action="/payment" method="post" class="">
-                        @csrf
-
-                        <button name="redirect" type="submit" class="order-btn main-button mt-3 ">Thanh
-                            toán VNPAY</button>
-                    </form>
                 </div>
 
             </div>
@@ -99,42 +94,44 @@
 
                             @for ($i = 1; $i < 5; $i++)
                                 <div class="cart-item-wrap d-flex justify-content-between align-items-center">
-    
+
                                     <div class="cart-item-left d-flex align-items-center">
-    
+
                                         <div class="checkout-cart-item-img">
                                             <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
                                                 alt="" width="60px">
                                         </div>
-    
+
                                         <div class="cart-item-info d-flex flex-column">
-    
+
                                             <div class="cart-item-name">Pizza pho mai Ys</div>
-    
+
                                             <div class="cart-item-price">129000đ</div>
                                         </div>
-    
+
                                         <div class="options">
                                             <ul>
                                                 <li>- Nhỏ (20 CM)</li>
                                                 <li>- Mỏng</li>
                                                 <li>- Viền Không Nhân</li>
-    
+
                                             </ul>
                                         </div>
-    
+
                                     </div>
-    
+
                                     <div class="cart-item-right d-flex align-items-center">
-                                        <span>x2</span>
+                                        <div class="quantity">
+                                            <span>x3</span>
+                                        </div>
                                     </div>
-    
+
                                 </div>
-    
+
                                 <div class="item-separation"></div>
                             @endfor
 
-                            
+
                         </div>
 
                     </div>
@@ -164,6 +161,7 @@
                     </div>
 
                     <button class="order-btn main-button mt-3" wire:click="payment">Tiếp Tục</button>
+
                 </div>
             </div>
         </div>

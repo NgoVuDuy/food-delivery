@@ -26,9 +26,11 @@ Route::get('/dish-details/{id}', DishDetail::class)->name('dish-details');
 Route::get('/order', Order::class);
 Route::get('/search', Search::class);
 Route::get('/checkout', Checkout::class);
-Route::get('promotion', Promotion::class);
+Route::get('/promotion', Promotion::class);
 
 
 Route::controller(PaymentController::class)->group(function() {
     Route::post('/payment', 'payment');
+    Route::get('/payment/callback', 'paymentCallBack')->name('payment.callback');
+
 });

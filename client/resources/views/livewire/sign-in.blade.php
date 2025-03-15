@@ -9,8 +9,8 @@
 
                     <div class="d-flex column-gap-4 justify-content-center title-wrap">
 
-                        <h2 class="modal-title fs-5 sign-in-title">Đăng Nhập</h2>
-                        <h2 class="modal-title fs-5 sign-up-title" data-bs-toggle="modal" data-bs-target="#signupModal">
+                        <h2 class="modal-title fs-6 sign-in-title">Đăng Nhập</h2>
+                        <h2 class="modal-title fs-6 sign-up-title" data-bs-toggle="modal" data-bs-target="#signupModal">
                             Đăng Ký</h2>
                     </div>
 
