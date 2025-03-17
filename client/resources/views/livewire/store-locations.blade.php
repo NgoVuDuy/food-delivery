@@ -11,7 +11,7 @@
             <div class="col-3">
                 <div class="place-wrap">
 
-                    <p class="place-title">Danh sách cửa hàng</p>
+                    <p class="place-title">Danh Sách Cửa Hàng</p>
 
                     <div class="d-flex flex-column row-gap-3" wire:ignore>
 

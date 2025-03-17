@@ -1,169 +1,177 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <div class="container mt-5">
-        <div class="row">
-            <p class="checkout-title">Thanh Toán</p>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="checkout-left" wire:ignore>
 
 
-                    <button class="cod shadow payment-method" wire:click="payment_method('cod')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-banknote">
-                            <rect width="20" height="12" x="2" y="6" rx="2" />
-                            <circle cx="12" cy="12" r="2" />
-                            <path d="M6 12h.01M18 12h.01" />
-                        </svg>
-                        <span>Tiền Mặt</span>
+        <div class="row justify-content-center">
 
-                    </button>
+            <div class="col-11">
+                <div class="row justify-content-between">
 
-                    <button class="vn-pay shadow payment-method" wire:click="payment_method('vnpay')">
-                        <img src="{{ asset('images/vnpay-logo.jpg') }}" alt="">
-                        <span>VNPAY</span>
-                    </button>
+                    <div class="col-4">
 
-                </div>
+                        <div class="">
 
-            </div>
-            <div class="col-6">
-                {{-- <div class="checkout-right">
+                            <p class="checkout-title">Thanh Toán</p>
 
-                </div> --}}
-                <div class="card-wrap">
+                            <div class="checkout-left" wire:ignore>
 
-                    <div class="card-item-information rounded shadow p-3">
 
-                        <div class="card-delivery-title">
-                            <h6>Thông tin người nhận</h6>
+                                <button class="cod shadow payment-method" wire:click="payment_method('cod')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-banknote">
+                                        <rect width="20" height="12" x="2" y="6" rx="2" />
+                                        <circle cx="12" cy="12" r="2" />
+                                        <path d="M6 12h.01M18 12h.01" />
+                                    </svg>
+                                    <span>Tiền Mặt</span>
+
+                                </button>
+
+                                <button class="vn-pay shadow payment-method" wire:click="payment_method('vnpay')">
+                                    <img src="{{ asset('images/vnpay-logo.jpg') }}" alt="">
+                                    <span>VNPAY</span>
+                                </button>
+
+                            </div>
                         </div>
 
-                        <div class="d-flex flex-column row-gap-3 wrap">
-
-                            <div class="card-delivery-address d-flex">
-                                <span class="title">Giao đến: </span>
-
-                                <div class="d-flex justify-content-between align-items-center column-gap-1">
-
-                                    <span>Cần Thơ</span>
-
-                                </div>
-
+                        <div class="checkout-note mt-5">
+                            <div class="title">
+                                Lưu ý
                             </div>
-
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <span class="title">Từ: </span>
-
-                                    <span>Chi nhánh Nguyễn Văn Linh</span>
-
-                                </div>
-
+                            <div class="content">
+                                <ul>
+                                    <li>Vui lòng chọn phương thức thanh toán.</li>
+                                    <li>Tiền mặt: Khách hàng trả tiền mặt cho nhân viên giao hàng sau khi nhận và kiểm tra hàng.</li>
+                                    <li>VNPay: Chuyển khoản trước cho nhà hàng bằng thẻ ATM nội địa.</li>
+                                </ul>
                             </div>
-
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <span class="title">Tên người nhận: </span>
-
-                                    <span>Ngo vu duy</span>
-
-                                </div>
-
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <span class="title">Số điện thoại: </span>
-
-                                    <span>Ngo vu duy </span>
-                                </div>
-
-                            </div>
-
-
                         </div>
 
                     </div>
+                    <div class="col-7">
 
-                    <div class="rounded shadow p-3 mt-5">
+                        <div class="card-wrap">
 
-                        <h6>Thông tin đơn hàng</h6>
-                        <div class="d-flex row-gap-2 flex-column">
+                            <div class="card-user-information rounded shadow p-3">
 
-                            @for ($i = 1; $i < 5; $i++)
-                                <div class="cart-item-wrap d-flex justify-content-between align-items-center">
+                                <div class="card-delivery-title">
+                                    <p class="card-title">Thông tin người nhận</p>
+                                </div>
 
-                                    <div class="cart-item-left d-flex align-items-center">
+                                <div class="d-flex flex-column row-gap-3 wrap">
 
-                                        <div class="checkout-cart-item-img">
-                                            <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
-                                                alt="" width="60px">
-                                        </div>
+                                    <div class="card-delivery-address d-flex">
+                                        <span class="title">Giao đến: </span>
 
-                                        <div class="cart-item-info d-flex flex-column">
+                                        <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                            <div class="cart-item-name">Pizza pho mai Ys</div>
+                                            <span>Cần Thơ</span>
 
-                                            <div class="cart-item-price">129000đ</div>
-                                        </div>
-
-                                        <div class="options">
-                                            <ul>
-                                                <li>- Nhỏ (20 CM)</li>
-                                                <li>- Mỏng</li>
-                                                <li>- Viền Không Nhân</li>
-
-                                            </ul>
                                         </div>
 
                                     </div>
 
-                                    <div class="cart-item-right d-flex align-items-center">
-                                        <div class="quantity">
-                                            <span>x3</span>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="title">Từ: </span>
+
+                                            <span>Chi nhánh Nguyễn Văn Linh</span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="title">Tên người nhận: </span>
+
+                                            <span>Ngo vu duy</span>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <span class="title">Số điện thoại: </span>
+
+                                            <span>Ngo vu duy </span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="card-order-information rounded shadow p-3">
+
+                                <p class="card-title">Thông tin đơn hàng</p>
+
+                                <div class="d-flex row-gap-2 flex-column">
+
+                                    @for ($i = 1; $i < 5; $i++)
+                                        <div class="cart-item-wrap d-flex justify-content-between align-items-center">
+
+                                            <div class="cart-item-left d-flex align-items-center">
+
+                                                <div class="checkout-cart-item-img">
+                                                    <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
+                                                        alt="" width="60px">
+                                                </div>
+
+                                                <div class="cart-item-info d-flex flex-column">
+
+                                                    <div class="cart-item-name">Pizza pho mai Ys</div>
+
+                                                    <div class="cart-item-price">129000đ</div>
+                                                </div>
+
+                                                <div class="options">
+                                                    <ul>
+                                                        <li>- Nhỏ (20 CM)</li>
+                                                        <li>- Mỏng</li>
+                                                        <li>- Viền Không Nhân</li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="cart-item-right d-flex align-items-center">
+                                                <div class="quantity">
+                                                    <span>x3</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="item-separation"></div>
+                                    @endfor
+
+                                    <div class="d-flex justify-content-end column-gap-5 pt-3">
+                                        <div class="sum-title">
+                                            Tổng cộng:
+                                        </div>
+                                        <div class="sum-monney">
+                                            129.000đ
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="item-separation"></div>
-                            @endfor
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="card-item-3 rounded shadow p-3 mt-5">
-
-                        <div class="mb-3 card-template d-flex justify-content-between align-items-center">
-                            <div class="card-template-title">
-                                <p>Tạm tính</p>
                             </div>
 
-                            <div class="card-template-monney">
-                                <p>129.000đ</p>
-                            </div>
-                        </div>
+                            <button class="order-btn main-button" wire:click="payment">Tiếp Tục</button>
 
-                        <div class="card-sum d-flex justify-content-between align-items-center">
-
-                            <div class="card-sum-title">
-                                <p>Tổng tiền</p>
-                            </div>
-
-                            <div class="card-sum-monney">
-                                <p>129000đ</p>
-                            </div>
                         </div>
                     </div>
-
-                    <button class="order-btn main-button mt-3" wire:click="payment">Tiếp Tục</button>
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>

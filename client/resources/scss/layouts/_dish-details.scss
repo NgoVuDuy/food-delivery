@@ -21,7 +21,7 @@
         color: $main-color;
 
         font: {
-            size: 24px;
+            size: 22px;
             weight: bold;
         }
 
@@ -73,7 +73,7 @@
         .active {
 
             border: 2px $main-color solid;
-            background-color: $button-outline-hover-color;
+            // background-color: $button-outline-hover-color;
         }
 
     }

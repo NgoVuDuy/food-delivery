@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Session;
+
 
 
 #[Title('Giỏ hàng')]
@@ -27,6 +29,9 @@ class Cart extends Component
 
     public $customer_name_input = ''; // Dữ liệu tên nhập vào trường input
     public $customer_phone_input = ''; // Dữ liệu số điện thoại nhập vào trường input
+
+    #[Session(key: 'user')]
+    public $user; // Được xem là biến session
 
     // Phương thức xây dựng
     public function mount()
@@ -178,8 +183,6 @@ class Cart extends Component
         $results = Http::get(Component::$url . 'reverse-geocode', [
             'latlng' => $this->latitude . ',' . $this->longitude
         ])->json();
-
-        // dd($results);
 
         $this->location_search = $results["results"][0]["formatted_address"];
     }

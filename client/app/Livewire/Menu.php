@@ -17,6 +17,9 @@ class Menu extends Component
     public $categories; // Lưu các danh mục sản phẩm
     public $category_name = "Tất cả"; // Tên các danh mục
 
+    public $isHovered = [];
+
+
     public function mount() {
 
         $this->products = Http::get(Component::$url . 'products',
@@ -28,6 +31,13 @@ class Menu extends Component
         $this->default_products = $this->products;
 
         $this->categories = Http::get(Component::$url . 'product-categories')->json();
+
+        foreach ($this->products['data'] as $index => $product) {
+            
+            $this->isHovered[$index] = false;
+        }
+
+
 
     }
 
@@ -55,6 +65,11 @@ class Menu extends Component
 
         $this->reset('category_name');
         $this->products = $this->default_products;
+    }
+
+    public function is_hover($status, $index)
+    {
+        $this->isHovered[$index] = $status;
     }
 
     public function render()

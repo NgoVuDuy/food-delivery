@@ -2,30 +2,40 @@
 
     .order-title {
         font: {
-            size: 22px;
+            size: 20px;
             weight: bold;
         }
+        text-transform: uppercase;
     }
 
     .order-status-box-wrap {
 
         position: absolute;
         left: -182%;
-
         width: 122px;
 
         .arrow {
             border: 10px solid transparent;
-            border-bottom-color: $main-color;
+            border-bottom-color: #acacac;
             width: 20px;
             height: 20px;
+        }
+
+        .arrow-active {
+            border-bottom-color: $main-color !important;
+
+        }
+
+        .active {
+            background-color: $main-color !important;
+            
         }
 
         .order-status-box {
 
             height: 42px;
             width: 100%;
-            background-color: $main-color;
+            background-color: #acacac;
             border-radius: 4px;
 
             span {

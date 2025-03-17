@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="row">
 
-                    @foreach ($products as $product)
+                    @foreach ($products["data"] as $product)
                         <div class="col-3 mb-5">
 
                             <a href="{{ route('dish-details', $product['id']) }}" class="link" wire:navigate>

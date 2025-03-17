@@ -20,14 +20,14 @@
         </div>
     </div>
 
-    <div class="container {{ $isEmptyCart ? 'd-none' : 'd-block' }}">
+    <div class="container {{ $isEmptyCart ? 'd-none' : 'd-block' }} mt-5">
 
-        <div class="row mt-5">
+        <div class="row">
 
             <div class="cart-wrap col-8 rounded p-3">
 
                 <div class="cart-title">
-                    <p>Giỏ hàng của bạn<span></span></p>
+                    <p>Giỏ Hàng<span></span></p>
                 </div>
 
                 <div class="row row-gap-3">
@@ -43,23 +43,26 @@
                                         <div class="cart-item-img">
                                             <img src="{{ asset($cart['product']['image']) }}" alt="">
                                         </div>
-    
+
                                         <div class="cart-item-info d-flex flex-column">
-    
+
                                             <div class="cart-item-name">{{ $cart['product']['name'] }}</div>
-    
+
                                             <div class="cart-item-price">{{ $cart['total'] }}đ</div>
                                         </div>
                                     </div>
+                                    @if (empty($cart['size']) && empty($cart['base']) && empty($cart['border']))
+                                        <div class=""></div>
+                                    @else
+                                        <div class="options">
+                                            <ul>
+                                                <li>- {{ $cart['size'] }}</li>
+                                                <li>- {{ $cart['base'] }}</li>
+                                                <li>- {{ $cart['border'] }}</li>
+                                            </ul>
+                                        </div>
+                                    @endif
 
-                                    <div class="options">
-                                        <ul>
-                                            <li>- {{ $cart['size'] }}</li>
-                                            <li>- {{ $cart['base'] }}</li>
-                                            <li>- {{ $cart['border'] }}</li>
-
-                                        </ul>
-                                    </div>
 
                                 </div>
 
@@ -120,10 +123,10 @@
                     <div class="col-12">
                         <div class="card-wrap">
 
-                            <div class="card-item-information rounded shadow p-3">
+                            <div class="card-user-information rounded shadow p-3">
 
                                 <div class="card-delivery-title">
-                                    <h6>Thông tin người nhận</h6>
+                                    <p class="card-title">Thông tin người nhận</p>
                                 </div>
 
                                 <div class="d-flex flex-column row-gap-3 wrap">
@@ -195,7 +198,7 @@
 
                             </div>
 
-                            <div class="card-item-note rounded shadow p-3 mt-5 d-none">
+                            {{-- <div class="card-item-note rounded shadow p-3 mt-5 d-none">
 
                                 <div class="card-item-note-title">
                                     <h6>Ghi chú cho đơn hàng</h6>
@@ -254,26 +257,16 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
 
 
 
-                            <div class="card-item-3 rounded shadow p-2 mt-5">
-
-                                <div class="mb-3 card-template d-flex justify-content-between align-items-center">
-                                    <div class="card-template-title">
-                                        <p>Tạm tính</p>
-                                    </div>
-
-                                    <div class="card-template-monney">
-                                        <p>{{ $total }}đ</p>
-                                    </div>
-                                </div>
+                            <div class="card-sum-information rounded shadow p-3">
 
                                 <div class="card-sum d-flex justify-content-between align-items-center">
 
                                     <div class="card-sum-title">
-                                        <p>Tổng tiền</p>
+                                        <p>Tổng cộng</p>
                                     </div>
 
                                     <div class="card-sum-monney">
@@ -303,9 +296,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="body-delivery-address">
 
-                        <div class="input-wrap">
+                        <div class="input-wrap" id="input-delivery-address">
 
                             <input class="form-control" type="search" placeholder="Vui lòng nhập địa chỉ giao hàng"
                                 wire:model.live="location_search">
@@ -325,7 +318,7 @@
                             </button>
                         </div>
 
-                        <div class="search-result-wrap">
+                        <div class="search-result-wrap" id="search-result">
 
                             @if (!empty($predictions))
 
@@ -336,18 +329,33 @@
                             @endif
                         </div>
 
-
+                        <div id="cart-map" class="d-none"></div>
+                        <pre id="coordinates" class="coordinates d-none"></pre>
                     </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
-                        <button type="button" class="cold-button" wire:click="update_location()"
-                            data-bs-dismiss="modal">Cập Nhật</button>
+                        <div>
+
+                            <button type="button" class="cold-button" id="useMapBtn">Chọn Trên Bản Đồ</button>
+
+                            <button type="button" class="cold-button d-none" id="backMapBtn"
+                                wire:click="$refresh">Quay lại</button>
+
+                        </div>
+                        <div>
+
+                            {{-- <button type="button" class="aws-button" data-bs-dismiss="modal">Thoát</button> --}}
+                            <button type="button" class="cold-button" wire:click="update_location()"
+                                data-bs-dismiss="modal" id="update-location-btn">Cập Nhật</button>
+
+                            <button type="button" class="cold-button d-none" id="conform-location-btn">Xác nhận</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal sua ten khach hang-->
+        <!-- Modal sua ten khach hang -->
         <div class="modal fade modal-name" id="nameEditModal" tabindex="-1" aria-labelledby="nameEditModal"
             aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-dialog-centered">
@@ -363,7 +371,7 @@
                             wire:model.live="customer_name_input">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="aws-button" data-bs-dismiss="modal">Thoát</button>
                         <button type="button" class="cold-button" wire:click="update_customer_name()"
                             data-bs-dismiss="modal">Cập Nhật</button>
                     </div>
@@ -386,13 +394,14 @@
                             wire:model.live="customer_phone_input">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button>
+                        <button type="button" class="aws-button" data-bs-dismiss="modal">Thoát</button>
                         <button type="button" class="cold-button" wire:click="update_customer_phone()"
                             data-bs-dismiss="modal">Cập Nhật</button>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </div>
 
@@ -402,6 +411,129 @@
 @script
     <script>
         $(document).ready(function() {
+
+            let current_latitude
+            let current_longitude
+
+            // let marker_latitude
+            // let marker_longitude
+
+            // Gọi api lấy vị trí hiện tại
+            navigator.geolocation.getCurrentPosition(
+
+                (position) => {
+
+
+                    current_latitude = position.coords.latitude
+                    current_longitude = position.coords.longitude
+
+                    console.log('Vị trí của bạn:', current_latitude, current_longitude);
+
+                    // $wire.$set('latitude', latitude)
+                    // $wire.$set('longitude', longitude)
+
+                    // $wire.dispatch('current_location')
+                },
+                (error) => {
+                    console.error('Không thể lấy vị trí:', error);
+                }
+            );
+
+
+            // ấn vào option sử dụng bản đồ để chọn địa chỉ giao hàng
+            $('#useMapBtn').click(function() {
+
+                // ấn trường input nhập địa chỉ 
+                $('#input-delivery-address').addClass('d-none')
+                // ẩn nút option sử dụng bản đồ
+                $(this).addClass('d-none')
+                // ẩn kết quả tìm kiếm
+                $('#search-result').addClass('d-none')
+                // ẩn nút cập nhât
+                $('#update-location-btn').addClass('d-none')
+
+
+                // Hiển thị đối tượng bản đồ
+                $('#cart-map').removeClass('d-none')
+                $('#coordinates').removeClass('d-none')
+
+                // Hiện nút quay lại
+                $('#backMapBtn').removeClass('d-none')
+
+                // Hiện nút xác nhận
+                $('#conform-location-btn').removeClass('d-none')
+
+
+                var coordinates = document.getElementById('coordinates');
+
+                goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
+
+                var map = new goongjs.Map({
+
+                    container: 'cart-map',
+                    style: 'https://tiles.goong.io/assets/goong_map_web.json',
+                    center: [current_longitude, current_latitude],
+                    zoom: 13
+                });
+
+                marker = new goongjs.Marker({
+                        draggable: true
+                    })
+                    .setLngLat([current_longitude, current_latitude])
+                    .addTo(map);
+
+                function onDragEnd() {
+
+                    var lngLat = marker.getLngLat();
+                    coordinates.style.display = 'block';
+                    coordinates.innerHTML =
+                        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+
+                    current_latitude = lngLat.lat
+                    current_longitude = lngLat.lng
+
+
+
+                }
+
+                marker.on('dragend', onDragEnd);
+
+            })
+
+            $('#backMapBtn').click(function() {
+
+                // hiện trường input nhập địa chỉ 
+                $('#input-delivery-address').removeClass('d-none')
+                // hiện nút option sử dụng bản đồ
+                $(this).removeClass('d-none')
+                // hiện kết quả tìm kiếm
+                $('#search-result').removeClass('d-none')
+                // Hiển thị nút cập nhật
+                $('#update-location-btn').removeClass('d-none')
+
+                // ẩn thị đối tượng bản đồ
+                $('#cart-map').addClass('d-none')
+                $('#coordinates').addClass('d-none')
+
+                // Ẩn nút back
+                $(this).addClass('d-none')
+                // ẩn nút xác nhận
+                $('#conform-location-btn').addClass('d-none')
+
+                //Hiển thị nút chọn bản đồ
+                $('#useMapBtn').removeClass('d-none')
+
+            })
+
+            $('#conform-location-btn').click(function() {
+
+                $wire.$set('latitude', current_latitude)
+                $wire.$set('longitude', current_longitude)
+
+                $wire.dispatch('current_location')
+            } ) 
+                
+            
 
             $('#current-location').click(function() {
 

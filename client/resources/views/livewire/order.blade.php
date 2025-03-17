@@ -4,9 +4,9 @@
             <div class="col-8">
                 <div class="order-wrap">
                     <div class="order-title mb-4">
-                        <p>Đơn hàng của bạn</p>
+                        <p>Đơn hàng</p>
                     </div>
-                    <div class="order-status d-flex align-items-center">
+                    <div class="order-status d-flex align-items-center justify-content-center">
 
                         <div class="approval-icon-wrap status-icon">
 
@@ -20,8 +20,8 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow"></div>
-                                <div class="order-status-box d-flex justify-content-center align-items-center">
+                                <div class="arrow-active arrow"></div>
+                                <div class="active order-status-box d-flex justify-content-center align-items-center">
                                     <span>Chờ xác nhận</span>
                                 </div>
                             </div>
@@ -41,8 +41,8 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow"></div>
-                                <div class="order-status-box d-flex justify-content-center align-items-center">
+                                <div class="arrow-active arrow"></div>
+                                <div class="active order-status-box d-flex justify-content-center align-items-center">
                                     <span>Đã nhận đơn</span>
                                 </div>
                             </div>
@@ -63,16 +63,15 @@
                                 <path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" />
                             </svg>
 
-                            {{-- <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="arrow"></div>
                                 <div class="order-status-box d-flex justify-content-center align-items-center">
                                     <span>Đang thực hiện</span>
                                 </div>
-                            </div> --}}
+                            </div>
 
 
                         </div>
-
 
                         <div class="process-bar bar-3"></div>
 
@@ -86,12 +85,12 @@
                                 </path>
                             </svg>
 
-                            {{-- <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="arrow"></div>
                                 <div class="order-status-box d-flex justify-content-center align-items-center">
                                     <span>Đang giao hàng</span>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
 
@@ -108,12 +107,12 @@
                                     d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             </svg>
 
-                            {{-- <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="arrow"></div>
                                 <div class="order-status-box d-flex justify-content-center align-items-center">
                                     <span>Giao thành công</span>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
 
                     </div>
@@ -128,11 +127,10 @@
 
                 </div>
 
-                {{-- <div id='map' class="mt-5"></div> --}}
+                <div id='map' class="mt-5"></div>
 
-                <div class="order-details-wrap mt-5">
+                {{-- <div class="order-details-wrap mt-5">
                     <div class="order-details-title">
-                        {{-- <p>Chi tiết đơn hàng</p> --}}
 
                     </div>
                     <div class="order-details">
@@ -175,16 +173,16 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
             </div>
             <div class="col-4">
 
                 <div class="card-wrap">
 
-                    <div class="card-item-information rounded shadow p-3">
+                    <div class="card-user-information rounded shadow p-3">
 
                         <div class="card-delivery-title">
-                            <h6>Thông tin người nhận</h6>
+                            <p class="card-title">Thông tin người nhận</p>
                         </div>
 
                         <div class="d-flex flex-column row-gap-3 wrap">
@@ -323,7 +321,7 @@
 </div>
 
 @section('js')
-    {{-- <script src="{{ asset('js/location.js') }}"></script> --}}
+    <script src="{{ asset('js/location.js') }}"></script>
 
     <script>
         $(document).ready(function() {

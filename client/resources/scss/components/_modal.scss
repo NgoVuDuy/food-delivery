@@ -41,6 +41,10 @@
                 }
 
             }
+
+            .modal-footer {
+                justify-content: space-between;
+            }
         }
     }
 
@@ -133,6 +137,7 @@
                 color: $main-color;
                 text-align: right;
             }
+
             .error {
                 display: block;
                 color: red;
@@ -140,6 +145,7 @@
                 font-size: 15px;
             }
         }
+
         .modal-footer {
             justify-content: center;
         }
@@ -188,6 +194,21 @@
             }
         }
 
+        
     }
 
+}
+
+.modal-map {
+    .modal-dialog {
+        max-width: 1000px;
+
+        .modal-content {
+            .modal-header {
+                h1 {
+                    color: $main-color;
+                }
+            }
+        }
+    }
 }

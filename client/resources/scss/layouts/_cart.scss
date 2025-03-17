@@ -1,4 +1,6 @@
 .empty-cart-wrap {
+
+
     .empty-cart-img {
         width: 100%;
     }
@@ -28,10 +30,11 @@
     p {
 
         margin-bottom: 30px;
+        text-transform: uppercase;
 
         font: {
             weight: bold;
-            size: 22px
+            size: 20px
         }
 
         span {
@@ -147,17 +150,21 @@
 }
 
 .card-wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
 
-    h6 {
+    .card-title {
 
         font: {
             weight: bold;
+            size: 18px;
         }
 
         margin-bottom: 18px;
     }
 
-    .card-item-information {
+    .card-user-information {
 
         .wrap {
 
@@ -195,40 +202,56 @@
 
 
     }
-
-    .card-item-2 {
-
-        .card-item-option {
-
-            .card-item-option-switch {
-
-                .form-check-input:checked {
-                    background-color: $main-color;
-                    border-color: $main-color;
-                }
+    .card-order-information {
+        .sum-title {
+            font: {
+                size: 18px;
+                weight: bold;
             }
         }
 
-    }
-
-    .card-item-note {
-
-        .card-item-note-input {
-
-            textarea {
-
-                width: 100%;
-                border: 1px $border-color solid;
-                border-radius: 20px;
-                height: 100px;
-                padding: 12px;
-
-                &:focus-visible {
-                    outline: $main-color auto 1px;
-                }
+        .sum-monney {
+            font: {
+                size: 18px;
+                weight: bold;
             }
+            color: $dark-pink;
         }
     }
+
+    // .card-item-2 {
+
+    //     .card-item-option {
+
+    //         .card-item-option-switch {
+
+    //             .form-check-input:checked {
+    //                 background-color: $main-color;
+    //                 border-color: $main-color;
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    // .card-item-note {
+
+    //     .card-item-note-input {
+
+    //         textarea {
+
+    //             width: 100%;
+    //             border: 1px $border-color solid;
+    //             border-radius: 20px;
+    //             height: 100px;
+    //             padding: 12px;
+
+    //             &:focus-visible {
+    //                 outline: $main-color auto 1px;
+    //             }
+    //         }
+    //     }
+    // }
 
     .card-item-delivery-man {
         .delivery-man-info {
@@ -289,30 +312,15 @@
         // }
     }
 
-    .card-item-3 {
-
-
-        .card-template-title {
-            font-weight: bold;
-            p {
-                margin: 0px;
-            }
-        }
-
-        .card-template-monney {
-            p {
-                font-size: 17px;
-                color: $dark-pink;
-                font-weight: bold;
-                margin: 0px;
-            }
-        }
+    .card-sum-information {
 
         .card-sum-title {
             font-weight: bold;
 
             p {
                 margin: 0px;
+                font-size: 17px;
+
             }
         }
 
@@ -330,4 +338,22 @@
 
 .order-btn {
     width: 100%;
+}
+
+#cart-map {
+    height: 400px;
+}
+
+.coordinates {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
 }

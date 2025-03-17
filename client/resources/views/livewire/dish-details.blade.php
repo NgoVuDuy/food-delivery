@@ -23,11 +23,10 @@
 
                 <div class="dish-img-wrap">
                     <img src="{{ asset($product['image']) }}" alt="">
-
                 </div>
 
             </div>
-            <div class="col-7">
+            <div class="col-7 d-flex flex-column justify-content-between">
 
                 <div class="dish-option-wrap bg-light">
 
@@ -39,45 +38,49 @@
                         {{ $product['price'] }}đ
                     </div>
 
-                    <div class="dish-option-cover">
+                    <div class=" {{ $isPizza ? '' : 'd-none' }}" >
 
-                        <div class="dish-option-title">
-                            Chọn Size
+                        <div class="dish-option-cover">
+
+                            <div class="dish-option-title">
+                                Chọn Size
+                            </div>
+                            @foreach ($options['size'] as $size)
+                                <button class="size-btn"
+                                    wire:click="size('{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
+                                    wire:ignore>{{ $size['name'] }} <span> +
+                                        {{ $size['price_modifier'] }}đ</span></button>
+                            @endforeach
+
                         </div>
 
-                        @foreach ($options['size'] as $size)
-                            <button class="size-btn"
-                                wire:click="size('{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
-                                wire:ignore>{{ $size['name'] }} <span> + {{ $size['price_modifier'] }}đ</span></button>
-                        @endforeach
+                        <div class="dish-option-cover">
 
-                    </div>
+                            <div class="dish-option-title">
+                                Chọn Đế
+                            </div>
 
-                    <div class="dish-option-cover">
+                            @foreach ($options['base'] as $base)
+                                <button class="base-btn" wire:click="base('{{ $base['name'] }}')"
+                                    wire:ignore>{{ $base['name'] }}</button>
+                            @endforeach
 
-                        <div class="dish-option-title">
-                            Chọn Đế
                         </div>
 
-                        @foreach ($options['base'] as $base)
-                            <button class="base-btn" wire:click="base('{{ $base['name'] }}')"
-                                wire:ignore>{{ $base['name'] }}</button>
-                        @endforeach
+                        <div class="dish-option-cover">
+                            <div class="dish-option-title">
+                                Chọn Viền
+                            </div>
 
-                    </div>
+                            @foreach ($options['border'] as $border)
+                                <button class="border-btn"
+                                    wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})"
+                                    wire:ignore>
+                                    {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span>
+                                </button>
+                            @endforeach
 
-                    <div class="dish-option-cover">
-                        <div class="dish-option-title">
-                            Chọn Viền
                         </div>
-
-                        @foreach ($options['border'] as $border)
-                            <button class="border-btn"
-                                wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})"
-                                wire:ignore>
-                                {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span>
-                            </button>
-                        @endforeach
 
                     </div>
                 </div>
@@ -129,23 +132,6 @@
             </div>
         </div>
 
-        <div class="row mt-5">
-
-            <div class="dish-product-suggest-title mb-3">
-                Có thể bạn sẽ thích
-            </div>
-
-            @for ($i = 1; $i <= 8; $i++)
-                <div class="col-3">
-
-                    <div class="dish-product-suggest">
-
-                    </div>
-                </div>
-            @endfor
-
-
-        </div>
     </div>
 </div>
 

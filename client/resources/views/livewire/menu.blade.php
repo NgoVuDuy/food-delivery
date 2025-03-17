@@ -10,65 +10,8 @@
                     <div class="menu-filter-title d-flex justify-content-between">
 
                         <p class="mb-3"></p>
+
                         <button wire:click="show_all_products_btn">Tất cả</button>
-                    </div>
-
-                    <div class="menu-filter-item mb-3 d-none">
-
-                        <div class="category-name d-flex align-items-center">
-
-                            <p class="">Nguyên liệu</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-chevron-down">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
-                        </div>
-
-
-                        <div class="wrap">
-
-                            <button class="item" wire:click="category('Meat Lover\'s Pizza')"><span>Pizza
-                                    Thịt</span></button>
-                            <button class="item" wire:click="category('Vegetarian Pizza')"><span>Pizza Rau
-                                    Củ</span></button>
-                            <button class="item" wire:click="category('Seafood Pizza')"><span>Pizza Hải
-                                    Sản</span></button>
-                            <button class="item" wire:click="category('Cheese Pizza')"><span>Pizza Phô
-                                    Mai</span></button>
-                        </div>
-
-
-
-                    </div>
-
-                    <div class="menu-filter-item mb-3 d-none">
-
-                        <div class="category-name d-flex align-items-center">
-
-                            <p class="">Vùng miền</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-chevron-down">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
-                        </div>
-
-
-                        <div class="wrap">
-
-                            <button class="item" wire:click="category('Italian Pizza')">
-                                <span>Pizza Ý</span>
-                            </button>
-                            <button class="item" wire:click="category('American Pizza')"><span>Pizza
-                                    Mỹ</span></button>
-                            <button class="item" wire:click="category(' cago Deep Dish')"><span>Pizza Việt
-                                    Nam</span></button>
-                            <button class="item" wire:click="category('Japanese Pizza')"><span>Pizza Nhật
-                                    Bản</span></button>
-                        </div>
-
-
                     </div>
 
                     <div class="menu-filter-item mb-3">
@@ -76,18 +19,19 @@
                         <div class="category-name d-flex align-items-center">
 
                             <p class="">Phân Loại</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-chevron-down">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
+
                         </div>
 
                         <div class="wrap">
 
                             @foreach ($categories as $category)
                                 <button class="item"
-                                    wire:click="category({{ $category['id'] }}, '{{ $category['name'] }}')"><span>{{ $category['name'] }}</span></button>
+                                    wire:click="category({{ $category['id'] }}, '{{ $category['name'] }}')">
+
+                                    <span>{{ $category['name'] }}
+                                    </span>
+                                    
+                                </button>
                             @endforeach
 
                         </div>
@@ -113,12 +57,14 @@
                 </div>
 
                 <div class="row products-wrap  {{ count($products['data']) > 9 ? 'products-scroll' : '' }}">
-                    @foreach ($products['data'] as $product)
+                    @foreach ($products['data'] as $index => $product)
                         <div class="col-4 mb-5">
 
                             <a href="{{ route('dish-details', $product['id']) }}" class="link" wire:navigate>
 
-                                <div class="menu-item-wrap dish-item shadow">
+                                <div class="menu-item-wrap dish-item shadow"
+                                    wire:mouseover="is_hover(true, {{ $index }})"
+                                    wire:mouseout="is_hover(false, {{ $index }})">
 
                                     <div class="menu-item-img d-flex justify-content-center align-items-center">
 
@@ -128,9 +74,11 @@
 
                                     <div class="menu-item-content p-3">
                                         <div class="menu-name">
-                                            <p class="">{{ Str::limit($product['name'], 16, ' ...') }}</p>
-                                        </div>
 
+                                            <p class="">
+                                                {{ $isHovered[$index] ? $product['name'] : Str::limit($product['name'], 16, ' ...') }}
+                                            </p>
+                                        </div>
 
                                         <div class="menu-price">
                                             {{ $product['price'] }}đ
@@ -176,10 +124,6 @@
                 $(this).addClass('active')
             })
 
-            $('.menu-filter-item .category-name').click(function() {
-
-                $(this).next('.wrap').slideToggle('fast')
-            })
 
         })
     </script>

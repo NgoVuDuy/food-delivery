@@ -1,0 +1,11 @@
+.empty-promotion-title {
+    font: {
+        size: 20px;
+        weight: bold;
+    }
+    color: $main-color;
+    text: {
+        transform: uppercase;
+        align: center;
+    }
+}

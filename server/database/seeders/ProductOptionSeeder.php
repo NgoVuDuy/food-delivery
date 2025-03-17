@@ -730,721 +730,721 @@ class ProductOptionSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            // sản phẩm 14
-            [
-                'product_id' => 14,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 14,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 15
-            [
-                'product_id' => 15,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 15,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 16
-            [
-                'product_id' => 16,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 16,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 17
-            [
-                'product_id' => 17,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 17,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 18
-            [
-                'product_id' => 18,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 18,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 19
-            [
-                'product_id' => 19,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 19,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 20
-            [
-                'product_id' => 20,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 20,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 21
-            [
-                'product_id' => 21,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 21,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 22
-            [
-                'product_id' => 22,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 22,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 23
-            [
-                'product_id' => 23,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 23,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 24
-            [
-                'product_id' => 24,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 24,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 25
-            [
-                'product_id' => 25,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 25,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            // sản phẩm 26
-            [
-                'product_id' => 26,
-                'option_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'product_id' => 26,
-                'option_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
+            // // sản phẩm 14
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 14,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 15
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 15,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 16
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 16,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 17
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 17,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 18
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 18,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 19
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 19,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 20
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 20,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 21
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 21,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 22
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 22,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 23
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 23,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 24
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 24,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 25
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 25,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // // sản phẩm 26
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 1,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 2,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 3,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 4,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 5,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 6,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 7,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 8,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
+            // [
+            //     'product_id' => 26,
+            //     'option_id' => 9,
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ],
 
         ]);
     }

@@ -1,8 +1,6 @@
 <div>
     <div class="container-fluid bg-header-wrap">
 
-
-
         <div class="bg-header">
 
             <div class="slide-btn d-flex">
@@ -17,7 +15,6 @@
                 </button>
 
             </div>
-
             <div>
 
                 <img src="{{ asset($current_image['data'][0]['image']) }}" alt="">
@@ -59,7 +56,7 @@
 
                 </div>
                 <div class="bg-more-btn">
-                    <a href="/menu" wire:navigate>
+                    <a href="/menu" wire:navigate.hover>
                         <button class="cold-button">
                             <span>Menu</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -183,7 +180,7 @@
 
             <div class="more-text">
 
-                <a href="/menu" wire:navigate>
+                <a href="/menu" wire:navigate.hover>
                     <span class="">Xem thêm</span>
 
                     <span>
@@ -205,7 +202,7 @@
 
                             <p class="">{{ Str::limit($product['name'], 16, '...') }}</p>
 
-                            <a href="{{ route('dish-details', $product['id']) }}" wire:navigate><button
+                            <a href="{{ route('dish-details', $product['id']) }}" wire:navigate.hover><button
                                     class="cold-button">Xem thêm</button></a>
 
 
@@ -357,7 +354,7 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-5 home-news-wrap">
+    <div class="container-fluid mt-5 news-wrap">
 
         {{-- News --}}
         <div class="container">
@@ -366,13 +363,13 @@
 
                 <div class="col-12">
                     <div class="home-product-title">
-                        <p class="home-news-title">Tin tức</p>
+                        <p class="news-title">Tin tức</p>
                     </div>
                 </div>
 
                 <div class="more-text">
 
-                    <a href="/news">
+                    <a href="/news" wire:navigate.hover>
 
                         <span class="">Xem thêm</span>
                         <span>
@@ -386,105 +383,149 @@
 
                 </div>
 
-                <div class="row mt-3">
+                <div class="row">
 
-                    <div class="col-3">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_1.webp') }}" alt="">
+                    <div class="row mt-3">
+    
+                        <div class="col-3">
+    
+                            <a href="" class="news-link">
+    
+                                <div class="news-item">
+                                    <div class="img-wrap">
+    
+                                        <img src="{{ asset('news_1.webp') }}" alt="">
+                                    </div>
+    
+    
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+    
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+    
+                                </div>
+                            </a>
+    
+                        </div>
+                        <div class="col-3">
+                            <a href="" class="news-link"> 
+    
+                                <div class="news-item">
+                                    <div class="img-wrap">
+    
+                                        <img src="{{ asset('news_2.webp') }}" alt="">
+                                    </div>
+        
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+        
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="" class="news-link">
+    
+                                <div class="news-item">
+                                    <div class="img-wrap">
+    
+                                        <img src="{{ asset('news_3.jpg') }}" alt="">
+                                    </div>
+        
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+        
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="" class="news-link">
+    
+                                <div class="news-item">
+                                    <div class="img-wrap">
+    
+                                        <img src="{{ asset('news_4.jpg') }}" alt="">
+                                    </div>
+        
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+        
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+    
+                        <div class="col-3 mt-5">
+                            <a href="" class="news-link">
+    
+                                <div class="news-item">
+                                    <div class="img-wrap">
+    
+                                        <img src="{{ asset('news_3.jpg') }}" alt="">
+                                    </div>
+        
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+        
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3 mt-5">
+                            <a href="" class="news-link">
 
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
+                                <div class="news-item">
+                                    <div class="img-wrap">
+        
+                                        <img src="{{ asset('news_4.jpg') }}" alt="">
+                                    </div>
+        
+                                    <div class="news-time">
+                                        1/1/1919
+                                    </div>
+                                    <div class="news-title">
+                                        Pizza ngon nhất thế giới
+                                    </div>
+        
+                                    <div class="news-content">
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_2.webp') }}" alt="">
-
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_3.jpg') }}" alt="">
-
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_4.jpg') }}" alt="">
-
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3 mt-5">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_3.jpg') }}" alt="">
-
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 mt-5">
-                        <div class="home-news-item">
-                            <img src="{{ asset('news_4.jpg') }}" alt="">
-
-                            <div class="news-time">
-                                1/1/1919
-                            </div>
-                            <div class="news-title">
-                                Pizza ngon nhất thế giới
-                            </div>
-
-                            <div class="news-content">
-                                pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
-                            </div>
-                        </div>
-                    </div>
+    
                 </div>
 
             </div>

@@ -41,37 +41,37 @@
 
                     <div class="col-lg-3 col-5 footer-col">
 
-                        <h6>Tính năng</h6>
+                        <h6>Tính Năng</h6>
                         <p>
-                            <a href="/home" wire:navigate>Trang chủ</a>
+                            <a href="/home" wire:navigate>Trang Chủ</a>
                         </p>
                         <p>
                             <a href="/menu" wire:navigate>Menu</a>
                         </p>
                         <p>
-                            <a href="#" wire:navigate>Khuyến mãi</a>
+                            <a href="/promotion" wire:navigate>Khuyến Mãi</a>
                         </p>
                         <p>
-                            <a href="/store-location" wire:navigate>Cửa hàng</a>
+                            <a href="/store-location" wire:navigate>Cửa Hàng</a>
                         </p>
                         <p>
-                            <a href="#" wire:navigate>Tin tức</a>
+                            <a href="/news" wire:navigate>Tin Tức</a>
                         </p>
 
 
                     </div>
 
                     <div class="col-lg-3 col-5 footer-col">
-                        <h6>Về chúng tôi</h6>
+                        <h6>Về Chúng Tôi</h6>
 
                         <p>
-                            <a href="#">Giới thiệu</a>
+                            <a href="#">Giới Thiệu</a>
                         </p>
                         <p>
-                            <a href="#">Điều khoản sử dụng</a>
+                            <a href="#">Điều Khoản Sử Dụng</a>
                         </p>
                         <p>
-                            <a href="#">Trợ giúp</a>
+                            <a href="#">Trợ Giúp</a>
                         </p>
                     </div>
                 </div>

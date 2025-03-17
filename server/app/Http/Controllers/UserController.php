@@ -14,7 +14,6 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-
         return response()->json($users, 201);
     }
 
@@ -26,9 +25,23 @@ class UserController extends Controller
         //
         $user = $request->all();
 
-        User::create($user);
+        if(User::where('phone', $user["phone"])->exists()) {
 
-        return response()->json($user, 200);
+            return response()->json(["message" => "Số điện thoại đã được sử dụng", "code" => 0]);
+
+        } else {
+
+            $success = User::create($user);
+    
+            if($success) {
+    
+                return response()->json(["message" => "Tạo tài khoản thành công", "code" => 1]);
+            } else {
+                return response()->json(["message" => "Tạo tài khoản thất bại", "code" => 0]);
+    
+            }
+        }
+
     }
     /**
      * Display the specified resource.

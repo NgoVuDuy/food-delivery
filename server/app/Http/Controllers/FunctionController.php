@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\ProductCategory;
+use App\Models\User;
 use EndlessMiles\Polyline\Polyline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class FunctionController extends Controller
@@ -43,7 +45,8 @@ class FunctionController extends Controller
 
         $products = Product::where('name', 'LIKE', "%$product_name%")->get();
 
-        return response()->json($products);
+        // return response()->json($products);
+        return ProductResource::collection($products);
     }
 
     // Đếm số sản phẩm có trong giỏ hàng
@@ -167,25 +170,18 @@ class FunctionController extends Controller
     public function login(Request $request)
     {
 
-        $user = $request->all();
+        $user = User::where('phone', $request->phone)->first();
 
-        $credentials = [
-            'phone' => $user["phone"],
-            'password' => $user["password"]
-        ];
+        if ($user && Hash::check($request->password, $user->password)) {
 
-        if (Auth::attempt($credentials)) {
-
-            return response()->json(["user" => Auth::user(), "message" => "Success"], 200);
-
+            return response()->json(["user" => $user, "message" => "Đăng nhập thành công", "code" => 1]);
         } else {
-
-            return response()->json(["message" => "Error"]);
-
+            return response()->json(["message" => "Đăng nhập thất bại", "code" => 0]);
         }
     }
     //
-    public function vnpayCallBack(Request $request) {
+    public function vnpayCallBack(Request $request)
+    {
 
         $data = $request->all();
 
@@ -200,6 +196,5 @@ class FunctionController extends Controller
         // ]);
 
         return redirect("http://localhost:8000/order");
-
     }
 }

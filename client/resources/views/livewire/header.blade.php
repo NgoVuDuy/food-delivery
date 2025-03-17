@@ -10,7 +10,8 @@
 
                     <div class="header-icon-wrap">
 
-                        <div class="header-user-icon" data-bs-toggle="modal" data-bs-target="#signinModal">
+                        <div class="header-user-icon {{ empty($user) ? '' : 'd-none' }}" data-bs-toggle="modal"
+                            data-bs-target="#signinModal">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
@@ -19,6 +20,23 @@
                                 <path d="M20 21a8 8 0 0 0-16 0" />
                             </svg>
                         </div>
+
+                        <div class="nav-item dropdown {{  empty($user) ? 'd-none' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+
+                                @if (!empty($user))
+                                    {{ $user['name'] }}
+                                @endif
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item" href="#">Lịch sử mua hàng</button></li>
+                                <li><button class="dropdown-item" wire:click="logout">Đăng xuất</button></li>
+
+                            </ul>
+                        </div>
+
 
                         <div class="header-cart-icon">
 
@@ -62,8 +80,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/promotion" wire:navigate
-                                wire:current="active-nav">KHUYẾN
+                            <a class="nav-link" href="/promotion" wire:navigate wire:current="active-nav">KHUYẾN
                                 MÃI</a>
                         </li>
 
@@ -73,7 +90,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="/news" wire:navigate wire:current="active-nav">TIN
+                            <a class="nav-link" href="/news" wire:navigate wire:current="active-nav">TIN
                                 TỨC</a>
                         </li>
 
@@ -97,7 +114,6 @@
 
                     </form>
 
-                    {{ $search_text }}
 
                 </div>
             </div>
@@ -108,5 +124,4 @@
 </div>
 
 @script
-
 @endscript

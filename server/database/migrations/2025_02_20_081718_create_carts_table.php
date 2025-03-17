@@ -17,9 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('quantity');
-            $table->string('size');
-            $table->string('base');
-            $table->string('border');
+            $table->string('size')->nullable();
+            $table->string('base')->nullable();
+            $table->string('border')->nullable();
             $table->double('total');
 
             $table->timestamps();

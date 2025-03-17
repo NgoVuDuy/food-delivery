@@ -24,6 +24,8 @@ class DishDetail extends Component
 
     public $isAddToCart = false; // Trạng thái thêm vào giỏ hàng
 
+    public $isPizza = true; // Kiểm tra sản phẩm có phải pizza không - hiển thị options
+
     // Phương thức xây dựng
     public function mount(string $id)
     {
@@ -34,40 +36,62 @@ class DishDetail extends Component
         $this->quantity = 1; // Số lượng sản phẩm là 1
         $this->default_price = $this->product["price"]; // Lấy giá gốc của sản phẩm
 
-        // Gọi api lấy thông tin các tùy chọn của sản phẩm đó gồm (Kích cỡ, Đế bánh, Viên bánh)
-        $this->options["size"] = Http::get(
-            Component::$url . 'options-of-product',
-            [
-                'product_id' => $id,
-                'option_category_name' => 'Kích Cỡ'
-            ]
-        )->json();
+        $this->options["size"] = [];
+        $this->options["base"] = [];
+        $this->options["border"] = [];
 
-        $this->options["base"] = Http::get(
-            Component::$url . 'options-of-product',
-            [
-                'product_id' => $id,
-                'option_category_name' => 'Đế Bánh'
-            ]
-        )->json();
 
-        $this->options["border"] = Http::get(
-            Component::$url . 'options-of-product',
-            [
-                'product_id' => $id,
-                'option_category_name' => 'Viền Bánh'
-            ]
-        )->json();
+        if ($this->product["product_categories_id"] == 1) {
 
-        // Gián giá trị mặc định cho tùy chọn hiện tại
-        $this->current_options["size"] = $this->options["size"][0]["name"];
-        $this->current_price_modifier["size"] = $this->options["size"][0]["price_modifier"];
+            // Gọi api lấy thông tin các tùy chọn của sản phẩm đó gồm (Kích cỡ, Đế bánh, Viên bánh)
+            $this->options["size"] = Http::get(
+                Component::$url . 'options-of-product',
+                [
+                    'product_id' => $id,
+                    'option_category_name' => 'Kích Cỡ'
+                ]
+            )->json();
 
-        $this->current_options["base"] = $this->options["base"][0]["name"];
-        $this->current_price_modifier["base"] = $this->options["base"][0]["price_modifier"];
+            $this->options["base"] = Http::get(
+                Component::$url . 'options-of-product',
+                [
+                    'product_id' => $id,
+                    'option_category_name' => 'Đế Bánh'
+                ]
+            )->json();
 
-        $this->current_options["border"] = $this->options["border"][0]["name"];
-        $this->current_price_modifier["border"] = $this->options["border"][0]["price_modifier"];
+            $this->options["border"] = Http::get(
+                Component::$url . 'options-of-product',
+                [
+                    'product_id' => $id,
+                    'option_category_name' => 'Viền Bánh'
+                ]
+            )->json();
+
+            // Gián giá trị mặc định cho tùy chọn hiện tại
+            $this->current_options["size"] = $this->options["size"][0]["name"];
+            $this->current_price_modifier["size"] = $this->options["size"][0]["price_modifier"];
+
+            $this->current_options["base"] = $this->options["base"][0]["name"];
+            $this->current_price_modifier["base"] = $this->options["base"][0]["price_modifier"];
+
+            $this->current_options["border"] = $this->options["border"][0]["name"];
+            $this->current_price_modifier["border"] = $this->options["border"][0]["price_modifier"];
+        } else {
+
+            $this->isPizza = false;
+
+            // Gọi api lấy thông tin các tùy chọn của sản phẩm đó gồm (Kích cỡ, Đế bánh, Viên bánh)
+
+            $this->current_options["size"] = null;
+            $this->current_price_modifier["size"] = "0";
+
+            $this->current_options["base"] = null;
+            $this->current_price_modifier["base"] = "0";
+
+            $this->current_options["border"] = null;
+            $this->current_price_modifier["border"] = "0";
+        }
     }
 
     // Phương thức giảm số lượng sản phẩm
@@ -159,6 +183,7 @@ class DishDetail extends Component
                 'updated_at' => now()
             ]
         );
+
 
         // Nếu thêm vào giỏ hàng thành công
         if ($response->successful()) {

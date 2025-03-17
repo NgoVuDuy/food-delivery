@@ -61,14 +61,16 @@
 
                                     <span class="forgot-pwd">Quên mật khẩu ?</span>
 
-                                    @if (session('user'))
-                                        <p>
-                                            {{ json_encode(session('user')) }}
+                                </div>
 
-                                        </p>
-                                    @endif
+                                <div class="col-12 mt-3">
 
-                                    {{ $message }}
+                                    <div class="alert alert-{{ $is_success ? 'success' : 'danger' }} alert-dismissible fade {{ !empty($message) ? 'show' : '' }}"
+                                        role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

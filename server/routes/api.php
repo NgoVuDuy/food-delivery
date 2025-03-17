@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FunctionController;
+use App\Http\Controllers\OptionCategoryController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCategoryController;
@@ -19,8 +21,8 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('products', ProductController::class);
 Route::apiResource('product-categories', ProductCategoryController::class);
-Route::apiResource('options', OrderController::class);
-Route::apiResource('option-categories', OrderController::class);
+Route::apiResource('options', OptionController::class);
+Route::apiResource('option-categories', OptionCategoryController::class);
 Route::apiResource('product-option', ProductOptionController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('carts', CartController::class);

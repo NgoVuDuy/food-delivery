@@ -20,7 +20,6 @@ class Search extends Component
             'product_name' => $this->search_text
         ])->json();
 
-
     }
 
     public function render()

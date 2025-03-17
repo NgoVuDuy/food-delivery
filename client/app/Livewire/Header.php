@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Session;
+
 
 
 class Header extends Component
@@ -12,6 +15,11 @@ class Header extends Component
     public $search_text;
     public $count;
 
+    #[Session(key: 'user')]
+    public $user; // Được xem là biến session
+
+    // public $username = '';
+    // public $isLogin = false;
 
     public function mount() {
 
@@ -22,6 +30,11 @@ class Header extends Component
     public function search() {
 
         return $this->redirect('/search?text=' . $this->search_text, navigate: true);
+    }
+
+    public function logout() {
+
+        $this->user = null;
     }
 
     #[On('updatedCart')]

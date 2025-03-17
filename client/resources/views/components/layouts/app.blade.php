@@ -11,7 +11,7 @@
 
     @include('includes.libraries')
 
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     @yield('css')
     @livewireStyles

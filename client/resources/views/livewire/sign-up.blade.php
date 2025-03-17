@@ -23,16 +23,6 @@
 
                         <div class="container">
                             <div class="row">
-                                <div class="col-5 d-flex align-items-center d-none">
-
-                                    <div class="logo d-flex flex-column row-gap-3 align-items-center">
-
-                                        <img class="" src="{{ asset('logo/3.png') }}" alt="">
-
-                                        <span class="">NVD's Pizzeria</span>
-                                    </div>
-
-                                </div>
                                 <div class="col-12">
 
 
@@ -72,6 +62,13 @@
                                     </div>
 
 
+                                </div>
+                                <div class="col-12 mt-3">
+
+                                    <div class="alert alert-{{ $is_success ? 'success'  : 'danger'}} alert-dismissible fade {{ !empty($message) ? 'show' : '' }}" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>
                                 </div>
                             </div>
                         </div>
