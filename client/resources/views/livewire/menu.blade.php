@@ -63,8 +63,9 @@
                             <a href="{{ route('dish-details', $product['id']) }}" class="link" wire:navigate>
 
                                 <div class="menu-item-wrap dish-item shadow"
-                                    wire:mouseover="is_hover(true, {{ $index }})"
-                                    wire:mouseout="is_hover(false, {{ $index }})">
+                                    {{-- wire:mouseover="is_hover(true, {{ $index }})"
+                                    wire:mouseout="is_hover(false, {{ $index }})" --}}
+                                    >
 
                                     <div class="menu-item-img d-flex justify-content-center align-items-center">
 
@@ -75,8 +76,11 @@
                                     <div class="menu-item-content p-3">
                                         <div class="menu-name">
 
-                                            <p class="">
+                                            {{-- <p class="">
                                                 {{ $isHovered[$index] ? $product['name'] : Str::limit($product['name'], 16, ' ...') }}
+                                            </p> --}}
+                                            <p class="">
+                                                {{ $product['name'] }}
                                             </p>
                                         </div>
 

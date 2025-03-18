@@ -23,6 +23,12 @@
             border-radius: 18px;
             overflow: hidden;
 
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+
         }
 
         img {
@@ -51,11 +57,5 @@
         }
 
 
-
-        &:hover {
-            img {
-                transform: scale(1.1);
-            }
-        }
     }
 }

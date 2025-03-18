@@ -12,42 +12,30 @@ class Menu extends Component
 {
 
     public $products; // Các sản phẩm hiển thị
-    public $default_products;
+    public $default_products; // trạng thái ban đầu của sản phẩm
+    public $data; // dữ liệu collection của sản phẩm
 
     public $categories; // Lưu các danh mục sản phẩm
     public $category_name = "Tất cả"; // Tên các danh mục
 
-    public $isHovered = [];
+    // public $isHovered = [];
 
 
     public function mount() {
 
-        $this->products = Http::get(Component::$url . 'products',
-        [
-            // 'per_page' => 9,
-            // 'page' => 1
-        ])->json();
+        $this->products = Http::get(Component::$url . 'products')->json();
 
         $this->default_products = $this->products;
 
+        $this->data = $this->products["data"];
+
         $this->categories = Http::get(Component::$url . 'product-categories')->json();
 
-        foreach ($this->products['data'] as $index => $product) {
+        // foreach ($this->products['data'] as $index => $product) {
             
-            $this->isHovered[$index] = false;
-        }
+        //     $this->isHovered[$index] = false;
+        // }
 
-
-
-    }
-
-    public function menu_pagination(string $page) {
-
-        // $this->products = Http::get(Component::$url . 'products',
-        // [
-        //     'per_page' => 9,
-        //     'page' => $page
-        // ])->json();
     }
 
     // Phương thức phân loại sản phẩm theo danh mục
@@ -55,10 +43,9 @@ class Menu extends Component
         
         $this->category_name = $category_name;
 
-        $this->products = Http::get(Component::$url . 'category',[
-            'category_id' => $category_id,
-            // 'per_page' => 9
-        ])->json();
+        $this->products["data"] = collect($this->data)->where('product_categories_id', $category_id)->values();
+
+        // dd($this->products);
     }
 
     public function show_all_products_btn() {
@@ -66,11 +53,10 @@ class Menu extends Component
         $this->reset('category_name');
         $this->products = $this->default_products;
     }
-
-    public function is_hover($status, $index)
-    {
-        $this->isHovered[$index] = $status;
-    }
+    // public function is_hover($status, $index)
+    // {
+    //     $this->isHovered[$index] = $status;
+    // }
 
     public function render()
     {

@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use  Livewire\Attributes\Title;
+use  Livewire\Attributes\Session;
+
 
 #[Title('Thanh toán')]
 class Checkout extends Component
@@ -16,8 +18,20 @@ class Checkout extends Component
     public $ipaddr;
     public $urlreturn = "http://localhost:8000/order";
 
+    #[Session(key: 'carts')]
+    public $carts;
+
+    #[Session(key: 'total')]
+    public $total; 
+
+    
+    #[Session(key: 'infor-delivery')]
+    public $infor_delivery;
+
 
     public function mount() {
+
+        dd($this->infor_delivery);
 
         $this->ipaddr = request()->ip();
         $this->amount = 259000;

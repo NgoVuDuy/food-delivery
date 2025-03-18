@@ -29,9 +29,7 @@ Route::apiResource('carts', CartController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('payments', PaymentController::class);
 
-
 //
-Route::get('/homepage-images', [FunctionController::class, 'getHomepageImages']);
 Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);
 Route::get('/search', [FunctionController::class, 'product_search']);
 Route::get('/count-cart', [FunctionController::class, 'count_cart']);
@@ -42,6 +40,7 @@ Route::get('/store-locations', [FunctionController::class, 'store_location']);
 Route::get('/directions', [FunctionController::class, 'directions']);
 Route::get('/typical-products', [FunctionController::class, 'typical_products']);
 Route::post('/login', [FunctionController::class, 'login']);
+Route::get('/place-details', [FunctionController::class, 'place_details']);
 Route::get('/payment/callback', [FunctionController::class, 'vnpayCallBack'])->name('vnpay.callback');
 
 

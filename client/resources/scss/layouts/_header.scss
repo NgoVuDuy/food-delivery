@@ -3,29 +3,32 @@
 
     padding: 4px;
     margin: 0px 8px;
-    position: relative;
     cursor: pointer;
     display: flex;
     align-items: center;
 
-    .header-cart-quantity {
-
-        position: absolute;
-
-        top: 16%;
-        right: -10%;
-        background-color: red;
-        color: white;
-        text-align: center;
-        width: 18px;
-        height: 18px;
-
-        span {
-            font: {
-                size: 13px
+    .cart-icon-link {
+        position: relative;
+        .header-cart-quantity {
+    
+            position: absolute;
+    
+            top: -8px;
+            right: -8px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            width: 18px;
+            height: 18px;
+    
+            span {
+                font: {
+                    size: 13px
+                }
             }
         }
     }
+
 
 
 }

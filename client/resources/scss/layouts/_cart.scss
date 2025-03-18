@@ -152,7 +152,7 @@
 .card-wrap {
     display: flex;
     flex-direction: column;
-    row-gap: 12px;
+    row-gap: 20px;
 
     .card-title {
 
@@ -165,6 +165,13 @@
     }
 
     .card-user-information {
+
+        .error {
+            display: block;
+            color: red;
+            margin-top: 6px;
+            font-size: 15px;
+        }
 
         .wrap {
 
@@ -186,6 +193,8 @@
                 width: 130px;
                 font-weight: bold;
                 color: $dark-blue;
+                display: flex;
+                align-items: center;
             }
 
             .note-text {
@@ -200,6 +209,17 @@
             }
         }
 
+        .input-name, .input-phone {
+            border: 1px $border-color solid;
+            border-radius: 4px;
+            padding: 3px 6px;
+            width: max-content;
+
+            &:focus {
+                box-shadow: none;
+                border: 2px $main-color solid;
+            }
+        }
 
     }
     .card-order-information {

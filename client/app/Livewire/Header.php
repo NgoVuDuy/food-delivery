@@ -35,6 +35,8 @@ class Header extends Component
     public function logout() {
 
         $this->user = null;
+
+        return $this->redirect('/home', navigate:true);
     }
 
     #[On('updatedCart')]

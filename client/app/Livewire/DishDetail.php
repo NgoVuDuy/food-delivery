@@ -2,10 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Cart;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Session;
+
 
 #[Title('Chi tiết món')]
 class DishDetail extends Component
@@ -26,9 +27,16 @@ class DishDetail extends Component
 
     public $isPizza = true; // Kiểm tra sản phẩm có phải pizza không - hiển thị options
 
+    // #[Session(key: 'user')]
+    // public $user;
+    #[Session(key: 'cartItems')]
+    public $cartItems;
+
     // Phương thức xây dựng
     public function mount(string $id)
     {
+
+        // $this->cartItems = null;
 
         // Gọi api lấy thông tin sản phẩm
         $this->product = Http::get(Component::$url . 'products' . '/' . $id)->json();
@@ -39,6 +47,7 @@ class DishDetail extends Component
         $this->options["size"] = [];
         $this->options["base"] = [];
         $this->options["border"] = [];
+
 
 
         if ($this->product["product_categories_id"] == 1) {
@@ -168,6 +177,24 @@ class DishDetail extends Component
     public function addToCart()
     {
 
+        $items = [
+            'product_id' => $this->product["id"],
+            'user_id' => 1,
+            'quantity' => $this->quantity,
+            'size' => $this->current_options["size"],
+            'base' => $this->current_options["base"],
+            'border' => $this->current_options["border"],
+            'total' => $this->product["price"],
+            'product' => [
+                'name' => $this->product["name"],
+                'image' => $this->product["image"],
+            ],
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+
+        $this->cartItems[] = $items;
+
         $response = Http::post(
 
             Component::$url . 'carts',
@@ -183,7 +210,6 @@ class DishDetail extends Component
                 'updated_at' => now()
             ]
         );
-
 
         // Nếu thêm vào giỏ hàng thành công
         if ($response->successful()) {

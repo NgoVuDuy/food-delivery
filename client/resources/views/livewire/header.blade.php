@@ -40,7 +40,7 @@
 
                         <div class="header-cart-icon">
 
-                            <a href="/cart" wire:navigate>
+                            <a href="/cart" wire:navigate class="cart-icon-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
                                     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
@@ -49,12 +49,12 @@
                                     <path
                                         d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
                                 </svg>
+                                <div
+                                    class=" header-cart-quantity rounded-circle d-flex justify-content-center align-items-center">
+                                    <span>{{ $count }}</span>
+                                </div>
                             </a>
 
-                            <div
-                                class="header-cart-quantity rounded-circle d-flex justify-content-center align-items-center">
-                                <span>{{ $count }}</span>
-                            </div>
 
                         </div>
                     </div>

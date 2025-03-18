@@ -17,13 +17,12 @@
             </div>
             <div>
 
-                <img src="{{ asset($current_image['data'][0]['image']) }}" alt="">
+                <img src="{{ asset($current_image) }}" alt="">
 
                 <div class="indicators d-flex justify-content-center mt-3">
 
-                    @foreach (array_slice($current_image['links'], 1, $page_total) as $link)
-                        <button wire:click="paginate_img({{ $link['label'] }})"
-                            class="{{ $link['active'] ? 'active' : '' }}"></button>
+                    @foreach ($images as $i => $image)
+                        <button wire:click="paginate_img({{ $i }})" class="{{ $i == $index ? 'active' : '' }}" ></button>
                     @endforeach
 
                 </div>
@@ -297,24 +296,24 @@
 
             </div>
             <div class="col-6">
-                <div class="row">
-                    @for ($i = 1; $i <= 4; $i++)
-                        <div class="col-12">
-                            <div class="home-menu-item d-flex align-items-center mt-4">
+                <div class="row row-gap-4">
+                    @for ($i = 1; $i <= count($menu) / 2; $i++)
+                        <div class="col-12 ">
+                            <div class="home-menu-item d-flex align-items-center mt-4 column-gap-4">
                                 <div class="home-menu-img">
-                                    <img src="{{ asset('Products/10099240.jpg') }}" alt="">
+                                    <img src="{{ asset($menu[$i]["image"]) }}" alt="">
                                 </div>
 
                                 <div class="home-menu-content">
                                     <div class="d-flex justify-content-between">
 
-                                        <div class="home-menu-name">Pizza phô mai ý</div>
-                                        <div class="home-menu-price">125.000đ</div>
+                                        <div class="home-menu-name">{{ $menu[$i]["name"] }}</div>
+                                        <div class="home-menu-price">{{ $menu[$i]["price"] }}</div>
                                     </div>
 
                                     <div class="separation"></div>
 
-                                    <div class="home-menu-desc">Phô mai được nhập khẩu trực tiếp từ Ý</div>
+                                    <div class="home-menu-desc">{{ $menu[$i]["description"]}}</div>
                                 </div>
                             </div>
                         </div>
@@ -325,24 +324,24 @@
 
             </div>
             <div class="col-6">
-                <div class="row">
-                    @for ($i = 1; $i <= 4; $i++)
+                <div class="row row-gap-4">
+                    @for ($i = count($menu) / 2; $i <= count($menu) - 1; $i++)
                         <div class="col-12">
-                            <div class="home-menu-item d-flex align-items-center mt-4">
+                            <div class="home-menu-item d-flex align-items-center mt-4 column-gap-4">
                                 <div class="home-menu-img">
-                                    <img src="{{ asset('Products/10099240.jpg') }}" alt="">
+                                    <img src="{{ asset($menu[$i]["image"]) }}" alt="">
                                 </div>
 
                                 <div class="home-menu-content">
                                     <div class="d-flex justify-content-between">
 
-                                        <div class="home-menu-name">Pizza phô mai ý</div>
-                                        <div class="home-menu-price">125.000đ</div>
+                                        <div class="home-menu-name">{{ $menu[$i]["name"] }}</div>
+                                        <div class="home-menu-price">{{ $menu[$i]["price"] }}</div>
                                     </div>
 
                                     <div class="separation"></div>
 
-                                    <div class="home-menu-desc">Phô mai được nhập khẩu trực tiếp từ Ý</div>
+                                    <div class="home-menu-desc">{{ $menu[$i]["description"] }}</div>
                                 </div>
                             </div>
                         </div>
@@ -350,6 +349,7 @@
 
 
                 </div>
+
             </div>
         </div>
     </div>
@@ -386,118 +386,123 @@
                 <div class="row">
 
                     <div class="row mt-3">
-    
+
                         <div class="col-3">
-    
+
                             <a href="" class="news-link">
-    
+
                                 <div class="news-item">
                                     <div class="img-wrap">
-    
+
                                         <img src="{{ asset('news_1.webp') }}" alt="">
                                     </div>
-    
-    
+
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-    
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
-    
+
                                 </div>
                             </a>
-    
+
                         </div>
                         <div class="col-3">
-                            <a href="" class="news-link"> 
-    
+                            <a href="" class="news-link">
+
                                 <div class="news-item">
                                     <div class="img-wrap">
-    
+
                                         <img src="{{ asset('news_2.webp') }}" alt="">
                                     </div>
-        
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-        
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-3">
                             <a href="" class="news-link">
-    
+
                                 <div class="news-item">
                                     <div class="img-wrap">
-    
+
                                         <img src="{{ asset('news_3.jpg') }}" alt="">
                                     </div>
-        
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-        
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-3">
                             <a href="" class="news-link">
-    
+
                                 <div class="news-item">
                                     <div class="img-wrap">
-    
+
                                         <img src="{{ asset('news_4.jpg') }}" alt="">
                                     </div>
-        
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-        
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
                                 </div>
                             </a>
                         </div>
-    
+
                         <div class="col-3 mt-5">
                             <a href="" class="news-link">
-    
+
                                 <div class="news-item">
                                     <div class="img-wrap">
-    
+
                                         <img src="{{ asset('news_3.jpg') }}" alt="">
                                     </div>
-        
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-        
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
                                 </div>
                             </a>
@@ -507,25 +512,26 @@
 
                                 <div class="news-item">
                                     <div class="img-wrap">
-        
+
                                         <img src="{{ asset('news_4.jpg') }}" alt="">
                                     </div>
-        
+
                                     <div class="news-time">
                                         1/1/1919
                                     </div>
                                     <div class="news-title">
                                         Pizza ngon nhất thế giới
                                     </div>
-        
+
                                     <div class="news-content">
-                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                                        pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ
+                                        Duy.
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-    
+
                 </div>
 
             </div>

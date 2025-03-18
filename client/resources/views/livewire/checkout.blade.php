@@ -113,51 +113,54 @@
 
                                 <div class="d-flex row-gap-2 flex-column">
 
-                                    @for ($i = 1; $i < 5; $i++)
+                                    @foreach ($carts as $index => $cart)
                                         <div class="cart-item-wrap d-flex justify-content-between align-items-center">
 
                                             <div class="cart-item-left d-flex align-items-center">
 
                                                 <div class="checkout-cart-item-img">
-                                                    <img src="{{ asset('images/products/pizzas/pizza-pho-mai.jpg') }}"
+                                                    <img src="{{ asset($cart['product']['image']) }}"
                                                         alt="" width="60px">
                                                 </div>
 
                                                 <div class="cart-item-info d-flex flex-column">
 
-                                                    <div class="cart-item-name">Pizza pho mai Ys</div>
+                                                    <div class="cart-item-name">{{ $cart['product']['name'] }}</div>
 
-                                                    <div class="cart-item-price">129000đ</div>
+                                                    <div class="cart-item-price">{{ $cart['total'] }}đ</div>
                                                 </div>
 
-                                                <div class="options">
+                                                @if (empty($cart['size']) && empty($cart['base']) && empty($cart['border']))
+                                                <div class=""></div>
+                                            @else
+                                                <div class="options" style="width: 40%">
                                                     <ul>
-                                                        <li>- Nhỏ (20 CM)</li>
-                                                        <li>- Mỏng</li>
-                                                        <li>- Viền Không Nhân</li>
-
+                                                        <li>- {{ $cart['size'] }}</li>
+                                                        <li>- {{ $cart['base'] }}</li>
+                                                        <li>- {{ $cart['border'] }}</li>
                                                     </ul>
                                                 </div>
+                                            @endif
 
                                             </div>
 
                                             <div class="cart-item-right d-flex align-items-center">
                                                 <div class="quantity">
-                                                    <span>x3</span>
+                                                    <span>x{{ $cart['quantity'] }}</span>
                                                 </div>
                                             </div>
 
                                         </div>
 
                                         <div class="item-separation"></div>
-                                    @endfor
+                                    @endforeach
 
                                     <div class="d-flex justify-content-end column-gap-5 pt-3">
                                         <div class="sum-title">
                                             Tổng cộng:
                                         </div>
                                         <div class="sum-monney">
-                                            129.000đ
+                                            {{ $total }}đ
                                         </div>
                                     </div>
 

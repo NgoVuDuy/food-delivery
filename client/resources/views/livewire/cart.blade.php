@@ -36,9 +36,9 @@
                         <div class="col-12">
 
                             <div class="cart-item-wrap d-flex justify-content-between align-items-center">
-                                <div class="cart-item-left d-flex align-items-center justify-content-between">
+                                <div class="cart-item-left d-flex align-items-center">
 
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center" style="width: 60%">
 
                                         <div class="cart-item-img">
                                             <img src="{{ asset($cart['product']['image']) }}" alt="">
@@ -54,7 +54,7 @@
                                     @if (empty($cart['size']) && empty($cart['base']) && empty($cart['border']))
                                         <div class=""></div>
                                     @else
-                                        <div class="options">
+                                        <div class="options" style="width: 40%">
                                             <ul>
                                                 <li>- {{ $cart['size'] }}</li>
                                                 <li>- {{ $cart['base'] }}</li>
@@ -95,14 +95,13 @@
                                     </div>
 
                                     <button title="Xóa" class="cart-item-delete"
-                                        wire:click="delete_cart_item({{ $cart['id'] }})">
+                                        wire:click="delete_cart_item({{ $index }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
                                             class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                         </svg>
-
                                     </button>
 
 
@@ -167,34 +166,50 @@
                                         <div class="d-flex">
                                             <span class="title">Tên người nhận: </span>
 
-                                            @if (empty($customer_name))
+                                            {{-- @if (empty($customer_name))
                                                 <span>Vui lòng nhập họ tên</span>
                                             @else
                                                 <span>{{ $customer_name }}</span>
-                                            @endif
+                                            @endif --}}
+                                            <div class="">
 
+                                                <input class="input-name form-control" type="text"
+                                                    placeholder="Nhập họ và tên" wire:model.live="customer_name">
+
+
+                                                @error('customer_name')
+                                                    <span class="error">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                        <span class="edit-text" data-bs-toggle="modal"
-                                            data-bs-target="#nameEditModal">Sửa</span>
+                                        {{-- <span class="edit-text" data-bs-toggle="modal"
+                                            data-bs-target="#nameEditModal">Sửa</span> --}}
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex">
                                             <span class="title">Số điện thoại: </span>
 
-                                            @if (empty($customer_phone))
+                                            {{-- @if (empty($customer_phone))
                                                 <span>Vui lòng nhập số điện thoại</span>
                                             @else
                                                 <span>{{ $customer_phone }}</span>
-                                            @endif
+                                            @endif --}}
+                                            <div class="">
+
+                                                <input class="input-phone form-control" type="text"
+                                                    placeholder="Nhập số điện thoại" wire:model.live="customer_phone">
+
+                                                @error('customer_phone')
+                                                    <span class="error">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                        <span class="edit-text" data-bs-toggle="modal"
-                                            data-bs-target="#phoneEditModal">Sửa</span>
+                                        {{-- <span class="edit-text" data-bs-toggle="modal"
+                                            data-bs-target="#phoneEditModal">Sửa</span> --}}
                                     </div>
 
 
                                 </div>
-
-
 
                             </div>
 
@@ -259,8 +274,6 @@
 
                             </div> --}}
 
-
-
                             <div class="card-sum-information rounded shadow p-3">
 
                                 <div class="card-sum d-flex justify-content-between align-items-center">
@@ -324,7 +337,7 @@
 
                                 @foreach ($predictions['predictions'] as $prediction)
                                     <button class="search-result-btn"
-                                        wire:click="setLocation('{{ $prediction['description'] }}')">{{ $prediction['description'] }}</button>
+                                        wire:click="setLocation('{{ $prediction['description'] }}', '{{ $prediction['place_id'] }}')">{{ $prediction['description'] }}</button>
                                 @endforeach
                             @endif
                         </div>
@@ -344,11 +357,11 @@
                         </div>
                         <div>
 
-                            {{-- <button type="button" class="aws-button" data-bs-dismiss="modal">Thoát</button> --}}
                             <button type="button" class="cold-button" wire:click="update_location()"
                                 data-bs-dismiss="modal" id="update-location-btn">Cập Nhật</button>
 
-                            <button type="button" class="cold-button d-none" id="conform-location-btn">Xác nhận</button>
+                            <button type="button" class="cold-button d-none" id="conform-location-btn">Xác
+                                nhận</button>
                         </div>
                     </div>
                 </div>
@@ -356,7 +369,7 @@
         </div>
 
         <!-- Modal sua ten khach hang -->
-        <div class="modal fade modal-name" id="nameEditModal" tabindex="-1" aria-labelledby="nameEditModal"
+        {{-- <div class="modal fade modal-name" id="nameEditModal" tabindex="-1" aria-labelledby="nameEditModal"
             aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -368,19 +381,18 @@
                     <div class="modal-body">
 
                         <input class="form-control" type="search" placeholder="Vui lòng nhập tên người dùng"
-                            wire:model.live="customer_name_input">
+                            wire:model="customer_name_input">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="aws-button" data-bs-dismiss="modal">Thoát</button>
-                        <button type="button" class="cold-button" wire:click="update_customer_name()"
-                            data-bs-dismiss="modal">Cập Nhật</button>
+                        <button type="button" class="cold-button" data-bs-dismiss="modal"
+                            wire:click="update_customer_name">Cập Nhật</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Modal sua so dien thoai khach hang-->
-        <div class="modal fade modal-phone" id="phoneEditModal" tabindex="-1" aria-labelledby="phoneEditModal"
+        {{-- <div class="modal fade modal-phone" id="phoneEditModal" tabindex="-1" aria-labelledby="phoneEditModal"
             aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -400,7 +412,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
     </div>
@@ -531,9 +543,8 @@
                 $wire.$set('longitude', current_longitude)
 
                 $wire.dispatch('current_location')
-            } ) 
-                
-            
+            })
+
 
             $('#current-location').click(function() {
 
@@ -556,6 +567,21 @@
                     }
                 );
             })
+
+            $wire.on('notLocation', () => {
+            Toastify({
+                text: "Vui lòng thêm vị trí giao hàng",
+                duration: 1000,
+                offset: {
+                    x: 14,
+                    y: 80
+                },
+                style: {
+                    background: "red",
+                    color: "white"
+                }
+            }).showToast();
+        })
         })
     </script>
 @endscript

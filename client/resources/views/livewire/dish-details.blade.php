@@ -30,6 +30,10 @@
 
                 <div class="dish-option-wrap bg-light">
 
+                    {{-- @if(!empty($cartItems))
+                        {{ $cartItems[3]["total"] }}
+                    @endif --}}
+
                     <div class="dish-option-name">
                         {{ $product['name'] }}
                     </div>
@@ -38,7 +42,7 @@
                         {{ $product['price'] }}đ
                     </div>
 
-                    <div class=" {{ $isPizza ? '' : 'd-none' }}" >
+                    <div class=" {{ $isPizza ? '' : 'd-none' }}">
 
                         <div class="dish-option-cover">
 
@@ -161,10 +165,26 @@
             })
 
         })
+        // Bắt sự kiện khi người dùng chưa đăng nhập
+        $wire.on('notSignin', () => {
+            Toastify({
+                text: "Vui lòng đăng nhập !",
+                duration: 1000,
+                offset: {
+                    x: 14,
+                    y: 80
+                },
+                style: {
+                    background: "red",
+                    color: "white"
+                }
+            }).showToast();
+        })
         // Bắt sự kiện sau khi thêm vào giỏ hàng thành công
         $wire.on('updatedCart', () => {
             Toastify({
                 text: "Thêm vào giỏ hàng thành công",
+                duration: 1000,
                 offset: {
                     x: 14,
                     y: 80

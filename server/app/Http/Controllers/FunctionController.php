@@ -19,14 +19,14 @@ class FunctionController extends Controller
     public $api_key = 'wwcDQvb8Ay0aSWt3iiy45D5YHcqjtSzFZgtmQHY5';
 
 
-    public function getHomepageImages()
-    {
+    // public function getHomepageImages()
+    // {
 
-        $images = Product::orderBy('created_at', 'desc')
-            ->paginate(1, ['image']);
+    //     $images = Product::orderBy('created_at', 'desc')
+    //         ->paginate(1, ['image']);
 
-        return response()->json($images, 200);
-    }
+    //     return response()->json($images, 200);
+    // }
 
     public function typical_products(Request $request)
     {
@@ -58,23 +58,6 @@ class FunctionController extends Controller
         $count_cart = count($carts);
 
         return response()->json($count_cart);
-    }
-
-    // Tìm kiếm địa chỉ giao hàng
-    public function location_search(Request $request)
-    {
-
-        $input = $request->query('input');
-        $location = '10.02119,105.76484';
-        $limit = 10;
-        $predictions = Http::get('https://rsapi.goong.io/place/autocomplete', [
-            'input' => $input,
-            'location' => $location,
-            'limit' => $limit,
-            'api_key' => $this->api_key
-        ])->json();
-
-        return response()->json($predictions, 200);
     }
 
 
@@ -163,8 +146,36 @@ class FunctionController extends Controller
 
         $coordinates = $polyline->decode($directions["routes"][0]["overview_polyline"]["points"]);
 
-
         return response()->json(["points" => $coordinates]);
+    }
+    // Tìm kiếm địa chỉ giao hàng
+    public function location_search(Request $request)
+    {
+
+        $input = $request->query('input');
+        $location = '10.02119,105.76484';
+        $limit = 10;
+        $predictions = Http::get('https://rsapi.goong.io/place/autocomplete', [
+            'input' => $input,
+            'location' => $location,
+            'limit' => $limit,
+            'api_key' => $this->api_key
+        ])->json();
+
+        return response()->json($predictions, 200);
+    }
+
+    // Trả về thông tin chi tiết một địa điểm
+    public function place_details(Request $request)
+    {
+
+        $place_id = $request->query('place_id');
+        $place = Http::get('https://rsapi.goong.io/place/detail', [
+            'place_id' => $place_id,
+            'api_key' => $this->api_key
+        ])->json();
+
+        return response()->json($place);
     }
     // Chức năng đăng nhập
     public function login(Request $request)
