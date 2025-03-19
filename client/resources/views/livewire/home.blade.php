@@ -199,7 +199,9 @@
 
                         <div class="product-content d-flex flex-column justify-content-center align-items-center mt-4">
 
-                            <p class="">{{ Str::limit($product['name'], 16, '...') }}</p>
+                            {{-- <p class="">{{ Str::limit($product['name'], 16, '...') }}</p> --}}
+                            <p class="">{{ $product['name'] }}</p>
+
 
                             <a href="{{ route('dish-details', $product['id']) }}" wire:navigate.hover><button
                                     class="cold-button">Xem thêm</button></a>

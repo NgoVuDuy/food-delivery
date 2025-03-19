@@ -18,6 +18,15 @@ class Header extends Component
     #[Session(key: 'user')]
     public $user; // Được xem là biến session
 
+    // #[Session(key: 'cartItems')]
+    // public $carts;
+
+    #[Session(key: 'infor-delivery')]
+    public $infor_delivery;
+
+    #[Session(key: 'total')]
+    public $total; // Tổng tiền của tất cả sản phẩm
+
     // public $username = '';
     // public $isLogin = false;
 
@@ -41,7 +50,10 @@ class Header extends Component
 
     #[On('updatedCart')]
     public function update_count_cart() {
+
         $this->count = Http::get(Component::$url . 'count-cart')->json();
+        // $this->count = count($this->cartItems);
+
 
     }
 

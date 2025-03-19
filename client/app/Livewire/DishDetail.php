@@ -27,8 +27,9 @@ class DishDetail extends Component
 
     public $isPizza = true; // Kiểm tra sản phẩm có phải pizza không - hiển thị options
 
-    // #[Session(key: 'user')]
-    // public $user;
+    #[Session(key: 'user')]
+    public $user;
+
     #[Session(key: 'cartItems')]
     public $cartItems;
 
@@ -37,6 +38,7 @@ class DishDetail extends Component
     {
 
         // $this->cartItems = null;
+        // dd($this->user);
 
         // Gọi api lấy thông tin sản phẩm
         $this->product = Http::get(Component::$url . 'products' . '/' . $id)->json();
@@ -47,8 +49,6 @@ class DishDetail extends Component
         $this->options["size"] = [];
         $this->options["base"] = [];
         $this->options["border"] = [];
-
-
 
         if ($this->product["product_categories_id"] == 1) {
 
@@ -106,7 +106,6 @@ class DishDetail extends Component
     // Phương thức giảm số lượng sản phẩm
     public function decrease()
     {
-
         // Giảm biến số lượng 1 đơn vị
         if ($this->quantity > 1) {
             $this->quantity--;
@@ -177,45 +176,77 @@ class DishDetail extends Component
     public function addToCart()
     {
 
-        $items = [
-            'product_id' => $this->product["id"],
-            'user_id' => 1,
-            'quantity' => $this->quantity,
-            'size' => $this->current_options["size"],
-            'base' => $this->current_options["base"],
-            'border' => $this->current_options["border"],
-            'total' => $this->product["price"],
-            'product' => [
-                'name' => $this->product["name"],
-                'image' => $this->product["image"],
-            ],
-            'created_at' => now(),
-            'updated_at' => now()
-        ];
+        // Tìm vị trí của sản phẩm trong giỏ hàng
+        $index = collect($this->cartItems)->search(function ($item) {
+            return $item['product_id'] == $this->product["id"] &&
 
-        $this->cartItems[] = $items;
+                $item['size'] == $this->current_options["size"] &&
+                $item['base'] == $this->current_options["base"] &&
+                $item['border'] == $this->current_options["border"];
+        });
 
-        $response = Http::post(
+        if ($index !== false) {
+            // Nếu sản phẩm đã tồn tại, tăng số lượng lên 1
+            $this->cartItems[$index]['quantity'] += 1;
 
-            Component::$url . 'carts',
-            [
+            $this->isAddToCart = true;
+        } else {
+            // Nếu chưa có, thêm mới vào giỏ hàng
+            $items = [
                 'product_id' => $this->product["id"],
                 'user_id' => 1,
                 'quantity' => $this->quantity,
                 'size' => $this->current_options["size"],
                 'base' => $this->current_options["base"],
                 'border' => $this->current_options["border"],
-                'total' => str_replace('.', '', $this->product["price"]),
+                'total' => $this->product["price"],
+                'product' => [
+                    'name' => $this->product["name"],
+                    'image' => $this->product["image"],
+                ],
                 'created_at' => now(),
                 'updated_at' => now()
-            ]
-        );
+            ];
 
-        // Nếu thêm vào giỏ hàng thành công
-        if ($response->successful()) {
+            $this->cartItems[] = $items; // Thêm sản phẩm vào biến session danh sách các món
 
             $this->isAddToCart = true;
+        }
+
+        // Kiểm tra xem người dùng có đăng nhập hay chưa
+        // Nếu đăng nhập thì thêm món vào db giỏ hàng
+        // Chưa thì không làm gì
+        if (!empty($this->user)) {
+
+            $response = Http::post(
+
+                Component::$url . 'carts',
+                [
+                    'product_id' => $this->product["id"],
+                    'user_id' => 1,
+                    'quantity' => $this->quantity,
+                    'size' => $this->current_options["size"],
+                    'base' => $this->current_options["base"],
+                    'border' => $this->current_options["border"],
+                    'total' => str_replace('.', '', $this->product["price"]),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
+            );
+
+            // Nếu thêm vào giỏ hàng thành công
+            if ($response->successful()) {
+
+                $this->isAddToCart = true;
+                // $this->dispatch('updatedCart');
+            }
+        }
+
+        if ($this->isAddToCart) {
+
             $this->dispatch('updatedCart');
+
+            // dd($this->cartItems);
         }
     }
 

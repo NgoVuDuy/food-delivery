@@ -13,13 +13,16 @@ class SignIn extends Component
 
     #[Validate('required|string|min:8|max:16|regex:/^(\+?\d{1,4}[-.\s]?)?(\d{8,15})$/')]
     public $phone_number;
-    
+
 
     #[Validate('required|string|min:8|max:16|regex:/^[\w]+$/')]
     public $pwd;
 
     #[Session(key: 'user')]
     public $user; // Được xem là biến session
+
+    #[Session(key: 'cartItems')]
+    public $carts;
 
     public $message = '';
     public $is_success = null;
@@ -34,15 +37,28 @@ class SignIn extends Component
             "password" => $this->pwd
         ])->json();
 
+        // Đăng nhập thành công
         if($response["code"] == 1) {
 
             $this->user = $response["user"];
             $this->is_success = true;
 
+            // Lấy session giỏ hàng lưu vào db
+            // if(!empty($this->carts)) {
+
+            //     foreach($this->carts as $carts) {
+
+            //     }
+            // }
+            // Lấy thông tin đăng nhập xét cho biến session
+
+
+        // Đăng nhập thất bại
         } else {
             $this->is_success = false;
 
         }
+    
         $this->message = $response["message"];
 
         return $this->redirect('/home', navigate:true);

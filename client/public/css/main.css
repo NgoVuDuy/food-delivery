@@ -622,6 +622,7 @@ footer .footer-col h6 {
   padding: 0px 20px;
   font-size: 20px;
   color: #33539e;
+  height: 60px;
 }
 .home-otd-product-wrap .product-content button {
   z-index: 2;

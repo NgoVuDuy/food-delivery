@@ -24,7 +24,7 @@
 
                                     <div class="menu-item-content p-3">
                                         <div class="menu-name">
-                                            <p class="">{{ Str::limit($product['name'], 16, ' ...') }}</p>
+                                            <p class="">{{ $product['name'] }}</p>
                                         </div>
 
 

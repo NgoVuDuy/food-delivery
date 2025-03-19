@@ -68,7 +68,7 @@
 
                                         <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                            <span>Cần Thơ</span>
+                                            <span>{{ $infor_delivery['place_name'] }}</span>
 
                                         </div>
 
@@ -78,7 +78,7 @@
                                         <div class="d-flex">
                                             <span class="title">Từ: </span>
 
-                                            <span>Chi nhánh Nguyễn Văn Linh</span>
+                                            <span>{{ $infor_delivery["from"]["store_name"] }}</span>
 
                                         </div>
 
@@ -88,7 +88,7 @@
                                         <div class="d-flex">
                                             <span class="title">Tên người nhận: </span>
 
-                                            <span>Ngo vu duy</span>
+                                            <span>{{ $infor_delivery['name'] }}</span>
 
                                         </div>
 
@@ -97,7 +97,7 @@
                                         <div class="d-flex">
                                             <span class="title">Số điện thoại: </span>
 
-                                            <span>Ngo vu duy </span>
+                                            <span>{{ $infor_delivery['phone'] }}</span>
                                         </div>
 
                                     </div>

@@ -40,9 +40,6 @@ class Cart extends Component
     public $user; // Được xem là biến session
 
     #[Session(key: 'cartItems')]
-    public $cartItems;
-
-    #[Session(key: 'carts')]
     public $carts;
 
     #[Session(key: 'total')]
@@ -51,24 +48,33 @@ class Cart extends Component
     #[Session(key: 'infor-delivery')]
     public $infor_delivery;
 
-    public  $place_id;
+    public  $place_id = null;
+
+    // #[Session(key: 'carts-copy')]
+    // public $carts_copy; // Lưu lại session cũ sau khi người dùng đã đăng nhập
 
     // Phương thức xây dựng
     public function mount()
     {
 
-        // Lấy các sản phẩm trong giỏ hàng
-        // $this->carts = Http::get(Component::$url . 'carts')->json();
-        $this->carts = $this->cartItems;
-
-        // Chuyển đổi Carbon thành chuỗi datetime
-        $json = json_encode(array_map(function ($item) {
-            $item['created_at'] = $item['created_at']->toDateTimeString();
-            $item['updated_at'] = $item['updated_at']->toDateTimeString();
-            return $item;
-        },  $this->carts), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
+        // $this->carts = null;
+        // $this-> infor_delivery = null;
+        // $this->user = null;
+        // $this->carts_copy = null;
         // dd($this->carts);
+
+        if (!empty($this->infor_delivery)) {
+
+            $this->delivery_location = $this->infor_delivery['place_name'];
+            $this->place_id = $this->infor_delivery['place_id'];
+            $this->customer_name = $this->infor_delivery['name'];
+            $this->customer_phone = $this->infor_delivery['phone'];
+        }
+        // Nếu đã đăng nhập
+        if (!empty($this->user)) {
+
+            $this->carts = Http::get(Component::$url . 'carts')->json();
+        }
 
         // Nếu có sản phẩm
         if (!empty($this->carts)) {
@@ -76,7 +82,7 @@ class Cart extends Component
             // Set giá trị mặc định
             foreach ($this->carts as $index => $cart) {
 
-                $this->default_price[$index] = $cart["total"] / $cart["quantity"];
+                $this->default_price[$index] = (float) $cart["total"] / $cart["quantity"];
                 $this->default_quantity[$index] = $cart["quantity"];
                 $this->total_item[$index] = $cart["total"];
             }
@@ -98,10 +104,13 @@ class Cart extends Component
             $this->default_quantity[$index]--;
         }
 
+        // Giá của sản phẩm
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
 
+        // 
         $this->total_item[$index] = $this->carts[$index]["total"];
 
+        // Cập nhật lại tổng giá
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
         }, $this->total_item)), 0, '.', '.');
@@ -115,6 +124,7 @@ class Cart extends Component
         }
 
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
+        $this->carts[$index]["quantity"] = $this->default_quantity[$index];
 
         $this->total_item[$index] = $this->carts[$index]["total"];
 
@@ -134,6 +144,7 @@ class Cart extends Component
         }
 
         $this->carts[$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
+        $this->carts[$index]["quantity"] = $this->default_quantity[$index];
 
         $this->total_item[$index] = $this->carts[$index]["total"];
 
@@ -142,51 +153,37 @@ class Cart extends Component
         }, $this->total_item)), 0, '.', '.');
     }
 
-    // Xóa một sản phẩm
-    public function delete_cart_item(string $cart_item_id)
+    public function delete_cart_item(string $cart_item_id, string $index)
     {
+        // dd($cart_item_id);
+        // Kiểm tra xem item có tồn tại không trước khi xóa
+        if (!isset($this->carts[$cart_item_id])) {
+            return;
+        }
 
+        // Xóa item khỏi mảng carts
         unset($this->carts[$cart_item_id]);
-        unset($this->cartItems[$cart_item_id]);
 
-
+        // Nếu giỏ hàng trống sau khi xóa
         if (empty($this->carts)) {
             $this->isEmptyCart = true;
         } else {
-
             unset($this->default_price[$cart_item_id]);
             unset($this->default_quantity[$cart_item_id]);
             unset($this->total_item[$cart_item_id]);
         }
 
-        // $response = Http::delete(Component::$url . 'carts' . '/' . $cart_item_id);
+        // Nếu người dùng đã đăng nhập, gửi request API để cập nhật server
+        if (!empty($this->user)) {
+            $response = Http::delete(Component::$url . 'carts/' . $index);
 
-        // dd($cart_item_id);
+            if ($response->successful()) {
+                $this->dispatch('updateCountCart');
+            }
+        }
 
-        // if ($response->successful()) {
-
-        // $this->dispatch('updateCountCart');
-
-        // foreach ($this->carts as $index => $cart) {
-
-        //     if ($cart[$index] == $cart_item_id) {
-
-        //         unset($this->carts[$index]);
-
-        //         if (empty($this->carts)) {
-        //             $this->isEmptyCart = true;
-        //         } else {
-
-        //             unset($this->default_price[$index]);
-        //             unset($this->default_quantity[$index]);
-        //             unset($this->total_item[$index]);
-        //         }
-        //         break;
-        //     }
-        // }
-
+        // Nếu giỏ hàng vẫn còn sản phẩm, cập nhật lại mảng
         if (!empty($this->carts)) {
-
             $this->carts = array_values($this->carts);
             $this->default_price = array_values($this->default_price);
             $this->default_quantity = array_values($this->default_quantity);
@@ -194,20 +191,18 @@ class Cart extends Component
 
             $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
         }
-        // } 
-        // else {
-        // }
     }
+
 
     // Phương thức tìm kiếm địa điểm
     public function updatedLocationSearch(string $value)
     {
 
         $this->predictions = Http::get(Component::$url . 'location-search', [
+
             'input' => $this->location_search,
 
         ])->json();
-
     }
 
     // Cập nhật địa điểm lên trường input
@@ -221,7 +216,27 @@ class Cart extends Component
     // Cập nhật địa điểm giao hàng
     public function update_location()
     {
-        $this->delivery_location = $this->location_search;
+
+        if (!empty($this->place_id)) {
+
+            if (!empty($this->predictions)) {
+
+                // kiểm tra input có hợp lệ không
+                $descriptions = array_column($this->predictions['data'], 'description'); // Lấy trường tên địa điểm trong mảng
+                $index = array_search($this->location_search, $descriptions); // tìm có trường input có trùng với giá trị trong mảng không
+
+                // dd( $descriptions);
+
+                if ($index !== false) {
+
+                    // dd($this->predictions);
+
+                    $this->delivery_location = $this->location_search;
+                }
+            } else {
+                $this->delivery_location = $this->location_search;
+            }
+        }
     }
 
     // Lấy địa điểm hiện tại
@@ -238,39 +253,36 @@ class Cart extends Component
         $this->place_id = $results["results"][0]["place_id"];
     }
 
-    // public function update_customer_name()
-    // {
-
-    //     $this->customer_name = $this->customer_name_input;
-    // }
-
-    // public function update_customer_phone()
-    // {
-
-    //     $this->customer_phone = $this->customer_phone_input;
-    // }
     // nút thanh toán
     public function payment()
-    {   
+    {
         $this->validate();
 
-        if(empty($this->delivery_location)) {
+        if (empty($this->delivery_location)) {
 
             $this->dispatch("notLocation");
         } else {
 
+            // Gọi api để chuyển đổi place id thành vĩ độ kinh độ
+            $location = Http::get(Component::$url . 'place-details', [
+                "place_id" => $this->place_id
+            ])->json();
+
             $this->infor_delivery = [
-    
+
                 "name" => $this->customer_name,
-                "place_name" => $this->delivery_location,
                 "phone" => $this->customer_phone,
+                "place_name" => $this->delivery_location,
                 "place_id" => $this->place_id,
-    
+                "from" => null,
+                "location" => $location["location"]
+
             ];
+
+            // dd($this->infor_delivery);
 
             return $this->redirect('/checkout', navigate: true);
         }
-
     }
     public function render()
     {

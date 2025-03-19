@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CartResource;
+use App\Http\Resources\PredictionResource;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -17,7 +19,6 @@ class FunctionController extends Controller
 {
     //
     public $api_key = 'wwcDQvb8Ay0aSWt3iiy45D5YHcqjtSzFZgtmQHY5';
-
 
     // public function getHomepageImages()
     // {
@@ -88,6 +89,7 @@ class FunctionController extends Controller
     // Trả về thông tin cách chi nhánh cửa hàng
     public function store_location()
     {
+        // 10.03202,105.75005;10.03979,105.76169;10.02501,105.74947;10.02732,105.77019
 
         $store_locations = [
             [
@@ -126,6 +128,7 @@ class FunctionController extends Controller
 
         return response()->json($store_locations, 201);
     }
+
     // Trả về đường đi từ một điểm đến  một hay nhiều điểm
     public function directions(Request $request)
     {
@@ -146,7 +149,21 @@ class FunctionController extends Controller
 
         $coordinates = $polyline->decode($directions["routes"][0]["overview_polyline"]["points"]);
 
-        return response()->json(["points" => $coordinates]);
+        $distance = $directions["routes"][0]["legs"][0]["distance"];
+        $duration = $directions["routes"][0]["legs"][0]["duration"];
+
+
+        return response()->json([
+            "points" => $coordinates,
+            "distance" => [
+                "text" => $distance["text"],
+                "value" => $distance["value"]
+            ],
+            "duration" => [
+                "text" => $duration["text"],
+                "value" => $duration["value"]
+            ],
+        ]);
     }
     // Tìm kiếm địa chỉ giao hàng
     public function location_search(Request $request)
@@ -162,7 +179,8 @@ class FunctionController extends Controller
             'api_key' => $this->api_key
         ])->json();
 
-        return response()->json($predictions, 200);
+        // return response()->json($predictions["predictions"]);
+        return PredictionResource::collection($predictions["predictions"]);
     }
 
     // Trả về thông tin chi tiết một địa điểm
@@ -175,7 +193,7 @@ class FunctionController extends Controller
             'api_key' => $this->api_key
         ])->json();
 
-        return response()->json($place);
+        return response()->json(["location" => $place["result"]["geometry"]["location"]]);
     }
     // Chức năng đăng nhập
     public function login(Request $request)
