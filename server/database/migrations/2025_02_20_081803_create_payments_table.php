@@ -13,7 +13,26 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+        
+            $table->unsignedBigInteger('order_id');
+
+            $table->string('vnp_Amount');
+            $table->string('vnp_BankCode');
+            $table->string('vnp_BankTranNo');
+            $table->string('vnp_CardType');
+            $table->string('vnp_OrderInfo');
+            $table->string('vnp_PayDate');
+            $table->string('vnp_ResponseCode');
+            $table->string('vnp_TmnCode');
+            $table->string('TransactionNo');
+            $table->string('TransactionStatus');
+            $table->string('vnp_TxnRef');
+            $table->string('vnp_SecureHash');
+
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+
         });
     }
 

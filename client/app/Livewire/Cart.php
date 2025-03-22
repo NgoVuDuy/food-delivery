@@ -27,7 +27,7 @@ class Cart extends Component
     public $latitude = 0; // Lưu vĩ độ hiện tại của khách hàng
     public $longitude = 0; // Lưu kinh độ hiện tại của khách hàng
 
-    #[Validate('required|string|min:8|max:16|regex:/^[\w]+$/')]
+    #[Validate('required|string|min:8|max:16')]
     public $customer_name = ''; // Tên khách hàng
 
     #[Validate('required|string|min:8|max:16|regex:/^(\+?\d{1,4}[-.\s]?)?(\d{8,15})$/|')]
@@ -39,7 +39,7 @@ class Cart extends Component
     #[Session(key: 'user')]
     public $user; // Được xem là biến session
 
-    #[Session(key: 'cartItems')]
+    #[Session(key: 'carts')]
     public $carts;
 
     #[Session(key: 'total')]
@@ -50,30 +50,48 @@ class Cart extends Component
 
     public  $place_id = null;
 
-    // #[Session(key: 'carts-copy')]
-    // public $carts_copy; // Lưu lại session cũ sau khi người dùng đã đăng nhập
-
     // Phương thức xây dựng
     public function mount()
     {
-
-        // $this->carts = null;
-        // $this-> infor_delivery = null;
-        // $this->user = null;
-        // $this->carts_copy = null;
-        // dd($this->carts);
-
         if (!empty($this->infor_delivery)) {
 
-            $this->delivery_location = $this->infor_delivery['place_name'];
-            $this->place_id = $this->infor_delivery['place_id'];
+            $this->delivery_location = $this->infor_delivery['to']['place_name'];
+            $this->place_id = $this->infor_delivery['to']['place_id'];
             $this->customer_name = $this->infor_delivery['name'];
             $this->customer_phone = $this->infor_delivery['phone'];
         }
-        // Nếu đã đăng nhập
+
+        // Nếu đã đăng nhập, lấy giỏ hàng của người dùng
         if (!empty($this->user)) {
 
-            $this->carts = Http::get(Component::$url . 'carts')->json();
+            // Lấy giỏ hàng
+            $this->carts = Http::get(Component::$url . 'carts', [
+                'user_id' => $this->user["id"]
+                
+            ])->json();
+
+            dd($this->carts);
+
+            // Lấy địa chỉ người dùng
+            $address = Http::get(Component::$url . 'addresses', [
+                'user_id' => $this->user["id"],
+
+            ])->json();
+
+            if (!empty($address)) {
+
+                $this->delivery_location = $address[0]['place_name'];
+                $this->place_id = $address[0]['place_id'];
+                $this->customer_name = $address[0]['customer_name'];
+                $this->customer_phone = $address[0]['customer_phone'];
+            } else {
+
+                // $this->delivery_location = $address[0]['place_name'];
+                // $this->place_id = $address[0]['place_id'];
+
+                $this->customer_name = $this->user["name"];
+                $this->customer_phone = $this->user["phone"];
+            }
         }
 
         // Nếu có sản phẩm
@@ -191,6 +209,8 @@ class Cart extends Component
 
             $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
         }
+
+        $this->dispatch('updatedCart');
     }
 
 
@@ -217,8 +237,10 @@ class Cart extends Component
     public function update_location()
     {
 
+        // có chọn các địa điểm
         if (!empty($this->place_id)) {
 
+            // có dữ liệu
             if (!empty($this->predictions)) {
 
                 // kiểm tra input có hợp lệ không
@@ -266,20 +288,33 @@ class Cart extends Component
             // Gọi api để chuyển đổi place id thành vĩ độ kinh độ
             $location = Http::get(Component::$url . 'place-details', [
                 "place_id" => $this->place_id
+
             ])->json();
 
             $this->infor_delivery = [
+                
+                // "user_id" => null,
+                // "name" => $this->customer_name, // Tên khách hàng
+                // "phone" => $this->customer_phone, // Số điện thoại khách hàng
+                // "place_name" => $this->delivery_location, // Tên địa chỉ giao đến
+                // "place_id" => $this->place_id, // Thông tin địa chỉ giao đến (vĩ độ kinh độ)
+                // "from" => null, // Chi nhánh làm nơi giao hàng (tên, vĩ độ, kinh độ)
+                // "location" => $location["location"], // kinh độ vĩ độ của khách hàng
+                // "points" => null // tọa độ dùng để vẽ đường đi
 
-                "name" => $this->customer_name,
-                "phone" => $this->customer_phone,
-                "place_name" => $this->delivery_location,
-                "place_id" => $this->place_id,
-                "from" => null,
-                "location" => $location["location"]
+                "user_id" => null,
+                "name" => $this->customer_name, // Tên khách hàng
+                "phone" => $this->customer_phone, // Số điện thoại khách hàng
+                "from" => null, // Chi nhánh làm nơi giao hàng (tên, vĩ độ, kinh độ)
+                "to" => [
+                    "place_name" => $this->delivery_location,
+                    "place_id" => $this->place_id, // Thông tin địa chỉ giao đến (vĩ độ kinh độ)
+                    "lat" => $location["location"]["lat"],
+                    "lng" => $location["location"]["lng"]
+                ], // kinh độ vĩ độ của khách hàng
+                "points" => null // tọa độ dùng để vẽ đường đi
 
-            ];
-
-            // dd($this->infor_delivery);
+            ]; // => sẽ lưu vào bảng orders
 
             return $this->redirect('/checkout', navigate: true);
         }
@@ -296,7 +331,7 @@ class Cart extends Component
             'customer_name.required' => 'Vui lòng nhập tên người dùng.',
             'customer_name.min' => 'Độ dài phải từ 8 đến 16 ký tự.',
             'customer_name.max' => 'Độ dài phải từ 8 đến 16 ký tự.',
-            'customer_name.regex' => 'Tên người dùng không được chứa ký tự đặc biệt hoặc khoảng trắng.',
+            // 'customer_name.regex' => 'Tên người dùng không được chứa ký tự đặc biệt hoặc khoảng trắng.',
 
             'customer_phone.required' => 'Vui lòng nhập số điện thoại.',
             'customer_phone.regex' => 'Số điện thoại không đúng định dạng.',

@@ -68,7 +68,7 @@
 
                                         <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                            <span>{{ $infor_delivery['place_name'] }}</span>
+                                            <span>{{ $infor_delivery['to']['place_name'] }}</span>
 
                                         </div>
 

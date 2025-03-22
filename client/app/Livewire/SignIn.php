@@ -21,8 +21,8 @@ class SignIn extends Component
     #[Session(key: 'user')]
     public $user; // Được xem là biến session
 
-    #[Session(key: 'cartItems')]
-    public $carts;
+    // #[Session(key: 'cartItems')]
+    // public $carts;
 
     public $message = '';
     public $is_success = null;

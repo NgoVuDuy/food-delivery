@@ -14,7 +14,7 @@ class product extends Model
         'name', 'price', 'description', 'image', 'product_categories_id'
     ];
 
-    public function categories() {
+    public function category() {
         return $this -> belongsTo(ProductCategory::class, 'product_categories_id');
     }
 
@@ -22,8 +22,12 @@ class product extends Model
         return $this -> belongsToMany(Option::class, 'product_option');
     }
 
-    public function carts() {
-        return $this-> hasMany(Cart::class, 'product_id');
+    // public function carts() {
+    //     return $this-> hasMany(Cart::class, 'product_id');
+    // }
+
+    public function cartItems() {
+        return $this-> hasMany(CartItem::class, 'product_id');
     }
     
 }

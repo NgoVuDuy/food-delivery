@@ -11,8 +11,16 @@ class Cart extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id', 'user_id', 'quantity', 'size', 'base', 'border', 'total'
+        'user_id'
     ];
+
+    // Một giỏ hàng thuộc về một người dùng
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+    public function cartItems() {
+        return $this->hasMany(CartItem::class, 'cart_id');
+    }
 
     public function product() {
 

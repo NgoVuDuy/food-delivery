@@ -51,7 +51,7 @@
                             </div>
                             @foreach ($options['size'] as $size)
                                 <button class="size-btn"
-                                    wire:click="size('{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
+                                    wire:click="size('{{ $size['id'] }}','{{ $size['name'] }}', '{{ $size['price_modifier'] }}')"
                                     wire:ignore>{{ $size['name'] }} <span> +
                                         {{ $size['price_modifier'] }}đ</span></button>
                             @endforeach
@@ -65,7 +65,7 @@
                             </div>
 
                             @foreach ($options['base'] as $base)
-                                <button class="base-btn" wire:click="base('{{ $base['name'] }}')"
+                                <button class="base-btn" wire:click="base('{{ $base['id'] }}','{{ $base['name'] }}')"
                                     wire:ignore>{{ $base['name'] }}</button>
                             @endforeach
 
@@ -78,7 +78,7 @@
 
                             @foreach ($options['border'] as $border)
                                 <button class="border-btn"
-                                    wire:click="border('{{ $border['name'] }}', {{ $border['price_modifier'] }})"
+                                    wire:click="border('{{ $border['id'] }}','{{ $border['name'] }}', {{ $border['price_modifier'] }})"
                                     wire:ignore>
                                     {{ $border['name'] }}<span> + {{ $border['price_modifier'] }}đ</span>
                                 </button>

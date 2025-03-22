@@ -97,6 +97,7 @@
                                         </div>
 
                                         <button title="Xóa" class="cart-item-delete"
+
                                             wire:click="delete_cart_item({{ $index }}, {{ $cart["id"] }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
@@ -115,7 +116,6 @@
                             <div class="item-separation"></div>
                         @endforeach
                     @endif
-
 
                 </div>
 
@@ -479,6 +479,7 @@
                 // Hiện nút xác nhận
                 $('#conform-location-btn').removeClass('d-none')
 
+                // $wire.$set('predictions', null);
 
                 var coordinates = document.getElementById('coordinates');
 
@@ -545,6 +546,7 @@
 
                 $wire.$set('latitude', current_latitude)
                 $wire.$set('longitude', current_longitude)
+                $wire.$set('predictions', null)
 
                 $wire.dispatch('current_location')
             })

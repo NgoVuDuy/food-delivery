@@ -10,7 +10,7 @@ use Livewire\Attributes\Validate;
 class SignUp extends Component
 {
 
-    #[Validate('required|string|min:8|max:16|regex:/^[\w]+$/')]
+    #[Validate('required|string|min:8|max:16')]
     public $name = '';
 
     #[Validate('required|string|min:8|max:16|regex:/^(\+?\d{1,4}[-.\s]?)?(\d{8,15})$/|')]
@@ -58,7 +58,6 @@ class SignUp extends Component
             'name.required' => 'Vui lòng nhập tên người dùng.',
             'name.min' => 'Độ dài phải từ 8 đến 16 ký tự.',
             'name.max' => 'Độ dài phải từ 8 đến 16 ký tự.',
-            'name.regex' => 'Tên người dùng không được chứa ký tự đặc biệt hoặc khoảng trắng.',
 
             'phone_number.required' => 'Vui lòng nhập số điện thoại.',
             'phone_number.regex' => 'Số điện thoại không đúng định dạng.',

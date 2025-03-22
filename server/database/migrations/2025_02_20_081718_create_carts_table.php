@@ -12,20 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->id();
+            
+            $table->id(); //
 
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
-            $table->integer('quantity');
-            $table->string('size')->nullable();
-            $table->string('base')->nullable();
-            $table->string('border')->nullable();
-            $table->double('total');
+            // $table->unsignedBigInteger('product_id'); // id sản phẩm
+            $table->unsignedBigInteger('user_id'); // id khách hàng
+            // $table->integer('quantity'); // số lượng sản phẩm
+
+            // // đối với pizza
+            // $table->string('size')->nullable(); //  kích cỡ
+            // $table->string('base')->nullable(); // đế bánh
+            // $table->string('border')->nullable(); // viền bánh
+            // $table->double('total'); // Giá tiền
 
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('orders_id')->references('id')->on('orders')->onDelete('cascade');
+
         });
     }
 

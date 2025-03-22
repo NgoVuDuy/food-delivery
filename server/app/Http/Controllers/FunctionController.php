@@ -51,10 +51,12 @@ class FunctionController extends Controller
     }
 
     // Đếm số sản phẩm có trong giỏ hàng
-    public function count_cart()
+    public function count_cart(Request $request)
     {
 
-        $carts = Cart::with('product')->get();
+        $user_id = $request->query('user_id');
+
+        $carts = Cart::with('product')->where('user_id', $user_id)->get();
 
         $count_cart = count($carts);
 
@@ -85,48 +87,6 @@ class FunctionController extends Controller
         $products = Product::where('product_categories_id', $category_id)->paginate($per_page);
 
         return ProductResource::collection($products);
-    }
-    // Trả về thông tin cách chi nhánh cửa hàng
-    public function store_location()
-    {
-        // 10.03202,105.75005;10.03979,105.76169;10.02501,105.74947;10.02732,105.77019
-
-        $store_locations = [
-            [
-                'name' => 'Chi nhánh Nguyễn Văn Linh',
-                'open' => '9AM - 10PM',
-                'address' => '334 Nguyễn Văn Linh, An Khánh, Ninh Kiều, Cần Thơ',
-                'latitude' => 10.03202,
-                'longitude' => 105.75005,
-
-            ],
-            [
-                'name' => 'Chi nhánh Nguyễn Văn Cừ',
-                'open' => '9AM - 10PM',
-                'address' => '132 Đường Nguyễn Văn Cừ, Ninh Kiều, Cần Thơ',
-                'latitude' => 10.03979,
-                'longitude' => 105.76169,
-
-            ],
-            [
-                'name' => 'Chi nhánh Trần Hoàng Na',
-                'open' => '9AM - 10PM',
-                'address' => '34 Trần Hoàng Na, Phường An Khánh, Ninh Kiều, Cần Thơ',
-                'latitude' => 10.02501,
-                'longitude' => 105.74947,
-
-            ],
-            [
-                'name' => 'Chi nhánh 3 tháng 2',
-                'open' => '9AM - 10PM',
-                'address' => '146A 3 Tháng 2, Xuân Khánh, Ninh Kiều, Cần Thơ',
-                'latitude' => 10.02732,
-                'longitude' => 105.77019,
-
-            ],
-        ];
-
-        return response()->json($store_locations, 201);
     }
 
     // Trả về đường đi từ một điểm đến  một hay nhiều điểm
@@ -221,7 +181,6 @@ class FunctionController extends Controller
         //         'created_at' => now(),
         //         'updated_at' => now()
         //     ],
-
         // ]);
 
         return redirect("http://localhost:8000/order");

@@ -11,10 +11,21 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        $user_id = $request->query('user_id');
         //
-        $carts = Cart::with('product')->get();
+        $carts = Cart::with('user')
+        ->with('cartItems.product')
+        ->with('cartItems.sizeOption')
+        ->with('cartItems.baseOption')
+        ->with('cartItems.borderOption')
+        ->with('cartItems.product')
+
+        ->where('user_id', $user_id)->get();
+
+        // return response()->json($carts);
+
 
         return response()->json(CartResource::collection($carts));
     }
@@ -24,26 +35,28 @@ class CartController extends Controller
     public function store(Request $request)
     {
         //
-        $cart = $request->all();
+        $data = $request->all();
 
-        $exists = Cart::where('product_id', $cart["product_id"])
+        $cart = Cart::create($data);
 
-            ->where('size', $cart["size"])
-            ->where('base', $cart["base"])
-            ->where('border', $cart["border"])
-            ->first();
+        // $exists = Cart::where('product_id', $cart["product_id"])
 
-        if ($exists) {
+        //     ->where('size', $cart["size"])
+        //     ->where('base', $cart["base"])
+        //     ->where('border', $cart["border"])
+        //     ->first();
 
-            $exists->quantity += $cart["quantity"];
-            $exists->total += $cart["total"];
-            $exists->save();
-        } else {
+        // if ($exists) {
 
-            Cart::create($cart);
-        }
+        //     $exists->quantity += $cart["quantity"];
+        //     $exists->total += $cart["total"];
+        //     $exists->save();
+        // } else {
 
-        return response()->json($cart, 201);
+        //     Cart::create($cart);
+        // }
+
+        return response()->json($cart);
     }
 
     /**

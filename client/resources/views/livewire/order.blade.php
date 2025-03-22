@@ -128,8 +128,6 @@
 
                 </div>
 
-                <div id='map' class="mt-5"></div>
-
                 {{-- <div class="order-details-wrap mt-5">
                     <div class="order-details-title">
 
@@ -193,7 +191,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                    <span>{{ $infor_delivery['place_name'] }}</span>
+                                    <span>{{ $infor_delivery['to']['place_name'] }}</span>
 
                                 </div>
 
@@ -271,6 +269,14 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-12">
+
+                <div id='map' class="mt-5"></div>
+            </div>
+
+        </div>
+
         <div id="chat-box" class="delivery-man-contact d-none">
             <div class="chat-box bg-light shadow">
                 <div class="delivery-man-info d-flex align-items-center justify-content-between">
@@ -328,8 +334,8 @@
             goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
             $infor_delivery = $wire.$get('infor_delivery')
 
-            $customer_lat = $infor_delivery["location"]["lat"]
-            $customer_lng = $infor_delivery["location"]["lng"]
+            $customer_lat = $infor_delivery["to"]["lat"]
+            $customer_lng = $infor_delivery["to"]["lng"]
 
             $store_lat = $infor_delivery["from"]["lat"];
             $store_lng = $infor_delivery["from"]["lng"];
@@ -375,7 +381,7 @@
                     closeOnClick: false
                 })
                 .setLngLat([$store_lng, $store_lat])
-                .setHTML("<span>NVD's Pizzeria</span>")
+                .setHTML("<span>Người Giao Hàng</span>")
                 .addTo(map);
 
             new goongjs.Popup({
@@ -387,6 +393,44 @@
                 .setLngLat([$customer_lng, $customer_lat])
                 .setHTML("<span>Bạn ở đây</span>")
                 .addTo(map);
+
+            let infor_delivery = $wire.$get('infor_delivery')
+
+            let geoJSONCoordinates = infor_delivery["points"].map(coord => [coord[1], coord[0]]);
+
+            console.log(geoJSONCoordinates)
+            // console.log("adc")
+
+            map.on('load', function() {
+
+                map.addSource('route', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'properties': {},
+                        'geometry': {
+                            'type': 'LineString',
+                            'coordinates': geoJSONCoordinates
+                        }
+                    }
+                });
+                map.addLayer({
+
+                    
+                    'id': 'route',
+                    'type': 'line',
+                    'source': 'route',
+                    'layout': {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    'paint': {
+                        'line-color': '#00abed',
+                        'line-width': 8
+                    }
+                });
+            })
+
 
         })
     </script>

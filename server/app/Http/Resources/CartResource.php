@@ -18,14 +18,26 @@ class CartResource extends JsonResource
         return [
 
             'id' => $this -> id,
-            'product_id' => $this -> product_id,
             'user_id' => $this -> user_id,
-            'quantity' => $this -> quantity,
-            'size' => $this -> size,
-            'base' => $this -> base,
-            'border' => $this -> border,
-            'total' => number_format($this -> total, 0, '.', '.') ,
-            'product' => $this -> product -> only(['name', 'image'])
+            'user' => $this->user -> only(['name', 'phone']),
+            'cart_items' => $this->cartItems 
+            
+            -> map(function($item) {
+                return [
+                    'has_options' => $item->has_options,
+                    'quantity' => $item->quantity,
+                    'product' => $item -> product -> only([ 
+                        'id', 'name', 'price', 'description', 'image'
+
+                    ]),
+                    'size_option' => $item->sizeOption -> only(['name']),
+                    'base_option' => $item->baseOption -> only(['name']),
+                    'border_option' => $item->borderOption -> only(['name']),
+                ];
+            }),
+
+
+            
         ];
     }
 }

@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductCategorySeeder::class,
             ProductSeeder::class,
+            StoreLocationSeeder::class,
             OptionCategorySeeder::class,
             OptionSeeder::class,
             ProductOptionSeeder::class,
-            CartSeeder::class,
+            // CartSeeder::class,
         ]);
 
         // OptionCategory::factory(10)->create();

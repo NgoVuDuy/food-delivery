@@ -37,7 +37,6 @@
                             </ul>
                         </div>
 
-
                         <div class="header-cart-icon">
 
                             <a href="/cart" wire:navigate class="cart-icon-link">
@@ -54,7 +53,6 @@
                                     <span>{{ $count }}</span>
                                 </div>
                             </a>
-
 
                         </div>
                     </div>
@@ -98,7 +96,7 @@
 
                     <form class="header-form-search d-flex align-items-center" role="search" wire:submit="search">
 
-                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm món ăn, nhà hàng"
+                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm món ăn"
                             aria-label="Search" wire:model="search_text">
 
                         <button type="submit" class="search-submit-btn">
