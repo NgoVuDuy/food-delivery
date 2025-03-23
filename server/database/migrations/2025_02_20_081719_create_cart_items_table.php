@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('border_option_id')->nullable();
 
             $table->integer('quantity');
+            $table->string("total");
             $table->timestamps();
 
             $table->foreign('size_option_id')->references('id')->on('options')->onDelete('set null');

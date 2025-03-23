@@ -32,9 +32,9 @@
 
                 <div class="row row-gap-3">
 
-                    @if (!empty($carts))
+                    @if (!empty($carts["cart_items"]))
 
-                        @foreach ($carts as $index => $cart)
+                        @foreach ($carts['cart_items'] as $index => $cart_items)
                             <div class="col-12">
 
                                 <div class="cart-item-wrap d-flex justify-content-between align-items-center">
@@ -43,26 +43,27 @@
                                         <div class="d-flex align-items-center" style="width: 60%">
 
                                             <div class="cart-item-img">
-                                                <img src="{{ asset($cart['product']['image']) }}" alt="">
+                                                <img src="{{ asset($cart_items['product']['image']) }}" alt="">
                                             </div>
 
                                             <div class="cart-item-info d-flex flex-column">
 
-                                                <div class="cart-item-name">{{ $cart['product']['name'] }}</div>
+                                                <div class="cart-item-name">{{ $cart_items['product']['name'] }}</div>
 
-                                                <div class="cart-item-price">{{ $cart['total'] }}đ</div>
+                                                <div class="cart-item-price">{{ $cart_items['total'] }}đ
+                                                </div>
                                             </div>
                                         </div>
-                                        @if (empty($cart['size']) && empty($cart['base']) && empty($cart['border']))
-                                            <div class=""></div>
-                                        @else
+                                        @if ($cart_items['has_options'] == 1)
                                             <div class="options" style="width: 40%">
                                                 <ul>
-                                                    <li>- {{ $cart['size'] }}</li>
-                                                    <li>- {{ $cart['base'] }}</li>
-                                                    <li>- {{ $cart['border'] }}</li>
+                                                    <li>- {{ $cart_items['size_option']['name'] }}</li>
+                                                    <li>- {{ $cart_items['base_option']['name'] }}</li>
+                                                    <li>- {{ $cart_items['border_option']['name'] }}</li>
                                                 </ul>
                                             </div>
+                                        @else
+                                            <div class=""></div>
                                         @endif
 
 
@@ -81,7 +82,7 @@
 
                                             </button>
                                             <input type="number" name="quantity" id="quantity" min="1"
-                                                max="100" value="{{ $default_quantity[$index] }}"
+                                                max="100" value="{{ $cart_items["quantity"] }}"
                                                 wire:model.live="default_quantity.{{ $index }}">
 
 
@@ -97,8 +98,7 @@
                                         </div>
 
                                         <button title="Xóa" class="cart-item-delete"
-
-                                            wire:click="delete_cart_item({{ $index }}, {{ $cart["id"] }})">
+                                            wire:click="delete_cart_item({{ $index }}, {{ $cart_items['id'] }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
                                                 class="size-6">

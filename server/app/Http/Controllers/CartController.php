@@ -12,22 +12,21 @@ class CartController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {   
+    {
         $user_id = $request->query('user_id');
         //
         $carts = Cart::with('user')
-        ->with('cartItems.product')
-        ->with('cartItems.sizeOption')
-        ->with('cartItems.baseOption')
-        ->with('cartItems.borderOption')
-        ->with('cartItems.product')
+            ->with('cartItems.product')
+            ->with('cartItems.sizeOption')
+            ->with('cartItems.baseOption')
+            ->with('cartItems.borderOption')
 
-        ->where('user_id', $user_id)->get();
+            ->where('user_id', $user_id)->first();
 
         // return response()->json($carts);
 
 
-        return response()->json(CartResource::collection($carts));
+        return response()->json(new CartResource($carts));
     }
     /**
      * Store a newly created resource in storage.
@@ -37,26 +36,16 @@ class CartController extends Controller
         //
         $data = $request->all();
 
-        $cart = Cart::create($data);
 
-        // $exists = Cart::where('product_id', $cart["product_id"])
 
-        //     ->where('size', $cart["size"])
-        //     ->where('base', $cart["base"])
-        //     ->where('border', $cart["border"])
-        //     ->first();
+        $cart = Cart::where('user_id', $data['user_id'])->first();
 
-        // if ($exists) {
+        if ($cart) {
+            return response()->json($cart);
+        }
 
-        //     $exists->quantity += $cart["quantity"];
-        //     $exists->total += $cart["total"];
-        //     $exists->save();
-        // } else {
-
-        //     Cart::create($cart);
-        // }
-
-        return response()->json($cart);
+        $new_cart = Cart::create($data);
+        return response()->json($new_cart);
     }
 
     /**

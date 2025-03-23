@@ -46,5 +46,19 @@ class CartItemController extends Controller
             return response()->json($cartItem);
         }
     }
-    public function show(string $cart_id) {}
+    public function show(string $cart_id) {
+
+    }
+    public function destroy(string $id) {
+
+        $cart_items = CartItem::find($id);
+
+        if (!$cart_items) {
+            return response()->json(['message' => 'Không tìm thấy tùy chọn'], 404);
+        }
+
+        $cart_items->delete();
+
+        return response()->json(null, 204);
+    }
 }

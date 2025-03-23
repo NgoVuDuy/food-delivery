@@ -30,8 +30,8 @@ class AddressController extends Controller
             'customer_phone',
             'place_name',
             'place_id',
-            'lat',
-            'lng'
+            // 'lat',
+            // 'lng'
         ]);
 
         // Tạo mới hoặc cập nhật địa chỉ

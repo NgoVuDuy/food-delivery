@@ -39,8 +39,7 @@ class DishDetail extends Component
     public function mount(string $id)
     {
 
-        // $this->cartItems = null;
-        // dd($this->user);
+        // dd($this->carts);
 
         // Gọi api lấy thông tin sản phẩm
         $this->product = Http::get(Component::$url . 'products' . '/' . $id)->json();
@@ -183,42 +182,93 @@ class DishDetail extends Component
     public function addToCart()
     {
 
-        // Tìm vị trí của sản phẩm trong giỏ hàng
-        $index = collect($this->carts)->search(function ($item) {
+        if (!empty($this->carts["cart_items"])) {
 
-            return
-                $item['product_id'] == $this->product["id"] &&
-                $item['size'] == $this->current_options["size"] &&
-                $item['base'] == $this->current_options["base"] &&
-                $item['border'] == $this->current_options["border"];
-        });
+            // Tìm vị trí của sản phẩm trong giỏ hàng
+            $index = collect($this->carts["cart_items"])->search(function ($item) {
+
+                return
+                    $item['product']['id'] == $this->product["id"] &&
+                    $item['size_option']['name'] == $this->current_options["size"] &&
+                    $item['base_option']['name'] == $this->current_options["base"] &&
+                    $item['border_option']['name'] == $this->current_options["border"];
+            });
+        } else {
+            $index = false;
+        }
+
 
         if ($index !== false) {
             // Nếu sản phẩm đã tồn tại, tăng số lượng lên 1
-            $this->cartItems[$index]['quantity'] += $this->quantity;
+            $this->carts['cart_items'][$index]['quantity'] += $this->quantity;
 
             $this->isAddToCart = true;
         } else {
             // Nếu chưa có, thêm mới vào giỏ hàng
-            $cartItems = [
+            if ($this->product["category"]["name"] == "Pizza") {
 
-                'id' => time(),
-                'product_id' => $this->product["id"],
-                'user_id' => null,
-                'quantity' => $this->quantity,
-                'size' => $this->current_options["size"],
-                'base' => $this->current_options["base"],
-                'border' => $this->current_options["border"],
-                'total' => $this->product["price"],
-                'product' => [
-                    'name' => $this->product["name"],
-                    'image' => $this->product["image"],
-                ],
-                'created_at' => now(),
-                'updated_at' => now()
-            ];
+                $cartItems = [
+                    'id' => time(),
+                    "has_options" => 1,
+                    "quantity" => $this->quantity,
+                    "total" => $this->product["price"],
+                    "product" =>  [
+                        "id" => $this->product["id"],
+                        "name" => $this->product["name"],
+                        "price" => (int) str_replace('.', '', $this->product["price"]),
+                        "description" => $this->product["description"],
+                        "image" => $this->product["image"]
+                    ],
+                    "size_option" => [
+                        'id' => $this->current_option_id["size"],
+                        "name" => $this->current_options["size"]
+                    ],
+                    "base_option" => [
+                        'id' => $this->current_option_id["base"],
+                        "name" => $this->current_options["base"]
+                    ],
+                    "border_option" => [
+                        'id' => $this->current_option_id["border"],
+                        "name" => $this->current_options["border"]
+                    ]
+                ];
+            } else {
+                $cartItems = [
 
-            $this->carts[] = $cartItems; // Thêm sản phẩm vào biến session danh sách các món
+                    'id' => time(),
+                    "has_options" => 0,
+                    "quantity" => $this->quantity,
+                    "total" => $this->product["price"],
+                    "product" =>  [
+                        "id" => $this->product["id"],
+                        "name" => $this->product["name"],
+                        "price" => $this->product["price"],
+                        "description" => $this->product["description"],
+                        "image" => $this->product["image"]
+                    ],
+
+                ];
+            }
+            // $cartItems = [
+
+            //     'id' => time(),
+            //     'product_id' => $this->product["id"],
+            //     'user_id' => null,
+            //     'quantity' => $this->quantity,
+            //     'size' => $this->current_options["size"],
+            //     'base' => $this->current_options["base"],
+            //     'border' => $this->current_options["border"],
+            // 'total' => $this->product["price"], 
+            //     'product' => [
+            //         'name' => $this->product["name"],
+            //         'image' => $this->product["image"],
+            //     ],
+            //     'created_at' => now(),
+            //     'updated_at' => now()
+            // ];
+
+
+            $this->carts["cart_items"][] = $cartItems; // Thêm sản phẩm vào biến session danh sách các món
 
             $this->isAddToCart = true;
         }
@@ -230,18 +280,6 @@ class DishDetail extends Component
 
             $response = Http::post(
 
-                // Component::$url . 'carts',
-                // [
-                //     'product_id' => $this->product["id"],
-                //     'user_id' => $this->user["id"],
-                //     'quantity' => $this->quantity,
-                //     'size' => $this->current_options["size"],
-                //     'base' => $this->current_options["base"],
-                //     'border' => $this->current_options["border"],
-                //     'total' => str_replace('.', '', $this->product["price"]),
-                //     'created_at' => now(),
-                //     'updated_at' => now()
-                // ]
                 Component::$url . 'carts',
                 [
                     'user_id' => $this->user["id"],
@@ -256,33 +294,35 @@ class DishDetail extends Component
 
                 $cart_id = $response->json()["id"];
 
-                if($this->product["category"]["name"] == "Pizza") {
+                if ($this->product["category"]["name"] == "Pizza") {
 
                     $cartItem = Http::post(Component::$url . 'cart-items', [
-    
+
                         'cart_id' => $cart_id,
                         'product_id' => $this->product["id"],
                         'has_options' => 1,
                         'size_option_id' => $this->current_option_id["size"],
                         'base_option_id' => $this->current_option_id["base"],
                         'border_option_id' => $this->current_option_id["border"],
-                        'quantity' => $this->quantity, 
+                        'quantity' => $this->quantity,
+                        'total' => $this->product['price'],
                         'created_at' => now(),
                         'updated_at' => now()
-    
                     ]);
                 } else {
 
-
                     $cartItem = Http::post(Component::$url . 'cart-items', [
-    
+
                         'cart_id' => $cart_id,
                         'product_id' => $this->product["id"],
                         'has_options' => 0,
+                        'size_option_id' => null,
+                        'base_option_id' => null,
+                        'border_option_id' => null,
                         'quantity' => $this->quantity,
+                        'total' => $this->product['price'],
                         'created_at' => now(),
                         'updated_at' => now()
-    
                     ]);
                 }
 
@@ -294,7 +334,6 @@ class DishDetail extends Component
         if ($this->isAddToCart) {
 
             $this->dispatch('updatedCart');
-
         }
     }
     // Hàm render ra view

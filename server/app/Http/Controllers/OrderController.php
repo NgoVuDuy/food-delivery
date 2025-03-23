@@ -12,7 +12,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
         $order = Order::all();
 
         return response()->json($order, 200);
@@ -25,11 +24,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
-        $order = $request->all();
+        $data = $request->all();
 
-        Order::create($order);
+        $order = Order::create($data);
 
-        return response()->json($order, 201);
+        return response()->json($order);
     }
 
     /**

@@ -18,7 +18,7 @@ class Checkout extends Component
     public $ipaddr;
     public $urlreturn = "http://localhost:8000/order";
 
-    #[Session(key: 'cartItems')]
+    #[Session(key: 'carts')]
     public $carts;
 
     #[Session(key: 'total')]
@@ -40,10 +40,8 @@ class Checkout extends Component
     public function mount()
     {
 
-        dd($this->carts); 
-        // 
+        // dd($this->carts);
         $this->ipaddr = request()->ip();
-        // $this->amount = 259000;
 
         $this->store_location = Http::get(Component::$url . 'store-locations')->json(); // Thông tin các chi nhánh
 
@@ -85,8 +83,6 @@ class Checkout extends Component
         ];
 
         $this->infor_delivery["points"] = $this->points;
-
-
     }
     public function payment_method(string $method)
     {
@@ -110,28 +106,65 @@ class Checkout extends Component
                     'customer_phone' => $this->infor_delivery["phone"],
                     'place_id' => $this->infor_delivery["place_id"],
                     'place_name' => $this->infor_delivery["place_name"],
-                    // 'lat' => $this->infor_delivery["location"]["lat"],
-                    // 'lng' => $this->infor_delivery["location"]["lng"],
                     'created_at' => now(),
                     'updated_at' => now()
 
                 ])->json();
             }
-            // Lưu lại thông tin order vào bảng đơn hàng
-            $order = Http::post(Component::$url . 'orders', [
-                
-                'name' => $this->infor_delivery["name"],
-                'phone' => $this->infor_delivery["phone"],
-                'place_name' => $this->infor_delivery["to"]["place_name"],
-                'place_id' => $this->infor_delivery["to"]["place_id"],
-                'store_location_id' => $this->store_location["id"],
-                'total_price' => str_replace('.', '', $this->total),
-                'status' => 'Chờ xác nhận'
-
-            ])->json();
 
             if ($this->method == 'cod') {
 
+                if (!empty($this->user)) {
+
+                    // Lưu lại thông tin order vào bảng đơn hàng
+                    $response = Http::post(Component::$url . 'orders', [
+
+                        'user_id' => $this->user["id"],
+                        'name' => $this->infor_delivery["name"],
+                        'phone' => $this->infor_delivery["phone"],
+                        'place_name' => $this->infor_delivery["to"]["place_name"],
+                        'place_id' => $this->infor_delivery["to"]["place_id"],
+                        'store_location_id' => $this->store_location["id"],
+                        'total_price' => str_replace('.', '', $this->total),
+                        'status' => 'Chờ xác nhận'
+
+                    ]);
+
+                } else {
+
+                    $response = Http::post(Component::$url . 'orders', [
+
+                        'name' => $this->infor_delivery["name"],
+                        'phone' => $this->infor_delivery["phone"],
+                        'place_name' => $this->infor_delivery["to"]["place_name"],
+                        'place_id' => $this->infor_delivery["to"]["place_id"],
+                        'store_location_id' => $this->store_location["id"],
+                        'total_price' => str_replace('.', '', $this->total),
+                        'status' => 'Chờ xác nhận'
+
+                    ]);
+
+                }
+                
+                if ($response->successful()) {
+
+                    $order_id = $response->json()["id"];
+
+                    foreach($this->carts["cart_items"] as $index => $carts_items) {
+
+                        $orderItem = Http::post(Component::$url . 'order-items', [
+                            'order_id' => $order_id,
+                            'product_id' => $carts_items['product']['id'],
+                            'has_options'=> $carts_items['has_options'],
+                            'quantity' => $carts_items['quantity'],
+                            'total_price' => $carts_items['total'],
+                            'size_option_id' => $carts_items['size_option']['id'],
+                            'base_option_id' => $carts_items['base_option']['id'],
+                            'border_option_id' => $carts_items['border_option']['id']
+                        ])->json();
+                    }
+
+                }
                 return $this->redirect('/order', navigate: true);
             }
 

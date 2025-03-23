@@ -44,7 +44,7 @@ class Header extends Component
         } else {
 
             if (session('carts')) {
-                $this->count = count(session()->get('carts'));
+                $this->count = count(session()->get('carts')["cart_items"]);
             } else {
                 $this-> count = 0;
             }
@@ -66,7 +66,7 @@ class Header extends Component
         // $this->reset();
 
         // session()->forget('user');
-        session()->forget('cartItems');
+        session()->forget('carts');
         // session()->forget('total');
         session()->forget('infor-delivery');
         // session()->flush();
@@ -85,8 +85,8 @@ class Header extends Component
             ])->json();
         } else {
 
-            if (session('cartItems')) {
-                $this->count = count(session()->get('cartItems'));
+            if (session('carts')) {
+                $this->count = count(session()->get('carts')["cart_items"]);
             } else {
                 $this-> count = 0;
             }

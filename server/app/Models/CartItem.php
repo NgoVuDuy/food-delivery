@@ -8,7 +8,7 @@ class CartItem extends Model
 {
     //
     protected $fillable = [
-        'product_id', 'cart_id', 'quantity', 'size_option_id', 'base_option_id', 'border_option_id', 'has_options'
+        'product_id', 'cart_id', 'quantity', 'size_option_id', 'base_option_id', 'border_option_id', 'has_options', 'total'
     ];
 
     public function cart() {

@@ -56,9 +56,16 @@ class FunctionController extends Controller
 
         $user_id = $request->query('user_id');
 
-        $carts = Cart::with('product')->where('user_id', $user_id)->get();
+        // Tìm giỏ hàng của user
+        $cart = Cart::with('cartItems')->where('user_id', $user_id)->first();
 
-        $count_cart = count($carts);
+        // Nếu không có giỏ hàng, trả về 0
+        if (!$cart) {
+            return response()->json(0);
+        }
+
+        // Đếm số lượng sản phẩm trong giỏ hàng
+        $count_cart = $cart->cartItems->count();
 
         return response()->json($count_cart);
     }
