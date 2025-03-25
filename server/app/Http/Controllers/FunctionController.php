@@ -8,6 +8,7 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Payment;
 use App\Models\ProductCategory;
 use App\Models\User;
 use EndlessMiles\Polyline\Polyline;
@@ -181,15 +182,31 @@ class FunctionController extends Controller
 
         $data = $request->all();
 
-        // ProductCategory::insert([
+        if($data["vnp_ResponseCode"] == "00") {
+            // Lưu dữ liệu vào database
+            $vnp_Amount = $data["vnp_Amount"];
+            $vnp_BankCode = $data["vnp_BankCode"];
+            $vnp_BankTranNo = $data["vnp_BankTranNo"];
+            $vnp_CardType = $data["vnp_CardType"];
+            $vnp_OrderInfo = $data["vnp_OrderInfo"];
+            $vnp_PayDate = $data["vnp_PayDate"];
+            $vnp_ResponseCode = $data["vnp_ResponseCode"];
+            $vnp_TmnCode = $data["vnp_TmnCode"];
+            $vnp_TransactionNo = $data["vnp_TransactionNo"];
+            $vnp_TransactionStatus = $data["vnp_TransactionStatus"];
+            $vnp_TxnRef = $data["vnp_TxnRef"];
+            $vnp_SecureHash = $data["vnp_SecureHash"];
 
-        //     [
-        //         'name' => $portClient,
-        //         'created_at' => now(),
-        //         'updated_at' => now()
-        //     ],
-        // ]);
+            $payment = Payment::create($data);
 
-        return redirect("http://localhost:8000/order");
+            $url = 'http://localhost:8000/order' . '?query=' . $payment['id'];
+
+            echo "<a href='$url'>GD Thanh cong</a>";
+
+        } else {
+            echo "<a href='http://localhost:8000/checkout'>GD That bai</a>";
+        }
+
+        // return redirect("http://localhost:8000/order");
     }
 }

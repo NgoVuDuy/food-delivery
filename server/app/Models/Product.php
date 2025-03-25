@@ -22,12 +22,12 @@ class product extends Model
         return $this -> belongsToMany(Option::class, 'product_option');
     }
 
-    // public function carts() {
-    //     return $this-> hasMany(Cart::class, 'product_id');
-    // }
-
     public function cartItems() {
         return $this-> hasMany(CartItem::class, 'product_id');
+    }
+
+    public function orderItems() {
+        return $this-> hasMany(OrderItem::class, 'product_id');
     }
     
 }

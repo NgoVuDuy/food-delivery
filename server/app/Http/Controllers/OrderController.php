@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,18 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $order = Order::all();
+        $status = $request->query('status');
+        $order = Order::with('storeLocation')
+        ->with('orderItems.product')
+        ->with('orderItems.sizeOption')
+        ->with('orderItems.baseOption')
+        ->with('orderItems.borderOption')
+        ->where('status', $status)
+        ->get();
 
-        return response()->json($order, 200);
+        return response()->json(OrderResource::collection($order));
     }
 
 
@@ -59,9 +67,12 @@ class OrderController extends Controller
             return response()->json(['message' => 'Không tìm thấy đơn hàng'], 404);
         }
 
-        $data = $request->all();
+        $status = $request->get('status');
 
-        $order -> update($data);
+        $order->status = $status;
+        $order->save();
+
+        // $order -> update($data);
 
         return response()->json($order, 200);
 

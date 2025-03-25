@@ -1,0 +1,39 @@
+.mng-row-wrap {
+    display: flex;
+    column-gap: 14px;
+}
+
+.mng-row-wrap a {
+    text-decoration: none;
+
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+    background: $light-gray;
+
+    .order-number {
+        color: $gray-color;
+        font-size: 15px;
+    }
+
+    &.active {
+        // background: $light-blue !important;
+        // color: white !important;
+        border: 2px $main-color solid;
+        border-bottom: none;
+        background: white;
+
+        .title {
+            color: $main-color;
+            font-weight: bold;
+        }
+
+    }
+
+    .nav-option {
+
+        padding: 6px 16px;
+
+    }
+}

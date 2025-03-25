@@ -1,0 +1,12 @@
+.table-wrap {
+    background: $light-gray;
+    padding: 18px 8px;
+    table {
+        width: 100%;
+
+        th,td {
+            border: 1px black solid;
+            padding: 8px;
+        }
+    }
+}

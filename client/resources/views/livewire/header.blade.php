@@ -74,6 +74,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="/pending" wire:navigate wire:current="active-nav">QUẢN LÝ ĐƠN</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/menu" wire:navigate wire:current="active-nav">MENU</a>
                         </li>
 

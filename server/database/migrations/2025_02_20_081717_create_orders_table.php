@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
 
             $table->id(); // mã đơn hàng
+            $table->unsignedBigInteger('payment_id')->nullable();
+            $table->string('payment_method');
 
             $table->string('name'); // tên người đặt -> người dùng vô danh
             $table->string('phone'); // sdt người đặt -> người dùng vô danh
@@ -37,6 +39,8 @@ return new class extends Migration
             $table->foreign('staff_id')->references('id')->on('users')->onDelete('set null');
 
             $table->foreign('store_location_id')->references('id')->on('store_locations')->onDelete('set null');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null');
+
 
         });
     }

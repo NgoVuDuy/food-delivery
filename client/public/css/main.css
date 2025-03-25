@@ -1051,6 +1051,47 @@ footer .footer-col h6 {
   margin-top: 8px;
 }
 
+.mng-row-wrap {
+  display: flex;
+  column-gap: 14px;
+}
+
+.mng-row-wrap a {
+  text-decoration: none;
+  border-bottom: none;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background: rgb(240, 240, 240);
+}
+.mng-row-wrap a .order-number {
+  color: #797979;
+  font-size: 15px;
+}
+.mng-row-wrap a.active {
+  border: 2px #33539e solid;
+  border-bottom: none;
+  background: white;
+}
+.mng-row-wrap a.active .title {
+  color: #33539e;
+  font-weight: bold;
+}
+.mng-row-wrap a .nav-option {
+  padding: 6px 16px;
+}
+
+.table-wrap {
+  background: rgb(240, 240, 240);
+  padding: 18px 8px;
+}
+.table-wrap table {
+  width: 100%;
+}
+.table-wrap table th, .table-wrap table td {
+  border: 1px black solid;
+  padding: 8px;
+}
+
 .main-button {
   background-color: #33539e;
   color: white;

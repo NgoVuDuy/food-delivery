@@ -29,15 +29,15 @@ class PaymentController extends Controller
         $vnp_TmnCode = "J7EZUWZ1"; //Mã website tại VNPAY 
         $vnp_HashSecret = "2GT1GOM5TWXFHD5ZSA813GY01XVV7R4E"; //Chuỗi bí mật
 
-
         $vnp_TxnRef = time(); // Mã giao dịch là thời gian hiện tại
         $vnp_OrderInfo = 'Thanh toán đơn hàng VND\'s Pizzeria '; // Nội dung chuyển khoản
         $vnp_OrderType = 'Food'; // Danh mục hàng hóa
         $vnp_Amount = $data['amount'] * 100; // Số tiền cần thanh toán
         $vnp_Locale = 'vn'; // Ngôn ngữ hiển thị trên giao diện
         $vnp_BankCode = 'VNBANK'; // Phương thức thanh toán bằng tài khoản ngân hàng
-        // $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; // Địa chỉ ip của khách hàng thực hiện giao dịch
         $vnp_IpAddr = $data['ipaddr']; // Địa chỉ ip của khách hàng thực hiện giao dịch
+        // $desc = $data['desc']; // Địa chỉ ip của khách hàng thực hiện giao dịch
+
 
 
         $inputData = array(
@@ -53,6 +53,8 @@ class PaymentController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
+            // "desc" => $desc,
+
         );
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {

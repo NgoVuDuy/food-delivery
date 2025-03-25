@@ -126,6 +126,7 @@ class Checkout extends Component
                         'place_id' => $this->infor_delivery["to"]["place_id"],
                         'store_location_id' => $this->store_location["id"],
                         'total_price' => str_replace('.', '', $this->total),
+                        'payment_method' => "COD",
                         'status' => 'Chờ xác nhận'
 
                     ]);
@@ -140,6 +141,7 @@ class Checkout extends Component
                         'place_id' => $this->infor_delivery["to"]["place_id"],
                         'store_location_id' => $this->store_location["id"],
                         'total_price' => str_replace('.', '', $this->total),
+                        'payment_method' => "COD",
                         'status' => 'Chờ xác nhận'
 
                     ]);
@@ -172,13 +174,13 @@ class Checkout extends Component
 
 
                 // Kiểm tra có đăng nhập chưa
-
                 $amount = (int) str_replace('.', '', $this->total,);
 
                 $response = Http::post(Component::$url . 'payments', [
 
                     'amount' => $amount,
                     'ipaddr' => $this->ipaddr,
+  
                 ])->json();
 
                 if ($response["message"] == "success") {

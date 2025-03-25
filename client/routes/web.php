@@ -12,6 +12,9 @@ use App\Livewire\Order;
 use App\Livewire\Promotion;
 use App\Livewire\Search;
 use App\Livewire\News;
+use App\Livewire\Staff\Preparing;
+use App\Livewire\Staff\OrderManagement;
+use App\Livewire\Staff\Pending;
 use App\Livewire\StoreLocation;
 
 
@@ -30,9 +33,9 @@ Route::get('/checkout', Checkout::class);
 Route::get('/promotion', Promotion::class);
 Route::get('/news', News::class);
 
+Route::get('/order-mng', OrderManagement::class);
+Route::get('/pending', Pending::class);
+Route::get('/preparing', Preparing::class);
 
-Route::controller(PaymentController::class)->group(function() {
-    Route::post('/payment', 'payment');
-    Route::get('/payment/callback', 'paymentCallBack')->name('payment.callback');
 
-});
+
