@@ -32,7 +32,9 @@ class Checkout extends Component
 
     public $distance; // mảng chứa các giá trị độ dài từ vị trí giao hàng đến các chi nhánh
 
+    #[Session(key: 'store-location')]
     public $store_location;
+    
     public $distance_text; // mảng
     public $duration_text; // mảng
     public $points;
@@ -165,9 +167,8 @@ class Checkout extends Component
                             'border_option_id' => $carts_items['border_option']['id']
                         ])->json();
                     }
-
                 }
-                return $this->redirect('/order', navigate: true);
+                return $this->redirect('/orders' . '/' . $order_id, navigate: true);
             }
 
             if ($this->method == 'vnpay') {

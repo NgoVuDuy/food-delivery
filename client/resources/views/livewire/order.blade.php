@@ -2,7 +2,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-8">
-                <div class="order-wrap">
+                <div class="order-status-wrap" 
+                {{-- wire:poll.10s="reset_data" --}}
+                >
                     <div class="order-title mb-4">
                         <p>Đơn hàng</p>
                     </div>
@@ -10,7 +12,7 @@
 
                         <div class="approval-icon-wrap status-icon">
 
-                            <svg class="approval-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                            <svg class="{{ $order_statuses[0] ? 'approval-icon' : '' }}" xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass">
                                 <path d="M5 22h14" />
@@ -20,19 +22,19 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow-active arrow"></div>
-                                <div class="active order-status-box d-flex justify-content-center align-items-center">
+                                <div class="{{ $order_statuses[0] ? 'arrow-active' : '' }} arrow"></div>
+                                <div class="{{ $order_statuses[0] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
                                     <span>Chờ xác nhận</span>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="process-bar bar-1"></div>
+                        <div class="process-bar {{ $order_statuses[0] ? 'bar' : '' }}"></div>
 
                         <div class="checked-icon-wrap status-icon">
 
-                            <svg class="checked-icon " xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                            <svg class="{{ $order_statuses[1] ? 'approval-icon' : '' }}" xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check">
                                 <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
@@ -41,20 +43,20 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow-active arrow"></div>
-                                <div class="active order-status-box d-flex justify-content-center align-items-center">
-                                    <span>Đã nhận đơn</span>
+                                <div class="{{ $order_statuses[1] ? 'arrow-active' : '' }} arrow"></div>
+                                <div class="{{ $order_statuses[1] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
+                                    <span>Đang chuẩn bị</span>
                                 </div>
                             </div>
 
                         </div>
 
 
-                        <div class="process-bar bar-2"></div>
+                        <div class="process-bar {{ $order_statuses[1] ? 'bar' : '' }}"></div>
 
                         <div class="cooking-icon-wrap status-icon">
 
-                            <svg class="cooking-icon " xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                            <svg class="{{ $order_statuses[2] ? 'approval-icon' : '' }}" xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cooking-pot">
                                 <path d="M2 12h20" />
@@ -65,20 +67,20 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow"></div>
-                                <div class="order-status-box d-flex justify-content-center align-items-center">
-                                    <span>Đang thực hiện</span>
+                                <div class="{{ $order_statuses[2] ? 'arrow-active' : '' }} arrow"></div>
+                                <div class="{{ $order_statuses[2] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
+                                    <span>Đã sẵn sàng</span>
                                 </div>
                             </div>
 
 
                         </div>
 
-                        <div class="process-bar bar-3"></div>
+                        <div class="process-bar {{ $order_statuses[2] ? 'bar' : '' }}"></div>
 
                         <div class="delivery-icon-wrap status-icon">
 
-                            <svg class="delivered-icon" aria-hidden="true" focusable="false"
+                            <svg class="{{ $order_statuses[3] ? 'approval-icon' : '' }}" aria-hidden="true" focusable="false"
                                 class="fl-neutral-secondary" width="26" height="26" viewBox="0 0 16 16"
                                 xmlns="http://www.w3.org/2000/svg" data-testid="RIDER">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -87,8 +89,8 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow"></div>
-                                <div class="order-status-box d-flex justify-content-center align-items-center">
+                                <div class="{{ $order_statuses[3] ? 'arrow-active' : '' }} arrow"></div>
+                                <div class="{{ $order_statuses[3] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
                                     <span>Đang giao hàng</span>
                                 </div>
                             </div>
@@ -96,11 +98,11 @@
                         </div>
 
 
-                        <div class="process-bar bar-4"></div>
+                        <div class="process-bar {{ $order_statuses[3] ? 'bar' : '' }}"></div>
 
                         <div class="home-icon-wrap status-icon">
 
-                            <svg xmlns="home-icon http://www.w3.org/2000/svg" width="26" height="26"
+                            <svg class="{{ $order_statuses[4] ? 'approval-icon' : '' }}" xmlns=" http://www.w3.org/2000/svg" width="26" height="26"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house">
                                 <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
@@ -109,8 +111,8 @@
                             </svg>
 
                             <div class="order-status-box-wrap d-flex align-items-center flex-column">
-                                <div class="arrow"></div>
-                                <div class="order-status-box d-flex justify-content-center align-items-center">
+                                <div class="{{ $order_statuses[4] ? 'arrow-active' : '' }} arrow"></div>
+                                <div class="{{ $order_statuses[4] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
                                     <span>Giao thành công</span>
                                 </div>
                             </div>
@@ -327,7 +329,7 @@
     </div>
 </div>
 
-@script
+{{-- @script
     <script>
         $(document).ready(function() {
 
@@ -434,4 +436,4 @@
 
         })
     </script>
-@endscript
+@endscript --}}

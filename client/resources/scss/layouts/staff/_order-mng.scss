@@ -18,8 +18,6 @@
     }
 
     &.active {
-        // background: $light-blue !important;
-        // color: white !important;
         border: 2px $main-color solid;
         border-bottom: none;
         background: white;
@@ -34,6 +32,43 @@
     .nav-option {
 
         padding: 6px 16px;
+
+    }
+}
+
+.table-wrap {
+    // background: $light-gray;
+    padding: 30px 30px;
+
+    table {
+        width: 100%;
+        th {
+            text-align: center;
+        }
+        th,td {
+            border: 2px $border-color solid;
+            padding: 8px;
+        }
+
+        .details-btn {
+            display: block;
+            color: $main-color;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .checked-wrap {
+            text-align: center;
+
+            .checked-btn {
+                border: none;
+                border-radius: 4px;
+                background-color: $dark-pink;
+                color: white;
+                padding: 2px 6px;
+            }
+        }
 
     }
 }

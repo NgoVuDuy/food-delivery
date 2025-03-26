@@ -13,6 +13,9 @@
 @import 'layouts/checkout';
 @import 'layouts/promotion';
 @import 'layouts/news';
+@import 'layouts/success-payment';
+@import 'layouts/error-payment';
+
 
 @import 'layouts/staff/order-mng.scss';
 @import 'layouts/staff/pending.scss';
@@ -27,6 +30,7 @@
 @import 'components/nav-child';
 @import 'components/alert';
 @import 'components/modal';
+@import 'components/payment-box.scss';
 @import 'components/keyframes.scss';
 
 @import 'livewire/login-form.scss';

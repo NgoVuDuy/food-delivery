@@ -744,55 +744,52 @@ footer .footer-col h6 {
   padding: 6px;
 }
 
-.order-wrap .order-title {
+.order-status-wrap .order-title {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
 }
-.order-wrap .order-status-box-wrap {
+.order-status-wrap .order-status-box-wrap {
   position: absolute;
   left: -182%;
   width: 122px;
 }
-.order-wrap .order-status-box-wrap .arrow {
+.order-status-wrap .order-status-box-wrap .arrow {
   border: 10px solid transparent;
   border-bottom-color: #acacac;
   width: 20px;
   height: 20px;
 }
-.order-wrap .order-status-box-wrap .arrow-active {
+.order-status-wrap .order-status-box-wrap .arrow-active {
   border-bottom-color: #33539e !important;
 }
-.order-wrap .order-status-box-wrap .active {
+.order-status-wrap .order-status-box-wrap .active {
   background-color: #33539e !important;
 }
-.order-wrap .order-status-box-wrap .order-status-box {
+.order-status-wrap .order-status-box-wrap .order-status-box {
   height: 42px;
   width: 100%;
   background-color: #acacac;
   border-radius: 4px;
 }
-.order-wrap .order-status-box-wrap .order-status-box span {
+.order-status-wrap .order-status-box-wrap .order-status-box span {
   color: white;
   font-size: 15px;
 }
-.order-wrap .order-status .status-icon {
+.order-status-wrap .order-status .status-icon {
   position: relative;
 }
-.order-wrap .order-status .approval-icon-wrap .approval-icon {
+.order-status-wrap .order-status .approval-icon {
   color: #33539e;
 }
-.order-wrap .order-status .checked-icon-wrap .checked-icon {
-  color: #33539e;
-}
-.order-wrap .order-status .process-bar {
+.order-status-wrap .order-status .process-bar {
   width: 140px;
   height: 5px;
   border-radius: 20px;
   margin: 0px 6px;
   background-color: #e3e3e3;
 }
-.order-wrap .order-status .bar-1 {
+.order-status-wrap .order-status .bar {
   background-color: #33539e;
 }
 
@@ -1051,6 +1048,14 @@ footer .footer-col h6 {
   margin-top: 8px;
 }
 
+.payment-box .success-icon {
+  color: #1daf1d;
+}
+
+.payment-box .error-icon {
+  color: #f70000;
+}
+
 .mng-row-wrap {
   display: flex;
   column-gap: 14px;
@@ -1081,15 +1086,34 @@ footer .footer-col h6 {
 }
 
 .table-wrap {
-  background: rgb(240, 240, 240);
-  padding: 18px 8px;
+  padding: 30px 30px;
 }
 .table-wrap table {
   width: 100%;
 }
+.table-wrap table th {
+  text-align: center;
+}
 .table-wrap table th, .table-wrap table td {
-  border: 1px black solid;
+  border: 2px #e3e3e3 solid;
   padding: 8px;
+}
+.table-wrap table .details-btn {
+  display: block;
+  color: #33539e;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+.table-wrap table .checked-wrap {
+  text-align: center;
+}
+.table-wrap table .checked-wrap .checked-btn {
+  border: none;
+  border-radius: 4px;
+  background-color: #a5678e;
+  color: white;
+  padding: 2px 6px;
 }
 
 .main-button {
@@ -1439,6 +1463,33 @@ footer .footer-col h6 {
 }
 .modal-map .modal-dialog .modal-content .modal-header h1 {
   color: #33539e;
+}
+
+.order-details .modal-dialog {
+  max-width: 80%;
+}
+
+.payment-box {
+  border-radius: 12px;
+  background: white;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.payment-box .title {
+  color: #33539e;
+}
+.payment-box .title, .payment-box .total-price {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px;
 }
 
 @keyframes move-bg-content {

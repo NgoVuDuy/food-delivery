@@ -7,24 +7,51 @@ use Livewire\Component;
 
 class Preparing extends Component
 {
+    public $preparing_arrays = [];
     public $preparing_orders = [];
 
-    public function mount() {
+    public $pending_count = 0;
+    public $preparing_count = 3;
 
-        $this->preparing_orders =  Http::get(Component::$url . 'orders', [
+
+    public function mount()
+    {
+
+        $this->preparing_arrays =  Http::get(Component::$url . 'orders', [
             'status' => 'Chờ thực hiện'
         ])->json();
 
-        // dd($this->pendding_order);
+        $this->preparing_orders = $this->preparing_arrays["orders"];
+        $this->pending_count = $this->preparing_arrays["count"];
 
+        // dd($this->pendding_order);
     }
 
-    public function preparing_conform(string $id) {
+    public function refreshData()
+    {
+        $this->preparing_arrays =  Http::get(Component::$url . 'orders', [
+            'status' => 'Chờ thực hiện'
+        ])->json();
+
+        $this->preparing_orders = $this->preparing_arrays["orders"];
+        $this->pending_count = $this->preparing_arrays["count"];
+    }
+
+    public function pending_conform(string $id)
+    {
 
         $order = Http::put(Component::$url . 'orders/' . $id, [
-            'status' => "Đã hoàn thành"
+            'status' => "Đã sẵn sàng"
         ])->json();
+
+        $this->preparing_arrays =  Http::get(Component::$url . 'orders', [
+            'status' => 'Chờ thực hiện'
+        ])->json();
+
+        $this->preparing_orders = $this->preparing_arrays["orders"];
+        $this->pending_count = $this->preparing_arrays["count"];
     }
+
     public function render()
     {
         return view('livewire.staff.preparing');

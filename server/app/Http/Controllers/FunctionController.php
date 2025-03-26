@@ -183,6 +183,7 @@ class FunctionController extends Controller
         $data = $request->all();
 
         if($data["vnp_ResponseCode"] == "00") {
+
             // Lưu dữ liệu vào database
             $vnp_Amount = $data["vnp_Amount"];
             $vnp_BankCode = $data["vnp_BankCode"];
@@ -199,14 +200,18 @@ class FunctionController extends Controller
 
             $payment = Payment::create($data);
 
-            $url = 'http://localhost:8000/order' . '?query=' . $payment['id'];
+            $url = 'http://localhost:8000/success' . '?query=' . $payment['vnp_TxnRef'];
 
-            echo "<a href='$url'>GD Thanh cong</a>";
+            return redirect($url);
 
         } else {
-            echo "<a href='http://localhost:8000/checkout'>GD That bai</a>";
+
+            $url = 'http://localhost:8000/error';
+
+            return redirect($url);
+
+
         }
 
-        // return redirect("http://localhost:8000/order");
     }
 }

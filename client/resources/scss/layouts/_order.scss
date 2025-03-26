@@ -1,4 +1,4 @@
-.order-wrap {
+.order-status-wrap {
 
     .order-title {
         font: {
@@ -51,21 +51,21 @@
             position: relative;
         }
 
-        .approval-icon-wrap {
+        // .approval-icon-wrap {
 
             .approval-icon {
                 color: $main-color;
             }
 
-        }
+        // }
 
-        .checked-icon-wrap {
+        // .checked-icon-wrap {
 
-            .checked-icon {
+        //     .checked-icon {
 
-                color: $main-color;
-            }
-        }
+        //         color: $main-color;
+        //     }
+        // }
 
         .process-bar {
 
@@ -76,7 +76,7 @@
             background-color: $border-color;
         }
 
-        .bar-1 {
+        .bar {
             background-color: $main-color;
 
         }

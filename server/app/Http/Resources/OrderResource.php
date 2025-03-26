@@ -31,7 +31,7 @@ class OrderResource extends JsonResource
             'updated_at' => $this->updated_at,
             // 'user' => $this->user -> only(['name', 'phone']),
             'store_location' => $this->storeLocation->only(['id', 'name', 'open', 'address']),
-
+            'payment' => $this->payment,
             'order_items' => $this->orderItems
             -> map(function($item) {
                 return [

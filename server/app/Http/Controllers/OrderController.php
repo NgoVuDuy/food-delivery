@@ -13,16 +13,22 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $status = $request->query('status');
-        $order = Order::with('storeLocation')
-        ->with('orderItems.product')
-        ->with('orderItems.sizeOption')
-        ->with('orderItems.baseOption')
-        ->with('orderItems.borderOption')
-        ->where('status', $status)
-        ->get();
+        $status = $request->query('status', null);
 
-        return response()->json(OrderResource::collection($order));
+        $order = Order::with('storeLocation')
+            ->with('payment')
+            ->with('orderItems.product')
+            ->with('orderItems.sizeOption')
+            ->with('orderItems.baseOption')
+            ->with('orderItems.borderOption')
+            ->where('status', $status)
+            ->get();
+
+        return response()->json([
+            "orders" => OrderResource::collection($order),
+            "count" => $order->count(),
+
+        ]);
     }
 
 
@@ -47,12 +53,11 @@ class OrderController extends Controller
         //
         $order = Order::find($id);
 
-        if(!$order) {
+        if (!$order) {
             return response()->json(['message' => 'Không tìm thấy đơn hàng'], 404);
         }
 
         return response()->json($order, 200);
-
     }
 
     /**
@@ -63,7 +68,7 @@ class OrderController extends Controller
         //
         $order = Order::find($id);
 
-        if(!$order) {
+        if (!$order) {
             return response()->json(['message' => 'Không tìm thấy đơn hàng'], 404);
         }
 
@@ -75,7 +80,6 @@ class OrderController extends Controller
         // $order -> update($data);
 
         return response()->json($order, 200);
-
     }
 
     /**
@@ -86,11 +90,11 @@ class OrderController extends Controller
         //
         $order = Order::find($id);
 
-        if(!$order) {
+        if (!$order) {
             return response()->json(['message' => 'Không tìm thấy đơn hàng'], 404);
         }
 
-        $order -> delete();
+        $order->delete();
 
         return response()->json(null, 204);
     }
