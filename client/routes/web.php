@@ -20,6 +20,7 @@ use App\Livewire\Staff\Preparing;
 use App\Livewire\Staff\OrderManagement;
 use App\Livewire\Staff\Pending;
 use App\Livewire\Staff\Ready;
+use App\Livewire\Staff\ShipperOrder;
 use App\Livewire\StoreLocation;
 use App\Livewire\SuccessPayment;
 
@@ -43,6 +44,8 @@ Route::get('/error', ErrorPayment::class);
 
 
 // Staff
+Route::get('/shipper-orders', ShipperOrder::class);
+
 Route::get('/order-mng', OrderManagement::class);
 Route::get('/pending', Pending::class);
 Route::get('/preparing', Preparing::class);

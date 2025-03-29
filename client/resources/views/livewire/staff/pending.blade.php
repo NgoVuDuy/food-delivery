@@ -33,7 +33,7 @@
     
                                 <!-- Modal -->
                                 <div class="modal fade order-details" id="details{{ $pending_order['id'] }}" tabindex="-1"
-                                    aria-labelledby="details{{ $pending_order['id'] }}" aria-hidden="true">
+                                    aria-labelledby="details{{ $pending_order['id'] }}" aria-hidden="true" wire:ignore.self>
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">

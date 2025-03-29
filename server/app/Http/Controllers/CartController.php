@@ -36,8 +36,6 @@ class CartController extends Controller
         //
         $data = $request->all();
 
-
-
         $cart = Cart::where('user_id', $data['user_id'])->first();
 
         if ($cart) {

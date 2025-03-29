@@ -27,7 +27,7 @@
                                     <td><span class="details-btn" data-bs-toggle="modal" data-bs-target="#details{{ $preparing_order['id'] }}">Xem chi
                                             tiết</span></td>
                                     <td class="checked-wrap"><button class="checked-btn"
-                                            wire:click="pending_conform({{ $preparing_order['id'] }})">Xác nhận</button></td>
+                                            wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button></td>
     
                                 </tr>
     

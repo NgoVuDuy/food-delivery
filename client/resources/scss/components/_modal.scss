@@ -3,6 +3,7 @@
 }
 
 .modal-delivery-address {
+
     .modal-dialog {
         max-width: 800px;
 
@@ -206,6 +207,29 @@
 .modal-map {
     .modal-dialog {
         max-width: 1000px;
+
+        .modal-content {
+            .modal-header {
+                h1 {
+                    color: $main-color;
+                }
+            }
+        }
+    }
+}
+
+#direction-map {
+    // max-width: 90%;
+    height:600px;
+    border-radius: 8px;
+}
+.modal-direction {
+
+
+    .modal-dialog {
+
+        max-width: 800px;
+        // max-height: 90%;
 
         .modal-content {
             .modal-header {

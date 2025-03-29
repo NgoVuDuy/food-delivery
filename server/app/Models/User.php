@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function cart() {
         return $this->hasOne(Cart::class);
     }
+
+    public function shipper() {
+
+        return $this->hasOne(Shipper::class, 'shipper_id');
+    }
 }

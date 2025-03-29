@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -27,8 +28,9 @@ class OrderResource extends JsonResource
             'user_id' => $this -> user_id,
             'staff_id' => $this -> staff_id,
             'shipper_id' => $this -> shipper_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'shipper' => $this -> shipper,
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y H:i:s'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s'),
             // 'user' => $this->user -> only(['name', 'phone']),
             'store_location' => $this->storeLocation->only(['id', 'name', 'open', 'address']),
             'payment' => $this->payment,

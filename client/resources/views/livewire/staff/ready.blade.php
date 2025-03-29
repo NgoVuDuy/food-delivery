@@ -12,28 +12,29 @@
                             <th>Hình thức thanh toán</th>
                             <th>Tổng tiền</th>
                             <th>Thời gian đặt</th>
+                            <th>Người nhận đơn</th>
                             <th>Chi tiết</th>
-                            <th>Duyệt đơn</th>
 
                         </tr>
                         {{-- <div class="" wire:poll.30s="refreshData"> --}}
 
-                            @foreach ($pending_orders as $pending_order)
+                            @foreach ($ready_orders as $ready_order)
                                 <tr>
-                                    <td>{{ $pending_order['id'] }}</td>
-                                    <td>{{ $pending_order['payment_method'] }}</td>
-                                    <td>{{ $pending_order['total_price'] }}</td>
-                                    <td>{{ $pending_order['created_at'] }}</td>
-                                    <td><span class="details-btn" data-bs-toggle="modal" data-bs-target="#details{{ $pending_order['id'] }}">Xem chi
+                                    <td>{{ $ready_order['id'] }}</td>
+                                    <td>{{ $ready_order['payment_method'] }}</td>
+                                    <td>{{ $ready_order['total_price'] }}</td>
+                                    <td>{{ $ready_order['created_at'] }}</td>
+                                    <td class="text-center">{{ $ready_order['shipper']['user']['name'] }}</td>
+
+                                    <td><span class="details-btn" data-bs-toggle="modal" data-bs-target="#details{{ $ready_order['id'] }}">Xem chi
                                             tiết</span></td>
-                                    <td class="checked-wrap"><button class="checked-btn"
-                                            wire:click="pending_conform({{ $pending_order['id'] }})">Xác nhận</button></td>
+                                    
     
                                 </tr>
     
                                 <!-- Modal -->
-                                <div class="modal fade order-details" id="details{{ $pending_order['id'] }}" tabindex="-1"
-                                    aria-labelledby="details{{ $pending_order['id'] }}" aria-hidden="true">
+                                <div class="modal fade order-details" id="details{{ $ready_order['id'] }}" tabindex="-1"
+                                    aria-labelledby="details{{ $ready_order['id'] }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -59,7 +60,7 @@
                                                                         <div
                                                                             class="d-flex justify-content-between align-items-center column-gap-1">
             
-                                                                            <span>{{ $pending_order['place_name'] }}</span>
+                                                                            <span>{{ $ready_order['place_name'] }}</span>
             
                                                                         </div>
             
@@ -69,7 +70,7 @@
                                                                         <div class="d-flex">
                                                                             <span class="title">Từ: </span>
             
-                                                                            <span>{{ $pending_order['store_location']['name'] }}</span>
+                                                                            <span>{{ $ready_order['store_location']['name'] }}</span>
             
                                                                         </div>
             
@@ -79,7 +80,7 @@
                                                                         <div class="d-flex">
                                                                             <span class="title">Tên người nhận: </span>
             
-                                                                            <span>{{ $pending_order['name'] }}</span>
+                                                                            <span>{{ $ready_order['name'] }}</span>
             
                                                                         </div>
             
@@ -88,7 +89,7 @@
                                                                         <div class="d-flex">
                                                                             <span class="title">Số điện thoại: </span>
             
-                                                                            <span>{{ $pending_order['phone'] }}</span>
+                                                                            <span>{{ $ready_order['phone'] }}</span>
                                                                         </div>
             
                                                                     </div>
@@ -106,7 +107,7 @@
             
                                                                 <div class="d-flex row-gap-2 flex-column">
             
-                                                                    @foreach ($pending_order['order_items'] as $index => $order_item)
+                                                                    @foreach ($ready_order['order_items'] as $index => $order_item)
                                                                         <div
                                                                             class="cart-item-wrap d-flex justify-content-between align-items-center">
             
@@ -163,7 +164,7 @@
                                                                             Tổng cộng:
                                                                         </div>
                                                                         <div class="sum-monney">
-                                                                            {{ $pending_order["total_price"] }}đ
+                                                                            {{ $ready_order["total_price"] }}đ
                                                                         </div>
                                                                     </div>
             

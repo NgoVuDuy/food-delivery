@@ -55,7 +55,7 @@ class SuccessPayment extends Component
                 'total_price' => str_replace('.', '', $this->total),
                 'payment_method' => "VNPAY",
                 'payment_id' => $payment_id,
-                'status' => 'Chờ xác nhận'
+                'status' => 'pending'
 
             ]);
         } else {
@@ -70,7 +70,7 @@ class SuccessPayment extends Component
                 'total_price' => str_replace('.', '', $this->total),
                 'payment_method' => "VNPAY",
                 'payment_id' => $payment_id,
-                'status' => 'Chờ xác nhận'
+                'status' => 'pending'
 
             ]);
         }

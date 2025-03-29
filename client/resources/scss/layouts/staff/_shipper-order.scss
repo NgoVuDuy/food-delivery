@@ -1,0 +1,58 @@
+.shipper-order-empty-order{
+    padding: 40px;
+    font: {
+        size: 20px;
+        // weight: bold;
+    }
+    color: $main-color;
+}
+
+.conform-success-btn {
+    border: none;
+    border-radius: 4px;
+    background: #00b000;
+    color: white;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin: 0px 8px;
+}
+
+.conform-error-btn {
+    border: none;
+    border-radius: 4px;
+    background: #ff0909;
+    color: white;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin: 0px 8px;
+
+}
+
+.conform-start-btn {
+    border: none;
+    border-radius: 4px;
+    background: $main-color;
+    color: white;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin: 0px 8px;
+
+}
+
+.shipper-order-bottom {
+    .title {
+        font: {
+            size: 18px;
+            weight: bold;
+        }
+    }
+
+    .content {
+        margin: 18px 0px;
+
+        span {
+            color: $main-color;
+            font-weight: bold;
+        }
+    }
+}

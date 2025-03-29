@@ -8,11 +8,14 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\ProductCategory;
+use App\Models\Shipper;
 use App\Models\User;
 use EndlessMiles\Polyline\Polyline;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
@@ -120,7 +123,6 @@ class FunctionController extends Controller
         $distance = $directions["routes"][0]["legs"][0]["distance"];
         $duration = $directions["routes"][0]["legs"][0]["duration"];
 
-
         return response()->json([
             "points" => $coordinates,
             "distance" => [
@@ -131,6 +133,44 @@ class FunctionController extends Controller
                 "text" => $duration["text"],
                 "value" => $duration["value"]
             ],
+        ]);
+    }
+
+    // Trả về đường đi từ một điểm đến  một hay nhiều điểm
+    public function many_directions(Request $request)
+    {
+
+        $origin = $request->query('origin');
+        $destination = $request->query('destination');
+        $vehicle = $request->query('vehicle');
+        $api_key = $this->api_key;
+
+        $distance = [];
+        $duration = [];
+
+        $directions = Http::get('https://rsapi.goong.io/direction', [
+            'origin' => $origin,
+            'destination' => $destination,
+            'vehicle' => $vehicle,
+            'api_key' => $api_key
+        ])->json();
+
+        $polyline = new Polyline();
+
+        $coordinates = $polyline->decode($directions["routes"][0]["overview_polyline"]["points"]);
+
+        foreach ($directions["routes"][0]["legs"] as $legs) {
+            $distance[] = $legs["distance"];
+            $duration[] = $legs["duration"];
+        }
+
+        // $distance = $directions["routes"][0]["legs"][0]["distance"];
+        // $duration = $directions["routes"][0]["legs"][0]["duration"];
+
+        return response()->json([
+            "points" => $coordinates,
+            "distance" => $distance,
+            "duration" => $duration,
         ]);
     }
     // Tìm kiếm địa chỉ giao hàng
@@ -167,7 +207,7 @@ class FunctionController extends Controller
     public function login(Request $request)
     {
 
-        $user = User::where('phone', $request->phone)->first();
+        $user = User::with('shipper')->where('phone', $request->phone)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
 
@@ -176,13 +216,27 @@ class FunctionController extends Controller
             return response()->json(["message" => "Đăng nhập thất bại", "code" => 0]);
         }
     }
+    // Lấy ra số order của từng shipper
+    public function shipper_orders()
+    {
+
+        $shippers = Shipper::withCount([
+            'orders' => function ($query) {
+                $query->where('status', 'completed'); // Chỉ đếm đơn đã hoàn thành
+            },
+        ])
+            ->orderBy('orders_count', 'asc') // Sắp xếp theo số đơn đã hoàn thành
+            ->first();
+        
+        return response()->json($shippers);
+    }
     //
     public function vnpayCallBack(Request $request)
     {
 
         $data = $request->all();
 
-        if($data["vnp_ResponseCode"] == "00") {
+        if ($data["vnp_ResponseCode"] == "00") {
 
             // Lưu dữ liệu vào database
             $vnp_Amount = $data["vnp_Amount"];
@@ -203,15 +257,11 @@ class FunctionController extends Controller
             $url = 'http://localhost:8000/success' . '?query=' . $payment['vnp_TxnRef'];
 
             return redirect($url);
-
         } else {
 
             $url = 'http://localhost:8000/error';
 
             return redirect($url);
-
-
         }
-
     }
 }

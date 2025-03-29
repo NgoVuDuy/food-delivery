@@ -129,7 +129,7 @@ class Checkout extends Component
                         'store_location_id' => $this->store_location["id"],
                         'total_price' => str_replace('.', '', $this->total),
                         'payment_method' => "COD",
-                        'status' => 'Chờ xác nhận'
+                        'status' => 'pending'
 
                     ]);
 
@@ -144,7 +144,7 @@ class Checkout extends Component
                         'store_location_id' => $this->store_location["id"],
                         'total_price' => str_replace('.', '', $this->total),
                         'payment_method' => "COD",
-                        'status' => 'Chờ xác nhận'
+                        'status' => 'pending'
 
                     ]);
 
@@ -194,7 +194,6 @@ class Checkout extends Component
             return $this->js("alert('Vui lòng chọn phương thức thanh toán')");
         }
     }
-
 
     public function render()
     {

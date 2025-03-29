@@ -6,6 +6,12 @@
 
             <div class="mng-row-wrap">
 
+                <a href="shipper-orders" wire:navigate wire:current="active" wire:ignore.self>
+                    <div class="nav-option">
+                        <div class="title">Đơn cần giao</div>
+                        <div class="order-number">{{ $pending_count }} đơn hàng</div>
+                    </div>
+                </a>
 
                 <a href="pending" wire:navigate wire:current="active" wire:ignore.self>
                     <div class="nav-option">

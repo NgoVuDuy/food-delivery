@@ -7,6 +7,9 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Session;
 
+use Livewire\Attributes\On;
+
+
 
 #[Title('Đơn hàng')]
 class Order extends Component
@@ -19,6 +22,11 @@ class Order extends Component
 
     public $order;
     public $order_id;
+
+    public $shipper_lat;
+    public $shipper_lng;
+
+    public $points;
 
     public function mount($id)
     {
@@ -36,29 +44,29 @@ class Order extends Component
         $this->order_statuses[3] = false;
         $this->order_statuses[4] = false;
 
-        if ($order_status == 'Chờ xác nhận') {
+        if ($order_status == 'pending') {
 
             $this->order_statuses[0] = true;
         }
-        if ($order_status == 'Đang chuẩn bị') {
+        if ($order_status == 'preparing') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
         }
-        if ($order_status == 'Đã sẵn sàng') {
+        if ($order_status == 'ready') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
             $this->order_statuses[2] = true;
         }
-        if ($order_status == 'Đang giao') {
+        if ($order_status == 'delivering') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
             $this->order_statuses[2] = true;
             $this->order_statuses[3] = true;
         }
-        if ($order_status == 'Thành công') {
+        if ($order_status == 'completed') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
@@ -75,29 +83,29 @@ class Order extends Component
 
         $order_status = $this->order["status"];
 
-        if ($order_status == 'Chờ xác nhận') {
+        if ($order_status == 'pending') {
 
             $this->order_statuses[0] = true;
         }
-        if ($order_status == 'Đang chuẩn bị') {
+        if ($order_status == 'preparing') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
         }
-        if ($order_status == 'Đã sẵn sàng') {
+        if ($order_status == 'ready') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
             $this->order_statuses[2] = true;
         }
-        if ($order_status == 'Đang giao') {
+        if ($order_status == 'delivering') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
             $this->order_statuses[2] = true;
             $this->order_statuses[3] = true;
         }
-        if ($order_status == 'Thành công') {
+        if ($order_status == 'completed') {
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
@@ -105,6 +113,21 @@ class Order extends Component
             $this->order_statuses[3] = true;
             $this->order_statuses[4] = true;
         }
+    }
+
+    #[On('updateShipperLocation')]
+    public function updateShipperLocation()
+    {
+
+        $this->points = Http::get(Component::$url . 'directions', [
+
+            'origin' => $this->shipper_lat . ',' . $this->shipper_lng,
+            'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+            'vehicle' => 'car',
+
+        ])->json();
+
+        $this->dispatch('updatedShipperLocation');
     }
 
     public function render()

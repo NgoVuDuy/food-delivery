@@ -38,6 +38,7 @@ class StoreLocation extends Component
 
         $this->dispatch('updated-points');
     }
+    
     public function render()
     {
         return view('livewire.store-locations');

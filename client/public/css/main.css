@@ -974,8 +974,13 @@ footer .footer-col h6 {
   border: 2px #e3e3e3 solid;
   border-radius: 8px;
 }
+.checkout-left .cod .cod-img {
+  width: 100px;
+  height: 100px;
+}
 .checkout-left .cod span {
   text-align: center;
+  font-weight: bold;
 }
 .checkout-left .vn-pay {
   cursor: pointer;
@@ -987,6 +992,7 @@ footer .footer-col h6 {
 }
 .checkout-left .vn-pay span {
   text-align: center;
+  font-weight: bold;
 }
 .checkout-left .vn-pay img {
   width: 100px;
@@ -1114,6 +1120,54 @@ footer .footer-col h6 {
   background-color: #a5678e;
   color: white;
   padding: 2px 6px;
+}
+
+.shipper-order-empty-order {
+  padding: 40px;
+  font-size: 20px;
+  color: #33539e;
+}
+
+.conform-success-btn {
+  border: none;
+  border-radius: 4px;
+  background: #00b000;
+  color: white;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin: 0px 8px;
+}
+
+.conform-error-btn {
+  border: none;
+  border-radius: 4px;
+  background: #ff0909;
+  color: white;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin: 0px 8px;
+}
+
+.conform-start-btn {
+  border: none;
+  border-radius: 4px;
+  background: #33539e;
+  color: white;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin: 0px 8px;
+}
+
+.shipper-order-bottom .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.shipper-order-bottom .content {
+  margin: 18px 0px;
+}
+.shipper-order-bottom .content span {
+  color: #33539e;
+  font-weight: bold;
 }
 
 .main-button {
@@ -1462,6 +1516,18 @@ footer .footer-col h6 {
   max-width: 1000px;
 }
 .modal-map .modal-dialog .modal-content .modal-header h1 {
+  color: #33539e;
+}
+
+#direction-map {
+  height: 600px;
+  border-radius: 8px;
+}
+
+.modal-direction .modal-dialog {
+  max-width: 800px;
+}
+.modal-direction .modal-dialog .modal-content .modal-header h1 {
   color: #33539e;
 }
 

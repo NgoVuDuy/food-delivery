@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductOptionController;
+use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\StoreLocationController;
 use App\Http\Controllers\UserController;
 
@@ -38,6 +39,8 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('payments', PaymentController::class);
 Route::apiResource('addresses', AddressController::class);
 Route::apiResource('store-locations', StoreLocationController::class);
+Route::apiResource('shippers', ShipperController::class);
+
 
 
 //
@@ -47,8 +50,11 @@ Route::get('/count-cart', [FunctionController::class, 'count_cart']);
 Route::get('/location-search', [FunctionController::class, 'location_search']);
 Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
 Route::get('/category', [FunctionController::class, 'category']);
-// Route::get('/store-locations', [FunctionController::class, 'store_location']);
 Route::get('/directions', [FunctionController::class, 'directions']);
+Route::get('/many-directions', [FunctionController::class, 'many_directions']);
+Route::get('/shipper-orders', [FunctionController::class, 'shipper_orders']);
+
+
 Route::get('/typical-products', [FunctionController::class, 'typical_products']);
 Route::post('/login', [FunctionController::class, 'login']);
 Route::get('/place-details', [FunctionController::class, 'place_details']);

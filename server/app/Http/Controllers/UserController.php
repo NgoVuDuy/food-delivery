@@ -13,7 +13,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::with('shipper')->get();
+        
         return response()->json($users, 201);
     }
 
@@ -49,6 +50,9 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+        $user = User::with('shipper')->find($id);
+
+        return response()->json($user);
     }
 
     /**
