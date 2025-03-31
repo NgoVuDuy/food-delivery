@@ -4,24 +4,24 @@
 
     .bg-header {
         position: relative;
-        display: flex;
-        justify-content: right;
+        // display: flex;
+        // justify-content: right;
         align-items: center;
         margin-bottom: 64px;
 
         img {
 
-            width: 500px;
-            margin: 20px 20px 0px 20px;
+            width: 100%;
+            // margin: 20px 20px 0px 20px;
 
             animation: zome-in 1s ease-in-out;
         }
 
         .bg-content {
-            position: absolute;
+            // position: absolute;
 
-            top: 10%;
-            left: 4%;
+            // top: 10%;
+            // left: 4%;
 
             animation: move-bg-content 1s ease-in-out;
 
@@ -32,7 +32,7 @@
                     color: $main-color;
 
                     font: {
-                        size: 52px;
+                        size: 3.25rem;
                     }
 
                     text: {
@@ -78,7 +78,7 @@
 
     .next,
     .prev {
-
+        height: max-content;
         margin: 0px 16px;
         border: 2px $gray-color solid;
         border-radius: 12px;
@@ -102,6 +102,7 @@
 .more-text {
 
     a {
+        margin-bottom: 12px;
         text-decoration: none;
         color: $main-color;
         display: flex;
@@ -112,7 +113,7 @@
 
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 1rem;
     text-align: end;
 
     span:first-child {
@@ -123,9 +124,12 @@
 }
 
 .home-box {
+
+    height: 100%;
     border: 1px $light-purple solid;
     border-radius: 12px;
     padding: 12px;
+    margin-bottom: 12px;
 
     svg {
         color: $main-color;
@@ -163,8 +167,8 @@
 
     img {
         // width: 80%;
-        width: 200px;
-        height: 200px;
+        width: 80%;
+        height: 80%;
         position: relative;
         // z-index: 10;
 
@@ -178,7 +182,7 @@
         p {
             text-align: justify;
             padding: 0px 20px;
-            font-size: 20px;
+            font-size: 1.25rem;
             color: $main-color;
             height: 60px;
             // font-weight: bold;
@@ -240,14 +244,14 @@
             .total {
 
                 font: {
-                    size: 40px;
+                    size: 2.5rem;
                 }
             }
 
             .title {
 
                 font: {
-                    size: 20px;
+                    size: 1.25rem;
                     weight: bold;
                 }
 
@@ -277,13 +281,13 @@
 
             font: {
                 weight: bold;
-                size: 18px;
+                size: 1.125rem;
             }
         }
 
         .home-menu-name {
             font: {
-                size: 18px;
+                size: 1.5rem;
             }
 
             color: $main-color;
@@ -291,7 +295,7 @@
 
         .home-menu-desc {
             font: {
-                size: 15px;
+                size: 0.9375rem;
             }
 
             color: $gray-color;

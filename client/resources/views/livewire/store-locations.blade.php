@@ -2,13 +2,12 @@
 
     <div class="container">
 
-        <div class="row mt-5">
-            <div class="col-9">
+        <div class="row mt-5 row-gap-4">
+            <div class="col-lg-9 col-md-9 col-12 order-lg-1 order-md-1 order-2">
                 <div id='map' wire:ignore></div>
-
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-3 col-12 order-lg-2 order-md-2 order-1">
                 <div class="place-wrap">
 
                     <p class="place-title">Danh Sách Cửa Hàng</p>

@@ -1,0 +1,283 @@
+/* Extra small (XS): <576px */
+@media (max-width: 575.98px) {
+  /* CSS áp dụng cho kích thước nhỏ hơn 576px */
+
+  .header-form-search input {
+    width: 100%;
+  }
+
+  .ctn-padding-sm {
+    padding: 12px;
+  }
+
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  html {
+    font-size: 13px;
+  }
+
+  .bg-content {
+    // padding: 20px;
+  }
+
+  .bg-header-wrap .bg-header .bg-content .bg-text div {
+    font-size: 14px;
+  }
+
+  .home-product-infor-wrap .home-product-infor-content .content-wrap {
+    margin: 0px;
+  }
+
+  .home-menu-item {
+    // padding: 0px 16px;
+  }
+
+  footer .footer-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .home-otd-product-wrap {
+    margin: 0px;
+  }
+
+  .cold-button {
+    padding: 6px 12px !important;
+  }
+
+  .slide-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .news-wrap .news-item img {
+    height: 100px;
+  }
+
+  footer .footer-cover {
+    padding: 40px 20px 20px 20px;
+  }
+
+  .home-product-infor-wrap .home-product-infor-content {
+    height: max-content;
+    background: #7aa5d2;
+    transform: none;
+  }
+
+  .home-product-infor-wrap .row {
+    height: max-content;
+  }
+
+  .home-product-infor-wrap .home-product-infor-content .content-wrap {
+    transform: none;
+  }
+
+  .home-menu {
+    margin-top: 40px;
+  }
+
+  .slide-btn .next,
+  .slide-btn .prev {
+    margin: 0px;
+  }
+
+  .dish-item {
+    margin: 0px;
+
+    transition: transform .5s ease;
+
+    .menu-item-img img {
+      margin: 12px 0px 0px 0px;
+    }
+
+    .dish-item .menu-item-content {
+      margin-top: 8px;
+    }
+
+    &:hover {
+
+      transform: scale(1.05);
+
+      box-shadow: none;
+      border: none;
+
+
+      .menu-item-img {
+
+        img {
+          transform: none;
+        }
+
+
+      }
+
+      .menu-item-content {
+
+        transform: none;
+
+      }
+
+      .menu-item-desc {
+
+        transform: none;
+        opacity: none;
+
+      }
+
+      .more-btn {
+        transform: none;
+        opacity: none;
+      }
+
+    }
+  }
+
+  .sort-by-wrap {
+    margin-bottom: 0px;
+    margin: 16px 8px;
+  }
+
+  .menu-filter-wrap .menu-filter-item .item {
+
+    width: max-content;
+  }
+
+  .menu-wrap {
+    margin-top: 8px;
+  }
+
+  .menu-filter-wrap {
+    padding: 0px 4px 0px 4px;
+    border-radius: 4px;
+    border: 1px #e3e3e3 solid;
+  }
+
+  .menu-filter-wrap .menu-filter-title button {
+    margin: 8px;
+  }
+
+  .toastify {
+    max-width: max-content;
+  }
+
+  .toastify-left,
+  .toastify-right {
+    margin-right: 0px;
+
+  }
+
+  .empty-cart-wrap .empty-cart-img {
+    width: 140px;
+  }
+
+  .place-wrap {
+    overflow-y: hidden;
+    height: max-content;
+  }
+
+  #map {
+    height: 400px;
+  }
+
+  .aws-button {
+    padding: 6px 12px !important;
+  }
+
+  .checkout-left {
+
+    justify-content: center;
+  }
+
+  .tag-wrap .order-status-text p {
+
+    margin-bottom: 30px;
+  }
+
+  .tag-wrap {
+    margin-top: 20px;
+  }
+
+  .mng-row-wrap {
+    // display: flex;
+    // column-gap: 14px;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  .table-wrap {
+    padding: 0px;
+
+    .shipper-order-bottom {
+      padding: 14px;
+    }
+  }
+
+  .mng-row-wrap a {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .mng-row-wrap a.active {
+    border-bottom: none;
+    border: 2px #33539e solid;
+  }
+
+  .table-mt {
+    margin-top: 12px;
+  }
+
+  .order-details {
+    .modal-dialog {
+      margin: 0px;
+      max-width: 90%;
+      width: 95%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
+
+  .active-nav {
+    box-shadow: none;
+    color: #33539e !important;
+    font-weight: bold;
+  }
+
+  .navbar .nav-item:hover {
+    box-shadow: none;
+    font-weight: bold;
+
+  }
+
+  .bg-header-wrap .bg-header .bg-content .bg-text p {
+    font-size: 2rem;
+  }
+}
+
+/* Small (SM): <768px */
+@media (max-width: 767.98px) {
+
+  /* CSS áp dụng cho kích thước nhỏ hơn 768px */
+  // .dish-item:hover {
+  //   all: unset;
+  // }
+}
+
+/* Medium (MD): <992px */
+@media (max-width: 991.98px) {
+  /* CSS áp dụng cho kích thước nhỏ hơn 992px */
+}
+
+/* Large (LG): <1200px */
+@media (max-width: 1199.98px) {
+  /* CSS áp dụng cho kích thước nhỏ hơn 1200px */
+}
+
+/* Extra large (XL): <1400px */
+@media (max-width: 1399.98px) {
+  /* CSS áp dụng cho kích thước nhỏ hơn 1400px */
+}

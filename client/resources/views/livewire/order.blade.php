@@ -1,7 +1,7 @@
 <div>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-8">
+            <div class="col-lg-8 col-md-8 col-12">
                 <div class="order-status-wrap" wire:poll.10s="reset_data">
                     <div class="order-title mb-4">
                         <p>Đơn hàng</p>
@@ -20,7 +20,7 @@
                                 <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
                             </svg>
 
-                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="d-none d-lg-flex d-md-flex order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="{{ $order_statuses[0] ? 'arrow-active' : '' }} arrow"></div>
                                 <div
                                     class="{{ $order_statuses[0] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
@@ -43,7 +43,7 @@
                                 <path d="m9 14 2 2 4-4" />
                             </svg>
 
-                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="d-none d-lg-flex d-md-flex order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="{{ $order_statuses[1] ? 'arrow-active' : '' }} arrow"></div>
                                 <div
                                     class="{{ $order_statuses[1] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
@@ -68,7 +68,7 @@
                                     d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" />
                             </svg>
 
-                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="d-none d-lg-flex d-md-flex order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="{{ $order_statuses[2] ? 'arrow-active' : '' }} arrow"></div>
                                 <div
                                     class="{{ $order_statuses[2] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
@@ -91,7 +91,7 @@
                                 </path>
                             </svg>
 
-                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="d-none d-lg-flex d-md-flex order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="{{ $order_statuses[3] ? 'arrow-active' : '' }} arrow"></div>
                                 <div
                                     class="{{ $order_statuses[3] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
@@ -115,7 +115,7 @@
                                     d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             </svg>
 
-                            <div class="order-status-box-wrap d-flex align-items-center flex-column">
+                            <div class="d-none d-lg-flex d-md-flex order-status-box-wrap d-flex align-items-center flex-column">
                                 <div class="{{ $order_statuses[4] ? 'arrow-active' : '' }} arrow"></div>
                                 <div
                                     class="{{ $order_statuses[4] ? 'active' : '' }} order-status-box d-flex justify-content-center align-items-center">
@@ -137,7 +137,7 @@
                 </div>
 
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-md-4 col-12">
 
                 <div class="card-wrap">
 
@@ -354,7 +354,7 @@
                     closeOnClick: false
                 })
                 .setLngLat([$customer_lng, $customer_lat])
-                .setHTML("<span>Bạn ở đây</span>")
+                .setHTML("<span>Khách Hàng</span>")
                 .addTo(map);
 
             // Lấy vị trí của nhân viên giao hàng

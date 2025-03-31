@@ -9,22 +9,47 @@ class Preparing extends Component
 {
     public $preparing_arrays = [];
     public $preparing_orders = [];
-
-    public $pending_count = 0;
-    public $preparing_count = 0;
-
+    public $count_orders = [];
 
     public function mount()
     {
+        $counts = Http::get(Component::$url . 'count-orders')->json();
+
+        foreach ($counts as $count) {
+
+            $this->count_orders[$count['status']] = $count['total'];
+        }
 
         $this->preparing_arrays =  Http::get(Component::$url . 'orders', [
             'status' => 'preparing'
         ])->json();
 
         $this->preparing_orders = $this->preparing_arrays["orders"];
-        $this->preparing_count = $this->preparing_arrays["count"];
 
         // dd($this->pendding_order);
+        if(empty($this->count_orders["pending"])) {
+            $this->count_orders["pending"] = 0;
+        }
+        if(empty($this->count_orders["preparing"])) {
+            $this->count_orders["preparing"] = 0;
+
+        }
+        if(empty($this->count_orders["ready"])) {
+            $this->count_orders["ready"] = 0;
+
+        }
+        if(empty($this->count_orders["delivering"])) {
+            $this->count_orders["delivering"] = 0;
+
+        }
+        if(empty($this->count_orders["completed"])) {
+            $this->count_orders["completed"] = 0;
+
+        }
+        if(empty($this->count_orders["cancelled"])) {
+            $this->count_orders["cancelled"] = 0;
+
+        }
     }
 
     public function refreshData()
@@ -34,11 +59,13 @@ class Preparing extends Component
         ])->json();
 
         $this->preparing_orders = $this->preparing_arrays["orders"];
-        $this->preparing_count = $this->preparing_arrays["count"];
     }
 
     public function preparing_conform(string $id)
     {
+
+        $this->count_orders["preparing"] -= 1;
+        $this->count_orders["ready"] += 1;
 
         //Tính toán xem shipper nào đang rảnh và có tổng order đã hoàn thành thấp nhất
         $min_shipper_orders = Http::get(Component::$url . 'shipper-orders')->json();
@@ -62,7 +89,6 @@ class Preparing extends Component
         ])->json();
 
         $this->preparing_orders = $this->preparing_arrays["orders"];
-        $this->preparing_count = $this->preparing_arrays["count"];
     }
 
     public function render()

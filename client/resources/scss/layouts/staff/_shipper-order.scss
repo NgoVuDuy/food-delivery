@@ -1,7 +1,7 @@
 .shipper-order-empty-order{
     padding: 40px;
     font: {
-        size: 20px;
+        size: 1.25rem;
         // weight: bold;
     }
     color: $main-color;
@@ -12,7 +12,7 @@
     border-radius: 4px;
     background: #00b000;
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 4px 8px;
     margin: 0px 8px;
 }
@@ -22,9 +22,10 @@
     border-radius: 4px;
     background: #ff0909;
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
+
     padding: 4px 8px;
-    margin: 0px 8px;
+    margin: 4px 8px;
 
 }
 
@@ -33,16 +34,17 @@
     border-radius: 4px;
     background: $main-color;
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
+
     padding: 4px 8px;
-    margin: 0px 8px;
+    margin: 4px 8px;
 
 }
 
 .shipper-order-bottom {
     .title {
         font: {
-            size: 18px;
+            size: 1.125rem;
             weight: bold;
         }
     }
@@ -55,4 +57,8 @@
             font-weight: bold;
         }
     }
+}
+
+.container-direction {
+    padding: 2rem;
 }

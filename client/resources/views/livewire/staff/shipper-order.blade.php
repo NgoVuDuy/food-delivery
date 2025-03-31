@@ -1,7 +1,7 @@
 @extends('livewire.staff.order-management')
 
 @section('slot')
-    <div class="container-fluid {{ empty($this->shipper_arrays['orders']) ? '' : 'd-none' }}">
+    <div class="container-fluid table-mt {{ empty($this->shipper_arrays['orders']) ? '' : 'd-none' }}">
         <div class="row">
             <div class="col-12">
                 <div class="shipper-order-empty-order shadow">
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="container-fluid {{ empty($this->shipper_arrays['orders']) ? 'd-none' : '' }}">
+    <div class="container-fluid table-mt {{ empty($this->shipper_arrays['orders']) ? 'd-none' : '' }}">
         <div class="row">
             <div class="col-12">
                 <div class="table-wrap shadow">
@@ -28,7 +28,7 @@
                         <tr>
                             <th>Mã đơn hàng</th>
                             <th>Hình thức thanh toán</th>
-                            <th>Tổng tiền</th>
+                            <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Chi tiết</th>
                             <th>Xác nhận</th>
@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{ $shipper_order['id'] }}</td>
                                 <td>{{ $shipper_order['payment_method'] }}</td>
-                                <td>{{ $shipper_order['total_price'] }}</td>
+                                <td class="d-none d-lg-table-cell d-md-table-cell">{{ $shipper_order['total_price'] }}</td>
                                 <td>{{ $shipper_order['created_at'] }}</td>
 
                                 <td><span class="details-btn" data-bs-toggle="modal"
@@ -76,7 +76,7 @@
                                         <div class="modal-body">
                                             <div class="card-wrap">
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-lg-4 col-md-4 col-12">
                                                         <div class="card-user-information rounded shadow p-3">
 
                                                             <div class="card-delivery-title">
@@ -131,7 +131,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-8">
+                                                    <div class="col-lg-8 col-md-8 col-12">
                                                         <div class="card-order-information rounded shadow p-3">
 
                                                             <p class="card-title">Thông tin đơn hàng</p>
@@ -139,8 +139,62 @@
                                                             <div class="d-flex row-gap-2 flex-column">
 
                                                                 @foreach ($shipper_order['order_items'] as $index => $order_item)
+                                                                    <div class="col-12 d-lg-none d-md-none d-block">
+                                                                        <div class="cart-item-wrap d-flex align-items-end">
+                                                                            <div class="cart-item-left"
+                                                                                style="width: max-content">
+
+                                                                                <div class="">
+
+                                                                                    <div class="cart-item-img">
+                                                                                        <img src="{{ asset($order_item['product']['image']) }}"
+                                                                                            alt="">
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                                {{-- @if ($cart_items['has_options'] == 1)
+                                                                                <div class="options" style="width: 40%">
+                                                                                    <ul>
+                                                                                        <li>- {{ $cart_items['size_option']['name'] }}</li>
+                                                                                        <li>- {{ $cart_items['base_option']['name'] }}</li>
+                                                                                        <li>- {{ $cart_items['border_option']['name'] }}</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            @else
+                                                                                <div class=""></div>
+                                                                            @endif --}}
+
+
+                                                                            </div>
+                                                                            <div
+                                                                                class="d-flex flex-column row-gap-4 cart-right-wrap">
+
+                                                                                <div
+                                                                                    class="cart-item-info d-flex flex-column">
+
+                                                                                    <div class="cart-item-name">
+                                                                                        {{ $order_item['product']['name'] }}
+                                                                                    </div>
+
+                                                                                    <div class="cart-item-price">
+                                                                                        {{ $order_item['total_price'] }}đ
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="cart-item-right d-flex align-items-center justify-content-end">
+
+                                                                                    <div class="quantity">
+                                                                                        <span>x{{ $order_item['quantity'] }}</span>
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     <div
-                                                                        class="cart-item-wrap d-flex justify-content-between align-items-center">
+                                                                        class="d-lg-flex d-md-flex d-none cart-item-wrap d-flex justify-content-between align-items-center">
 
                                                                         <div
                                                                             class="cart-item-left d-flex align-items-center">
@@ -227,18 +281,16 @@
 
     </div>
 
-    <div id="container-direction">
+    <div id="container-direction"></div>
 
-    </div>
-
-    <div class="container-fluid shadow mt-5 p-5 container-direction d-none">
+    <div class="container-fluid shadow mt-5 container-direction d-none">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12">
                 <div id="direction-map" class="shadow"></div>
 
             </div>
 
-            <div class="col-4">
+            <div class="col-4 d-none">
                 <div class="direction-details shadow p-3">
                     <div class="title">
                         <h4>Dẫn đường</h4>

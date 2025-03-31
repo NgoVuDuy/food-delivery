@@ -53,6 +53,7 @@ Route::get('/category', [FunctionController::class, 'category']);
 Route::get('/directions', [FunctionController::class, 'directions']);
 Route::get('/many-directions', [FunctionController::class, 'many_directions']);
 Route::get('/shipper-orders', [FunctionController::class, 'shipper_orders']);
+Route::get('/count-orders', [FunctionController::class, 'count_orders']);
 
 
 Route::get('/typical-products', [FunctionController::class, 'typical_products']);

@@ -81,12 +81,17 @@ class DishDetail extends Component
             // Gián giá trị mặc định cho tùy chọn hiện tại
             $this->current_options["size"] = $this->options["size"][0]["name"];
             $this->current_price_modifier["size"] = $this->options["size"][0]["price_modifier"];
+            $this->current_option_id["size"] = $this->options["size"][0]["id"];
 
             $this->current_options["base"] = $this->options["base"][0]["name"];
             $this->current_price_modifier["base"] = $this->options["base"][0]["price_modifier"];
+            $this->current_option_id["base"] = $this->options["base"][0]["id"];
+
 
             $this->current_options["border"] = $this->options["border"][0]["name"];
             $this->current_price_modifier["border"] = $this->options["border"][0]["price_modifier"];
+            $this->current_option_id["border"] = $this->options["border"][0]["id"];
+
         } else {
 
             $this->isPizza = false;
@@ -111,6 +116,7 @@ class DishDetail extends Component
         if ($this->quantity > 1) {
             $this->quantity--;
         }
+        // dd($this->default_price);
         // Cập nhật lại giá sản phẩm ứng với số lượng hiện tại
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
@@ -215,7 +221,9 @@ class DishDetail extends Component
                     "product" =>  [
                         "id" => $this->product["id"],
                         "name" => $this->product["name"],
-                        "price" => (int) str_replace('.', '', $this->product["price"]),
+                        // "price" => (int) str_replace('.', '', $this->product["price"]),
+                        "price" => $this->product["price"],
+
                         "description" => $this->product["description"],
                         "image" => $this->product["image"]
                     ],

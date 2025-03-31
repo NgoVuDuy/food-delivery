@@ -2,13 +2,13 @@
 
     <div>
         <nav class="navbar  navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+            <div class="container-fluid ctn-padding-sm">
                 <a class="navbar-brand" href="/" wire:navigate><img src="{{ asset('logo/logo.png') }}" alt=""
                         width="80px"></a>
 
-                <div class="order-lg-2">
+                <div class="order-lg-2  d-flex">
 
-                    <div class="header-icon-wrap">
+                    <div class="header-icon-wrap right-wrap">
 
                         <div class="header-user-icon {{ empty($user) ? '' : 'd-none' }}" data-bs-toggle="modal"
                             data-bs-target="#signinModal">
@@ -64,8 +64,7 @@
                     </button>
                 </div>
 
-
-                <div class="order-lg-1 collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <div class="bg-body-tertiary order-lg-1 collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
 
                     <ul class="navbar-nav mb-2 mb-lg-0">
 

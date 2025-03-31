@@ -1,10 +1,13 @@
 // filter
+.menu-wrap {
+    margin-top: 48px;
+}
 .sort-by-wrap {
     margin: 0px 20px;
     margin-bottom: 30px;
 
     .filter-status-text {
-        font-size: 28px;
+        font-size: 1.75rem;
         color: $main-color;
         font-weight: bold;
     }
@@ -40,8 +43,9 @@
 
         button {
             color: $main-color;
-            border: none;
-            background: none;
+            border: 1px $border-color solid;
+            border-radius: 4px;
+            background: $light-gray;
         }
     }
 

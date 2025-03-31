@@ -19,14 +19,14 @@
         </div>
 
         <div class="row">
-            <div class="col-5 d-flex">
+            <div class="col-lg-5 col-md-5 col-12 d-flex">
 
                 <div class="dish-img-wrap">
                     <img src="{{ asset($product['image']) }}" alt="">
                 </div>
 
             </div>
-            <div class="col-7 d-flex flex-column justify-content-between">
+            <div class="col-lg-7 col-md-5 col-12 d-flex flex-column justify-content-between">
 
                 <div class="dish-option-wrap bg-light">
 
@@ -89,12 +89,12 @@
                     </div>
                 </div>
 
-                <div class="dish-btn-cover d-flex align-items-center justify-content-between mt-4">
+                <div class="dish-btn-cover d-flex align-items-center justify-content-between mt-4 column-gap-4">
 
                     <div class="dish-btn-quantity">
 
 
-                        <label for="quantity">Số lượng</label>
+                        <label for="quantity" class="d-none d-lg-flex d-md-flex">Số lượng</label>
 
                         <button class="outline-button" wire:click="decrease">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

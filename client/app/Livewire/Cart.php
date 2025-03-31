@@ -127,8 +127,10 @@ class Cart extends Component
             $this->default_quantity[$index]--;
         }
 
-        // Giá của sản phẩm
-        $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 0, '.', '.');
+        // Giá của sản 
+        // dd($this->default_price[$index]);
+        
+        $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];
         
         $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
@@ -146,7 +148,7 @@ class Cart extends Component
             $this->default_quantity[$index]++;
         }
 
-        $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 0, '.', '.');
+        $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];
         
         $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
@@ -300,15 +302,7 @@ class Cart extends Component
             ])->json();
 
             $this->infor_delivery = [
-                
-                // "user_id" => null,
-                // "name" => $this->customer_name, // Tên khách hàng
-                // "phone" => $this->customer_phone, // Số điện thoại khách hàng
-                // "place_name" => $this->delivery_location, // Tên địa chỉ giao đến
-                // "place_id" => $this->place_id, // Thông tin địa chỉ giao đến (vĩ độ kinh độ)
-                // "from" => null, // Chi nhánh làm nơi giao hàng (tên, vĩ độ, kinh độ)
-                // "location" => $location["location"], // kinh độ vĩ độ của khách hàng
-                // "points" => null // tọa độ dùng để vẽ đường đi
+            
 
                 "user_id" => null,
                 "name" => $this->customer_name, // Tên khách hàng

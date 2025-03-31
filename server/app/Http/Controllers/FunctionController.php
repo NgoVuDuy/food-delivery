@@ -227,9 +227,19 @@ class FunctionController extends Controller
         ])
             ->orderBy('orders_count', 'asc') // Sắp xếp theo số đơn đã hoàn thành
             ->first();
-        
+
         return response()->json($shippers);
     }
+
+    public function count_orders()
+    {
+        $count_orders = Order::selectRaw('status, COUNT(*) as total')
+            ->groupBy('status')
+            ->get();
+
+        return response()->json($count_orders);
+    }
+
     //
     public function vnpayCallBack(Request $request)
     {

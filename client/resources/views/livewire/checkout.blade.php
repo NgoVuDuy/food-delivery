@@ -5,10 +5,10 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-11">
+            <div class="col-lg-11 col-md-11 col-12">
                 <div class="row justify-content-between">
 
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-4 col-12">
 
                         <div class="">
 
@@ -30,7 +30,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg> --}}
-                                    <img class="cod-img" src="{{ asset('images/orthers/cash-icon.png') }}" alt="">
+                                    <img class="cod-img" src="{{ asset('images/orthers/cash-icon.png') }}"
+                                        alt="">
 
                                     <span>Tiền Mặt</span>
 
@@ -59,7 +60,7 @@
                         </div>
 
                     </div>
-                    <div class="col-7">
+                    <div class="col-lg-7 col-md-7 col-12">
 
                         <div class="card-wrap">
 
@@ -119,27 +120,24 @@
 
                                 <p class="card-title">Thông tin đơn hàng</p>
 
-                                <div class="d-flex row-gap-2 flex-column">
+                                <div class="row row-gap-3 flex-column">
 
                                     @foreach ($carts['cart_items'] as $index => $cart_items)
-                                        <div class="cart-item-wrap d-flex justify-content-between align-items-center">
+                                    
+                                        <div class="col-12 d-lg-none d-md-none d-block">
+                                            <div class="cart-item-wrap d-flex align-items-end">
+                                                <div class="cart-item-left" style="width: max-content">
 
-                                            <div class="cart-item-left d-flex align-items-center">
+                                                    <div class="">
 
-                                                <div class="checkout-cart-item-img">
-                                                    <img src="{{ asset($cart_items['product']['image']) }}"
-                                                        alt="" width="60px">
-                                                </div>
+                                                        <div class="cart-item-img">
+                                                            <img src="{{ asset($cart_items['product']['image']) }}"
+                                                                alt="">
+                                                        </div>
 
-                                                <div class="cart-item-info d-flex flex-column">
 
-                                                    <div class="cart-item-name">{{ $cart_items['product']['name'] }}
                                                     </div>
-
-                                                    <div class="cart-item-price">{{ $cart_items['total'] }}đ</div>
-                                                </div>
-
-                                                @if ($cart_items['has_options'] == 1)
+                                                    {{-- @if ($cart_items['has_options'] == 1)
                                                     <div class="options" style="width: 40%">
                                                         <ul>
                                                             <li>- {{ $cart_items['size_option']['name'] }}</li>
@@ -149,16 +147,72 @@
                                                     </div>
                                                 @else
                                                     <div class=""></div>
-                                                @endif
+                                                @endif --}}
 
-                                            </div>
 
-                                            <div class="cart-item-right d-flex align-items-center">
-                                                <div class="quantity">
-                                                    <span>x{{ $cart_items['quantity'] }}</span>
+                                                </div>
+                                                <div class="d-flex flex-column row-gap-4">
+
+                                                    <div class="cart-item-info d-flex flex-column">
+
+                                                        <div class="cart-item-name">{{ $cart_items['product']['name'] }}
+                                                        </div>
+
+                                                        <div class="cart-item-price">{{ $cart_items['total'] }}đ
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="cart-item-right d-flex align-items-center justify-content-end">
+
+                                                        <div class="quantity">
+                                                            <span>x{{ $cart_items['quantity'] }}</span>
+                                                        </div>
+
+
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-12 d-lg-block d-md-block d-none">
 
+                                            <div class="cart-item-wrap d-flex justify-content-between align-items-center">
+    
+                                                <div class="cart-item-left d-flex align-items-center">
+    
+                                                    <div class="checkout-cart-item-img">
+                                                        <img src="{{ asset($cart_items['product']['image']) }}"
+                                                            alt="" width="60px">
+                                                    </div>
+    
+                                                    <div class="cart-item-info d-flex flex-column">
+    
+                                                        <div class="cart-item-name">{{ $cart_items['product']['name'] }}
+                                                        </div>
+    
+                                                        <div class="cart-item-price">{{ $cart_items['total'] }}đ</div>
+                                                    </div>
+    
+                                                    @if ($cart_items['has_options'] == 1)
+                                                        <div class="options" style="width: 40%">
+                                                            <ul>
+                                                                <li>- {{ $cart_items['size_option']['name'] }}</li>
+                                                                <li>- {{ $cart_items['base_option']['name'] }}</li>
+                                                                <li>- {{ $cart_items['border_option']['name'] }}</li>
+                                                            </ul>
+                                                        </div>
+                                                    @else
+                                                        <div class=""></div>
+                                                    @endif
+    
+                                                </div>
+    
+                                                <div class="cart-item-right d-flex align-items-center">
+                                                    <div class="quantity">
+                                                        <span>x{{ $cart_items['quantity'] }}</span>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
                                         </div>
 
                                         <div class="item-separation"></div>

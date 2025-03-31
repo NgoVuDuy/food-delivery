@@ -1,3 +1,10 @@
+.navbar {
+    // height: 70px !important;
+
+    .right-wrap {
+        margin-right: 12px;
+    }
+}
 .header-user-icon,
 .header-cart-icon {
 
@@ -57,7 +64,7 @@
         transition: box-shadow 0.3s ease;
 
         font: {
-            size: 17px;
+            size: 1.0625rem;
         }
 
         &:hover {

@@ -11,19 +11,23 @@ class ShipperOrder extends Component
 {
     public $shipper_arrays = [];
     public $shipper_orders = [];
-    public $pending_count = 0;
-    public $preparing_count = 0;
 
     public $points;
-
     public $location;
 
     #[Session(key: 'user')]
     public $user;
 
+    public $count_orders = [];
 
     public function mount()
     {
+        $counts = Http::get(Component::$url . 'count-orders')->json();
+
+        foreach ($counts as $count) {
+
+            $this->count_orders[$count['status']] = $count['total'];
+        }
 
         // Nếu trạng thái status = -1 (đang rảnh) -> lấy ra một đơn đã sẵn sàng được đặt sớm nhất
         // Nếu trạng thái status = 1 (đang bận) -> lấy đơn bên đang giao
@@ -41,15 +45,12 @@ class ShipperOrder extends Component
                     'status' => 'ready',
                     'shipper_id' => $this->user["shipper"]["id"]
                 ])->json();
-                // dd("a");
 
             } else {
                 $this->shipper_arrays =  Http::get(Component::$url . 'orders', [
                     'status' => 'delivering',
                     'shipper_id' => $this->user["shipper"]["id"]
                 ])->json();
-
-                // dd("b");
 
             }
         }
@@ -67,17 +68,16 @@ class ShipperOrder extends Component
                 'place_id' => $place_id
             ])->json();
 
-
+            $this->points = Http::get(Component::$url . 'many-directions', [
+    
+                'origin' => '10.032652064752597,105.75079032376297',
+                'destination' => $this->location["location"]["lat"] . ',' . $this->location["location"]["lng"],
+                'vehicle' => 'car',
+    
+            ])->json();
         } 
 
-        $this->pending_count = $this->shipper_arrays["count"];
 
-        $this->points = Http::get(Component::$url . 'many-directions', [
-            'origin' => '10.032652064752597,105.75079032376297',
-            'destination' => $this->location["location"]["lat"] . ',' . $this->location["location"]["lng"],
-            'vehicle' => 'car',
-
-        ])->json();
 
     }
     public function start_delivery(string $order_id)

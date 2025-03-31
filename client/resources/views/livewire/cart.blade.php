@@ -2,11 +2,12 @@
 
     <div class="container mt-5 {{ $isEmptyCart ? 'd-block' : 'd-none' }}">
         <div class="row empty-cart-wrap justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-lg-3 col-md-3 col-12">
 
                 <img class="empty-cart-img" src="{{ asset('images/sad-emoji.jpg') }}" alt="">
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6 col-12">
+                
                 <div class="right">
 
                     <p class="empty-cart-title">Giỏ hàng trống</p>
@@ -24,7 +25,7 @@
 
         <div class="row">
 
-            <div class="cart-wrap col-8 rounded p-3">
+            <div class="cart-wrap col-lg-8 col-md-8 col-12 rounded p-3">
 
                 <div class="cart-title">
                     <p>Giỏ Hàng<span></span></p>
@@ -32,10 +33,90 @@
 
                 <div class="row row-gap-3">
 
-                    @if (!empty($carts["cart_items"]))
+                    @if (!empty($carts['cart_items']))
 
                         @foreach ($carts['cart_items'] as $index => $cart_items)
-                            <div class="col-12">
+
+                            <div class="col-12 d-lg-none d-md-none d-block">
+                                <div class="cart-item-wrap d-flex align-items-end">
+                                    <div class="cart-item-left" style="width: max-content">
+
+                                        <div class="">
+
+                                            <div class="cart-item-img">
+                                                <img src="{{ asset($cart_items['product']['image']) }}" alt="">
+                                            </div>
+
+
+                                        </div>
+                                        {{-- @if ($cart_items['has_options'] == 1)
+                                            <div class="options" style="width: 40%">
+                                                <ul>
+                                                    <li>- {{ $cart_items['size_option']['name'] }}</li>
+                                                    <li>- {{ $cart_items['base_option']['name'] }}</li>
+                                                    <li>- {{ $cart_items['border_option']['name'] }}</li>
+                                                </ul>
+                                            </div>
+                                        @else
+                                            <div class=""></div>
+                                        @endif --}}
+
+
+                                    </div>
+                                    <div class="d-flex flex-column row-gap-4">
+
+                                        <div class="cart-item-info d-flex flex-column">
+    
+                                            <div class="cart-item-name">{{ $cart_items['product']['name'] }}</div>
+    
+                                            <div class="cart-item-price">{{ $cart_items['total'] }}đ
+                                            </div>
+                                        </div>
+                                        <div class="cart-item-right d-flex align-items-center">
+    
+                                            <div class="dish-btn-quantity">
+                                                <button class="outline-button" wire:click="decrease({{ $index }})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
+                                                        stroke="currentColor" class="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                    </svg>
+    
+                                                </button>
+                                                <input type="number" name="quantity" id="quantity" min="1"
+                                                    max="100" value="{{ $cart_items['quantity'] }}"
+                                                    wire:model.live="default_quantity.{{ $index }}">
+    
+    
+                                                <button class="outline-button" wire:click="increase({{ $index }})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
+                                                        stroke="currentColor" class="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M12 4.5v15m7.5-7.5h-15" />
+                                                    </svg>
+    
+                                                </button>
+                                            </div>
+    
+                                            <button title="Xóa" class="cart-item-delete"
+                                                wire:click="delete_cart_item({{ $index }}, {{ $cart_items['id'] }})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
+                                                    class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                </svg>
+                                            </button>
+    
+    
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-lg-block d-md-block d-none">
 
                                 <div class="cart-item-wrap d-flex justify-content-between align-items-center">
                                     <div class="cart-item-left d-flex align-items-center">
@@ -75,21 +156,23 @@
                                         <div class="dish-btn-quantity">
                                             <button class="outline-button" wire:click="decrease({{ $index }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
-                                                    stroke="currentColor" class="size-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px"
+                                                    height="16px" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M5 12h14" />
                                                 </svg>
 
                                             </button>
                                             <input type="number" name="quantity" id="quantity" min="1"
-                                                max="100" value="{{ $cart_items["quantity"] }}"
+                                                max="100" value="{{ $cart_items['quantity'] }}"
                                                 wire:model.live="default_quantity.{{ $index }}">
 
 
-                                            <button class="outline-button" wire:click="increase({{ $index }})">
+                                            <button class="outline-button"
+                                                wire:click="increase({{ $index }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
-                                                    stroke="currentColor" class="size-6">
+                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px"
+                                                    height="16px" stroke="currentColor" class="size-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
@@ -99,9 +182,9 @@
 
                                         <button title="Xóa" class="cart-item-delete"
                                             wire:click="delete_cart_item({{ $index }}, {{ $cart_items['id'] }})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
-                                                class="size-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" width="24px" height="24px"
+                                                stroke="currentColor" class="size-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                             </svg>
@@ -120,7 +203,7 @@
                 </div>
 
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-md-4 col-12">
 
                 <div class="row">
                     <div class="col-12">
@@ -168,7 +251,7 @@
 
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex">
-                                            <span class="title">Tên người nhận: </span>
+                                            <span class="title d-none d-lg-flex d-md-flex">Tên người nhận: </span>
 
                                             {{-- @if (empty($customer_name))
                                                 <span>Vui lòng nhập họ tên</span>
@@ -191,7 +274,7 @@
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex">
-                                            <span class="title">Số điện thoại: </span>
+                                            <span class="title  d-none d-lg-flex d-md-flex">Số điện thoại: </span>
 
                                             {{-- @if (empty($customer_phone))
                                                 <span>Vui lòng nhập số điện thoại</span>
@@ -208,75 +291,13 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        {{-- <span class="edit-text" data-bs-toggle="modal"
-                                            data-bs-target="#phoneEditModal">Sửa</span> --}}
+
                                     </div>
 
 
                                 </div>
 
                             </div>
-
-                            {{-- <div class="card-item-note rounded shadow p-3 mt-5 d-none">
-
-                                <div class="card-item-note-title">
-                                    <h6>Ghi chú cho đơn hàng</h6>
-                                </div>
-
-                                <div class="card-item-note-input">
-                                    <textarea type="text"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="card-item-2 rounded shadow p-3 mt-5 d-none">
-
-                                <div class="card-item-title">
-                                    <h6>Tùy chọn</h6>
-                                </div>
-
-                                <div class="card-item-option d-flex justify-content-between align-items-center">
-                                    <div class="card-item-option-name">
-                                        <p>Lấy dụng cụ ăn uống</p>
-                                    </div>
-
-                                    <div class="card-item-option-switch">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="flexSwitchCheckDefault">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-item-option d-flex justify-content-between align-items-center">
-                                    <div class="card-item-option-name">
-                                        <p>Không lấy tương cà</p>
-                                    </div>
-
-                                    <div class="card-item-option-switch">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="flexSwitchCheckDefault">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-item-option d-flex justify-content-between align-items-center">
-                                    <div class="card-item-option-name">
-                                        <p>Không lấy tương ớt</p>
-                                    </div>
-
-                                    <div class="card-item-option-switch">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch"
-                                                id="flexSwitchCheckDefault">
-                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div> --}}
 
                             <div class="card-sum-information rounded shadow p-3">
 

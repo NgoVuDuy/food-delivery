@@ -1,11 +1,11 @@
 <div>
     <div class="container mt-5">
         <div class="row empty-cart-wrap justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-lg-3 col-md-3 col-12">
 
                 <img class="empty-cart-img" src="{{ asset('images/sad-emoji.jpg') }}" alt="">
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6 col-12">
                 <div class="right">
 
                     <p class="empty-cart-title">Hiện chưa có chương trình khuyến mãi nào</p>

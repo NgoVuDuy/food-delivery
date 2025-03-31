@@ -21,7 +21,7 @@
         color: $main-color;
 
         font: {
-            size: 22px;
+            size: 1.375rem;
             weight: bold;
         }
 
@@ -34,7 +34,7 @@
         color: $dark-pink;
 
         font: {
-            size: 22px;
+            size: 1.375rem;
             weight: bold;
         }
 
@@ -43,7 +43,9 @@
 
     .dish-option-cover {
 
-        .size-btn,.base-btn,.border-btn {
+        .size-btn,
+        .base-btn,
+        .border-btn {
 
             span {
                 color: $dark-pink;
@@ -67,6 +69,8 @@
             padding: 6px 8px;
             background-color: white;
             border: 2px $light-gray solid;
+            margin: 4px 0px;
+
         }
 
 
@@ -97,8 +101,7 @@
             margin: 0px 8px;
         }
 
-        button {
-        }
+        button {}
 
     }
 
@@ -121,6 +124,7 @@
     font: {
         weight: bold;
     }
+
     margin-bottom: 6px;
 
 }

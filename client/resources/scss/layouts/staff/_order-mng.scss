@@ -1,6 +1,6 @@
 .mng-row-wrap {
-    display: flex;
-    column-gap: 14px;
+    // display: flex;
+    // column-gap: 14px;
 }
 
 .mng-row-wrap a {
@@ -14,7 +14,7 @@
 
     .order-number {
         color: $gray-color;
-        font-size: 15px;
+        font-size: 0.9375rem;
     }
 
     &.active {
@@ -53,7 +53,7 @@
         .details-btn {
             display: block;
             color: $main-color;
-            font-size: 15px;
+            font-size: 0.9375rem;
             text-align: center;
             cursor: pointer;
         }
@@ -71,4 +71,8 @@
         }
 
     }
+}
+
+.cart-right-wrap {
+    width: 100%;
 }

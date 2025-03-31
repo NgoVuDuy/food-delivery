@@ -34,7 +34,7 @@ class Checkout extends Component
 
     #[Session(key: 'store-location')]
     public $store_location;
-    
+
     public $distance_text; // mảng
     public $duration_text; // mảng
     public $points;
@@ -116,6 +116,7 @@ class Checkout extends Component
 
             if ($this->method == 'cod') {
 
+                // Nếu người dùng đã đăng nhập
                 if (!empty($this->user)) {
 
                     // Lưu lại thông tin order vào bảng đơn hàng
@@ -132,7 +133,6 @@ class Checkout extends Component
                         'status' => 'pending'
 
                     ]);
-
                 } else {
 
                     $response = Http::post(Component::$url . 'orders', [
@@ -147,27 +147,45 @@ class Checkout extends Component
                         'status' => 'pending'
 
                     ]);
-
                 }
-                
+
                 if ($response->successful()) {
 
                     $order_id = $response->json()["id"];
 
-                    foreach($this->carts["cart_items"] as $index => $carts_items) {
+                    foreach ($this->carts["cart_items"] as $index => $carts_items) {
 
-                        $orderItem = Http::post(Component::$url . 'order-items', [
-                            'order_id' => $order_id,
-                            'product_id' => $carts_items['product']['id'],
-                            'has_options'=> $carts_items['has_options'],
-                            'quantity' => $carts_items['quantity'],
-                            'total_price' => $carts_items['total'],
-                            'size_option_id' => $carts_items['size_option']['id'],
-                            'base_option_id' => $carts_items['base_option']['id'],
-                            'border_option_id' => $carts_items['border_option']['id']
-                        ])->json();
+                        // Nếu như là pizza thì lấy thêm tùy chọn
+                        if ($carts_items["has_options"] == 1) {
+
+                            $orderItem = Http::post(Component::$url . 'order-items', [
+
+                                'order_id' => $order_id,
+                                'product_id' => $carts_items['product']['id'],
+                                'has_options' => $carts_items['has_options'],
+                                'quantity' => $carts_items['quantity'],
+                                'total_price' => str_replace('.', '', $carts_items['total']) ,
+                                'size_option_id' => $carts_items['size_option']['id'],
+                                'base_option_id' => $carts_items['base_option']['id'],
+                                'border_option_id' => $carts_items['border_option']['id']
+                            ])->json();
+
+                        } else { // Không lấy tùy chọn
+                            $orderItem = Http::post(Component::$url . 'order-items', [
+
+                                'order_id' => $order_id,
+                                'product_id' => $carts_items['product']['id'],
+                                'has_options' => $carts_items['has_options'],
+                                'quantity' => $carts_items['quantity'],
+                                'total_price' => str_replace('.', '', $carts_items['total']),
+                                // 'size_option_id' => $carts_items['size_option']['id'],
+                                // 'base_option_id' => $carts_items['base_option']['id'],
+                                // 'border_option_id' => $carts_items['border_option']['id']
+                            ])->json();
+                        }
                     }
                 }
+
                 return $this->redirect('/orders' . '/' . $order_id, navigate: true);
             }
 
@@ -181,7 +199,7 @@ class Checkout extends Component
 
                     'amount' => $amount,
                     'ipaddr' => $this->ipaddr,
-  
+
                 ])->json();
 
                 if ($response["message"] == "success") {

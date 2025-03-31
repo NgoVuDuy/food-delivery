@@ -17,35 +17,49 @@ class OrderResource extends JsonResource
     {
         return [
 
-            'id' => $this -> id,
+            'id' => $this->id,
             'name' => $this->name,
             'phone' => $this->phone,
             'place_name' => $this->place_name,
             'place_id' => $this->place_id,
-            'total_price' => $this->total_price,
+            'total_price' => number_format($this->total_price, 0, '.', '.') . 'đ' ,
             'status' => $this->status,
             'payment_method' => $this->payment_method,
-            'user_id' => $this -> user_id,
-            'staff_id' => $this -> staff_id,
-            'shipper_id' => $this -> shipper_id,
-            'shipper' => $this -> shipper,
+            'user_id' => $this->user_id,
+            'staff_id' => $this->staff_id,
+            'shipper_id' => $this->shipper_id,
+            'shipper' => $this->shipper,
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y H:i:s'),
             // 'user' => $this->user -> only(['name', 'phone']),
             'store_location' => $this->storeLocation->only(['id', 'name', 'open', 'address']),
             'payment' => $this->payment,
             'order_items' => $this->orderItems
-            -> map(function($item) {
-                return [
-                    'has_options' => $item->has_options,
-                    'quantity' => $item->quantity,
-                    'total_price' => $item->total_price,
-                    'product' => $item->product->only(['id', 'name', 'price', 'image']),
-                    'size_option' => $item->sizeOption -> only(['id','name']),
-                    'base_option' => $item->baseOption -> only(['id','name']),
-                    'border_option' => $item->borderOption -> only(['id','name']),
-                ];
-            }),
+                ->map(function ($item) {
+
+                    if ($item->has_options == 1) {
+
+                        return [
+                            'has_options' => $item->has_options,
+                            'quantity' => $item->quantity,
+                            'total_price' => number_format($item->total_price, 0, '.', '.') ,
+                            'product' => $item->product->only(['id', 'name', 'price', 'image']),
+                            'size_option' => $item->sizeOption->only(['id', 'name']),
+                            'base_option' => $item->baseOption->only(['id', 'name']),
+                            'border_option' => $item->borderOption->only(['id', 'name']),
+                        ];
+                    } else {
+                        return [
+                            'has_options' => $item->has_options,
+                            'quantity' => $item->quantity,
+                            'total_price' => $item->total_price,
+                            'product' => $item->product->only(['id', 'name', 'price', 'image']),
+                            // 'size_option' => $item->sizeOption->only(['id', 'name']),
+                            // 'base_option' => $item->baseOption->only(['id', 'name']),
+                            // 'border_option' => $item->borderOption->only(['id', 'name']),
+                        ];
+                    }
+                }),
         ];
     }
 }

@@ -19,7 +19,6 @@
 
 
 @import 'layouts/staff/order-mng.scss';
-@import 'layouts/staff/pending.scss';
 @import 'layouts/staff/shipper-order';
 
 
@@ -35,7 +34,9 @@
 @import 'components/payment-box.scss';
 @import 'components/keyframes.scss';
 
-@import 'livewire/login-form.scss';
+// @import 'livewire/login-form.scss';
+
+@import 'responsive/app';
 
 
 
