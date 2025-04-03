@@ -46,10 +46,20 @@ class ShipperController extends Controller
         }
 
         $status = $request->get('status', null);
+        $latitude = $request->get('latitude', null);
+        $longitude = $request->get('longitude', null);
 
         if(!empty($status)) {
 
             $shipper->status = $status;
+
+            $shipper->save();
+        }
+
+        if(!empty($latitude) && !empty($longitude)) {
+            
+            $shipper->latitude = $latitude;
+            $shipper->longitude = $longitude;
 
             $shipper->save();
         }

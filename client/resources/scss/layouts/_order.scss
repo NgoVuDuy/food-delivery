@@ -5,6 +5,7 @@
             size: 1.25rem;
             weight: bold;
         }
+
         text-transform: uppercase;
     }
 
@@ -28,7 +29,7 @@
 
         .active {
             background-color: $main-color !important;
-            
+
         }
 
         .order-status-box {
@@ -53,9 +54,9 @@
 
         // .approval-icon-wrap {
 
-            .approval-icon {
-                color: $main-color;
-            }
+        .approval-icon {
+            color: $main-color;
+        }
 
         // }
 
@@ -74,12 +75,23 @@
             border-radius: 20px;
             margin: 0px 6px;
             background-color: $border-color;
+
+            .process {
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                background-color: $main-color;
+            }
+
+            .bar {
+                width: 140px;
+                height: 100%;
+                border-radius: 20px;
+                background-color: $main-color;
+
+            }
         }
 
-        .bar {
-            background-color: $main-color;
-
-        }
     }
 
 }
@@ -89,24 +101,25 @@
     margin-top: 100px;
 
     .order-status-text {
-    
+
         gap: 12px;
+
         svg {
             // color: $dark-pink;
             color: red;
         }
-    
-    
+
+
         p {
             font: {
                 size: 1.25rem;
                 weight: bold;
             }
-    
+
             color: $dark-blue;
             margin-bottom: 0px;
-    
-    
+
+
         }
     }
 }
@@ -146,7 +159,8 @@
                 align-items: center;
                 gap: 18px;
 
-                .quantity, .name {
+                .quantity,
+                .name {
                     font: {
                         size: 16px;
                         // weight: bold;
@@ -172,6 +186,7 @@
 
                     margin-bottom: 0px;
                     color: $dark-pink;
+
                     font: {
                         size: 18px;
                         weight: bold;
@@ -192,6 +207,7 @@
                 size: 18px;
                 weight: bold;
             }
+
             color: $dark-pink;
 
             span {
@@ -201,6 +217,7 @@
                     size: 18px;
                     weight: bold;
                 }
+
                 color: black;
                 margin-right: 12px;
             }
@@ -209,13 +226,14 @@
 }
 
 .delivery-man-contact {
-    
+
     position: fixed;
     right: 2%;
     bottom: 4%;
 
-    animation: scale-box .3s ease-in-out ;
+    animation: scale-box .3s ease-in-out;
     transform-origin: bottom right;
+
     .chat-box {
 
         border-radius: 8px;

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 use Livewire\Attributes\Session;
+use Livewire\Attributes\On;
+
 
 class ShipperOrder extends Component
 {
@@ -15,6 +17,9 @@ class ShipperOrder extends Component
     public $points;
     public $location;
 
+    public $shipper_lat;
+    public $shipper_lng;
+
     #[Session(key: 'user')]
     public $user;
 
@@ -22,6 +27,8 @@ class ShipperOrder extends Component
 
     public function mount()
     {
+        // dd($this->user["shipper"]["id"]);
+
         $counts = Http::get(Component::$url . 'count-orders')->json();
 
         foreach ($counts as $count) {
@@ -45,40 +52,52 @@ class ShipperOrder extends Component
                     'status' => 'ready',
                     'shipper_id' => $this->user["shipper"]["id"]
                 ])->json();
-
             } else {
                 $this->shipper_arrays =  Http::get(Component::$url . 'orders', [
                     'status' => 'delivering',
                     'shipper_id' => $this->user["shipper"]["id"]
                 ])->json();
-
             }
         }
 
         // Cần làm: Nếu số đơn đã sẵn sàng lớn hơn 3 -> bắt buộc phải giao 2 đơn
         if (!empty($this->shipper_arrays["orders"])) {
 
+            // Lấy ra đơn đặt sớm nhất để giao
             $this->shipper_orders[] = $this->shipper_arrays["orders"][$this->shipper_arrays["count"] - 1];
 
-            if(count($this->shipper_orders) == 1) {
+            // Place id nơi giao đến
+            if (count($this->shipper_orders) == 1) {
                 $place_id = $this->shipper_orders[0]["place_id"];
             }
 
+            // Lấy kinh độ vĩ độ nơi giao đến
             $this->location = Http::get(Component::$url . 'place-details', [
                 'place_id' => $place_id
             ])->json();
 
-            $this->points = Http::get(Component::$url . 'many-directions', [
-    
-                'origin' => '10.032652064752597,105.75079032376297',
-                'destination' => $this->location["location"]["lat"] . ',' . $this->location["location"]["lng"],
-                'vehicle' => 'car',
-    
-            ])->json();
-        } 
+        }
+    }
 
+    #[On('updateShipperOrder')]
+    public function updateShipperLocation()
+    {
 
+        $this->points = Http::get(Component::$url . 'directions', [
 
+            'origin' => $this->shipper_lat . ',' . $this->shipper_lng,
+            'destination' => $this->location["location"]["lat"] . ',' . $this->location["location"]["lng"],
+            'vehicle' => 'car',
+
+        ])->json();
+
+        // Cập nhật vị trí lên server
+        $shipper_location = Http::put(Component::$url . 'shippers/' . $this->user["shipper"]["id"], [
+            "latitude" => $this->shipper_lat,
+            "longitude" => $this->shipper_lng
+        ])->json();
+
+        $this->dispatch('updatedShipperOrder');
     }
     public function start_delivery(string $order_id)
     {

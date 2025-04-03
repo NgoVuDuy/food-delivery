@@ -201,6 +201,8 @@ class FunctionController extends Controller
             'api_key' => $this->api_key
         ])->json();
 
+        // return $place;
+
         return response()->json(["location" => $place["result"]["geometry"]["location"]]);
     }
     // Chức năng đăng nhập

@@ -10,10 +10,7 @@ class CartItemController extends Controller
     //
     public function index(Request $request)
     {
-        // $user_id = $request->query('user_id');
-        //
-        // $carts = Cart::with('product')->where('user_id', $user_id)->get();
-        // $carts = CartItem::where('user_id', $user_id)->get();
+
         $cartItems = CartItem::all();
         return response()->json($cartItems);
     }
@@ -35,7 +32,7 @@ class CartItemController extends Controller
         if ($exists) {
 
             $exists->quantity += $data["quantity"];
-            // $exists->total += $cartItem["total"];
+
             $exists->save();
 
             return response()->json($exists);
@@ -46,9 +43,32 @@ class CartItemController extends Controller
             return response()->json($cartItem);
         }
     }
+
     public function show(string $cart_id) {
 
     }
+
+    public function update(Request $request, string $id) {
+
+        $quantity = $request -> input('quantity');
+        $total = $request -> input("total");
+
+        $cart_item = CartItem::find($id);
+
+        if(!$cart_item) {
+
+            
+            return;
+        }
+
+        $cart_item->quantity = (int) $quantity;
+        $cart_item->total = $total;
+
+        $cart_item->save();
+
+        return $cart_item;
+    }
+
     public function destroy(string $id) {
 
         $cart_items = CartItem::find($id);

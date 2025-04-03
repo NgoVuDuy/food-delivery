@@ -52,7 +52,14 @@ class Cancelled extends Component
 
         }
     }
+    public function refreshData()
+    {
+        $this->cancelled_arrays =  Http::get(Component::$url . 'orders', [
+            'status' => 'cancelled'
+        ])->json();
 
+        $this->cancelled_orders = $this->cancelled_arrays["orders"];
+    }
     
     public function render()
     {

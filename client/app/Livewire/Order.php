@@ -23,6 +23,7 @@ class Order extends Component
     public $order;
     public $order_id;
 
+    public $shipper;
     public $shipper_lat;
     public $shipper_lng;
 
@@ -34,6 +35,19 @@ class Order extends Component
         $this->order_id = $id;
 
         $this->order = Http::get(Component::$url . 'orders/' . $this->order_id)->json();
+
+        // dd($this->order);
+        $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
+        // dd($this->shipper);
+        $this->points = Http::get(Component::$url . 'directions', [
+
+            'origin' => $this->shipper["latitude"] . ',' . $this->shipper["longitude"],
+            'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+            'vehicle' => 'car',
+
+        ])->json();
+        // dd($this->points);
+
 
         $order_status = $this->order["status"];
 
@@ -115,20 +129,20 @@ class Order extends Component
         }
     }
 
-    #[On('updateShipperLocation')]
-    public function updateShipperLocation()
-    {
+    // #[On('updateShipperLocation')]
+    // public function updateShipperLocation()
+    // {
 
-        $this->points = Http::get(Component::$url . 'directions', [
+    //     $this->points = Http::get(Component::$url . 'directions', [
 
-            'origin' => $this->shipper_lat . ',' . $this->shipper_lng,
-            'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
-            'vehicle' => 'car',
+    //         'origin' => $this->shipper_lat . ',' . $this->shipper_lng,
+    //         'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+    //         'vehicle' => 'car',
 
-        ])->json();
+    //     ])->json();
 
-        $this->dispatch('updatedShipperLocation');
-    }
+    //     $this->dispatch('updatedShipperLocation');
+    // }
 
     public function render()
     {

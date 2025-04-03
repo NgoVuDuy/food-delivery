@@ -4,7 +4,7 @@
         <nav class="navbar  navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid ctn-padding-sm">
                 <a class="navbar-brand" href="/" wire:navigate><img src="{{ asset('logo/logo.png') }}" alt=""
-                        width="80px"></a>
+                        ></a>
 
                 <div class="order-lg-2  d-flex">
 
@@ -13,7 +13,7 @@
                         <div class="header-user-icon {{ empty($user) ? '' : 'd-none' }}" data-bs-toggle="modal"
                             data-bs-target="#signinModal">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-user-round">
                                 <circle cx="12" cy="8" r="5" />
@@ -40,7 +40,7 @@
                         <div class="header-cart-icon">
 
                             <a href="/cart" wire:navigate class="cart-icon-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
                                     stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
                                     <circle cx="8" cy="21" r="1" />
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" 
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -105,7 +105,7 @@
                         <button type="submit" class="search-submit-btn">
 
                             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                width="50" height="50" fill="currentColor" class="size-6">
+                                width="3.125rem" height="3.125rem" fill="currentColor" class="size-6">
                                 <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
                                 <path fill-rule="evenodd"
                                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"

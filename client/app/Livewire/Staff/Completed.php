@@ -52,6 +52,15 @@ class Completed extends Component
 
         }
     }
+    public function refreshData()
+    {
+        $this->completed_arrays =  Http::get(Component::$url . 'orders', [
+            'status' => 'completed'
+        ])->json();
+
+        $this->completed_orders = $this->completed_arrays["orders"];
+    }
+    
     public function render()
     {
         return view('livewire.staff.completed');

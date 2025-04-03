@@ -4,7 +4,6 @@
     {{-- News --}}
     <div class="container news-wrap">
 
-
         <div class="row mt-3 row-gap-4">
 
             <div class="col-lg-3 col-md-4 col-6">

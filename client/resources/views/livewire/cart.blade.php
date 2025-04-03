@@ -75,7 +75,7 @@
                                         <div class="cart-item-right d-flex align-items-center">
     
                                             <div class="dish-btn-quantity">
-                                                <button class="outline-button" wire:click="decrease({{ $index }})">
+                                                <button class="outline-button" wire:click="decrease({{ $index }}, {{ $cart_items["id"] }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
                                                         stroke="currentColor" class="size-6">
@@ -88,7 +88,7 @@
                                                     wire:model.live="default_quantity.{{ $index }}">
     
     
-                                                <button class="outline-button" wire:click="increase({{ $index }})">
+                                                <button class="outline-button" wire:click="increase({{ $index }}, {{ $cart_items["id"] }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
                                                         stroke="currentColor" class="size-6">
@@ -154,7 +154,7 @@
                                     <div class="cart-item-right d-flex align-items-center">
 
                                         <div class="dish-btn-quantity">
-                                            <button class="outline-button" wire:click="decrease({{ $index }})">
+                                            <button class="outline-button" wire:click="decrease({{ $index }}, {{ $cart_items["id"] }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" width="16px"
                                                     height="16px" stroke="currentColor" class="size-6">
@@ -169,7 +169,7 @@
 
 
                                             <button class="outline-button"
-                                                wire:click="increase({{ $index }})">
+                                                wire:click="increase({{ $index }}, {{ $cart_items["id"] }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" width="16px"
                                                     height="16px" stroke="currentColor" class="size-6">
@@ -223,9 +223,9 @@
                                         <div class="d-flex justify-content-between align-items-center column-gap-1">
 
                                             @if (empty($delivery_location))
-                                                <span class="address">Vui lòng thêm địa chỉ giao hàng</span>
+                                                <span class="address">Vui lòng thêm địa chỉ nhận hàng</span>
                                             @else
-                                                <span>{{ $delivery_location }}</span>
+                                                <span class="address-added">{{ $delivery_location }}</span>
                                             @endif
 
 
@@ -595,20 +595,20 @@
                 );
             })
 
-            $wire.on('notLocation', () => {
-                Toastify({
-                    text: "Vui lòng thêm vị trí giao hàng",
-                    duration: 1000,
-                    offset: {
-                        x: 14,
-                        y: 80
-                    },
-                    style: {
-                        background: "red",
-                        color: "white"
-                    }
-                }).showToast();
-            })
+            // $wire.on('notLocation', () => {
+            //     Toastify({
+            //         text: "Vui lòng thêm vị trí giao hàng",
+            //         duration: 1000,
+            //         offset: {
+            //             x: 14,
+            //             y: 80
+            //         },
+            //         style: {
+            //             background: "red",
+            //             color: "white"
+            //         }
+            //     }).showToast();
+            // })
         })
     </script>
 @endscript

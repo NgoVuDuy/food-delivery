@@ -149,7 +149,7 @@
 
             &:hover {
 
-                color: $main-color;
+                color: red;
             }
         }
     }
@@ -185,11 +185,15 @@
 
                 .address {
                     width: 80%;
+                    color: red;
+                }
+                .address-added {
+                    color: $dark-pink;
                 }
 
                 .card-delivery-address-edit {
 
-                    color: $dark-pink;
+                    color: red;
                     cursor: pointer;
                 }
             }

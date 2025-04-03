@@ -373,7 +373,7 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-5 news-wrap">
+    <div class="container mt-5 news-wrap">
 
         {{-- News --}}
         {{-- <div class="container"> --}}

@@ -10,6 +10,9 @@ a {
 .navbar .right-wrap {
   margin-right: 12px;
 }
+.navbar .navbar-brand img {
+  width: 4.375rem;
+}
 
 .header-user-icon,
 .header-cart-icon {
@@ -98,8 +101,8 @@ footer .footer-row {
 }
 footer .footer-logo {
   margin-right: 20px;
-  width: 70px;
-  height: 70px;
+  width: 4.375rem;
+  height: 4.375rem;
   border-radius: 4px;
 }
 footer .footer-logo-name {
@@ -382,7 +385,7 @@ footer .footer-col h6 {
   background: none;
 }
 .cart-item-wrap .cart-item-right .cart-item-delete:hover {
-  color: #33539e;
+  color: red;
 }
 
 .card-wrap {
@@ -403,9 +406,13 @@ footer .footer-col h6 {
 }
 .card-wrap .card-user-information .wrap .card-delivery-address .address {
   width: 80%;
+  color: red;
+}
+.card-wrap .card-user-information .wrap .card-delivery-address .address-added {
+  color: #a5678e;
 }
 .card-wrap .card-user-information .wrap .card-delivery-address .card-delivery-address-edit {
-  color: #a5678e;
+  color: red;
   cursor: pointer;
 }
 .card-wrap .card-user-information .wrap .title {
@@ -802,7 +809,16 @@ footer .footer-col h6 {
   margin: 0px 6px;
   background-color: #e3e3e3;
 }
-.order-status-wrap .order-status .bar {
+.order-status-wrap .order-status .process-bar .process {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #33539e;
+}
+.order-status-wrap .order-status .process-bar .bar {
+  width: 140px;
+  height: 100%;
+  border-radius: 20px;
   background-color: #33539e;
 }
 
@@ -845,7 +861,8 @@ footer .footer-col h6 {
   align-items: center;
   gap: 18px;
 }
-.order-details-wrap .order-details .details-item .left .quantity, .order-details-wrap .order-details .details-item .left .name {
+.order-details-wrap .order-details .details-item .left .quantity,
+.order-details-wrap .order-details .details-item .left .name {
   font-size: 16px;
 }
 .order-details-wrap .order-details .details-item .left .name {
@@ -1778,6 +1795,9 @@ footer .footer-col h6 {
   }
   .bg-header-wrap .bg-header .bg-content .bg-text p {
     font-size: 2rem;
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
   }
 }
 /* Small (SM): <768px */

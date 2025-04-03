@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('shipper_id');
             $table->integer('status')->default(-1);
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('latitude')->default(null);
+            $table->string('longitude')->default(null);
 
             $table->timestamps();
 

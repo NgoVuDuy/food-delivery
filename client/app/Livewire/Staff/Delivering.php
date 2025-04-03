@@ -51,6 +51,14 @@ class Delivering extends Component
 
         }
     }
+    public function refreshData()
+    {
+        $this->delivering_arrays =  Http::get(Component::$url . 'orders', [
+            'status' => 'delivering'
+        ])->json();
+
+        $this->delivering_orders = $this->delivering_orders["orders"];
+    }
     public function render()
     {
         return view('livewire.staff.delivering');

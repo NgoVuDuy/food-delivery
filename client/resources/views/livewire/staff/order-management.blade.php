@@ -73,7 +73,9 @@
     </div>
 
 
-
     @yield('slot')
 
+
 </div>
+
+

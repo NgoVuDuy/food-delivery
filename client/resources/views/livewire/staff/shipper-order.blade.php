@@ -282,11 +282,14 @@
     </div>
 
     <div id="container-direction"></div>
+    {{ $shipper_lat }}
+    {{ $shipper_lng }}
 
-    <div class="container-fluid shadow mt-5 container-direction d-none">
+
+    <div class="container-fluid shadow mt-5 container-direction ">
         <div class="row">
             <div class="col-12">
-                <div id="direction-map" class="shadow"></div>
+                <div id="direction-map" class="shadow" wire:ignore></div>
 
             </div>
 
@@ -326,127 +329,164 @@
 
             let user = $wire.$get('user')
 
+            let shipper_lat = null
+            let shipper_lng = null
+            let shipperMarker = null
+            let shipperPopup = null
+
+
+            var markerHeight = 40,
+                markerRadius = 10,
+                linearOffset = 25;
+
+            var popupOffsets = {
+                'top': [0, 0],
+                'top-left': [0, 0],
+                'top-right': [0, 0],
+                'bottom': [0, -markerHeight],
+                'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+                'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+                'left': [markerRadius, (markerHeight - markerRadius) * -1],
+                'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+            };
+
+            // Nếu đang giao hàng
             if (user['shipper']['status'] == 1) {
 
+                // Hiện bản đồ
                 $('.container-direction').removeClass('d-none')
 
                 goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
 
                 var map = new goongjs.Map({
-
                     container: 'direction-map',
                     style: 'https://tiles.goong.io/assets/goong_map_web.json',
-                    center: [105.75005, 10.03202],
+                    center: [105.75005, 10.03202], // Vị trí của shipper
                     zoom: 15
                 });
 
-                const points = $wire.$get('points')
                 const location = $wire.$get('location')
 
-                let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
-
+                // Tạo marker khách hàng
                 new goongjs.Marker({
                         color: "#00abed"
                     })
                     .setLngLat([location['location']['lng'], location['location']['lat']])
                     .addTo(map);
 
-                map.on('load', function() {
+                new goongjs.Popup({
+                        offset: popupOffsets,
+                        className: 'my-location',
+                        closeButton: false,
+                        closeOnClick: false
+                    })
+                    .setLngLat([location['location']['lng'], location['location']['lat']])
+                    .setHTML("<span>Khách hàng</span>")
+                    .addTo(map);
 
-                    map.addSource('route', {
-                        'type': 'geojson',
-                        'data': {
+
+                // Lấy vị trí của nhân viên giao hàng (Vị trí của tôi)
+                navigator.geolocation.watchPosition((position) => {
+
+                    // Lấy vị trí hiện tại
+                    shipper_lat = position.coords.latitude;
+                    shipper_lng = position.coords.longitude;
+
+                    // Gán cho biến bên Livewire
+                    $wire.$set('shipper_lat', shipper_lat)
+                    $wire.$set('shipper_lng', shipper_lng)
+
+                    // Xét sự kiện bên livewire
+                    $wire.dispatch("updateShipperOrder")
+
+                    console.log(shipper_lat)
+                    console.log(shipper_lng)
+                    console.log("-----------------")
+                });
+
+                $wire.on('updatedShipperOrder', () => {
+
+                    const points = $wire.$get('points')
+
+                    let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
+
+                    if (map.getSource('route')) {
+                        // Nếu đã có nguồn 'route', chỉ cần cập nhật dữ liệu
+                        shipperMarker.setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
+                        shipperPopup.setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
+
+
+                        map.getSource('route').setData({
                             'type': 'Feature',
                             'properties': {},
                             'geometry': {
                                 'type': 'LineString',
                                 'coordinates': geoJSONCoordinates
                             }
-                        }
+                        });
+                    } else {
+
+                        // Tạo phần tử DOM chứa icon tùy chỉnh
+                        var el = document.createElement('div');
+                        el.className = 'shipper-marker';
+                        el.style.backgroundImage =
+                            'url(https://cdn-icons-png.flaticon.com/512/3505/3505989.png)';
+                        el.style.width = '50px';
+                        el.style.height = '50px';
+                        el.style.backgroundSize = 'cover'; // Đảm bảo ảnh không bị co giãn
+                        el.style.borderRadius = '50%'; // Làm tròn marker nếu muốn
+
+                        shipperMarker = new goongjs.Marker(el)
+                            .setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
+                            .addTo(map);
+
+                        shipperPopup = new goongjs.Popup({
+                                offset: popupOffsets,
+                                className: 'my-location',
+                                closeButton: false,
+                                closeOnClick: false
+                            })
+                            .setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
+                            .setHTML("<span>Bạn ở đây</span>")
+                            .addTo(map);
+
+
+
+                        map.addSource('route', {
+                            'type': 'geojson',
+                            'data': {
+                                'type': 'Feature',
+                                'properties': {},
+                                'geometry': {
+                                    'type': 'LineString',
+                                    'coordinates': geoJSONCoordinates
+                                }
+                            }
+                        });
+
+                        map.addLayer({
+                            'id': 'route',
+                            'type': 'line',
+                            'source': 'route',
+                            'layout': {
+                                'line-join': 'round',
+                                'line-cap': 'round'
+                            },
+                            'paint': {
+                                'line-color': '#00abed',
+                                'line-width': 8
+                            }
+                        });
+                    }
+                    map.flyTo({
+                        center: [$wire.$get('shipper_lng'), $wire.$get('shipper_lat')],
+                        zoom: 15
                     });
-
-                    map.addLayer({
-                        'id': 'route',
-                        'type': 'line',
-                        'source': 'route',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-color': '#00abed',
-                            'line-width': 8
-                        }
-                    });
-                })
-
-                map.flyTo({
-                    center: [location['location']['lng'], location['location']['lat']],
-                    zoom: 15,
-
                 });
 
-                window.location.hash = "#container-direction"
 
             }
 
-            // $('.conform-start-btn').click(function() {
-
-            //     // $('.conform-btn-wrap').removeClass('d-none')
-
-            //     $('.container-direction').removeClass('d-none')
-
-            //     $(this).addClass('d-none')
-
-            //     goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
-
-            //     var map = new goongjs.Map({
-
-            //         container: 'direction-map',
-            //         style: 'https://tiles.goong.io/assets/goong_map_web.json',
-            //         center: [105.75005, 10.03202],
-            //         zoom: 15
-            //     });
-
-            //     points = $wire.$get('points')
-            //     let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
-
-            //     console.log(geoJSONCoordinates)
-
-            //     map.on('load', function() {
-
-            //         map.addSource('route', {
-            //             'type': 'geojson',
-            //             'data': {
-            //                 'type': 'Feature',
-            //                 'properties': {},
-            //                 'geometry': {
-            //                     'type': 'LineString',
-            //                     'coordinates': geoJSONCoordinates
-            //                 }
-            //             }
-            //         });
-
-            //         map.addLayer({
-            //             'id': 'route',
-            //             'type': 'line',
-            //             'source': 'route',
-            //             'layout': {
-            //                 'line-join': 'round',
-            //                 'line-cap': 'round'
-            //             },
-            //             'paint': {
-            //                 'line-color': '#00abed',
-            //                 'line-width': 8
-            //             }
-            //         });
-            //     })
-
-            //     window.location.hash = "#container-direction"
-            // })
-
-
-
-        })
+        });
     </script>
 @endscript

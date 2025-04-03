@@ -45,28 +45,38 @@
 
         $(document).ready(function() {
 
-            navigator.geolocation.getCurrentPosition(
+            if ("geolocation" in navigator) {
 
-                (position) => {
+                navigator.geolocation.getCurrentPosition(
 
-                    console.log('Vị trí của bạn:', position.coords.latitude, position.coords
-                        .longitude);
+                    (position) => {
 
-                    current_lat = position.coords.latitude
-                    current_lng = position.coords.longitude
+                        console.log('Vị trí của bạn:', position.coords.latitude, position.coords
+                            .longitude);
 
-                    $wire.$set('current_lat', current_lat)
-                    $wire.$set('current_lng', current_lng)
+                        current_lat = position.coords.latitude
+                        current_lng = position.coords.longitude
 
-                    $wire.$set('des_lat', des_lat)
-                    $wire.$set('des_lng', des_lng)
+                        $wire.$set('current_lat', current_lat)
+                        $wire.$set('current_lng', current_lng)
 
-                    $wire.dispatch('show_direction')
-                },
-                (error) => {
-                    console.error('Không thể lấy vị trí:', error);
-                }
-            );
+                        $wire.$set('des_lat', des_lat)
+                        $wire.$set('des_lng', des_lng)
+                        alert("no1")
+
+                        $wire.dispatch('show_direction')
+                    },
+                    (error) => {
+                        console.error('Không thể lấy vị trí:', error);
+                        alert("no2")
+
+                    }
+                );
+            } else {
+                // console.log("trình duyệt không hổ trợ geolocation")
+                alert("no3")
+            }
+
 
             $('.drt-btn').click(function() {
 

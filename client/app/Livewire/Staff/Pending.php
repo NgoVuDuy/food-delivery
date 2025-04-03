@@ -62,7 +62,6 @@ class Pending extends Component
             $this->count_orders["cancelled"] = 0;
 
         }
-        // dd($this->count_orders);
     }
 
     public function refreshData()

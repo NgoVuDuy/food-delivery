@@ -120,20 +120,32 @@ class Cart extends Component
     }
 
     // Phương thức giảm số lượng sản phẩm
-    public function decrease(string $index)
+    public function decrease(string $index, string $cart_item_id)
     {
 
         if ($this->default_quantity[$index] > 1) {
             $this->default_quantity[$index]--;
         }
 
-        // Giá của sản 
-        // dd($this->default_price[$index]);
-        
+        // Giá của sản phẩm        
         $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
+        // Mảng chứa tổng giá từng thằng
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];
-        
+        // Số lượng của sản phẩm
         $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
+
+        // dd($this->carts["cart_items"][$index]["total"]);
+        // dd($this->carts["cart_items"][$index]["quantity"]);
+        if(!empty($this->user)) {
+
+            $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
+                'total' => $this->carts["cart_items"][$index]["total"],
+                'quantity' => $this->carts["cart_items"][$index]["quantity"],
+            ])->json();
+
+            // dd($cart_item);
+        }
+
 
         // Cập nhật lại tổng giá
         $this->total = number_format(array_sum(array_map(function ($item) {
@@ -142,7 +154,7 @@ class Cart extends Component
     }
 
     // Phương thức tăng số lượng sản phẩm
-    public function increase(string $index)
+    public function increase(string $index, string $cart_item_id)
     {
         if ($this->default_quantity[$index] < 100) {
             $this->default_quantity[$index]++;
@@ -153,6 +165,15 @@ class Cart extends Component
         
         $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
 
+        if(!empty($this->user)) {
+
+            $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
+                'total' => $this->carts["cart_items"][$index]["total"],
+                'quantity' => $this->carts["cart_items"][$index]["quantity"],
+            ])->json();
+            // dd($cart_item);
+
+        }
 
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
@@ -181,7 +202,6 @@ class Cart extends Component
 
     public function delete_cart_item(string $index, string $cart_item_id)
     {
-        // dd($cart_item_id);
         // Kiểm tra xem item có tồn tại không trước khi xóa
         if (!isset($this->carts["cart_items"][$index])) {
             return;
@@ -194,6 +214,7 @@ class Cart extends Component
         if (empty($this->carts["cart_items"])) {
             $this->isEmptyCart = true;
         } else {
+
             unset($this->default_price[$index]);
             unset($this->default_quantity[$index]);
             unset($this->total_item[$index]);
@@ -202,7 +223,7 @@ class Cart extends Component
         // Nếu người dùng đã đăng nhập, gửi request API để cập nhật server
         if (!empty($this->user)) {
 
-            $response = Http::delete(Component::$url . 'cart-items/' . $index);
+            $response = Http::delete(Component::$url . 'cart-items/' . $cart_item_id);
 
             if ($response->successful()) {
 
@@ -257,8 +278,8 @@ class Cart extends Component
                 $descriptions = array_column($this->predictions['data'], 'description'); // Lấy trường tên địa điểm trong mảng
                 $index = array_search($this->location_search, $descriptions); // tìm có trường input có trùng với giá trị trong mảng không
 
-                // dd( $descriptions);
 
+                // Nếu có
                 if ($index !== false) {
 
                     // dd($this->predictions);
@@ -280,6 +301,8 @@ class Cart extends Component
             'latlng' => $this->latitude . ',' . $this->longitude
         ])->json();
 
+        $this->predictions = null;
+
         $this->location_search = $results["results"][0]["formatted_address"];
 
         $this->place_id = $results["results"][0]["place_id"];
@@ -292,7 +315,8 @@ class Cart extends Component
 
         if (empty($this->delivery_location)) {
 
-            $this->dispatch("notLocation");
+            return $this->js("alert('Vui lòng thêm địa chỉ nhận hàng')");
+
         } else {
 
             // Gọi api để chuyển đổi place id thành vĩ độ kinh độ

@@ -256,6 +256,9 @@
   .bg-header-wrap .bg-header .bg-content .bg-text p {
     font-size: 2rem;
   }
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
 }
 
 /* Small (SM): <768px */

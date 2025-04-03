@@ -94,7 +94,7 @@ class Checkout extends Component
     // Án nút thanh toán 
     public function payment()
     {
-        // dd($this->total);
+        // dd($this->infor_delivery);
 
         if ($this->method == 'cod' || $this->method == 'vnpay') {
 
@@ -106,8 +106,8 @@ class Checkout extends Component
                     'user_id' => $this->user["id"],
                     'customer_name' => $this->infor_delivery["name"],
                     'customer_phone' => $this->infor_delivery["phone"],
-                    'place_id' => $this->infor_delivery["place_id"],
-                    'place_name' => $this->infor_delivery["place_name"],
+                    'place_id' => $this->infor_delivery["to"]["place_id"],
+                    'place_name' => $this->infor_delivery["to"]["place_name"],
                     'created_at' => now(),
                     'updated_at' => now()
 

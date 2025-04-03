@@ -257,24 +257,6 @@ class DishDetail extends Component
 
                 ];
             }
-            // $cartItems = [
-
-            //     'id' => time(),
-            //     'product_id' => $this->product["id"],
-            //     'user_id' => null,
-            //     'quantity' => $this->quantity,
-            //     'size' => $this->current_options["size"],
-            //     'base' => $this->current_options["base"],
-            //     'border' => $this->current_options["border"],
-            // 'total' => $this->product["price"], 
-            //     'product' => [
-            //         'name' => $this->product["name"],
-            //         'image' => $this->product["image"],
-            //     ],
-            //     'created_at' => now(),
-            //     'updated_at' => now()
-            // ];
-
 
             $this->carts["cart_items"][] = $cartItems; // Thêm sản phẩm vào biến session danh sách các món
 
