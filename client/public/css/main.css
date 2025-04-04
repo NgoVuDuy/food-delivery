@@ -804,7 +804,7 @@ footer .footer-col h6 {
 }
 .order-status-wrap .order-status .process-bar {
   width: 140px;
-  height: 5px;
+  height: 0.3125rem;
   border-radius: 20px;
   margin: 0px 6px;
   background-color: #e3e3e3;
@@ -834,7 +834,7 @@ footer .footer-col h6 {
 .tag-wrap .order-status-text p {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #33539e;
+  color: #a5678e;
   margin-bottom: 0px;
 }
 

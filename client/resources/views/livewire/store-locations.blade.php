@@ -62,19 +62,17 @@
 
                         $wire.$set('des_lat', des_lat)
                         $wire.$set('des_lng', des_lng)
-                        alert("no1")
 
                         $wire.dispatch('show_direction')
                     },
                     (error) => {
-                        console.error('Không thể lấy vị trí:', error);
-                        alert("no2")
+
+                        alert(error.message)
 
                     }
                 );
             } else {
-                // console.log("trình duyệt không hổ trợ geolocation")
-                alert("no3")
+                alert("Trình duyệt không hỗ trợ vị trí")
             }
 
 

@@ -11,8 +11,10 @@
 
     @include('includes.libraries')
 
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> --}}
+    <link rel="stylesheet" href="https://452e-2402-800-6390-b2b5-4c33-46d9-a962-789d.ngrok-free.app/css/main.css">
 
+    
     @yield('css')
     @livewireStyles
 </head>
