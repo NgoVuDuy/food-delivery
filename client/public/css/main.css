@@ -80,7 +80,7 @@ a {
   border: none;
 }
 .header-form-search input {
-  width: 400px;
+  width: 300px;
   padding: 8px 12px;
   border-radius: 28px;
 }
@@ -215,6 +215,10 @@ footer .footer-col h6 {
 .products-scroll {
   overflow-y: scroll;
   height: 900px;
+}
+
+.menu-item-wrap .menu-item-img {
+  height: 260px;
 }
 
 .dish-img-wrap {
@@ -408,9 +412,6 @@ footer .footer-col h6 {
   width: 80%;
   color: red;
 }
-.card-wrap .card-user-information .wrap .card-delivery-address .address-added {
-  color: #a5678e;
-}
 .card-wrap .card-user-information .wrap .card-delivery-address .card-delivery-address-edit {
   color: red;
   cursor: pointer;
@@ -522,6 +523,10 @@ footer .footer-col h6 {
   display: none;
 }
 
+.loading-map {
+  color: #33539e;
+}
+
 .bg-header-wrap {
   padding: 0px;
 }
@@ -532,10 +537,6 @@ footer .footer-col h6 {
 }
 .bg-header-wrap .bg-header img {
   width: 100%;
-  animation: zome-in 1s ease-in-out;
-}
-.bg-header-wrap .bg-header .bg-content {
-  animation: move-bg-content 1s ease-in-out;
 }
 .bg-header-wrap .bg-header .bg-content .bg-text p {
   margin: 0px;
@@ -1094,6 +1095,7 @@ footer .footer-col h6 {
 
 .mng-row-wrap a {
   text-decoration: none;
+  border: 2px transparent solid;
   border-bottom: none;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -1318,7 +1320,6 @@ footer .footer-col h6 {
   border-radius: 12px;
   transition: transform 0.4s ease;
   width: 80%;
-  height: 80%;
   margin: 12px;
 }
 .dish-item .menu-item-content {
@@ -1592,6 +1593,26 @@ footer .footer-col h6 {
   margin: 0px;
 }
 
+.user-order-status {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  z-index: 2000;
+}
+.user-order-status .items {
+  background: #a5678e;
+  padding: 8px;
+  border-radius: 8px;
+}
+.user-order-status .text {
+  font-size: 1.0625rem;
+  color: white;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
 @keyframes move-bg-content {
   from {
     transform: translateX(-110%);
@@ -1798,6 +1819,16 @@ footer .footer-col h6 {
   }
   .navbar-toggler:focus {
     box-shadow: none;
+  }
+  .menu-item-wrap .menu-item-img {
+    height: 180px;
+  }
+  .dropdown .nav-name {
+    font-size: 16px;
+    padding: 0px !important;
+  }
+  .header-form-search {
+    margin-right: 0px;
   }
 }
 /* Small (SM): <768px */

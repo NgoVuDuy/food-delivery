@@ -209,7 +209,7 @@ class FunctionController extends Controller
     public function login(Request $request)
     {
 
-        $user = User::with('shipper')->where('phone', $request->phone)->first();
+        $user = User::with('shipper')->with('staff')->where('phone', $request->phone)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
 

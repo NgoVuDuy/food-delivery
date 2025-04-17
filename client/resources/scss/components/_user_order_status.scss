@@ -1,0 +1,27 @@
+.user-order-status {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    // transform: translateX(-50%);
+
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    // background:#E2552D;
+
+    z-index: 2000;
+
+    .items {
+        background: $dark-pink;
+        padding: 8px;
+        border-radius: 8px;
+
+    }
+
+    .text {
+        font-size: 1.0625rem;
+        color: white;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}

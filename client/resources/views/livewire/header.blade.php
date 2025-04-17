@@ -1,10 +1,10 @@
 <div class="sticky-top">
 
     <div>
-        <nav class="navbar  navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid ctn-padding-sm">
-                <a class="navbar-brand" href="/" wire:navigate><img src="{{ asset('logo/logo.png') }}" alt=""
-                        ></a>
+                <a class="navbar-brand" href="/" wire:navigate><img src="{{ asset('logo/logo.png') }}"
+                        alt=""></a>
 
                 <div class="order-lg-2  d-flex">
 
@@ -13,16 +13,16 @@
                         <div class="header-user-icon {{ empty($user) ? '' : 'd-none' }}" data-bs-toggle="modal"
                             data-bs-target="#signinModal">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-user-round">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
                                 <circle cx="12" cy="8" r="5" />
                                 <path d="M20 21a8 8 0 0 0-16 0" />
                             </svg>
                         </div>
 
-                        <div class="nav-item dropdown {{  empty($user) ? 'd-none' : '' }}">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        <div class="d-flex align-items-center nav-item dropdown {{ empty($user) ? 'd-none' : '' }}">
+                            <a class="nav-name nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
 
                                 @if (!empty($user))
@@ -36,35 +36,38 @@
 
                             </ul>
                         </div>
+                        @if (empty(session('user')['staff']) && empty(session('user')['shipper']))
+                            <div class="header-cart-icon">
 
-                        <div class="header-cart-icon">
+                                <a href="/cart" wire:navigate class="cart-icon-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-shopping-cart">
+                                        <circle cx="8" cy="21" r="1" />
+                                        <circle cx="19" cy="21" r="1" />
+                                        <path
+                                            d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                                    </svg>
+                                    <div
+                                        class=" header-cart-quantity rounded-circle d-flex justify-content-center align-items-center">
+                                        <span>{{ $count }}</span>
+                                    </div>
+                                </a>
 
-                            <a href="/cart" wire:navigate class="cart-icon-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.875rem"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
-                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
-                                    <circle cx="8" cy="21" r="1" />
-                                    <circle cx="19" cy="21" r="1" />
-                                    <path
-                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                                </svg>
-                                <div
-                                    class=" header-cart-quantity rounded-circle d-flex justify-content-center align-items-center">
-                                    <span>{{ $count }}</span>
-                                </div>
-                            </a>
-
-                        </div>
+                            </div>
+                        @endif
                     </div>
 
-                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
 
-                <div class="bg-body-tertiary order-lg-1 collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <div class="bg-body-tertiary order-lg-1 collapse navbar-collapse justify-content-between"
+                    id="navbarSupportedContent">
 
                     <ul class="navbar-nav mb-2 mb-lg-0">
 
@@ -72,12 +75,30 @@
                             <a class="nav-link" href="/home" wire:navigate wire:current="active-nav">TRANG CHỦ</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pending" wire:navigate wire:current="active-nav">QUẢN LÝ ĐƠN</a>
-                        </li>
+                        {{-- @isset($this->user)
+
+                            @if (!empty($this->user['staff']) || !empty($this->user['shipper']))
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/pending" wire:navigate wire:current="active-nav">QUẢN LÝ
+                                        ĐƠN</a>
+                                </li>
+                            @endif --}}
+
+                        @if (!empty(session('user')['staff']) || !empty(session('user')['shipper']))
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/pending" wire:navigate wire:current="active-nav">QUẢN LÝ
+                                    ĐƠN</a>
+                            </li>
+                        @endif
+
+                        {{-- @endisset --}}
 
                         <li class="nav-item">
                             <a class="nav-link" href="/menu" wire:navigate wire:current="active-nav">MENU</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/store-locations" wire:navigate wire:current="active-nav">CỬA
+                                HÀNG</a>
                         </li>
 
                         <li class="nav-item">
@@ -85,15 +106,12 @@
                                 MÃI</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/store-locations" wire:navigate wire:current="active-nav">CỬA
-                                HÀNG</a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="/news" wire:navigate wire:current="active-nav">TIN
                                 TỨC</a>
                         </li>
+
 
                     </ul>
 

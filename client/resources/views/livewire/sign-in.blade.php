@@ -59,7 +59,7 @@
 
                                     </div>
 
-                                    <span class="forgot-pwd">Quên mật khẩu ?</span>
+                                    {{-- <span class="forgot-pwd">Quên mật khẩu ?</span> --}}
 
                                 </div>
 

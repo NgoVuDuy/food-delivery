@@ -11,30 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shippers', function (Blueprint $table) {
+        Schema::create('staffs', function (Blueprint $table) {
+
             $table->id();
-
-            $table->unsignedBigInteger('shipper_id');
+            $table->unsignedBigInteger('staff_id');
             $table->unsignedBigInteger('store_location_id');
-
-            $table->integer('status')->default(-1);
-            $table->string('latitude')->default(null);
-            $table->string('longitude')->default(null);
-
             $table->timestamps();
 
-            $table->foreign('shipper_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('store_location_id')->references('id')->on('store_locations')->onDelete('cascade');
-
-
         });
     }
-
-    /**
+    /**  
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('shipper_locations');
+        Schema::dropIfExists('staffs');
     }
 };

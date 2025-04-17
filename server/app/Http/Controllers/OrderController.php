@@ -15,8 +15,8 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $status = $request->query('status', null);
-
         $shipper_id =  $request->query('shipper_id', null);
+        $user_id = $request->query('user_id', null);
 
         // lấy ra tất cả các đơn orders
         if ($status == null  && $shipper_id == null) {
@@ -59,6 +59,8 @@ class OrderController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
                 } else
+
+                    //  
                     $order = Order::with('storeLocation')
                         ->with('payment')
                         ->with('shipper.user')
@@ -70,6 +72,22 @@ class OrderController extends Controller
                         ->where('status', $status)
                         ->orderBy('created_at', 'desc')
                         ->get();
+
+        if ($user_id != null) {
+            $order = Order::with('storeLocation')
+                ->with('payment')
+                ->with('shipper.user')
+                ->with('orderItems.product')
+                ->with('orderItems.sizeOption')
+                ->with('orderItems.baseOption')
+                ->with('orderItems.borderOption')
+                ->where('user_id', $user_id)
+                ->whereNot('status', 'completed')
+                ->whereNot('status', 'cancelled')
+
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
 
         return response()->json([
             "orders" => OrderResource::collection($order),
@@ -103,6 +121,17 @@ class OrderController extends Controller
         if (!$order) {
             return response()->json(['message' => 'Không tìm thấy đơn hàng'], 404);
         }
+
+        $order = Order::with('storeLocation')
+            ->with('payment')
+            ->with('shipper.user')
+            ->with('orderItems.product')
+            ->with('orderItems.sizeOption')
+            ->with('orderItems.baseOption')
+            ->with('orderItems.borderOption')
+            ->where('id', $id)
+            ->orderBy('created_at', 'desc')
+            ->first();
 
         return response()->json($order, 200);
     }

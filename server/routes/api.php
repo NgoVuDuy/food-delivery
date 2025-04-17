@@ -40,31 +40,35 @@ Route::apiResource('payments', PaymentController::class);
 Route::apiResource('addresses', AddressController::class);
 Route::apiResource('store-locations', StoreLocationController::class);
 Route::apiResource('shippers', ShipperController::class);
-
-
-
 //
 Route::get('/options-of-product', [ProductOptionController::class, 'options_of_product']);
-Route::get('/search', [FunctionController::class, 'product_search']);
-Route::get('/count-cart', [FunctionController::class, 'count_cart']);
-Route::get('/location-search', [FunctionController::class, 'location_search']);
-Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
-Route::get('/category', [FunctionController::class, 'category']);
-Route::get('/directions', [FunctionController::class, 'directions']);
-Route::get('/many-directions', [FunctionController::class, 'many_directions']);
-Route::get('/shipper-orders', [FunctionController::class, 'shipper_orders']);
-Route::get('/count-orders', [FunctionController::class, 'count_orders']);
 
+Route::controller(FunctionController::class)->group(function () {
+    Route::get('/search', 'product_search');
+    Route::get('/count-cart', 'count_cart');
+    Route::get('/location-search', 'location_search');
+    Route::get('/reverse-geocode', 'reverse_geocode');
+    Route::get('/category', 'category');
+    Route::get('/directions', 'directions');
+    Route::get('/many-directions', 'many_directions');
+    Route::get('/shipper-orders', 'shipper_orders');
+    Route::get('/count-orders', 'count_orders');
+    Route::get('/typical-products', 'typical_products');
+    Route::post('/login', 'login');
+    Route::get('/place-details', 'place_details');
+    Route::get('/payment/callback', 'vnpayCallBack')->name('vnpay.callback');
+});
 
-Route::get('/typical-products', [FunctionController::class, 'typical_products']);
-Route::post('/login', [FunctionController::class, 'login']);
-Route::get('/place-details', [FunctionController::class, 'place_details']);
-Route::get('/payment/callback', [FunctionController::class, 'vnpayCallBack'])->name('vnpay.callback');
-
-
-
-
-
-
-
-
+// Route::get('/search', [FunctionController::class, 'product_search']);
+// Route::get('/count-cart', [FunctionController::class, 'count_cart']);
+// Route::get('/location-search', [FunctionController::class, 'location_search']);
+// Route::get('/reverse-geocode', [FunctionController::class, 'reverse_geocode']);
+// Route::get('/category', [FunctionController::class, 'category']);
+// Route::get('/directions', [FunctionController::class, 'directions']);
+// Route::get('/many-directions', [FunctionController::class, 'many_directions']);
+// Route::get('/shipper-orders', [FunctionController::class, 'shipper_orders']);
+// Route::get('/count-orders', [FunctionController::class, 'count_orders']);
+// Route::get('/typical-products', [FunctionController::class, 'typical_products']);
+// Route::post('/login', [FunctionController::class, 'login']);
+// Route::get('/place-details', [FunctionController::class, 'place_details']);
+// Route::get('/payment/callback', [FunctionController::class, 'vnpayCallBack'])->name('vnpay.callback');

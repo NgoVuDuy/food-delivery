@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-12">
-                <div class="order-status-wrap" wire:poll.10s="reset_data">
+                <div class="order-status-wrap" wire:poll.20s="reset_data">
                     <div class="order-title mb-4">
                         <p>Đơn hàng</p>
                     </div>
@@ -97,9 +97,11 @@
 
                         <div class="delivery-icon-wrap status-icon">
 
-                            <svg class="{{ $order_statuses[3] ? 'approval-icon' : '' }}" xmlns="http://www.w3.org/2000/svg" width="1.625rem" height="1.625rem" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-bike-icon lucide-bike">
+                            <svg class="{{ $order_statuses[3] ? 'approval-icon' : '' }}"
+                                xmlns="http://www.w3.org/2000/svg" width="1.625rem" height="1.625rem"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-bike-icon lucide-bike">
                                 <circle cx="18.5" cy="17.5" r="3.5" />
                                 <circle cx="5.5" cy="17.5" r="3.5" />
                                 <circle cx="15" cy="5" r="1" />
@@ -116,7 +118,6 @@
                             </div>
 
                         </div>
-
 
                         <div class="process-bar">
                             <div class="{{ $order_statuses[3] ? 'process' : '' }}">
@@ -184,7 +185,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center column-gap-1">
 
-                                    <span>{{ $infor_delivery['to']['place_name'] }}</span>
+                                    <span>{{ $order['place_name'] }}</span>
 
                                 </div>
 
@@ -194,7 +195,7 @@
                                 <div class="d-flex">
                                     <span class="title">Từ: </span>
 
-                                    <span>{{ $infor_delivery['from']['store_name'] }}</span>
+                                    <span>{{ $order['store_location']['name'] }}</span>
 
                                 </div>
 
@@ -204,7 +205,7 @@
                                 <div class="d-flex">
                                     <span class="title">Tên người nhận: </span>
 
-                                    <span>{{ $infor_delivery['name'] }}</span>
+                                    <span>{{ $order['name'] }}</span>
 
                                 </div>
 
@@ -213,7 +214,7 @@
                                 <div class="d-flex">
                                     <span class="title">Số điện thoại: </span>
 
-                                    <span>{{ $infor_delivery['phone'] }}</span>
+                                    <span>{{ $order['phone'] }}</span>
                                 </div>
 
                             </div>
@@ -325,8 +326,10 @@
         $(document).ready(function() {
 
             let width = 0
+            let intervalID
 
             function updateProcessBar() {
+
                 width = width + 25
 
                 $('.process').last().css('width', width + "%")
@@ -336,25 +339,29 @@
                 }
             }
 
-            if ($wire.$get('order_status') == 'completed' || $wire.$get('order_status') == 'cancelled') {
+            if (!($wire.$get('order_status') == 'completed' || $wire.$get('order_status') == 'cancelled')) {
 
-            } else {
-                setInterval(
+                intervalID = setInterval(
                     updateProcessBar, 1000);
 
             }
 
-            console.log($wire.$get('order_status'))
+            $wire.on('completedOrder', () => {
 
+                clearInterval(intervalID)
+            })
 
+            console.log(intervalID)
 
             goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
-            $infor_delivery = $wire.$get('infor_delivery')
+
+            // $infor_delivery = $wire.$get('infor_delivery')
 
             // Kinh vĩ độ của người nhận hàng
-            $customer_lat = $infor_delivery["to"]["lat"]
-            $customer_lng = $infor_delivery["to"]["lng"]
-
+            // $customer_lat = $infor_delivery["to"]["lat"]
+            // $customer_lng = $infor_delivery["to"]["lng"]
+            $customer_lat = $wire.$get('customer_lat')
+            $customer_lng = $wire.$get('customer_lng')
             // Kinh vĩ độ của người giao hàng
             // $store_lat = $infor_delivery["from"]["lat"]; // X
             // $store_lng = $infor_delivery["from"]["lng"]; // X
@@ -412,9 +419,7 @@
                 shipper = $wire.$get('shipper')
 
                 // console.log(shipper)
-
-                let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
-
+                geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
 
                 // map.on('load', () => {
 
@@ -478,7 +483,7 @@
                             'line-cap': 'round'
                         },
                         'paint': {
-                            'line-color': '#00abed',
+                            'line-color': '#4176ff',
                             'line-width': 8
                         }
                     });
@@ -491,8 +496,6 @@
 
                 });
                 // })
-
-
 
             })
 

@@ -82,7 +82,7 @@ class SuccessPayment extends Component
             foreach ($this->carts["cart_items"] as $index => $carts_items) {
 
                 $orderItem = Http::post(Component::$url . 'order-items', [
-                    'order_id' => $$this->order_id,
+                    'order_id' => $this->order_id,
                     'product_id' => $carts_items['product']['id'],
                     'has_options' => $carts_items['has_options'],
                     'quantity' => $carts_items['quantity'],

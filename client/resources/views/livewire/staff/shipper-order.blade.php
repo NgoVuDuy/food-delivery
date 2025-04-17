@@ -281,10 +281,11 @@
 
     </div>
 
-    <div id="container-direction"></div>
-    {{ $shipper_lat }}
-    {{ $shipper_lng }}
+    <button class="demo">Demo</button>
+    <button class="reality">Thực tế</button>
 
+
+    <div id="container-direction"></div>
 
     <div class="container-fluid shadow mt-5 container-direction ">
         <div class="row">
@@ -293,31 +294,6 @@
 
             </div>
 
-            <div class="col-4 d-none">
-                <div class="direction-details shadow p-3">
-                    <div class="title">
-                        <h4>Dẫn đường</h4>
-                    </div>
-
-                    @for ($i = 1; $i <= 3; $i++)
-                        <div class="desc">
-
-                            <ul>
-                                <li>
-                                    Bắt đầu đi từ Trần Hoàng Na <span>- Ước tính: (3m - 34 giây)</span>
-                                </li>
-                                <li>
-                                    Quay đầu để vào Trần Hoàng Na <span>- Ước tính: (3m - 34 giây)</span>
-                                </li>
-                                <li>
-                                    Rẽ phải để vào Nguyễn Văn Cừ <span>- Ước tính: (3m - 34 giây)</span>
-                                </li>
-                            </ul>
-
-                        </div>
-                    @endfor
-                </div>
-            </div>
         </div>
 
     </div>
@@ -333,6 +309,8 @@
             let shipper_lng = null
             let shipperMarker = null
             let shipperPopup = null
+
+            let watchID
 
 
             var markerHeight = 40,
@@ -369,7 +347,7 @@
 
                 // Tạo marker khách hàng
                 new goongjs.Marker({
-                        color: "#00abed"
+                        color: "red"
                     })
                     .setLngLat([location['location']['lng'], location['location']['lat']])
                     .addTo(map);
@@ -384,29 +362,100 @@
                     .setHTML("<span>Khách hàng</span>")
                     .addTo(map);
 
+                $('.demo').on('click', function() {
 
-                // Lấy vị trí của nhân viên giao hàng (Vị trí của tôi)
-                navigator.geolocation.watchPosition((position) => {
+                    points = $wire.$get('points')
+                    let index = 0;
 
-                    // Lấy vị trí hiện tại
-                    shipper_lat = position.coords.latitude;
-                    shipper_lng = position.coords.longitude;
+                    // ngưng theo dõi vị trí
+                    navigator.geolocation.clearWatch(watchID)
 
-                    // Gán cho biến bên Livewire
-                    $wire.$set('shipper_lat', shipper_lat)
-                    $wire.$set('shipper_lng', shipper_lng)
+                    let intervalId = setInterval(() => {
+                        if (index >= points["points"].length) {
+                            clearInterval(intervalId);
+                            return;
+                        }
 
-                    // Xét sự kiện bên livewire
-                    $wire.dispatch("updateShipperOrder")
+                        let point = points["points"][index];
+                        let shipper_lat = point[0];
+                        let shipper_lng = point[1];
+
+                        $wire.$set('shipper_lat', shipper_lat);
+                        $wire.$set('shipper_lng', shipper_lng);
+                        $wire.dispatch("updateShipperOrder");
+
+                        index++;
+                    }, 2000); // mỗi giây di chuyển một lần
 
                     console.log(shipper_lat)
                     console.log(shipper_lng)
                     console.log("-----------------")
-                });
+
+                    // console.log(points)
+                })
+                $('.reality').on('click', () => {
+                     watchID = navigator.geolocation.watchPosition(
+
+                        (position) => {
+
+                            // Lấy vị trí hiện tại
+                            shipper_lat = position.coords.latitude;
+                            shipper_lng = position.coords.longitude;
+
+                            // Gán cho biến bên Livewire
+                            $wire.$set('shipper_lat', shipper_lat)
+                            $wire.$set('shipper_lng', shipper_lng)
+
+                            // Xét sự kiện bên livewire
+                            $wire.dispatch("updateShipperOrder")
+
+                            console.log(shipper_lat)
+                            console.log(shipper_lng)
+                            console.log("-----------------")
+                        },
+
+                        (error) => {
+                            alert("Không thể lấy vị trí")
+                        }
+
+
+
+                    );
+                })
+                // Lấy vị trí của nhân viên giao hàng (Vị trí của tôi)
+                 watchID = navigator.geolocation.watchPosition(
+
+                    (position) => {
+
+                        // Lấy vị trí hiện tại
+                        shipper_lat = position.coords.latitude;
+                        shipper_lng = position.coords.longitude;
+
+                        // Gán cho biến bên Livewire
+                        $wire.$set('shipper_lat', shipper_lat)
+                        $wire.$set('shipper_lng', shipper_lng)
+
+                        // Xét sự kiện bên livewire
+                        $wire.dispatch("updateShipperOrder")
+
+                        console.log(shipper_lat)
+                        console.log(shipper_lng)
+                        console.log("-----------------")
+                    },
+
+                    (error) => {
+                        alert("Không thể lấy vị trí")
+                    }
+
+
+
+                );
 
                 $wire.on('updatedShipperOrder', () => {
 
                     const points = $wire.$get('points')
+
+                    console.log(points)
 
                     let geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
 
@@ -414,7 +463,6 @@
                         // Nếu đã có nguồn 'route', chỉ cần cập nhật dữ liệu
                         shipperMarker.setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
                         shipperPopup.setLngLat([$wire.$get('shipper_lng'), $wire.$get('shipper_lat')])
-
 
                         map.getSource('route').setData({
                             'type': 'Feature',
@@ -473,7 +521,7 @@
                                 'line-cap': 'round'
                             },
                             'paint': {
-                                'line-color': '#00abed',
+                                'line-color': '#4176ff',
                                 'line-width': 8
                             }
                         });

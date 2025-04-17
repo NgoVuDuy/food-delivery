@@ -36,7 +36,6 @@
 
                         <i class="icon-footer fa fa-facebook-official" style="font-size:32px;color:#1775f0"></i>
                         <i class="icon-footer fa fa-youtube-play" style="font-size:32px;color:red"></i>
-                        <i class="icon-footer fa fa-twitter" style="font-size:32px;color:#00abed"></i>
                     </div>
 
                     <div class="col-lg-3 col-5 footer-col">

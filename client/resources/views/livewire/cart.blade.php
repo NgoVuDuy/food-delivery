@@ -7,7 +7,7 @@
                 <img class="empty-cart-img" src="{{ asset('images/sad-emoji.jpg') }}" alt="">
             </div>
             <div class="col-lg-6 col-md-6 col-12">
-                
+
                 <div class="right">
 
                     <p class="empty-cart-title">Giỏ hàng trống</p>
@@ -36,9 +36,8 @@
                     @if (!empty($carts['cart_items']))
 
                         @foreach ($carts['cart_items'] as $index => $cart_items)
-
                             <div class="col-12 d-lg-none d-md-none d-block">
-                                <div class="cart-item-wrap d-flex align-items-end">
+                                <div class="cart-item-wrap d-flex align-items-end justify-content-around">
                                     <div class="cart-item-left" style="width: max-content">
 
                                         <div class="">
@@ -66,51 +65,54 @@
                                     <div class="d-flex flex-column row-gap-4">
 
                                         <div class="cart-item-info d-flex flex-column">
-    
+
                                             <div class="cart-item-name">{{ $cart_items['product']['name'] }}</div>
-    
+
                                             <div class="cart-item-price">{{ $cart_items['total'] }}đ
                                             </div>
                                         </div>
                                         <div class="cart-item-right d-flex align-items-center">
-    
+
                                             <div class="dish-btn-quantity">
-                                                <button class="outline-button" wire:click="decrease({{ $index }}, {{ $cart_items["id"] }})">
+                                                <button class="outline-button"
+                                                    wire:click="decrease({{ $index }}, {{ $cart_items['id'] }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
-                                                        stroke="currentColor" class="size-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px"
+                                                        height="16px" stroke="currentColor" class="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M5 12h14" />
                                                     </svg>
-    
+
                                                 </button>
                                                 <input type="number" name="quantity" id="quantity" min="1"
                                                     max="100" value="{{ $cart_items['quantity'] }}"
                                                     wire:model.live="default_quantity.{{ $index }}">
-    
-    
-                                                <button class="outline-button" wire:click="increase({{ $index }}, {{ $cart_items["id"] }})">
+
+
+                                                <button class="outline-button"
+                                                    wire:click="increase({{ $index }}, {{ $cart_items['id'] }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
-                                                        stroke="currentColor" class="size-6">
+                                                        viewBox="0 0 24 24" stroke-width="1.5" width="16px"
+                                                        height="16px" stroke="currentColor" class="size-6">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M12 4.5v15m7.5-7.5h-15" />
                                                     </svg>
-    
+
                                                 </button>
                                             </div>
-    
+
                                             <button title="Xóa" class="cart-item-delete"
                                                 wire:click="delete_cart_item({{ $index }}, {{ $cart_items['id'] }})">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" width="24px" height="24px" stroke="currentColor"
-                                                    class="size-6">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" width="24px" height="24px"
+                                                    stroke="currentColor" class="size-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                                 </svg>
                                             </button>
-    
-    
-    
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -154,10 +156,11 @@
                                     <div class="cart-item-right d-flex align-items-center">
 
                                         <div class="dish-btn-quantity">
-                                            <button class="outline-button" wire:click="decrease({{ $index }}, {{ $cart_items["id"] }})">
+                                            <button class="outline-button"
+                                                wire:click="decrease({{ $index }}, {{ $cart_items['id'] }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px"
-                                                    height="16px" stroke="currentColor" class="size-6">
+                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
+                                                    stroke="currentColor" class="size-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M5 12h14" />
                                                 </svg>
@@ -169,7 +172,7 @@
 
 
                                             <button class="outline-button"
-                                                wire:click="increase({{ $index }}, {{ $cart_items["id"] }})">
+                                                wire:click="increase({{ $index }}, {{ $cart_items['id'] }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" width="16px"
                                                     height="16px" stroke="currentColor" class="size-6">
@@ -317,6 +320,7 @@
 
                         <button class="order-btn main-button mt-3" wire:click="payment">Thanh Toán</button>
 
+
                     </div>
                 </div>
 
@@ -330,7 +334,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="">Chọn
-                            địa chỉ giao hàng</h1>
+                            địa chỉ nhận hàng</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -340,6 +344,7 @@
 
                             <input class="form-control" type="search" placeholder="Vui lòng nhập địa chỉ giao hàng"
                                 wire:model.live="location_search">
+
 
                             <button class="current-location-btn" id="current-location" title="Vị trí của bạn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -354,6 +359,28 @@
                                     <circle cx="12" cy="12" r="3" />
                                 </svg>
                             </button>
+                        </div>
+
+                        {{-- loading --}}
+                        <span class="loading d-none d-block mt-3">
+                            <div class="spinner-grow text-success spinner-grow-sm m-1" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <div class="spinner-grow text-danger spinner-grow-sm m-1" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <div class="spinner-grow text-warning spinner-grow-sm m-1" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </span>
+
+                        <div class="text-center mt-3 loading-map d-none">
+
+                            <div class="spinner-border " role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
 
                         <div class="search-result-wrap" id="search-result">
@@ -456,85 +483,105 @@
             // let marker_longitude
 
             // Gọi api lấy vị trí hiện tại
-            navigator.geolocation.getCurrentPosition(
+            // navigator.geolocation.getCurrentPosition(
 
-                (position) => {
+            //     (position) => {
 
+            //         current_latitude = position.coords.latitude
+            //         current_longitude = position.coords.longitude
 
-                    current_latitude = position.coords.latitude
-                    current_longitude = position.coords.longitude
+            //         console.log('Vị trí của bạn:', current_latitude, current_longitude);
 
-                    console.log('Vị trí của bạn:', current_latitude, current_longitude);
+            //         // $wire.$set('latitude', latitude)
+            //         // $wire.$set('longitude', longitude)
 
-                    // $wire.$set('latitude', latitude)
-                    // $wire.$set('longitude', longitude)
-
-                    // $wire.dispatch('current_location')
-                },
-                (error) => {
-                    console.error('Không thể lấy vị trí:', error);
-                }
-            );
+            //         // $wire.dispatch('current_location')
+            //     },
+            //     (error) => {
+            //         console.error('Không thể lấy vị trí:', error);
+            //     }
+            // );
 
 
             // ấn vào option sử dụng bản đồ để chọn địa chỉ giao hàng
             $('#useMapBtn').click(function() {
 
-                // ấn trường input nhập địa chỉ 
-                $('#input-delivery-address').addClass('d-none')
-                // ẩn nút option sử dụng bản đồ
-                $(this).addClass('d-none')
-                // ẩn kết quả tìm kiếm
-                $('#search-result').addClass('d-none')
-                // ẩn nút cập nhât
-                $('#update-location-btn').addClass('d-none')
+                $('.loading-map').removeClass('d-none');
+
+                // Gọi api lấy vị trí hiện tại
+                navigator.geolocation.getCurrentPosition(
+
+                    (position) => {
+
+                        current_latitude = position.coords.latitude
+                        current_longitude = position.coords.longitude
+
+                        console.log('Vị trí của bạn:', current_latitude, current_longitude);
 
 
-                // Hiển thị đối tượng bản đồ
-                $('#cart-map').removeClass('d-none')
-                $('#coordinates').removeClass('d-none')
-
-                // Hiện nút quay lại
-                $('#backMapBtn').removeClass('d-none')
-
-                // Hiện nút xác nhận
-                $('#conform-location-btn').removeClass('d-none')
-
-                // $wire.$set('predictions', null);
-
-                var coordinates = document.getElementById('coordinates');
-
-                goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
-
-                var map = new goongjs.Map({
-
-                    container: 'cart-map',
-                    style: 'https://tiles.goong.io/assets/goong_map_web.json',
-                    center: [current_longitude, current_latitude],
-                    zoom: 13
-                });
-
-                marker = new goongjs.Marker({
-                        draggable: true
-                    })
-                    .setLngLat([current_longitude, current_latitude])
-                    .addTo(map);
-
-                function onDragEnd() {
-
-                    var lngLat = marker.getLngLat();
-                    coordinates.style.display = 'block';
-                    coordinates.innerHTML =
-                        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-
-                    current_latitude = lngLat.lat
-                    current_longitude = lngLat.lng
+                        // ấn trường input nhập địa chỉ 
+                        $('#input-delivery-address').addClass('d-none')
+                        // ẩn nút option sử dụng bản đồ
+                        $(this).addClass('d-none')
+                        // ẩn kết quả tìm kiếm
+                        $('#search-result').addClass('d-none')
+                        // ẩn nút cập nhât
+                        $('#update-location-btn').addClass('d-none')
 
 
+                        // Hiển thị đối tượng bản đồ
+                        $('#cart-map').removeClass('d-none')
+                        $('#coordinates').removeClass('d-none')
 
-                }
+                        // Hiện nút quay lại
+                        $('#backMapBtn').removeClass('d-none')
 
-                marker.on('dragend', onDragEnd);
+                        // Hiện nút xác nhận
+                        $('#conform-location-btn').removeClass('d-none')
+
+                        // $wire.$set('predictions', null);
+
+                        var coordinates = document.getElementById('coordinates');
+                        goongjs.accessToken = 'w9SBOdwcQ8M5CWKDP6F5r45arXbKLMflJeCJZmXT';
+
+                        var map = new goongjs.Map({
+
+                            container: 'cart-map',
+                            style: 'https://tiles.goong.io/assets/goong_map_web.json',
+                            center: [current_longitude, current_latitude],
+                            zoom: 13
+                        });
+
+                        marker = new goongjs.Marker({
+                                draggable: true
+                            })
+                            .setLngLat([current_longitude, current_latitude])
+                            .addTo(map);
+
+                        function onDragEnd() {
+
+                            var lngLat = marker.getLngLat();
+                            coordinates.style.display = 'block';
+                            coordinates.innerHTML =
+                                'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+
+                            current_latitude = lngLat.lat
+                            current_longitude = lngLat.lng
+
+                        }
+
+                        marker.on('dragend', onDragEnd);
+
+                        $('.loading-map').addClass('d-none')
+                    },
+                    (error) => {
+                        console.error('Không thể lấy vị trí:', error);
+
+                        $('.loading-map').addClass('d-none')
+
+                    }
+                );
+
 
             })
 
@@ -572,12 +619,14 @@
                 $wire.dispatch('current_location')
             })
 
-
             $('#current-location').click(function() {
+
+                $('.loading').removeClass('d-none');
 
                 navigator.geolocation.getCurrentPosition(
 
                     (position) => {
+
                         console.log('Vị trí của bạn:', position.coords.latitude, position.coords
                             .longitude);
 
@@ -588,9 +637,15 @@
                         $wire.$set('longitude', longitude)
 
                         $wire.dispatch('current_location')
+
+                        $('.loading').addClass('d-none');
+
                     },
                     (error) => {
                         console.error('Không thể lấy vị trí:', error);
+
+                        $('.loading').removeClass('d-none');
+
                     }
                 );
             })

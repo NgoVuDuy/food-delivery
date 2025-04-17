@@ -13,7 +13,10 @@
                             <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Chi tiết</th>
-                            <th>Duyệt đơn</th>
+
+                            @if (!empty(session('user')['staff']))
+                                <th>Duyệt đơn</th>
+                            @endif
 
                         </tr>
                         {{-- <div class="" wire:poll.30s="refreshData"> --}}
@@ -27,8 +30,11 @@
                                 <td><span class="details-btn" data-bs-toggle="modal"
                                         data-bs-target="#details{{ $pending_order['id'] }}">Xem chi
                                         tiết</span></td>
-                                <td class="checked-wrap"><button class="checked-btn"
-                                        wire:click="pending_conform({{ $pending_order['id'] }})">Xác nhận</button></td>
+
+                                @if (!empty(session('user')['staff']))
+                                    <td class="checked-wrap"><button class="checked-btn"
+                                            wire:click="pending_conform({{ $pending_order['id'] }})">Xác nhận</button></td>
+                                @endif
 
                             </tr>
 
@@ -136,7 +142,8 @@
 
 
                                                                             </div>
-                                                                            <div class="d-flex flex-column row-gap-4 cart-right-wrap">
+                                                                            <div
+                                                                                class="d-flex flex-column row-gap-4 cart-right-wrap">
 
                                                                                 <div
                                                                                     class="cart-item-info d-flex flex-column">

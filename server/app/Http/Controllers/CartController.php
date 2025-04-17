@@ -36,12 +36,15 @@ class CartController extends Controller
         //
         $data = $request->all();
 
+        // Kiểm  tra người dùng có giỏ hàng chưa
         $cart = Cart::where('user_id', $data['user_id'])->first();
 
+        // Nếu có thì trả về giỏ hàng
         if ($cart) {
             return response()->json($cart);
         }
 
+        // Ngược lại tạo mới và trả về giỏ hàng
         $new_cart = Cart::create($data);
         return response()->json($new_cart);
     }

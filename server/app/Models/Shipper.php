@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipper extends Model
 {
     //
-    protected $fillable = ['shipper_id', 'latitude', 'longitude'];
+    protected $fillable = ['shipper_id','store_location_id', 'latitude', 'longitude'];
 
     public function user() {
 

@@ -188,16 +188,29 @@ class DishDetail extends Component
     public function addToCart()
     {
 
+        if($this->product["category"]["name"] == "Pizza") {
+
+            $has_options = true;
+        }
+
+        // Nếu có sản phẩm trong giỏ hàng
         if (!empty($this->carts["cart_items"])) {
+
 
             // Tìm vị trí của sản phẩm trong giỏ hàng
             $index = collect($this->carts["cart_items"])->search(function ($item) {
 
-                return
-                    $item['product']['id'] == $this->product["id"] &&
-                    $item['size_option']['name'] == $this->current_options["size"] &&
-                    $item['base_option']['name'] == $this->current_options["base"] &&
-                    $item['border_option']['name'] == $this->current_options["border"];
+                if($this->product["category"]["name"] == "Pizza") {
+
+                    return
+                        $item['product']['id'] == $this->product["id"] &&
+                        $item['size_option']['name'] == $this->current_options["size"] &&
+                        $item['base_option']['name'] == $this->current_options["base"] &&
+                        $item['border_option']['name'] == $this->current_options["border"];
+                }
+
+                return $item['product']['id'] == $this->product["id"];
+
             });
         } else {
             $index = false;
@@ -211,6 +224,7 @@ class DishDetail extends Component
             $this->isAddToCart = true;
         } else {
             // Nếu chưa có, thêm mới vào giỏ hàng
+
             if ($this->product["category"]["name"] == "Pizza") {
 
                 $cartItems = [

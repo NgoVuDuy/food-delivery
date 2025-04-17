@@ -14,6 +14,7 @@ use Livewire\Attributes\On;
 #[Title('Đơn hàng')]
 class Order extends Component
 {
+
     #[Session(key: 'infor-delivery')]
     public $infor_delivery;
 
@@ -27,6 +28,9 @@ class Order extends Component
     public $shipper_lat;
     public $shipper_lng;
 
+    public $customer_lat;
+    public $customer_lng;
+
     public $points;
 
     public $order_status;
@@ -38,7 +42,14 @@ class Order extends Component
 
         $this->order = Http::get(Component::$url . 'orders/' . $this->order_id)->json();
 
+        $location = Http::get(Component::$url . 'place-details', [
+            "place_id" => $this->order["place_id"]
+        ])->json();
 
+        $this->customer_lat = $location["location"]["lat"];
+        $this->customer_lng = $location["location"]["lng"];
+
+        // dd($this->order);
 
         // $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
         // $this->points = Http::get(Component::$url . 'directions', [
@@ -49,9 +60,7 @@ class Order extends Component
 
         // ])->json();
 
-
         $this->order_status = $this->order["status"];
-
 
         $this->order_statuses[0] = false;
         $this->order_statuses[1] = false;

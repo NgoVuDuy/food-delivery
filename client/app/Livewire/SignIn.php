@@ -21,9 +21,6 @@ class SignIn extends Component
     #[Session(key: 'user')]
     public $user; // Được xem là biến session
 
-    // #[Session(key: 'cartItems')]
-    // public $carts;
-
     public $message = '';
     public $is_success = null;
 
@@ -38,7 +35,7 @@ class SignIn extends Component
         ])->json();
 
         // Đăng nhập thành công
-        if($response["code"] == 1) {
+        if ($response["code"] == 1) {
 
             $this->user = $response["user"];
             $this->is_success = true;
@@ -53,16 +50,25 @@ class SignIn extends Component
             // Lấy thông tin đăng nhập xét cho biến session
 
 
-        // Đăng nhập thất bại
+            // Đăng nhập thất bại
         } else {
+            
             $this->is_success = false;
-
         }
-    
+
         $this->message = $response["message"];
 
-        return $this->redirect('/home', navigate:true);
+        //chuyển hướng
+        if (!empty($this->user['staff'])) {
 
+            return $this->redirect('/pending', navigate: true);
+        }
+        if (!empty($this->user['shipper'])) {
+
+            return $this->redirect('/shipper-orders', navigate: true);
+        }
+
+        return $this->redirect('/home', navigate: true);
     }
 
     public function messages()
@@ -74,7 +80,7 @@ class SignIn extends Component
             'phone_number.min' => 'Độ dài phải từ 8 đến 16 ký tự.',
             'phone_number.max' => 'Độ dài phải từ 8 đến 16 ký tự.',
 
-            'pwd.required' => 'Vui lòng nhập mật khẩu.',    
+            'pwd.required' => 'Vui lòng nhập mật khẩu.',
             'pwd.min' => 'Độ dài phải từ 8 đến 16 ký tự.',
             'pwd.max' => 'Độ dài phải từ 8 đến 16 ký tự.',
             'pwd.regex' => 'Mật khẩu không được chứa ký tự đặc biệt hoặc khoảng trắng.',

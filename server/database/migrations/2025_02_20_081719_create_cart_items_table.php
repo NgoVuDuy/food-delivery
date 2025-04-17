@@ -30,6 +30,9 @@ return new class extends Migration
             $table->foreign('size_option_id')->references('id')->on('options')->onDelete('set null');
             $table->foreign('base_option_id')->references('id')->on('options')->onDelete('set null');
             $table->foreign('border_option_id')->references('id')->on('options')->onDelete('set null');
+
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
+
         });
     }
 

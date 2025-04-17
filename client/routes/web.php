@@ -30,27 +30,39 @@ Route::get('/', function () {
 
 Route::get('/home', Home::class);
 Route::get('/menu', Menu::class);
-Route::get('/cart', Cart::class);
 Route::get('/store-locations', StoreLocation::class);
 Route::get('/dish-details/{id}', DishDetail::class)->name('dish-details');
-Route::get('/orders/{id}', Order::class);
 Route::get('/search', Search::class);
-Route::get('/checkout', Checkout::class);
 Route::get('/promotion', Promotion::class);
 Route::get('/news', News::class);
 
-Route::get('/success', SuccessPayment::class);
-Route::get('/error', ErrorPayment::class);
+Route::middleware(['role:user'])->group(function() {
+
+    Route::get('/cart', Cart::class);
+    
+    Route::get('/checkout', Checkout::class);
+    Route::get('/orders/{id}', Order::class);
+    
+    Route::get('/success', SuccessPayment::class);
+    Route::get('/error', ErrorPayment::class);
+});
 
 
-// Staff
-Route::get('/shipper-orders', ShipperOrder::class);
+//shippers
+Route::middleware(['role:shipper'])->group(function() {
 
-Route::get('/order-mng', OrderManagement::class);
-Route::get('/pending', Pending::class);
-Route::get('/preparing', Preparing::class);
-Route::get('/ready', Ready::class);
-Route::get('/delivering', Delivering::class);
-Route::get('/completed', Completed::class);
-Route::get('/cancelled', Cancelled::class);
+    Route::get('/shipper-orders', ShipperOrder::class); // chỉ cho shipper vô
+});
+
+// cho cả shipper và staff
+Route::middleware(['role:not_user'])->group(function() {
+
+    Route::get('/order-mng', OrderManagement::class);
+    Route::get('/pending', Pending::class);
+    Route::get('/preparing', Preparing::class);
+    Route::get('/ready', Ready::class);
+    Route::get('/delivering', Delivering::class);
+    Route::get('/completed', Completed::class);
+    Route::get('/cancelled', Cancelled::class);
+});
 

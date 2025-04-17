@@ -59,16 +59,17 @@ class Header extends Component
 
     public function logout()
     {
+        session()->flush();
 
-        $this->user = null;
+        // $this->user = null;
         // $this->carts = null;
 
-        // $this->reset();
+        $this->reset();
 
         // session()->forget('user');
-        session()->forget('carts');
+        // session()->forget('carts');
         // session()->forget('total');
-        session()->forget('infor-delivery');
+        // session()->forget('infor-delivery');
         // session()->flush();
 
         return $this->redirect('/home', navigate: true);

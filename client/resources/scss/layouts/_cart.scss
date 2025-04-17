@@ -188,7 +188,7 @@
                     color: red;
                 }
                 .address-added {
-                    color: $dark-pink;
+                    // color: $dark-pink;
                 }
 
                 .card-delivery-address-edit {
@@ -389,4 +389,8 @@
     line-height: 18px;
     border-radius: 3px;
     display: none;
+}
+
+.loading-map {
+    color: $main-color;
 }

@@ -13,7 +13,11 @@
                             <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Chi tiết</th>
-                            <th>Duyệt đơn</th>
+                            @if (!empty(session('user')['staff']))
+                                <th>Duyệt đơn</th>
+                                {{-- <td class="checked-wrap"><button class="checked-btn"
+                                        wire:click="pending_conform({{ $pending_order['id'] }})">Xác nhận</button></td> --}}
+                            @endif
 
                         </tr>
                         {{-- <div class="" wire:poll.30s="refreshData"> --}}
@@ -27,9 +31,13 @@
                                 <td><span class="details-btn" data-bs-toggle="modal"
                                         data-bs-target="#details{{ $preparing_order['id'] }}">Xem chi
                                         tiết</span></td>
-                                <td class="checked-wrap"><button class="checked-btn"
-                                        wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button></td>
-
+                                {{-- <td class="checked-wrap"><button class="checked-btn"
+                                        wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button></td> --}}
+                                @if (!empty(session('user')['staff']))
+                                    <td class="checked-wrap"><button class="checked-btn"
+                                            wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button>
+                                    </td>
+                                @endif
                             </tr>
 
                             <!-- Modal -->
@@ -108,7 +116,6 @@
                                                             <div class="d-flex row-gap-2 flex-column">
 
                                                                 @foreach ($preparing_order['order_items'] as $index => $order_item)
-
                                                                     <div class="col-12 d-lg-none d-md-none d-block">
                                                                         <div class="cart-item-wrap d-flex align-items-end">
                                                                             <div class="cart-item-left"
@@ -137,7 +144,8 @@
 
 
                                                                             </div>
-                                                                            <div class="d-flex flex-column row-gap-4 cart-right-wrap">
+                                                                            <div
+                                                                                class="d-flex flex-column row-gap-4 cart-right-wrap">
 
                                                                                 <div
                                                                                     class="cart-item-info d-flex flex-column">
@@ -162,7 +170,8 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class=" d-lg-flex d-md-flex d-none cart-item-wrap d-flex justify-content-between align-items-center">
+                                                                    <div
+                                                                        class=" d-lg-flex d-md-flex d-none cart-item-wrap d-flex justify-content-between align-items-center">
 
                                                                         <div
                                                                             class="cart-item-left d-flex align-items-center">

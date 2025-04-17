@@ -256,9 +256,25 @@
   .bg-header-wrap .bg-header .bg-content .bg-text p {
     font-size: 2rem;
   }
+
   .navbar-toggler:focus {
     box-shadow: none;
   }
+
+  .menu-item-wrap {
+    .menu-item-img {
+      height: 180px;
+    }
+  }
+  .dropdown {
+    .nav-name {
+      font-size: 16px;
+      padding: 0px !important;
+    }
+  }
+  .header-form-search {
+    margin-right: 0px;
+}
 }
 
 /* Small (SM): <768px */

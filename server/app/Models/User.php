@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
     protected $fillable = [
         'name',
         'phone',
@@ -53,5 +54,9 @@ class User extends Authenticatable
     public function shipper() {
 
         return $this->hasOne(Shipper::class, 'shipper_id');
+    }
+
+    public function staff() {
+        return $this->hasOne(Staff::class, 'staff_id');
     }
 }

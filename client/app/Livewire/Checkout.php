@@ -95,6 +95,7 @@ class Checkout extends Component
     public function payment()
     {
         // dd($this->infor_delivery);
+        // dd($this->user);
 
         if ($this->method == 'cod' || $this->method == 'vnpay') {
 
@@ -190,7 +191,6 @@ class Checkout extends Component
             }
 
             if ($this->method == 'vnpay') {
-
 
                 // Kiểm tra có đăng nhập chưa
                 $amount = (int) str_replace('.', '', $this->total,);

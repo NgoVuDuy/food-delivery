@@ -6,12 +6,22 @@
 
             <div class="mng-row-wrap d-flex column-gap-4">
 
-                <a href="shipper-orders" wire:navigate wire:current="active" wire:ignore.self>
-                    <div class="nav-option">
-                        <div class="title">Đơn cần giao</div>
-                        <div class="order-number">đang bảo trì</div>
-                    </div>
-                </a>
+                {{-- {{ session("user")["shipper"] }} --}}
+
+                {{-- @isset($user) --}}
+
+                    @if ( !empty(session("user")["shipper"]) )
+
+                        <a href="shipper-orders" wire:navigate wire:current="active" wire:ignore.self>
+                            
+                            <div class="nav-option">
+                                <div class="title">Đơn cần giao</div>
+                                <div class="order-number">đang bảo trì</div>
+                            </div>
+                        </a>
+                    @endif
+                    
+                {{-- @endisset --}}
 
                 <a href="pending" wire:navigate wire:current="active" wire:ignore.self>
                     <div class="nav-option">
@@ -75,7 +85,4 @@
 
     @yield('slot')
 
-
 </div>
-
-
