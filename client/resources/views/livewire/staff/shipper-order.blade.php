@@ -312,7 +312,6 @@
 
             let watchID
 
-
             var markerHeight = 40,
                 markerRadius = 10,
                 linearOffset = 25;
@@ -531,7 +530,6 @@
                         zoom: 15
                     });
                 });
-
 
             }
 

@@ -23,6 +23,22 @@ class CartResource extends JsonResource
             'cart_items' => $this->cartItems 
             
             -> map(function($item) {
+
+                // $size = null;
+                // $base = null;
+                // $border = null;
+
+                if($item->has_options == 1) {
+
+                    $size = $item->sizeOption -> only(['id','name']);
+                    $base = $item->baseOption -> only(['id','name']);
+                    $border = $item->borderOption -> only(['id','name']);
+                } else {
+                    $size = null;
+                    $base = null;
+                    $border = null;
+                }
+
                 return [
                     'id' => $item -> id,
                     'has_options' => $item->has_options,
@@ -53,17 +69,13 @@ class CartResource extends JsonResource
                             // 'description' => $product_item -> description,
                             // 'image' => $product_item -> image
                     //     ];
-
-                    // }),
                     
-                    'size_option' => $item->sizeOption -> only(['id','name']),
-                    'base_option' => $item->baseOption -> only(['id','name']),
-                    'border_option' => $item->borderOption -> only(['id','name']),
+                    'size_option' => $size,
+                    'base_option' => $base,
+                    'border_option' => $border,
                 ];
             }),
 
-
-            
         ];
     }
 }

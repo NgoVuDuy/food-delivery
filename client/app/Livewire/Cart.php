@@ -17,6 +17,7 @@ class Cart extends Component
     public $default_price = []; // Giá gốc của từng sản phẩm (SL = 1)
     public $default_quantity = []; // Số lượng ban đầu của từng sản phẩm
     public $total_item = []; // Tổng tiền của từng sản phẩm
+    public $old_quantity = []; // lưu lại giá trị số lượng cũ
 
     public $isEmptyCart = false; // Kiểm tra giỏ hàng rỗng
 
@@ -54,8 +55,8 @@ class Cart extends Component
     public function mount()
     {
 
-            // dd($this->carts); 
-            // $this->carts = null;
+        // dd($this->carts); 
+        // $this->carts = null;
 
         if (!empty($this->infor_delivery)) {
 
@@ -71,11 +72,10 @@ class Cart extends Component
             // Lấy giỏ hàng
             $this->carts = Http::get(Component::$url . 'carts', [
                 'user_id' => $this->user["id"]
-                
+
             ])->json();
 
             // dd($this->carts);
-
 
             // Lấy địa chỉ người dùng
             $address = Http::get(Component::$url . 'addresses', [
@@ -104,19 +104,24 @@ class Cart extends Component
 
             // Set giá trị mặc định
             foreach ($this->carts['cart_items'] as $index => $cart_items) {
-                
+
                 $this->default_price[$index] = $cart_items["product"]["price"];
                 $this->default_quantity[$index] = $cart_items["quantity"];
                 $this->total_item[$index] = $cart_items["total"];
             }
             // dd($this->default_price);
             // Tính tổng tiền cần thanh toán
-            $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+            // $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+
+            $this->total = number_format(array_sum(array_map(function ($item) {
+                return str_replace('.', '', $item);
+            }, $this->total_item)), 0, '.', '.');
         } else {
 
             // Giỏ hàng rỗng
             $this->isEmptyCart = true;
         }
+
     }
 
     // Phương thức giảm số lượng sản phẩm
@@ -136,7 +141,7 @@ class Cart extends Component
 
         // dd($this->carts["cart_items"][$index]["total"]);
         // dd($this->carts["cart_items"][$index]["quantity"]);
-        if(!empty($this->user)) {
+        if (!empty($this->user)) {
 
             $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
                 'total' => $this->carts["cart_items"][$index]["total"],
@@ -162,10 +167,10 @@ class Cart extends Component
 
         $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];
-        
+
         $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
 
-        if(!empty($this->user)) {
+        if (!empty($this->user)) {
 
             $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
                 'total' => $this->carts["cart_items"][$index]["total"],
@@ -174,6 +179,7 @@ class Cart extends Component
             // dd($cart_item);
 
         }
+        // dd($this->total_item);
 
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
@@ -184,20 +190,47 @@ class Cart extends Component
     public function updatedDefaultQuantity($value, $index)
     {
 
+        // $this->old_quantity[$index] = $this->default_quantity[$index];
+
         $this->default_quantity[$index] = $value ?: 1;
 
         if ($this->default_quantity[$index] > 100) {
+
             $this->default_quantity[$index] = 100;
         }
 
         $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];
-        
-        $this->carts[$index]["quantity"] = $this->default_quantity[$index];
+
+        $this->carts["cart_items"][$index]["quantity"] = $this->default_quantity[$index];
+
+        // dd($this->total_item);
+        // if (!empty($this->user)) {
+
+        //     $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
+        //         'total' => $this->carts["cart_items"][$index]["total"],
+        //         'quantity' => $this->carts["cart_items"][$index]["quantity"],
+        //     ])->json();
+        //     // dd($cart_item);
+
+        // }
 
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
         }, $this->total_item)), 0, '.', '.');
+    }
+    public function updateQuantity($index, $cart_item_id)
+    {
+
+        if (!empty($this->user)) {
+
+            $cart_item = Http::put(Component::$url . 'cart-items/' . $cart_item_id, [
+                'total' => $this->carts["cart_items"][$index]["total"],
+                'quantity' => $this->carts["cart_items"][$index]["quantity"],
+            ])->json();
+            // dd($cart_item);
+
+        }
     }
 
     public function delete_cart_item(string $index, string $cart_item_id)
@@ -238,7 +271,10 @@ class Cart extends Component
             $this->default_quantity = array_values($this->default_quantity);
             $this->total_item = array_values($this->total_item);
 
-            $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+            // $this->total = number_format(array_sum($this->total_item), 3, '.', '.');
+            $this->total = number_format(array_sum(array_map(function ($item) {
+                return str_replace('.', '', $item);
+            }, $this->total_item)), 0, '.', '.');
         }
 
         $this->dispatch('updatedCart');
@@ -316,7 +352,6 @@ class Cart extends Component
         if (empty($this->delivery_location)) {
 
             return $this->js("alert('Vui lòng thêm địa chỉ nhận hàng')");
-
         } else {
 
             // Gọi api để chuyển đổi place id thành vĩ độ kinh độ
@@ -326,7 +361,7 @@ class Cart extends Component
             ])->json();
 
             $this->infor_delivery = [
-            
+
 
                 "user_id" => null,
                 "name" => $this->customer_name, // Tên khách hàng

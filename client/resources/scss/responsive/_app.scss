@@ -266,14 +266,30 @@
       height: 180px;
     }
   }
+
   .dropdown {
     .nav-name {
       font-size: 16px;
       padding: 0px !important;
     }
   }
+
   .header-form-search {
     margin-right: 0px;
+  }
+
+  .menu-item-wrap .menu-item-img {
+    height: 150px;
+  }
+
+  .dish-item .menu-item-content {
+    margin-top: 0px;
+    padding: 0rem 1rem 1rem 1rem;
+  }
+  .user-order-status {
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
 }
 }
 
@@ -281,9 +297,7 @@
 @media (max-width: 767.98px) {
 
   /* CSS áp dụng cho kích thước nhỏ hơn 768px */
-  // .dish-item:hover {
-  //   all: unset;
-  // }
+
 }
 
 /* Medium (MD): <992px */

@@ -7,22 +7,29 @@
 
                 <div class="menu-filter-wrap" wire:ignore>
 
-                    <div class="menu-filter-title d-flex justify-content-between">
-
-                        <p class="mb-3"></p>
-
-                        <button wire:click="show_all_products_btn" class="show-all">Tất cả</button>
-                    </div>
-
+                    
                     <div class="menu-filter-item mb-3">
-
-                        <div class="category-name d-flex align-items-center">
-
+                        
+                        <div class="category-name d-flex align-items-center justify-content-between">
+                            
                             <p class="d-lg-block d-md-block d-none">Phân Loại</p>
-
+                            
+                            <div class="menu-filter-title d-lg-inline-block d-md-inline d-none justify-content-between">
+        
+                                <button wire:click="show_all_products_btn" class="show-all">Tất cả</button>
+                            </div>
                         </div>
 
                         <div class="wrap">
+
+                            <button class="item d-lg-none d-md-none d-sm-inline-block"
+                                wire:click="show_all_products_btn">
+
+                                <span>Tất cả
+                                </span>
+
+                            </button>
+
 
                             @foreach ($categories as $category)
                                 <button class="item"

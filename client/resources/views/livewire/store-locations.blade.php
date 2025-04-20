@@ -45,36 +45,35 @@
 
         $(document).ready(function() {
 
-            if ("geolocation" in navigator) {
+            // if ("geolocation" in navigator) {
 
-                navigator.geolocation.getCurrentPosition(
+            //     navigator.geolocation.getCurrentPosition(
 
-                    (position) => {
+            //         (position) => {
 
-                        console.log('Vị trí của bạn:', position.coords.latitude, position.coords
-                            .longitude);
+            //             console.log('Vị trí của bạn:', position.coords.latitude, position.coords
+            //                 .longitude);
 
-                        current_lat = position.coords.latitude
-                        current_lng = position.coords.longitude
+            //             current_lat = position.coords.latitude
+            //             current_lng = position.coords.longitude
 
-                        $wire.$set('current_lat', current_lat)
-                        $wire.$set('current_lng', current_lng)
+            //             $wire.$set('current_lat', current_lat)
+            //             $wire.$set('current_lng', current_lng)
 
-                        $wire.$set('des_lat', des_lat)
-                        $wire.$set('des_lng', des_lng)
+            //             $wire.$set('des_lat', des_lat)
+            //             $wire.$set('des_lng', des_lng)
 
-                        $wire.dispatch('show_direction')
-                    },
-                    (error) => {
+            //             $wire.dispatch('show_direction')
+            //         },
+            //         (error) => {
 
-                        alert(error.message)
+            //             alert(error.message)
 
-                    }
-                );
-            } else {
-                alert("Trình duyệt không hỗ trợ vị trí")
-            }
-
+            //         }
+            //     );
+            // } else {
+            //     alert("Trình duyệt không hỗ trợ vị trí")
+            // }
 
             $('.drt-btn').click(function() {
 
@@ -105,6 +104,7 @@
                             $wire.dispatch('show_direction')
                         },
                         (error) => {
+                            alert(error.message)
                             console.error('Không thể lấy vị trí:', error);
                         }
                     );
@@ -149,7 +149,7 @@
         $store_locations.forEach(store_location => {
 
             new goongjs.Marker({
-                    color: "#00abed"
+                    color: "#4176ff"
                 })
                 .setLngLat([store_location.longitude, store_location.latitude])
                 .addTo(map);
@@ -219,13 +219,22 @@
                         'line-cap': 'round'
                     },
                     'paint': {
-                        'line-color': '#00abed',
+                        'line-color': '#4176ff',
                         'line-width': 8
                     }
                 });
 
 
             }
+            if(window.location.hash == "#map") {
+
+                window.location.hash = '';
+                window.location.hash = "#map"
+            } else {
+                window.location.hash = "#map"
+            }
+
+
             map.flyTo({
                 center: [des_lng, des_lat],
                 zoom: 15,

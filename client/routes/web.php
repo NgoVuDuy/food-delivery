@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Cart;
 use App\Livewire\Checkout;
 use App\Livewire\DishDetail;
+use App\Livewire\ErrorOrder;
 use App\Livewire\ErrorPayment;
 use App\Livewire\Home;
 use App\Livewire\Menu;
@@ -22,6 +23,7 @@ use App\Livewire\Staff\Pending;
 use App\Livewire\Staff\Ready;
 use App\Livewire\Staff\ShipperOrder;
 use App\Livewire\StoreLocation;
+use App\Livewire\SuccessOrder;
 use App\Livewire\SuccessPayment;
 
 Route::get('/', function () {
@@ -45,6 +47,9 @@ Route::middleware(['role:user'])->group(function() {
     
     Route::get('/success', SuccessPayment::class);
     Route::get('/error', ErrorPayment::class);
+
+    Route::get('/success-order', SuccessOrder::class);
+    Route::get('/error-order', ErrorOrder::class);
 });
 
 

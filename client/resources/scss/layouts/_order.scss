@@ -329,3 +329,21 @@
         }
     }
 }
+
+.success-modal {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    justify-content: center;
+    align-items: center;
+    .success-icon {
+        color: #1daf1d;
+
+    }
+    .title {
+        font-size: 1.5rem;
+    }
+    .desc {
+        font-size: 1.1rem;
+    }
+}

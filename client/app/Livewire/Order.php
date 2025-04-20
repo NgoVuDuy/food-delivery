@@ -98,6 +98,18 @@ class Order extends Component
             $this->order_statuses[3] = true;
             $this->order_statuses[4] = true;
         }
+
+        $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
+        $this->points = Http::get(Component::$url . 'directions', [
+
+            'origin' => $this->shipper["latitude"] . ',' . $this->shipper["longitude"],
+
+            // 'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+            'destination' => $this->customer_lat . ',' . $this->customer_lng,
+
+            'vehicle' => 'car',
+
+        ])->json();
     }
 
     public function reset_data()
@@ -140,6 +152,7 @@ class Order extends Component
 
             $this->dispatch('updatedShipperLocation');
         }
+
         if ($this->order_status == 'completed') {
 
             $this->order_statuses[0] = true;

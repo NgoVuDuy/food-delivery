@@ -2,7 +2,12 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-12">
-                <div class="order-status-wrap" wire:poll.20s="reset_data">
+                <div class="order-status-wrap" 
+
+                {{-- {{ $status_order == "completed" || $status_order == "cancelled" ? wire:poll.20s="reset_data" }} --}}
+                
+                @if( $order_status != "completed" && $order_status != "cancelled") wire:poll.20s="reset_data" @endif
+                >
                     <div class="order-title mb-4">
                         <p>Đơn hàng</p>
                     </div>
@@ -319,11 +324,59 @@
             </div>
         </div>
     </div>
+    {{-- Modal thành công --}}
+    <div class="modal fade modal-form modal-success" id="successModal" tabindex="-1" aria-labelledby="successModal"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                        <span></span>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="success-modal">
+                                    <svg class="success-icon" xmlns="http://www.w3.org/2000/svg" width="100"
+                                        height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-circle-check-icon lucide-circle-check">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="m9 12 2 2 4-4" />
+                                    </svg>
+                                    <p class="title">Giao hàng thành công</p>
+                                    <p class="desc">Cảm ơn bạn đã tin tưởng và mua hàng tại chi nhánh của chúng
+                                        tôi</p>
+                                    {{-- <button class="cold-button" wire:click="">Trở về</button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button> --}}
+
+                    <button type="submit" class="cold-button">Về trang chủ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @script
     <script>
         $(document).ready(function() {
+
+            const myModal = new bootstrap.Modal('#successModal')
+            myModal.show();
 
             let width = 0
             let intervalID
@@ -357,14 +410,8 @@
 
             // $infor_delivery = $wire.$get('infor_delivery')
 
-            // Kinh vĩ độ của người nhận hàng
-            // $customer_lat = $infor_delivery["to"]["lat"]
-            // $customer_lng = $infor_delivery["to"]["lng"]
             $customer_lat = $wire.$get('customer_lat')
             $customer_lng = $wire.$get('customer_lng')
-            // Kinh vĩ độ của người giao hàng
-            // $store_lat = $infor_delivery["from"]["lat"]; // X
-            // $store_lng = $infor_delivery["from"]["lng"]; // X
 
             let shipper_lat = null
             let shipper_lng = null
@@ -412,13 +459,14 @@
                 .setHTML("<span>Bạn ở đây</span>")
                 .addTo(map);
 
+            // lấy ra trạng thái đơn hàng
+            let order_status = $wire.$get('order_status')
 
-            $wire.on('updatedShipperLocation', () => {
+            if (order_status == 'delivering') {
 
                 points = $wire.$get('points')
                 shipper = $wire.$get('shipper')
 
-                // console.log(shipper)
                 geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
 
                 // map.on('load', () => {
@@ -438,6 +486,93 @@
                         }
                     });
                 } else {
+
+                    // $('#map').css('height', '500px')
+
+                    // Tạo phần tử DOM chứa icon tùy chỉnh
+                    var el = document.createElement('div');
+                    el.className = 'shipper-marker';
+                    el.style.backgroundImage =
+                        'url(https://cdn-icons-png.flaticon.com/512/3505/3505989.png)';
+                    el.style.width = '50px';
+                    el.style.height = '50px';
+                    el.style.backgroundSize = 'cover'; // Đảm bảo ảnh không bị co giãn
+                    el.style.borderRadius = '50%'; // Làm tròn marker nếu muốn
+
+                    shipperMarker = new goongjs.Marker(el)
+                        .setLngLat([shipper["longitude"], shipper["latitude"]])
+                        .addTo(map);
+
+                    shipperPopup = new goongjs.Popup({
+                            offset: popupOffsets,
+                            className: 'my-location',
+                            closeButton: false,
+                            closeOnClick: false
+                        })
+                        .setLngLat([shipper["longitude"], shipper["latitude"]])
+                        .setHTML("<span>Người giao hàng</span>")
+                        .addTo(map);
+
+                    map.addSource('route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'Feature',
+                            'properties': {},
+                            'geometry': {
+                                'type': 'LineString',
+                                'coordinates': geoJSONCoordinates
+                            }
+                        }
+                    });
+                    map.addLayer({
+                        'id': 'route',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-color': '#4176ff',
+                            'line-width': 8
+                        }
+                    });
+
+
+                }
+                map.flyTo({
+                    center: [shipper["longitude"], shipper["latitude"]],
+                    zoom: 15,
+
+                });
+            }
+
+            $wire.on('updatedShipperLocation', () => {
+
+                points = $wire.$get('points')
+                shipper = $wire.$get('shipper')
+
+                geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
+
+                // map.on('load', () => {
+
+                if (map.getSource('route')) {
+                    // Nếu đã có nguồn 'route', chỉ cần cập nhật dữ liệu
+
+                    shipperMarker.setLngLat([shipper["longitude"], shipper["latitude"]])
+                    shipperPopup.setLngLat([shipper["longitude"], shipper["latitude"]])
+
+                    map.getSource('route').setData({
+                        'type': 'Feature',
+                        'properties': {},
+                        'geometry': {
+                            'type': 'LineString',
+                            'coordinates': geoJSONCoordinates
+                        }
+                    });
+                } else {
+
+                    // $('#map').css('height', '500px')
 
                     // Tạo phần tử DOM chứa icon tùy chỉnh
                     var el = document.createElement('div');
