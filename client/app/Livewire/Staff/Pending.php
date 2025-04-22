@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use PhpParser\Node\Expr\FuncCall;
 
+use Livewire\Attributes\Title;
+
+#[Title('NVD\'s Pizzeria')]
 class Pending extends Component
 {
     public $pending_arrays = [];
@@ -16,8 +19,9 @@ class Pending extends Component
     public function mount()
     {
 
-        $counts = Http::get(Component::$url . 'count-orders')->json();
+        $counts = Http::get(Component::$url . 'count-orders')->json(); // Lấy số lượng từng đơn hàng
 
+        // Đưa vào mảng
         foreach ($counts as $count) {
 
             $this->count_orders[$count['status']] = $count['total'];
@@ -39,33 +43,56 @@ class Pending extends Component
         // completed
         // cancelled
 
-        if(empty($this->count_orders["pending"])) {
+        if (empty($this->count_orders["pending"])) {
             $this->count_orders["pending"] = 0;
         }
-        if(empty($this->count_orders["preparing"])) {
+        if (empty($this->count_orders["preparing"])) {
             $this->count_orders["preparing"] = 0;
-
         }
-        if(empty($this->count_orders["ready"])) {
+        if (empty($this->count_orders["ready"])) {
             $this->count_orders["ready"] = 0;
-
         }
-        if(empty($this->count_orders["delivering"])) {
+        if (empty($this->count_orders["delivering"])) {
             $this->count_orders["delivering"] = 0;
-
         }
-        if(empty($this->count_orders["completed"])) {
+        if (empty($this->count_orders["completed"])) {
             $this->count_orders["completed"] = 0;
-
         }
-        if(empty($this->count_orders["cancelled"])) {
+        if (empty($this->count_orders["cancelled"])) {
             $this->count_orders["cancelled"] = 0;
-
         }
     }
 
     public function refreshData()
     {
+        $counts = Http::get(Component::$url . 'count-orders')->json(); // Lấy số lượng từng đơn hàng
+
+        // Đưa vào mảng
+        foreach ($counts as $count) {
+
+            $this->count_orders[$count['status']] = $count['total'];
+        }
+
+        if (empty($this->count_orders["pending"])) {
+            $this->count_orders["pending"] = 0;
+        }
+        if (empty($this->count_orders["preparing"])) {
+            $this->count_orders["preparing"] = 0;
+        }
+        if (empty($this->count_orders["ready"])) {
+            $this->count_orders["ready"] = 0;
+        }
+        if (empty($this->count_orders["delivering"])) {
+            $this->count_orders["delivering"] = 0;
+        }
+        if (empty($this->count_orders["completed"])) {
+            $this->count_orders["completed"] = 0;
+        }
+        if (empty($this->count_orders["cancelled"])) {
+            $this->count_orders["cancelled"] = 0;
+        }
+
+
         $this->pending_arrays =  Http::get(Component::$url . 'orders', [
             'status' => 'pending'
         ])->json();

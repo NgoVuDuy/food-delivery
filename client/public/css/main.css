@@ -525,6 +525,16 @@ footer .footer-col h6 {
   color: #33539e;
 }
 
+.options-cart ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+.options-cart ul li {
+  color: #797979;
+  font-size: 1rem;
+}
+
 .bg-header-wrap {
   padding: 0px;
 }
@@ -637,7 +647,6 @@ footer .footer-col h6 {
   border-radius: 8px;
 }
 .home-otd-product-wrap .product-content p {
-  text-align: justify;
   padding: 0px 20px;
   font-size: 1.25rem;
   color: #33539e;
@@ -1141,7 +1150,8 @@ footer .footer-col h6 {
 .table-wrap table th {
   text-align: center;
 }
-.table-wrap table th, .table-wrap table td {
+.table-wrap table th,
+.table-wrap table td {
   border: 2px #e3e3e3 solid;
   padding: 8px;
 }
@@ -1165,6 +1175,10 @@ footer .footer-col h6 {
 
 .cart-right-wrap {
   width: 100%;
+}
+
+.mng-row-wrap {
+  overflow-y: auto;
 }
 
 .shipper-order-empty-order {
@@ -1217,6 +1231,14 @@ footer .footer-col h6 {
 
 .container-direction {
   padding: 2rem;
+}
+
+.test-btn {
+  background-color: none;
+  border: none;
+  color: #33539e;
+  margin-left: 16px;
+  margin-top: 12px;
 }
 
 .main-button {
@@ -1601,6 +1623,9 @@ footer .footer-col h6 {
 .payment-box .title {
   color: #33539e;
 }
+.payment-box .desc {
+  font-size: 1.1rem;
+}
 .payment-box .title, .payment-box .total-price {
   font-size: 20px;
   font-weight: bold;
@@ -1667,7 +1692,7 @@ footer .footer-col h6 {
     margin-right: 0;
   }
   html {
-    font-size: 13px;
+    font-size: 15px;
   }
   .bg-header-wrap .bg-header .bg-content .bg-text div {
     font-size: 14px;
@@ -1790,8 +1815,12 @@ footer .footer-col h6 {
     margin-top: 20px;
   }
   .mng-row-wrap {
-    flex-direction: column;
+    flex-direction: row;
     row-gap: 12px;
+  }
+  .mng-row-wrap a .nav-option {
+    padding: 6px 16px;
+    width: max-content;
   }
   .table-wrap {
     padding: 0px;
@@ -1855,6 +1884,13 @@ footer .footer-col h6 {
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
+  }
+  .cart-item-wrap {
+    column-gap: 20px;
+  }
+  .cart-item-wrap .cart-item-left .cart-item-img img {
+    width: 85px;
+    margin-right: 0px;
   }
 }
 /* Small (SM): <768px */

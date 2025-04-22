@@ -19,7 +19,13 @@ class UserOrderStatus extends Component
 
                 'user_id' => session('user')['id'],
             ])->json();
+        } else {
+
+            if(session('orders-id')) {
+                $this->user_order = session('orders-id');
+            }
         }
+
     }
 
     public function order_details(string $order_id)

@@ -26,7 +26,8 @@ class Delivering extends Component
 
         $this->delivering_orders = $this->delivering_arrays["orders"];
 
-        // dd($this->pendding_order);
+        // dd($this->delivering_orders);
+
         if(empty($this->count_orders["pending"])) {
             $this->count_orders["pending"] = 0;
         }

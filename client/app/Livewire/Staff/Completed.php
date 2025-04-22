@@ -4,7 +4,9 @@ namespace App\Livewire\Staff;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('NVD\'s Pizzeria')]
 class Completed extends Component
 {
     public $completed_arrays = [];
@@ -14,6 +16,7 @@ class Completed extends Component
 
     public function mount()
     {
+
         $counts = Http::get(Component::$url . 'count-orders')->json();
 
         foreach ($counts as $count) {
@@ -27,7 +30,8 @@ class Completed extends Component
 
         $this->completed_orders = $this->completed_arrays["orders"];
 
-        // dd($this->pendding_order);
+        // dd($this->completed_orders);
+
         if(empty($this->count_orders["pending"])) {
             $this->count_orders["pending"] = 0;
         }

@@ -2,12 +2,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-12">
-                <div class="order-status-wrap" 
-
-                {{-- {{ $status_order == "completed" || $status_order == "cancelled" ? wire:poll.20s="reset_data" }} --}}
-                
-                @if( $order_status != "completed" && $order_status != "cancelled") wire:poll.20s="reset_data" @endif
-                >
+                <div class="order-status-wrap" {{-- {{ $status_order == "completed" || $status_order == "cancelled" ? wire:poll.20s="reset_data" }} --}}
+                    @if ($order_status != 'completed' && $order_status != 'cancelled') wire:poll.10s="reset_data" @endif>
                     <div class="order-title mb-4">
                         <p>Đơn hàng</p>
                     </div>
@@ -16,9 +12,9 @@
                         <div class="approval-icon-wrap status-icon">
 
                             <svg class="{{ $order_statuses[0] ? 'approval-icon' : '' }}"
-                                xmlns="ht tp://www.w3.org/2000/svg" width="1.625rem" height="1.625rem"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hourglass">
+                                xmlns="ht tp://www.w3.org/2000/svg" width="1.625rem" height="1.625rem" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-hourglass">
                                 <path d="M5 22h14" />
                                 <path d="M5 2h14" />
                                 <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
@@ -125,7 +121,7 @@
                         </div>
 
                         <div class="process-bar">
-                            <div class="{{ $order_statuses[3] ? 'process' : '' }}">
+                            <div class="{{ $order_statuses[3] ? 'process last-process' : '' }}">
 
                             </div>
                         </div>
@@ -220,6 +216,15 @@
                                     <span class="title">Số điện thoại: </span>
 
                                     <span>{{ $order['phone'] }}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <span class="title">Thanh toán: </span>
+
+                                    <span>{{ $order['payment_method'] }}</span>
                                 </div>
 
                             </div>
@@ -331,7 +336,7 @@
             <div class="modal-content">
                 <div class="modal-header">
 
-                        <span></span>
+                    <span></span>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -363,7 +368,52 @@
                 <div class="modal-footer">
                     {{-- <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button> --}}
 
-                    <button type="submit" class="cold-button">Về trang chủ</button>
+                    <button type="submit" class="cold-button" wire:click="back_home">Về trang chủ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal thất bại --}}
+    <div class="modal fade modal-form modal-success" id="errorModal" tabindex="-1" aria-labelledby="errorModal"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <span></span>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="success-modal">
+                                    <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" width="100"
+                                        height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-circle-x-icon lucide-circle-x">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="m15 9-6 6" />
+                                        <path d="m9 9 6 6" />
+                                    </svg>
+                                    <p class="title">Giao hàng thất bại</p>
+                                    <p class="desc">Xin lỗi vì đã mang lại trải nghiệm không tốt cho khách hàng</p>
+                                    {{-- <button class="cold-button" wire:click="">Trở về</button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="aws-button" data-bs-dismiss="modal">Hủy Bỏ</button> --}}
+
+                    <button type="submit" class="cold-button" wire:click="back_home">Về trang chủ</button>
                 </div>
             </div>
         </div>
@@ -375,8 +425,6 @@
     <script>
         $(document).ready(function() {
 
-            const myModal = new bootstrap.Modal('#successModal')
-            myModal.show();
 
             let width = 0
             let intervalID
@@ -390,6 +438,10 @@
                 if (width == 100) {
                     width = 0
                 }
+
+                // if ($('.process').last().hasClass('last-process')) {
+                //     clearInterval(intervalID)
+                // }
             }
 
             if (!($wire.$get('order_status') == 'completed' || $wire.$get('order_status') == 'cancelled')) {
@@ -401,7 +453,20 @@
 
             $wire.on('completedOrder', () => {
 
-                clearInterval(intervalID)
+                // clearInterval(intervalID)
+
+                const myModal = new bootstrap.Modal('#successModal')
+                myModal.show();
+
+            })
+
+            $wire.on('cancelledOrder', () => {
+
+                // clearInterval(intervalID)
+
+                const myModal = new bootstrap.Modal('#errorModal')
+                myModal.show();
+
             })
 
             console.log(intervalID)
@@ -460,92 +525,92 @@
                 .addTo(map);
 
             // lấy ra trạng thái đơn hàng
-            let order_status = $wire.$get('order_status')
+            // let order_status = $wire.$get('order_status')
 
-            if (order_status == 'delivering') {
+            // if (order_status == 'delivering') {
 
-                points = $wire.$get('points')
-                shipper = $wire.$get('shipper')
+            //     points = $wire.$get('points')
+            //     shipper = $wire.$get('shipper')
 
-                geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
+            //     geoJSONCoordinates = points["points"].map(coord => [coord[1], coord[0]]);
 
-                // map.on('load', () => {
+            //     // map.on('load', () => {
 
-                if (map.getSource('route')) {
-                    // Nếu đã có nguồn 'route', chỉ cần cập nhật dữ liệu
+            //     if (map.getSource('route')) {
+            //         // Nếu đã có nguồn 'route', chỉ cần cập nhật dữ liệu
 
-                    shipperMarker.setLngLat([shipper["longitude"], shipper["latitude"]])
-                    shipperPopup.setLngLat([shipper["longitude"], shipper["latitude"]])
+            //         shipperMarker.setLngLat([shipper["longitude"], shipper["latitude"]])
+            //         shipperPopup.setLngLat([shipper["longitude"], shipper["latitude"]])
 
-                    map.getSource('route').setData({
-                        'type': 'Feature',
-                        'properties': {},
-                        'geometry': {
-                            'type': 'LineString',
-                            'coordinates': geoJSONCoordinates
-                        }
-                    });
-                } else {
+            //         map.getSource('route').setData({
+            //             'type': 'Feature',
+            //             'properties': {},
+            //             'geometry': {
+            //                 'type': 'LineString',
+            //                 'coordinates': geoJSONCoordinates
+            //             }
+            //         });
+            //     } else {
 
-                    // $('#map').css('height', '500px')
+            //         // $('#map').css('height', '500px')
 
-                    // Tạo phần tử DOM chứa icon tùy chỉnh
-                    var el = document.createElement('div');
-                    el.className = 'shipper-marker';
-                    el.style.backgroundImage =
-                        'url(https://cdn-icons-png.flaticon.com/512/3505/3505989.png)';
-                    el.style.width = '50px';
-                    el.style.height = '50px';
-                    el.style.backgroundSize = 'cover'; // Đảm bảo ảnh không bị co giãn
-                    el.style.borderRadius = '50%'; // Làm tròn marker nếu muốn
+            //         // Tạo phần tử DOM chứa icon tùy chỉnh
+            //         var el = document.createElement('div');
+            //         el.className = 'shipper-marker';
+            //         el.style.backgroundImage =
+            //             'url(https://cdn-icons-png.flaticon.com/512/3505/3505989.png)';
+            //         el.style.width = '50px';
+            //         el.style.height = '50px';
+            //         el.style.backgroundSize = 'cover'; // Đảm bảo ảnh không bị co giãn
+            //         el.style.borderRadius = '50%'; // Làm tròn marker nếu muốn
 
-                    shipperMarker = new goongjs.Marker(el)
-                        .setLngLat([shipper["longitude"], shipper["latitude"]])
-                        .addTo(map);
+            //         shipperMarker = new goongjs.Marker(el)
+            //             .setLngLat([shipper["longitude"], shipper["latitude"]])
+            //             .addTo(map);
 
-                    shipperPopup = new goongjs.Popup({
-                            offset: popupOffsets,
-                            className: 'my-location',
-                            closeButton: false,
-                            closeOnClick: false
-                        })
-                        .setLngLat([shipper["longitude"], shipper["latitude"]])
-                        .setHTML("<span>Người giao hàng</span>")
-                        .addTo(map);
+            //         shipperPopup = new goongjs.Popup({
+            //                 offset: popupOffsets,
+            //                 className: 'my-location',
+            //                 closeButton: false,
+            //                 closeOnClick: false
+            //             })
+            //             .setLngLat([shipper["longitude"], shipper["latitude"]])
+            //             .setHTML("<span>Người giao hàng</span>")
+            //             .addTo(map);
 
-                    map.addSource('route', {
-                        'type': 'geojson',
-                        'data': {
-                            'type': 'Feature',
-                            'properties': {},
-                            'geometry': {
-                                'type': 'LineString',
-                                'coordinates': geoJSONCoordinates
-                            }
-                        }
-                    });
-                    map.addLayer({
-                        'id': 'route',
-                        'type': 'line',
-                        'source': 'route',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-color': '#4176ff',
-                            'line-width': 8
-                        }
-                    });
+            //         map.addSource('route', {
+            //             'type': 'geojson',
+            //             'data': {
+            //                 'type': 'Feature',
+            //                 'properties': {},
+            //                 'geometry': {
+            //                     'type': 'LineString',
+            //                     'coordinates': geoJSONCoordinates
+            //                 }
+            //             }
+            //         });
+            //         map.addLayer({
+            //             'id': 'route',
+            //             'type': 'line',
+            //             'source': 'route',
+            //             'layout': {
+            //                 'line-join': 'round',
+            //                 'line-cap': 'round'
+            //             },
+            //             'paint': {
+            //                 'line-color': '#4176ff',
+            //                 'line-width': 8
+            //             }
+            //         });
 
 
-                }
-                map.flyTo({
-                    center: [shipper["longitude"], shipper["latitude"]],
-                    zoom: 15,
+            //     }
+            //     map.flyTo({
+            //         center: [shipper["longitude"], shipper["latitude"]],
+            //         zoom: 15,
 
-                });
-            }
+            //     });
+            // }
 
             $wire.on('updatedShipperLocation', () => {
 
@@ -631,9 +696,7 @@
 
                 });
                 // })
-
             })
-
         })
     </script>
 @endscript

@@ -42,10 +42,13 @@
 
     table {
         width: 100%;
+
         th {
             text-align: center;
         }
-        th,td {
+
+        th,
+        td {
             border: 2px $border-color solid;
             padding: 8px;
         }
@@ -77,7 +80,17 @@
     width: 100%;
 }
 
-// .shipper-orders {
-//     background-color: $light-blue !important;
+// .offcanvas-body {
+//     overflow-y:unset;
+// }
+// .offcanvas.offcanvas-top {
+//     height: max-content;
+// }
+
+// .menu-status-order {
 
 // }
+.mng-row-wrap {
+    overflow-y: auto;
+
+}

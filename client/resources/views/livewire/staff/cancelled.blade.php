@@ -1,7 +1,17 @@
 @extends('livewire.staff.order-management')
 
 @section('slot')
-    <div class="container-fluid table-mt">
+    <div class="container-fluid table-mt {{ empty($cancelled_orders) ? '' : 'd-none' }}">
+        <div class="row">
+            <div class="col-12">
+                <div class="shipper-order-empty-order shadow">
+                    <span class="d-block text-center">Hiện bạn không có đơn hàng nào</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid table-mt {{ empty($cancelled_orders) ? 'd-none' : '' }}">
         <div class="row">
             <div class="col-12">
                 <div class="table-wrap shadow">
@@ -9,7 +19,8 @@
                     <table>
                         <tr>
                             <th>Mã đơn hàng</th>
-                            <th>Hình thức thanh toán</th>
+                            <th class="d-none d-lg-table-cell d-md-table-cell">Hình thức thanh toán</th>
+                            <th class="d-lg-none d-sm-none d-table-cell">Thanh toán</th>
                             <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Người nhận đơn</th>
@@ -22,7 +33,8 @@
                             <tr>
                                 <td>{{ $cancelled_order['id'] }}</td>
                                 <td>{{ $cancelled_order['payment_method'] }}</td>
-                                <td class="d-none d-lg-table-cell d-md-table-cell">{{ $cancelled_order['total_price'] }}</td>
+                                <td class="d-none d-lg-table-cell d-md-table-cell">{{ $cancelled_order['total_price'] }}
+                                </td>
                                 <td>{{ $cancelled_order['created_at'] }}</td>
                                 <td class="text-center">{{ $cancelled_order['shipper']['user']['name'] }}</td>
                                 <td><span class="details-btn" data-bs-toggle="modal"
@@ -136,7 +148,8 @@
 
 
                                                                             </div>
-                                                                            <div class="cart-right-wrap d-flex flex-column row-gap-4">
+                                                                            <div
+                                                                                class="cart-right-wrap d-flex flex-column row-gap-4">
 
                                                                                 <div
                                                                                     class="cart-item-info d-flex flex-column">

@@ -1,6 +1,7 @@
 @extends('livewire.staff.order-management')
 
 @section('slot')
+
     <div class="container-fluid table-mt {{ empty($this->shipper_arrays['orders']) ? '' : 'd-none' }}">
         <div class="row">
             <div class="col-12">
@@ -26,8 +27,8 @@
                     </div>
                     <table>
                         <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Hình thức thanh toán</th>
+                            <th>Mã</th>
+                            <th>Thanh toán</th>
                             <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Chi tiết</th>
@@ -281,16 +282,17 @@
 
     </div>
 
-    <button class="demo">Demo</button>
-    <button class="reality">Thực tế</button>
+    <button class="demo test-btn" >Demo</button>
+    <button class="reality test-btn">Thực tế</button>
 
 
     <div id="container-direction"></div>
 
-    <div class="container-fluid shadow mt-5 container-direction ">
+    <div class="container-fluid shadow mt-5 container-direction d-none " wire:ignore.seft>
+        
         <div class="row">
             <div class="col-12">
-                <div id="direction-map" class="shadow" wire:ignore></div>
+                <div id="direction-map" class="shadow"></div>
 
             </div>
 
@@ -530,6 +532,9 @@
                         zoom: 15
                     });
                 });
+
+                window.location.hash = ''
+                window.location.hash = '#container-direction'
 
             }
 

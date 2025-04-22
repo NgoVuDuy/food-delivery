@@ -11,11 +11,11 @@ use Livewire\Attributes\Session;
 class SignIn extends Component
 {
 
-    #[Validate('required|string|min:8|max:16|regex:/^(\+?\d{1,4}[-.\s]?)?(\d{8,15})$/')]
+    // #[Validate('required|string|min:8|max:16|regex:/^(\+?\d{1,4}[-.\s]?)?(\d{8,15})$/')]
     public $phone_number;
 
 
-    #[Validate('required|string|min:8|max:16|regex:/^[\w]+$/')]
+    // #[Validate('required|string|min:8|max:16|regex:/^[\w]+$/')]
     public $pwd;
 
     #[Session(key: 'user')]
@@ -27,7 +27,7 @@ class SignIn extends Component
     public function signin()
     {
 
-        $this->validate();
+        // $this->validate();
 
         $response = Http::post(Component::$url . 'login', [
             "phone" => $this->phone_number,

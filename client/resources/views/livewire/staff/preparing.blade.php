@@ -1,7 +1,17 @@
 @extends('livewire.staff.order-management')
 
 @section('slot')
-    <div class="container-fluid table-mt">
+    <div class="container-fluid table-mt {{ empty($preparing_orders) ? '' : 'd-none' }}">
+        <div class="row">
+            <div class="col-12">
+                <div class="shipper-order-empty-order shadow">
+                    <span class="d-block text-center">Hiện bạn không có đơn hàng nào</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid table-mt {{ empty($preparing_orders) ? 'd-none' : '' }}">
         <div class="row">
             <div class="col-12">
                 <div class="table-wrap shadow">
@@ -9,7 +19,8 @@
                     <table>
                         <tr>
                             <th>Mã đơn hàng</th>
-                            <th>Hình thức thanh toán</th>
+                            <th class="d-none d-lg-table-cell d-md-table-cell">Hình thức thanh toán</th>
+                            <th class="d-lg-none d-sm-none d-table-cell">Thanh toán</th>
                             <th class="d-none d-lg-table-cell d-md-table-cell">Tổng tiền</th>
                             <th>Thời gian đặt</th>
                             <th>Chi tiết</th>
@@ -20,13 +31,14 @@
                             @endif
 
                         </tr>
-                        {{-- <div class="" wire:poll.30s="refreshData"> --}}
+                        {{-- <div class="" wire:poll.10s="refreshData"> --}}
 
                         @foreach ($preparing_orders as $preparing_order)
                             <tr>
                                 <td>{{ $preparing_order['id'] }}</td>
                                 <td>{{ $preparing_order['payment_method'] }}</td>
-                                <td class="d-none d-lg-table-cell d-md-table-cell">{{ $preparing_order['total_price'] }}</td>
+                                <td class="d-none d-lg-table-cell d-md-table-cell">{{ $preparing_order['total_price'] }}
+                                </td>
                                 <td>{{ $preparing_order['created_at'] }}</td>
                                 <td><span class="details-btn" data-bs-toggle="modal"
                                         data-bs-target="#details{{ $preparing_order['id'] }}">Xem chi
@@ -35,7 +47,8 @@
                                         wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button></td> --}}
                                 @if (!empty(session('user')['staff']))
                                     <td class="checked-wrap"><button class="checked-btn"
-                                            wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác nhận</button>
+                                            wire:click="preparing_conform({{ $preparing_order['id'] }})">Xác
+                                            nhận</button>
                                     </td>
                                 @endif
                             </tr>
@@ -188,7 +201,8 @@
                                                                                 </div>
 
                                                                                 <div class="cart-item-price">
-                                                                                    {{ $order_item['total_price'] }}đ</div>
+                                                                                    {{ $order_item['total_price'] }}đ
+                                                                                </div>
                                                                             </div>
 
                                                                             @if ($order_item['has_options'] == 1)

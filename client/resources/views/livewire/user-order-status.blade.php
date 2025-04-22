@@ -8,11 +8,9 @@
     
                     <span class="text">Bạn đang có một đơn hàng</span>
                     <button class="cold-button" wire:click="order_details({{ $user_order['id'] }})">Chi tiết</button>
-    
                 </div>
             @endforeach
         @endif
-
 
     </div>
 </div>

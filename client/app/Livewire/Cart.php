@@ -98,6 +98,7 @@ class Cart extends Component
                 $this->customer_phone = $this->user["phone"];
             }
         }
+        // dd($this->carts);
 
         // Nếu có sản phẩm
         if (!empty($this->carts["cart_items"])) {
@@ -121,7 +122,6 @@ class Cart extends Component
             // Giỏ hàng rỗng
             $this->isEmptyCart = true;
         }
-
     }
 
     // Phương thức giảm số lượng sản phẩm
@@ -156,6 +156,9 @@ class Cart extends Component
         $this->total = number_format(array_sum(array_map(function ($item) {
             return str_replace('.', '', $item);
         }, $this->total_item)), 0, '.', '.');
+
+        //umbale
+        
     }
 
     // Phương thức tăng số lượng sản phẩm
@@ -164,6 +167,8 @@ class Cart extends Component
         if ($this->default_quantity[$index] < 100) {
             $this->default_quantity[$index]++;
         }
+
+        // dd($this->default_price[$index]);
 
         $this->carts["cart_items"][$index]["total"] = number_format($this->default_price[$index] * $this->default_quantity[$index], 3, '.', '.');
         $this->total_item[$index] =  $this->carts["cart_items"][$index]["total"];

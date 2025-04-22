@@ -35,6 +35,9 @@ class Checkout extends Component
     #[Session(key: 'store-location')]
     public $store_location;
 
+    #[Session(key: 'orders-id')]
+    public $orders_id;
+
     public $distance_text; // mảng
     public $duration_text; // mảng
     public $points;
@@ -42,6 +45,8 @@ class Checkout extends Component
     public function mount()
     {
 
+        // $this->orders_id = null;
+        // dd($this->orders_id);
         // dd($this->carts);
         $this->ipaddr = request()->ip();
 
@@ -132,7 +137,6 @@ class Checkout extends Component
                         'total_price' => str_replace('.', '', $this->total),
                         'payment_method' => "COD",
                         'status' => 'pending'
-
                     ]);
                 } else {
 
@@ -154,6 +158,11 @@ class Checkout extends Component
 
                     $order_id = $response->json()["id"];
 
+                    $this->orders_id['orders'][] = [
+
+                        'id' => $order_id
+                    ];
+
                     foreach ($this->carts["cart_items"] as $index => $carts_items) {
 
                         // Nếu như là pizza thì lấy thêm tùy chọn
@@ -165,12 +174,11 @@ class Checkout extends Component
                                 'product_id' => $carts_items['product']['id'],
                                 'has_options' => $carts_items['has_options'],
                                 'quantity' => $carts_items['quantity'],
-                                'total_price' => str_replace('.', '', $carts_items['total']) ,
+                                'total_price' => str_replace('.', '', $carts_items['total']),
                                 'size_option_id' => $carts_items['size_option']['id'],
                                 'base_option_id' => $carts_items['base_option']['id'],
                                 'border_option_id' => $carts_items['border_option']['id']
                             ])->json();
-
                         } else { // Không lấy tùy chọn
                             $orderItem = Http::post(Component::$url . 'order-items', [
 
@@ -186,6 +194,8 @@ class Checkout extends Component
                         }
                     }
                 }
+
+                // dd($this->orders_id);
 
                 return $this->redirect('/orders' . '/' . $order_id, navigate: true);
             }

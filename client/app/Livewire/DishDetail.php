@@ -35,6 +35,9 @@ class DishDetail extends Component
     #[Session(key: 'carts')]
     public $carts;
 
+    //biến giá 1 sản phẩm cùng tùy chọn
+    public $price;
+
     // Phương thức xây dựng
     public function mount(string $id)
     {
@@ -116,8 +119,11 @@ class DishDetail extends Component
         if ($this->quantity > 1) {
             $this->quantity--;
         }
+
         // dd($this->default_price);
         // Cập nhật lại giá sản phẩm ứng với số lượng hiện tại
+        $this->price = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]), 3, '.', '.');
+       
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
 
@@ -131,6 +137,9 @@ class DishDetail extends Component
         }
 
         // Cập nhật lại giá sản phẩm ứng với số lượng
+        $this->price = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]), 3, '.', '.');
+
+
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
 
@@ -144,6 +153,8 @@ class DishDetail extends Component
             $this->quantity = 100;
         }
 
+        $this->price = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]), 3, '.', '.');
+
         // cập nhật lại giá
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
@@ -155,6 +166,8 @@ class DishDetail extends Component
         // Cập nhật lại tùy chọn và phụ phí
         $this->current_options["size"] = $size;
         $this->current_price_modifier["size"] = $price_modifier;
+
+        $this->price = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]), 3, '.', '.');
 
         // Cập nhật lại giá
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
@@ -181,6 +194,8 @@ class DishDetail extends Component
         $this->current_options["border"] = $border;
         $this->current_price_modifier["border"] = $price_modifier;
 
+        $this->price = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]), 3, '.', '.');
+
         // Cập nhật lại giá
         $this->product["price"] = number_format(($this->default_price + $this->current_price_modifier["size"] + $this->current_price_modifier["base"] + $this->current_price_modifier["border"]) * $this->quantity, 3, '.', '.');
     }
@@ -195,7 +210,6 @@ class DishDetail extends Component
 
         // Nếu có sản phẩm trong giỏ hàng
         if (!empty($this->carts["cart_items"])) {
-
 
             // Tìm vị trí của sản phẩm trong giỏ hàng
             $index = collect($this->carts["cart_items"])->search(function ($item) {
@@ -236,7 +250,9 @@ class DishDetail extends Component
                         "id" => $this->product["id"],
                         "name" => $this->product["name"],
                         // "price" => (int) str_replace('.', '', $this->product["price"]),
-                        "price" => $this->product["price"],
+                        // "price" => $this->product["price"],
+                        "price" => $this->price,
+
 
                         "description" => $this->product["description"],
                         "image" => $this->product["image"]
@@ -264,7 +280,9 @@ class DishDetail extends Component
                     "product" =>  [
                         "id" => $this->product["id"],
                         "name" => $this->product["name"],
-                        "price" => $this->product["price"],
+                        // "price" => $this->product["price"],
+                        "price" => $this->price,
+
                         "description" => $this->product["description"],
                         "image" => $this->product["image"]
                     ],

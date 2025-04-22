@@ -187,6 +187,7 @@
                     width: 80%;
                     color: red;
                 }
+
                 .address-added {
                     // color: $dark-pink;
                 }
@@ -393,4 +394,21 @@
 
 .loading-map {
     color: $main-color;
+}
+
+.options-cart {
+
+    ul {
+        list-style-type: none;
+        padding-left: 0px;
+        margin-bottom: 0px;
+
+        li {
+
+            color: $gray-color;
+            font-size: 1rem;
+
+
+        }
+    }
 }

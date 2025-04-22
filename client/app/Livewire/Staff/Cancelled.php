@@ -4,7 +4,9 @@ namespace App\Livewire\Staff;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('NVD\'s Pizzeria')]
 class Cancelled extends Component
 {
     public $cancelled_arrays = [];
@@ -27,7 +29,7 @@ class Cancelled extends Component
 
         $this->cancelled_orders = $this->cancelled_arrays["orders"];
 
-        // dd($this->pendding_order);
+        // dd($this->cancelled_orders);
         if(empty($this->count_orders["pending"])) {
             $this->count_orders["pending"] = 0;
         }

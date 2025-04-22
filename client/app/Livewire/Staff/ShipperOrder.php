@@ -7,8 +7,9 @@ use Livewire\Component;
 
 use Livewire\Attributes\Session;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 
-
+#[Title('Giao hàng')]
 class ShipperOrder extends Component
 {
     public $shipper_arrays = [];

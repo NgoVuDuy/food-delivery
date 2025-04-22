@@ -245,7 +245,6 @@ class FunctionController extends Controller
     //
     public function vnpayCallBack(Request $request)
     {
-
         $data = $request->all();
 
         if ($data["vnp_ResponseCode"] == "00") {

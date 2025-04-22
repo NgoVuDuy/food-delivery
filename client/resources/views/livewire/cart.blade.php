@@ -36,8 +36,9 @@
                     @if (!empty($carts['cart_items']))
 
                         @foreach ($carts['cart_items'] as $index => $cart_items)
+                            {{-- Gio hang cho dien thoai --}}
                             <div class="col-12 d-lg-none d-md-none d-block">
-                                <div class="cart-item-wrap d-flex align-items-end justify-content-around">
+                                <div class="cart-item-wrap d-flex  justify-content-around">
                                     <div class="cart-item-left" style="width: max-content">
 
                                         <div class="">
@@ -48,28 +49,29 @@
 
 
                                         </div>
-                                        {{-- @if ($cart_items['has_options'] == 1)
-                                            <div class="options" style="width: 40%">
-                                                <ul>
-                                                    <li>- {{ $cart_items['size_option']['name'] }}</li>
-                                                    <li>- {{ $cart_items['base_option']['name'] }}</li>
-                                                    <li>- {{ $cart_items['border_option']['name'] }}</li>
-                                                </ul>
-                                            </div>
-                                        @else
-                                            <div class=""></div>
-                                        @endif --}}
 
 
                                     </div>
                                     <div class="d-flex flex-column row-gap-4">
 
-                                        <div class="cart-item-info d-flex flex-column">
+                                        <div class="cart-item-info d-flex flex-column row-gap-2">
 
                                             <div class="cart-item-name">{{ $cart_items['product']['name'] }}</div>
 
                                             <div class="cart-item-price">{{ $cart_items['total'] }}đ
                                             </div>
+
+                                            @if ($cart_items['has_options'] == 1)
+                                                <div class="options-cart">
+                                                    <ul>
+                                                        <li>{{ $cart_items['size_option']['name'] }}</li>
+                                                        <li>{{ $cart_items['base_option']['name'] }}</li>
+                                                        <li>{{ $cart_items['border_option']['name'] }}</li>
+                                                    </ul>
+                                                </div>
+                                            @else
+                                                <div class=""></div>
+                                            @endif
                                         </div>
                                         <div class="cart-item-right d-flex align-items-center">
 
@@ -117,6 +119,7 @@
                                 </div>
                             </div>
 
+                            {{-- Gio hang cho may tinh --}}
                             <div class="col-12 d-lg-block d-md-block d-none">
 
                                 <div class="cart-item-wrap d-flex justify-content-between align-items-center">
@@ -158,8 +161,8 @@
                                             <button class="outline-button"
                                                 wire:click="decrease({{ $index }}, {{ $cart_items['id'] }})">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px" height="16px"
-                                                    stroke="currentColor" class="size-6">
+                                                    viewBox="0 0 24 24" stroke-width="1.5" width="16px"
+                                                    height="16px" stroke="currentColor" class="size-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M5 12h14" />
                                                 </svg>
@@ -167,7 +170,8 @@
                                             </button>
                                             <input type="number" name="quantity" id="quantity" min="1"
                                                 max="100" value="{{ $cart_items['quantity'] }}"
-                                                wire:model.live="default_quantity.{{ $index }}" wire:change="updateQuantity(  {{ $index }} , {{ $cart_items['id'] }})">
+                                                wire:model.live="default_quantity.{{ $index }}"
+                                                wire:change="updateQuantity(  {{ $index }} , {{ $cart_items['id'] }})">
 
                                             <button class="outline-button"
                                                 wire:click="increase({{ $index }}, {{ $cart_items['id'] }})">
@@ -635,13 +639,13 @@
                         $wire.dispatch('current_location')
 
                         $('.loading').addClass('d-none');
-                        
+
                     },
                     (error) => {
                         $('.loading').addClass('d-none');
 
                         console.error('Không thể lấy vị trí:', error);
-                        
+
                         alert(error.message)
                     }
                 );

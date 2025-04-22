@@ -123,9 +123,8 @@
                                 <div class="row row-gap-3 flex-column">
 
                                     @foreach ($carts['cart_items'] as $index => $cart_items)
-                                    
                                         <div class="col-12 d-lg-none d-md-none d-block">
-                                            <div class="cart-item-wrap d-flex align-items-end">
+                                            <div class="cart-item-wrap d-flex">
                                                 <div class="cart-item-left" style="width: max-content">
 
                                                     <div class="">
@@ -137,29 +136,30 @@
 
 
                                                     </div>
-                                                    {{-- @if ($cart_items['has_options'] == 1)
-                                                    <div class="options" style="width: 40%">
-                                                        <ul>
-                                                            <li>- {{ $cart_items['size_option']['name'] }}</li>
-                                                            <li>- {{ $cart_items['base_option']['name'] }}</li>
-                                                            <li>- {{ $cart_items['border_option']['name'] }}</li>
-                                                        </ul>
-                                                    </div>
-                                                @else
-                                                    <div class=""></div>
-                                                @endif --}}
-
 
                                                 </div>
                                                 <div class="d-flex flex-column row-gap-4">
 
-                                                    <div class="cart-item-info d-flex flex-column">
+                                                    <div class="cart-item-info d-flex flex-column row-gap-2">
 
                                                         <div class="cart-item-name">{{ $cart_items['product']['name'] }}
                                                         </div>
 
                                                         <div class="cart-item-price">{{ $cart_items['total'] }}đ
                                                         </div>
+
+                                                        @if ($cart_items['has_options'] == 1)
+                                                            <div class="options-cart">
+                                                                <ul>
+                                                                    <li>{{ $cart_items['size_option']['name'] }}</li>
+                                                                    <li>{{ $cart_items['base_option']['name'] }}</li>
+                                                                    <li>{{ $cart_items['border_option']['name'] }}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        @else
+                                                            <div class=""></div>
+                                                        @endif
                                                     </div>
                                                     <div
                                                         class="cart-item-right d-flex align-items-center justify-content-end">
@@ -175,23 +175,25 @@
                                         </div>
                                         <div class="col-12 d-lg-block d-md-block d-none">
 
-                                            <div class="cart-item-wrap d-flex justify-content-between align-items-center">
-    
+                                            <div
+                                                class="cart-item-wrap d-flex justify-content-between align-items-center">
+
                                                 <div class="cart-item-left d-flex align-items-center">
-    
+
                                                     <div class="checkout-cart-item-img">
                                                         <img src="{{ asset($cart_items['product']['image']) }}"
                                                             alt="" width="60px">
                                                     </div>
-    
+
                                                     <div class="cart-item-info d-flex flex-column">
-    
-                                                        <div class="cart-item-name">{{ $cart_items['product']['name'] }}
+
+                                                        <div class="cart-item-name">
+                                                            {{ $cart_items['product']['name'] }}
                                                         </div>
-    
+
                                                         <div class="cart-item-price">{{ $cart_items['total'] }}đ</div>
                                                     </div>
-    
+
                                                     @if ($cart_items['has_options'] == 1)
                                                         <div class="options" style="width: 40%">
                                                             <ul>
@@ -203,15 +205,15 @@
                                                     @else
                                                         <div class=""></div>
                                                     @endif
-    
+
                                                 </div>
-    
+
                                                 <div class="cart-item-right d-flex align-items-center">
                                                     <div class="quantity">
                                                         <span>x{{ $cart_items['quantity'] }}</span>
                                                     </div>
                                                 </div>
-    
+
                                             </div>
                                         </div>
 

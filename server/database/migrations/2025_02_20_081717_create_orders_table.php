@@ -35,12 +35,14 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('shipper_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('staff_id')->references('id')->on('users')->onDelete('set null');
+            // $table->foreign('shipper_id')->references('id')->on('users')->onDelete('set null');
+
+            $table->foreign('shipper_id')->references('id')->on('shippers')->onDelete('set null');
+
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('set null');
 
             $table->foreign('store_location_id')->references('id')->on('store_locations')->onDelete('set null');
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null');
-
 
         });
     }

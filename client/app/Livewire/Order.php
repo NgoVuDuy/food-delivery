@@ -35,14 +35,23 @@ class Order extends Component
 
     public $order_status;
 
+    #[Session(key: 'orders-id')]
+    public $orders_id;
+
     public function mount($id)
     {
+        // dd($this->orders_id);
+        // dd(session('orders-id'));
+        // dd($result);
+        // Reset lại index mảng và lưu lại session
+        // session(['orders-id' => array_values($orders_id)]);
 
         $this->order_id = $id;
 
         $this->order = Http::get(Component::$url . 'orders/' . $this->order_id)->json();
 
         $location = Http::get(Component::$url . 'place-details', [
+
             "place_id" => $this->order["place_id"]
         ])->json();
 
@@ -99,17 +108,17 @@ class Order extends Component
             $this->order_statuses[4] = true;
         }
 
-        $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
-        $this->points = Http::get(Component::$url . 'directions', [
+        // $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
+        // $this->points = Http::get(Component::$url . 'directions', [
 
-            'origin' => $this->shipper["latitude"] . ',' . $this->shipper["longitude"],
+        //     'origin' => $this->shipper["latitude"] . ',' . $this->shipper["longitude"],
 
-            // 'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
-            'destination' => $this->customer_lat . ',' . $this->customer_lng,
+        //     // 'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+        //     'destination' => $this->customer_lat . ',' . $this->customer_lng,
 
-            'vehicle' => 'car',
+        //     'vehicle' => 'car',
 
-        ])->json();
+        // ])->json();
     }
 
     public function reset_data()
@@ -142,18 +151,31 @@ class Order extends Component
             $this->order_statuses[3] = true;
 
             $this->shipper = Http::get(Component::$url . 'shippers/' . $this->order["shipper_id"])->json();
+
             $this->points = Http::get(Component::$url . 'directions', [
-    
+
                 'origin' => $this->shipper["latitude"] . ',' . $this->shipper["longitude"],
-                'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+                // 'destination' => $this->infor_delivery["to"]["lat"] . ',' . $this->infor_delivery["to"]["lng"],
+                // $this->customer_lat
+                'destination' => $this->customer_lat . ',' . $this->customer_lng,
+
                 'vehicle' => 'car',
-    
+
             ])->json();
 
             $this->dispatch('updatedShipperLocation');
         }
 
         if ($this->order_status == 'completed') {
+
+            $this->orders_id = session('orders-id', []);
+
+            $result['orders'] = array_filter($this->orders_id["orders"], function ($item) {
+
+                return $item['id'] != $this->order_id;
+            });
+
+            $this->orders_id = $result['orders'];
 
             $this->order_statuses[0] = true;
             $this->order_statuses[1] = true;
@@ -163,6 +185,31 @@ class Order extends Component
 
             $this->dispatch('completedOrder');
         }
+
+        if ($this->order_status == 'cancelled') {
+
+            $this->orders_id = session('orders-id', []);
+
+            $result['orders'] = array_filter($this->orders_id["orders"], function ($item) {
+
+                return $item['id'] != $this->order_id;
+            });
+
+            $this->orders_id = $result['orders'];
+
+            $this->order_statuses[0] = true;
+            $this->order_statuses[1] = true;
+            $this->order_statuses[2] = true;
+            $this->order_statuses[3] = true;
+            $this->order_statuses[4] = true;
+
+            $this->dispatch('cancelledOrder');
+        }
+    }
+    public function back_home()
+    {
+
+        return $this->redirect('/home', navigate: true);
     }
 
     public function render()

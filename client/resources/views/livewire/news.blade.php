@@ -20,11 +20,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
 
                     </div>
@@ -44,11 +44,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
                     </div>
                 </a>
@@ -66,11 +66,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
                     </div>
                 </a>
@@ -88,11 +88,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
                     </div>
                 </a>
@@ -111,11 +111,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
                     </div>
                 </a>
@@ -133,11 +133,11 @@
                             1/1/1919
                         </div>
                         <div class="news-title">
-                            Pizza ngon nhất thế giới
+                            Domino’s Cố gắng bán pizza ở Italy
                         </div>
 
                         <div class="news-content">
-                            pizza ngon nhất thế giới được bình chọn bởi tỷ phú giàu nhất thế giới Ngô Vũ Duy.
+                            7 năm sau ngày ra mắt tại Italy - cái nôi của món pizza ...
                         </div>
                     </div>
                 </a>

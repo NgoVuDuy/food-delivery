@@ -28,10 +28,10 @@
                                 @if (!empty($user))
                                     {{ $user['name'] }}
                                 @endif
-
+                                
                             </a>
                             <ul class="dropdown-menu">
-                                <li><button class="dropdown-item" href="#">Lịch sử mua hàng</button></li>
+                                {{-- <li><button class="dropdown-item" href="#">Lịch sử mua hàng</button></li> --}}
                                 <li><button class="dropdown-item" wire:click="logout">Đăng xuất</button></li>
 
                             </ul>

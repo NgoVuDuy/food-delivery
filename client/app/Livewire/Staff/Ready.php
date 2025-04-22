@@ -4,7 +4,9 @@ namespace App\Livewire\Staff;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('NVD\'s Pizzeria')]
 class Ready extends Component
 {
     public $ready_arrays = [];

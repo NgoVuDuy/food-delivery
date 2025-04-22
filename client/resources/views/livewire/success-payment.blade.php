@@ -10,7 +10,7 @@
                         <path d="m9 12 2 2 4-4" />
                     </svg>
                     <p class="title">Giao Dịch Thành Công</p>
-                    <p class="total-price">120.000đ</p>
+                    <p class="total-price">{{ $total }}đ</p>
                     <button class="cold-button" wire:click="next_btn()">Xem Đơn Hàng</button>
                 </div>
             </div>

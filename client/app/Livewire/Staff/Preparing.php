@@ -4,7 +4,9 @@ namespace App\Livewire\Staff;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Livewire\Attributes\Title;
 
+#[Title('NVD\'s Pizzeria')]
 class Preparing extends Component
 {
     public $preparing_arrays = [];
@@ -69,7 +71,9 @@ class Preparing extends Component
 
         //Tính toán xem shipper nào đang rảnh và có tổng order đã hoàn thành thấp nhất
         $min_shipper_orders = Http::get(Component::$url . 'shipper-orders')->json();
+        
         $shipper_id = $min_shipper_orders['id'];
+        // $shipper_id = $min_shipper_orders['shipper_id'];
 
         // dd($shipper_id);
 
@@ -82,6 +86,8 @@ class Preparing extends Component
             'status' => "ready",
             'shipper_id' => $shipper_id
         ])->json();
+
+        // dd($order);
 
         // Lấy lại các orders
         $this->preparing_arrays =  Http::get(Component::$url . 'orders', [
