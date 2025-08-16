@@ -9,8 +9,6 @@ use Livewire\Attributes\Session;
 
 use Livewire\Attributes\On;
 
-
-
 #[Title('Đơn hàng')]
 class Order extends Component
 {

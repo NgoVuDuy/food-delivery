@@ -74,6 +74,7 @@ class OrderController extends Controller
                         ->get();
 
         if ($user_id != null) {
+            
             $order = Order::with('storeLocation')
                 ->with('payment')
                 ->with('shipper.user')

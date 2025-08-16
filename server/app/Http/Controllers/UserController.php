@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
@@ -20,9 +19,6 @@ class UserController extends Controller
         return response()->json($users, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -46,28 +42,21 @@ class UserController extends Controller
         }
 
     }
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
         $user = User::with('shipper')->find($id);
+        // $user = $this->userService->getUserById($id);
 
         return response()->json($user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

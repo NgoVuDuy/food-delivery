@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Option;
+use App\Services\OptionService;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-        $option = Option::all();
+    private OptionService $optionService;
 
-        return response()->json($option, 200);
+    public function __construct(OptionService $optionService) {
+
+        $this->optionService = $optionService;
     }
 
+    public function index()
+    {
+        return response()->json($this->optionService->getAllOptions(), 200);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +26,8 @@ class OptionController extends Controller
     public function store(Request $request)
     {
         //
-        $option = $request->all();
-
-        Option::create($option, 201);
-
-        return response()->json($option, 201);
+        $options = $request->all();
+        return response()->json($this->optionService->createOption($options), 201);
     }
 
     /**
@@ -37,14 +35,8 @@ class OptionController extends Controller
      */
     public function show(string $id)
     {
-        //
-        $option = Option::find($id);
 
-        if (!$option) {
-            return response()->json(['message' => 'Không tìm thấy tùy chọn'], 404);
-        }
-
-        return response()->json($option, 200);
+        return response()->json($this->optionService->getOptionById($id), 200);
     }
 
 
@@ -53,19 +45,9 @@ class OptionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        //
-        $option = Option::find($id);
-
-        if (!$option) {
-            return response()->json(['message' => 'Không tìm thấy tùy chọn'], 404);
-        }
 
         $data = $request->all();
-
-        $option->update($data);
-
-        return response()->json($option, 200);
+        return response()->json($this->optionService->updateOption($id, $data), 200);
     }
 
     /**
@@ -73,15 +55,8 @@ class OptionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-        //
-        $option = Option::find($id);
 
-        if (!$option) {
-            return response()->json(['message' => 'Không tìm thấy tùy chọn'], 404);
-        }
-
-        $option->delete();
+        $this->optionService->deleteOption($id);
 
         return response()->json(null, 204);
     }

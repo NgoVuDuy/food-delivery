@@ -24,15 +24,6 @@ class FunctionController extends Controller
     //
     public $api_key = 'wwcDQvb8Ay0aSWt3iiy45D5YHcqjtSzFZgtmQHY5';
 
-    // public function getHomepageImages()
-    // {
-
-    //     $images = Product::orderBy('created_at', 'desc')
-    //         ->paginate(1, ['image']);
-
-    //     return response()->json($images, 200);
-    // }
-
     public function typical_products(Request $request)
     {
         $per_page = $request->query('per_page');
@@ -163,9 +154,6 @@ class FunctionController extends Controller
             $distance[] = $legs["distance"];
             $duration[] = $legs["duration"];
         }
-
-        // $distance = $directions["routes"][0]["legs"][0]["distance"];
-        // $duration = $directions["routes"][0]["legs"][0]["duration"];
 
         return response()->json([
             "points" => $coordinates,

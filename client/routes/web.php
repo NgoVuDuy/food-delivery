@@ -14,6 +14,7 @@ use App\Livewire\Order;
 use App\Livewire\Promotion;
 use App\Livewire\Search;
 use App\Livewire\News;
+use App\Livewire\ProductImage;
 use App\Livewire\Staff\Cancelled;
 use App\Livewire\Staff\Completed;
 use App\Livewire\Staff\Delivering;
@@ -37,6 +38,7 @@ Route::get('/dish-details/{id}', DishDetail::class)->name('dish-details');
 Route::get('/search', Search::class);
 Route::get('/promotion', Promotion::class);
 Route::get('/news', News::class);
+Route::get('/product-images', ProductImage::class);
 
 Route::middleware(['role:user'])->group(function() {
 

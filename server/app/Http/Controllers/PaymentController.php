@@ -43,7 +43,6 @@ class PaymentController extends Controller
         // $desc = $data['desc']; // Địa chỉ ip của khách hàng thực hiện giao dịch
 
 
-
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,

@@ -16,23 +16,11 @@ class Header extends Component
     public $count;
 
     #[Session(key: 'user')]
-    public $user; //
-
-    // #[Session(key: 'cartItems')]
-    // public $carts;
-
-    // #[Session(key: 'infor-delivery')]
-    // public $infor_delivery;
-
-    // #[Session(key: 'total')]
-    // public $total; // Tổng tiền của tất cả sản phẩm
+    public $user; 
 
 
     public function mount()
     {
-
-        // $this->count = Http::get(Component::$url . 'count-cart')->json();
-        // dd(session()->get('cartItems'));
 
         if (!empty($this->user)) {
 
@@ -61,16 +49,7 @@ class Header extends Component
     {
         session()->flush();
 
-        // $this->user = null;
-        // $this->carts = null;
-
         $this->reset();
-
-        // session()->forget('user');
-        // session()->forget('carts');
-        // session()->forget('total');
-        // session()->forget('infor-delivery');
-        // session()->flush();
 
         return $this->redirect('/home', navigate: true);
     }
