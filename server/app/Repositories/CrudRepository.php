@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 abstract class CrudRepository {
 
@@ -20,6 +22,14 @@ abstract class CrudRepository {
     }
 
     public function findById(int $id) {
+
+        $record = $this->model::find($id);
+
+        if(!$record) {
+
+            // report(new ResourceNotFoundException('Không tìm thấy tài nguyên'));
+            throw new NotFoundHttpException('Không tìm thấy tài nguyên');
+        }
 
         return $this->model::find($id);
     }
