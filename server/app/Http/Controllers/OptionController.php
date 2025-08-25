@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Option;
 use App\Services\OptionService;
 use Illuminate\Http\Request;
 

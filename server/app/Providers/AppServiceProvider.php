@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\Impl\UserRepository;
-use App\Repositories\UserRepositoryInterface;
-use App\Services\Impl\OptionServiceImpl;
-use App\Services\OptionService;
+use App\Repositories\Eloquent\BaseRepository;
+use App\Repositories\Eloquent\OptionRepository;
+use App\Repositories\Interfaces\BaseRepositoryInterface;
+use App\Repositories\Interfaces\OptionRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 
-        $this->app->bind(OptionService::class, OptionServiceImpl::class);
+        $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
+        $this->app->bind(OptionRepositoryInterface::class, OptionRepository::class);
 
     }
 
